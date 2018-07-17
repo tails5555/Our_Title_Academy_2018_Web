@@ -30,22 +30,26 @@ const validateAndUserLogin = (values, dispatch) => {
     )
 }
 
-class LoginForm extends Component{
+class LoginForm extends Component {
     render(){
-        let loginResult;
+        let loginResult =
+            <span className="w3-tag w3-padding w3-round-large w3-blue w3-center">
+                제목을 짓고 싶으면 로그인을 해주세요.
+            </span>
+
         const {handleSubmit} = this.props;
         const {loading, error} = this.props.accessUser;
         if(loading){
             loginResult =
-                <div className="w3-panel w3-center w3-blue w3-round-large ">
-                    <h6 className="w3-text-white">로그인을 진행하고 있습니다...</h6>
-                </div>
+                <span className="w3-tag w3-padding w3-round-large w3-blue w3-center">
+                    로그인을 진행하고 있습니다...
+                </span>
         }
         if(error){
             loginResult =
-                <div className="w3-panel w3-center w3-red w3-round-large">
-                    <h6 className="w3-text-white">{ error }</h6>
-                </div>
+                <span className="w3-tag w3-padding w3-round-large w3-red w3-center">
+                    { error }
+                </span>
         }
         return(
             <section id="user_login" className="alt">
