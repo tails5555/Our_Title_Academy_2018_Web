@@ -17,7 +17,7 @@ export default function(state = INITIAL_STATE, action){
         case USER_LOGIN_COMPLETE :
             return { ...state, accessUser : { principal : action.payload, loading : false, error : null }};
         case USER_LOGIN_EXCEPTION :
-            error = action.payload.data || { message : action.payload.message };
+            error = action.payload.data || { message : action.payload.data };
             return { ...state, accessUser : { principal : null, loading : false, error : error }};
         case RESET_USER_LOGIN :
             return { ...state, accessUser : { principal : null, loading : false, error : null }};
@@ -27,7 +27,7 @@ export default function(state = INITIAL_STATE, action){
         case FETCH_USER_PRINCIPAL_FROM_SERVER_COMPLETE :
             return { ...state, accessUser : { principal : action.payload, loading : false, error : null }};
         case FETCH_USER_PRINCIPAL_FROM_SERVER_EXCEPTION :
-            error = action.payload.data || { message : action.payload.message };
+            error = action.payload.data || { message : action.payload.data };
             return { ...state, accessUser : { principal : null, loading : false, error : error }};
         case RESET_FETCH_USER_PRINCIPAL_FROM_SERVER :
             return { ...state, accessUser : { principal : null, loading : false, error : null }};

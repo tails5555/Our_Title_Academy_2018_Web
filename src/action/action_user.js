@@ -1,5 +1,4 @@
 import axios from 'axios';
-import JWTDecode from 'jwt-decode';
 
 const ROOT_URL = 'http://127.0.0.1:8080/UserAPI/auth';
 
@@ -35,8 +34,8 @@ export function userLoginComplete(userToken){
     );
     return {
         type : USER_LOGIN_COMPLETE,
-        payload : accessInfo.then(accessVO => {
-            return accessVO
+        payload : accessInfo.then(access => {
+            return access.data
         })
     }
 }
@@ -71,7 +70,7 @@ export function fetchUserPrincipalFromServerProcess(userToken){
 export function fetchUserPrincipalFromServerComplete(access){
     return {
         type : FETCH_USER_PRINCIPAL_FROM_SERVER_COMPLETE,
-        payload : access
+        payload : access.data
     }
 }
 
