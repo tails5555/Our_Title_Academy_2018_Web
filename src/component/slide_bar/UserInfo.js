@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 class UserInfo extends Component{
+    handleClick(event){
+        this.props.history.push('/');
+        this.props.logoutFromServer();
+    }
+
     render(){
         const { principal, loading, error } = this.props.accessUser;
         let infoMessage;
@@ -8,10 +14,12 @@ class UserInfo extends Component{
         }else if(error){
             infoMessage = <p>사용자 정보를 불러오는 도중 오류가 발생했습니다.</p>
         }else {
+            let nickname = (principal === null) || principal.nickname;
+            let accessTime = (principal === null) || principal.accessTime;
             infoMessage =
                 <div>
-                    <p><b>{principal.nickname} 님</b>, 제목을 지어주세요!!!</p>
-                    <p>접속 시간 : {principal.accessTime}</p>
+                    <p><b>{ (nickname === null) || nickname } 님</b>, 제목을 지어주세요!!!</p>
+                    <p>접속 시간 : { (accessTime === null) || accessTime }</p>
                 </div>
         }
         return(
@@ -20,9 +28,11 @@ class UserInfo extends Component{
                     <a href="#" className="image"><img src="../my_image/kimdoohan.jpg" alt="" /></a>
                     {infoMessage}
                 </article>
-                <button className="button primary fit large" onClick={this.props.logoutFromServer}>Log Out</button>
+                <button className="button primary fit large" onClick={this.handleClick.bind(this)}>
+                    Log Out
+                </button>
             </section>
         );
     }
 }
-export default UserInfo;
+export default withRouter(UserInfo);
