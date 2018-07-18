@@ -16,6 +16,11 @@ export const GUEST_CONFIRM_LOGIN_ID_SUCCESS = 'GUEST_CONFIRM_LOGIN_ID_SUCCESS';
 export const GUEST_CONFIRM_LOGIN_ID_FAILURE = 'GUEST_CONFIRM_LOGIN_ID_FAILURE';
 export const RESET_GUEST_CONFIRM_LOGIN_ID = 'RESET_GUEST_CONFIRM_LOGIN_ID';
 
+export const GUEST_SIGN_UP_PROCESS = 'GUEST_SIGN_UP_PROCESS';
+export const GUEST_SIGN_UP_SUCCESS = 'GUEST_SIGN_UP_SUCCESS';
+export const GUEST_SIGN_UP_FAILURE = 'GUEST_SIGN_UP_FAILURE';
+export const RESET_GUEST_SIGN_UP = 'RESET_GUEST_SIGN_UP';
+
 export function guestLoadAgeList(){
     const request = axios({
         method : 'get',
@@ -106,5 +111,37 @@ export function guestConfirmLoginIdFailure(error){
 export function resetGuestConfirmLoginId(){
     return {
         type : RESET_GUEST_CONFIRM_LOGIN_ID
+    }
+}
+
+export function guestSignUpProcess(signForm){
+    const request = axios({
+        method : 'post',
+        url : `${ROOT_URL}/guest/sign_up`,
+        data : signForm
+    });
+    return {
+        type : GUEST_SIGN_UP_PROCESS,
+        payload : request
+    }
+}
+
+export function guestSignUpSuccess(detailVO){
+    return {
+        type : GUEST_SIGN_UP_SUCCESS,
+        payload : detailVO.data
+    }
+}
+
+export function guestSignUpFailure(error){
+    return {
+        type : GUEST_SIGN_UP_FAILURE,
+        payload : error
+    }
+}
+
+export function resetGuestSignUp(){
+    return {
+        type : RESET_GUEST_SIGN_UP
     }
 }

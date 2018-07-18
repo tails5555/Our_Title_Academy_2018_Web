@@ -11,17 +11,16 @@ const mapDispatchToProps = (dispatch) => {
             if(!accessToken || accessToken === '') return;
             dispatch(fetchUserPrincipalFromServerProcess(accessToken))
                 .then((response) => {
-                    if(!response.error) {
-                        sessionStorage.setItem('jwtToken', accessToken);
-                        dispatch(fetchUserPrincipalFromServerComplete(response.payload))
-                    }else{
+                    if(!response.payload && response.payload.status != 200){
                         sessionStorage.removeItem('jwtToken');
                         dispatch(fetchUserPrincipalFromServerException(response.payload));
+                    }else{
+                        sessionStorage.setItem('jwtToken', accessToken);
+                        dispatch(fetchUserPrincipalFromServerComplete(response.payload))
                     }
                 })
         },
         resetFetchPrincipalFromServer : () => {
-            sessionStorage.removeItem('jwtToken');
             dispatch(resetFetchUserPrincipalFromServer())
         }
     }
