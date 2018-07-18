@@ -5,7 +5,8 @@ const ROOT_URL = 'http://127.0.0.1:8080/UserAPI/auth';
 export const USER_LOGIN_PROCESS = 'USER_LOGIN_PROCESS';
 export const USER_LOGIN_EXCEPTION = 'USER_LOGIN_EXCEPTION';
 export const USER_LOGIN_COMPLETE = 'USER_LOGIN_COMPLETE';
-export const RESET_USER_LOGIN = 'RESET_USER_LOGIN';
+
+export const USER_LOGOUT_PROCESS = 'USER_LOGOUT_PROCESS';
 
 export const FETCH_USER_PRINCIPAL_FROM_SERVER_PROCESS = 'FETCH_USER_PRINCIPAL_FROM_SERVER_PROCESS';
 export const FETCH_USER_PRINCIPAL_FROM_SERVER_COMPLETE = 'FETCH_USER_PRINCIPAL_FROM_SERVER_COMPLETE';
@@ -25,7 +26,7 @@ export function userLoginProcess(loginForm){
 }
 
 export function userLoginComplete(userToken){
-    const accessInfo = axios.get(`${ROOT_URL}/common/current_access`,{
+    const request = axios.get(`${ROOT_URL}/common/current_access`,{
         headers :
             {
                 'Authorization' : `Bearer ${userToken}`
@@ -34,7 +35,7 @@ export function userLoginComplete(userToken){
     );
     return {
         type : USER_LOGIN_COMPLETE,
-        payload : accessInfo.then(access => {
+        payload : request.then(access => {
             return access.data
         })
     }
@@ -47,9 +48,17 @@ export function userLoginException(error){
     }
 }
 
-export function resetUserLogin(){
+export function userLogoutProcess(userToken){
+    const request = axios.delete(`${ROOT_URL}/common/logout`, {
+        headers:
+            {
+                'Authorization': `Bearer ${userToken}`
+            }
+        }
+    );
     return {
-        type : RESET_USER_LOGIN
+        type : USER_LOGOUT_PROCESS,
+        payload : request
     }
 }
 
