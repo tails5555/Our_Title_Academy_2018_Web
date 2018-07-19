@@ -65,8 +65,7 @@ const validateAndGuestSign = (values, dispatch, props) => {
                 dispatch(guestSignUpFailure(response.payload));
                 throw new SubmissionError(response.payload.data);
             }
-            sessionStorage.setItem('jwtToken', response.payload.data);
-            dispatch(guestSignUpSuccess(response.payload.data));
+            dispatch(guestSignUpSuccess(response.payload));
         }
     )
 }
@@ -100,7 +99,7 @@ class SignForm extends Component {
         const { detail } = this.props.detailResult;
         const { handleSubmit } = this.props;
         if(detail !== null){
-            !this.props.history || this.props.history.push('/account/sign_complete');
+            !this.props.history || this.props.history.push('/account/sign_result');
         }
         return(
             <section>
