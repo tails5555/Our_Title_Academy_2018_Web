@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import GuestRouter from './GuestRouter'
 import AdminRouter from "./AdminRouter";
 import ManagerRouter from "./ManagerRouter";
 import UserRouter from "./UserRouter";
-import NavMenu from "../component/slide_bar/NavMenu";
 import {AnonymousSideBar, UserExistedSideBar} from "../page/side_bar";
 
 class ApplicationRouter extends Component {
@@ -21,7 +20,7 @@ class ApplicationRouter extends Component {
             router = <GuestRouter />
             sidebar = <AnonymousSideBar />
         } else {
-            sidebar = <UserExistedSideBar />
+            sidebar = <UserExistedSideBar type={principal.type} />
             let type = principal.type;
             switch(type){
                 case 'ADMIN' :
