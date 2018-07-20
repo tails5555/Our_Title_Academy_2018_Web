@@ -19,7 +19,6 @@ export const RESET_GUEST_CONFIRM_LOGIN_ID = 'RESET_GUEST_CONFIRM_LOGIN_ID';
 export const GUEST_SIGN_UP_PROCESS = 'GUEST_SIGN_UP_PROCESS';
 export const GUEST_SIGN_UP_SUCCESS = 'GUEST_SIGN_UP_SUCCESS';
 export const GUEST_SIGN_UP_FAILURE = 'GUEST_SIGN_UP_FAILURE';
-export const RESET_GUEST_SIGN_UP = 'RESET_GUEST_SIGN_UP';
 
 export function guestLoadAgeList(){
     const request = axios({
@@ -77,7 +76,7 @@ export function guestLoadCityListFailure(error){
     }
 }
 
-export function resetGuestLoadCityist(){
+export function resetGuestLoadCityList(){
     return {
         type : RESET_GUEST_LOAD_CITY_LIST
     }
@@ -137,11 +136,5 @@ export function guestSignUpFailure(error){
     return {
         type : GUEST_SIGN_UP_FAILURE,
         payload : error
-    }
-}
-
-export function resetGuestSignUp(){
-    return {
-        type : RESET_GUEST_SIGN_UP
     }
 }

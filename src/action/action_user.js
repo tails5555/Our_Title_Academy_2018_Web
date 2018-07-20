@@ -13,6 +13,26 @@ export const FETCH_USER_PRINCIPAL_FROM_SERVER_COMPLETE = 'FETCH_USER_PRINCIPAL_F
 export const FETCH_USER_PRINCIPAL_FROM_SERVER_EXCEPTION = 'FETCH_USER_PRINCIPAL_FROM_SERVER_EXCEPTION';
 export const RESET_FETCH_USER_PRINCIPAL_FROM_SERVER = 'RESET_FETCH_USER_PRINCIPAL_FROM_SERVER';
 
+export const USER_LOAD_SIGN_FORM = 'USER_LOAD_SIGN_FORM';
+export const USER_LOAD_SIGN_FORM_SUCCESS = 'USER_LOAD_SIGN_FORM_SUCCESS';
+export const USER_LOAD_SIGN_FORM_FAILURE = 'USER_LOAD_SIGN_FORM_FAILURE';
+export const RESET_USER_LOAD_SIGN_FORM = 'RESET_USER_LOAD_SIGN_FORM';
+
+export const USER_LOAD_AGE_LIST = 'USER_LOAD_AGE_LIST';
+export const USER_LOAD_AGE_LIST_SUCCESS = 'USER_LOAD_AGE_LIST_SUCCESS';
+export const USER_LOAD_AGE_LIST_FAILURE = 'USER_LOAD_AGE_LIST_FAILURE';
+export const RESET_USER_LOAD_AGE_LIST = 'RESET_USER_LOAD_AGE_LIST';
+
+export const USER_LOAD_CITY_LIST = 'USER_LOAD_CITY_LIST';
+export const USER_LOAD_CITY_LIST_SUCCESS = 'USER_LOAD_CITY_LIST_SUCCESS';
+export const USER_LOAD_CITY_LIST_FAILURE = 'USER_LOAD_CITY_LIST_FAILURE';
+export const RESET_USER_LOAD_CITY_LIST = 'RESET_USER_LOAD_CITY_LIST';
+
+export const USER_CONFIRM_CURRENT_PASSWORD = 'USER_CONFIRM_CURRENT_PASSWORD';
+export const USER_CONFIRM_CURRENT_PASSWORD_SUCCESS = 'USER_CONFIRM_CURRENT_PASSWORD_SUCCESS';
+export const USER_CONFIRM_CURRENT_PASSWORD_FAILURE = 'USER_CONFIRM_CURRENT_PASSWORD_FAILURE';
+export const RESET_USER_CONFIRM_CURRENT_PASSWORD = 'RESET_USER_CONFIRM_CURRENT_PASSWORD';
+
 export function userLoginProcess(loginForm){
     const request = axios({
         method : 'post',
@@ -93,5 +113,146 @@ export function fetchUserPrincipalFromServerException(error){
 export function resetFetchUserPrincipalFromServer(){
     return {
         type : RESET_FETCH_USER_PRINCIPAL_FROM_SERVER
+    }
+}
+
+export function userLoadSignForm(userToken){
+    const request = axios.get(`${ROOT_URL}/common/sign_info`, {
+            headers :
+                {
+                    'Authorization' : `Bearer ${userToken}`
+                }
+        }
+    );
+    return {
+        type : USER_LOAD_SIGN_FORM,
+        payload : request
+    }
+}
+
+export function userLoadSignFormSuccess(signForm){
+    return {
+        type : USER_LOAD_SIGN_FORM_SUCCESS,
+        payload : signForm.data
+    }
+}
+
+export function userLoadSignFormFailure(error){
+    return {
+        type : USER_LOAD_SIGN_FORM_FAILURE,
+        payload : error
+    }
+}
+
+export function resetUserLoadSignForm(){
+    return {
+        type : RESET_USER_LOAD_SIGN_FORM
+    }
+}
+
+export function userLoadAgeList(userToken){
+    const request = axios({
+        method : 'get',
+        url : `${ROOT_URL}/common/ageList`,
+        headers :
+        {
+            'Authorization' : `Bearer ${userToken}`
+        }
+    });
+    return {
+        type : USER_LOAD_AGE_LIST,
+        payload : request
+    }
+}
+
+export function userLoadAgeListSuccess(cities){
+    return {
+        type : USER_LOAD_AGE_LIST_SUCCESS,
+        payload : cities.data
+    }
+}
+
+export function userLoadAgeListFailure(error){
+    return {
+        type : USER_LOAD_AGE_LIST_FAILURE,
+        payload : error
+    }
+}
+
+export function resetUserLoadAgeList(){
+    return {
+        type : RESET_USER_LOAD_AGE_LIST
+    }
+}
+
+export function userLoadCityList(userToken){
+    const request = axios({
+        method : 'get',
+        url : `${ROOT_URL}/common/cityList`,
+        headers :
+        {
+            'Authorization' : `Bearer ${userToken}`
+        }
+    });
+    return {
+        type : USER_LOAD_CITY_LIST,
+        payload : request
+    }
+}
+
+export function userLoadCityListSuccess(cities){
+    return {
+        type : USER_LOAD_CITY_LIST_SUCCESS,
+        payload : cities.data
+    }
+}
+
+export function userLoadCityListFailure(error){
+    return {
+        type : USER_LOAD_CITY_LIST_FAILURE,
+        payload : error
+    }
+}
+
+export function resetUserLoadCityList(){
+    return {
+        type : RESET_USER_LOAD_CITY_LIST
+    }
+}
+
+export function userConfirmCurrentPassword(currentPassword, userToken){
+    const request = axios({
+        method : 'post',
+        url : `${ROOT_URL}/common/confirm_password`,
+        data : currentPassword,
+        headers :
+            {
+                'Authorization' : `Bearer ${userToken}`
+            }
+    });
+
+    return {
+        type : USER_CONFIRM_CURRENT_PASSWORD,
+        payload : request
+    }
+}
+
+export function userConfirmCurrentPasswordSuccess(result){
+    return {
+        type : USER_CONFIRM_CURRENT_PASSWORD_SUCCESS,
+        payload : result.data
+    }
+}
+
+export function userConfirmCurrentPasswordFailure(error){
+    return {
+        type : USER_CONFIRM_CURRENT_PASSWORD_FAILURE,
+        payload : error
+    }
+}
+
+export function resetUserConfirmCurrentPassword(){
+    return {
+        type : RESET_USER_CONFIRM_CURRENT_PASSWORD
     }
 }
