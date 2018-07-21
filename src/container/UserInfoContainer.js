@@ -4,9 +4,9 @@ import { userLogoutProcess } from '../action/action_user';
 const mapDispatchToProps = (dispatch) => {
     return{
         logoutFromServer : () => {
-            let accessToken = sessionStorage.getItem('jwtToken');
+            let accessToken = localStorage.getItem('jwtToken');
             if(!accessToken || accessToken === '') return;
-            sessionStorage.removeItem('jwtToken');
+            localStorage.removeItem('jwtToken');
             dispatch(userLogoutProcess(accessToken));
         }
     }

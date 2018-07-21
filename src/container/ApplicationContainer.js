@@ -7,15 +7,15 @@ import {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchPrincipalFromServer : () => {
-            let accessToken = sessionStorage.getItem('jwtToken');
+            let accessToken = localStorage.getItem('jwtToken');
             if(!accessToken || accessToken === '') return;
             dispatch(fetchUserPrincipalFromServerProcess(accessToken))
                 .then((response) => {
                     if(!response.payload && response.payload.status != 200){
-                        sessionStorage.removeItem('jwtToken');
+                        localStorage.removeItem('jwtToken');
                         dispatch(fetchUserPrincipalFromServerException(response.payload));
                     }else{
-                        sessionStorage.setItem('jwtToken', accessToken);
+                        localStorage.setItem('jwtToken', accessToken);
                         dispatch(fetchUserPrincipalFromServerComplete(response.payload))
                     }
                 })

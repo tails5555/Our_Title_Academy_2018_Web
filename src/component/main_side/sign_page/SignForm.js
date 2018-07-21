@@ -8,8 +8,13 @@ function validate(values){
     var errors = {};
     var hasErrors = false;
 
+    var pattern = /^[A-Za-z0-9]{6,12}$/;
+
     if(!values.mainPassword || values.mainPassword.trim() === ''){
         errors.mainPassword = '비밀번호를 입력하세요.';
+        hasErrors = true;
+    } else if(!values.mainPassword.match(pattern)){
+        errors.mainPassword = '비밀번호도 영어 대-소문자, 숫자를 포함한 6~12자로 입력하세요.';
         hasErrors = true;
     }
 
@@ -40,8 +45,13 @@ function validate(values){
         hasErrors = true;
     }
 
+    var phoneExp = /^01([0|1|6|7|8|9]?)?([0-9]{7,8})$/;
+
     if(!values.phoneNumber || values.phoneNumber.trim() === ''){
         errors.phoneNumber = '휴대폰 번호를 입력하세요.';
+        hasErrors = true;
+    } else if(!values.phoneNumber.match(phoneExp)){
+        errors.phoneNumber = '휴대폰 번호 형식을 확인하세요.';
         hasErrors = true;
     }
 
@@ -58,7 +68,7 @@ function validate(values){
     return hasErrors && errors;
 }
 
-const validateAndGuestSign = (values, dispatch, props) => {
+const validateAndGuestSign = (values, dispatch) => {
     return dispatch(guestSignUpProcess(values)).then(
         (response) => {
             if(response.payload && response.payload.status != 200){
@@ -83,11 +93,23 @@ class SignForm extends Component {
     }
 
     handleClickConfirm(event){
-        let loginId = (this.props.signForm.values === null) || this.props.signForm.values.loginId;
-        this.props.fetchConfirmLoginId(loginId);
+        var pattern = /^[A-Za-z0-9]{6,12}$/;
+        let loginId = !(this.props.signForm.values) ? '' : this.props.signForm.values.loginId;
+        if(!loginId || loginId.trim() !== ''){
+            if(loginId.match(pattern)){
+                this.props.fetchConfirmLoginId(loginId);
+            }else{
+                this.props.signForm.syncErrors.loginId = '사용자 ID는 영어 대-소문자, 숫자를 포함한 6~12자로 구성해야 합니다.';
+            }
+        }
     }
 
     handleClickReset(event){
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
         this.props.resetConfirmLoginId();
         this.props.reset();
     }
@@ -99,7 +121,7 @@ class SignForm extends Component {
         const { detail } = this.props.detailResult;
         const { handleSubmit } = this.props;
         if(detail !== null){
-            !this.props.history || this.props.history.push('/account/sign_result');
+            !(this.props.history) || this.props.history.push('/account/sign_result');
         }
         return(
             <section>
@@ -110,7 +132,7 @@ class SignForm extends Component {
                     <h3 className="w3-text-white align-center">회원 가입을 진행하기 위해 아래와 같은 양식을 입력하세요.</h3>
                 </div>
                 <form onSubmit={handleSubmit(validateAndGuestSign)}>
-                    <Field type="text" name="loginId" component={renderField} label="사용자 ID" placeholder="이용할 ID를 입력하세요." readOnly={(result) ? true : false} />
+                    <Field type="text" name="loginId" component={renderField} label="사용자 ID" placeholder="이용할 ID를 입력하세요. 영어 대-소문자, 숫자를 포함한 6~12자로 입력하세요." readOnly={(result) ? true : false} />
                     <br/>
                     {
                         result ?
@@ -123,7 +145,7 @@ class SignForm extends Component {
                             </div>
                     }
                     <br/>
-                    <Field type="password" name="mainPassword" component={renderField} label="비밀번호" placeholder="이용할 비밀번호를 입력하세요." />
+                    <Field type="password" name="mainPassword" component={renderField} label="비밀번호" placeholder="이용할 비밀번호를 입력하세요. 영어 대-소문자, 숫자를 포함한 6~12자로 입력하세요." />
                     <br/>
                     <Field type="password" name="subPassword" component={renderField} label="비밀번호 확인" placeholder="비밀번호를 한 번 더 입력하세요." />
                     <br/>
