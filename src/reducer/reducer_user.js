@@ -4,7 +4,8 @@ import {
     USER_LOAD_SIGN_FORM, USER_LOAD_SIGN_FORM_SUCCESS, USER_LOAD_SIGN_FORM_FAILURE, RESET_USER_LOAD_SIGN_FORM,
     USER_LOAD_AGE_LIST, USER_LOAD_AGE_LIST_SUCCESS, USER_LOAD_AGE_LIST_FAILURE, RESET_USER_LOAD_AGE_LIST,
     USER_LOAD_CITY_LIST, USER_LOAD_CITY_LIST_SUCCESS, USER_LOAD_CITY_LIST_FAILURE, RESET_USER_LOAD_CITY_LIST,
-    USER_CONFIRM_CURRENT_PASSWORD, USER_CONFIRM_CURRENT_PASSWORD_SUCCESS, USER_CONFIRM_CURRENT_PASSWORD_FAILURE, RESET_USER_CONFIRM_CURRENT_PASSWORD
+    USER_CONFIRM_CURRENT_PASSWORD, USER_CONFIRM_CURRENT_PASSWORD_SUCCESS, USER_CONFIRM_CURRENT_PASSWORD_FAILURE, RESET_USER_CONFIRM_CURRENT_PASSWORD,
+    USER_UPDATE_SIGN_INFO_PROCESS, USER_UPDATE_SIGN_INFO_SUCCESS, USER_UPDATE_SIGN_INFO_FAILURE, RESET_USER_UPDATE_SIGN_INFO
 } from '../action/action_user';
 
 const INITIAL_STATE = {
@@ -23,7 +24,9 @@ const INITIAL_STATE = {
     accessUser : {
         principal : null, loading : false, error : null
     },
-
+    detailResult : {
+        detail : null, loading : false, error : null
+    }
 }
 
 export default function(state = INITIAL_STATE, action){
@@ -80,14 +83,24 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, signInfo : { signModel : null, loading : false, error : null }};
 
         case USER_CONFIRM_CURRENT_PASSWORD :
-            return { ...state, passwordElement : { result : false, loading : true, error : null}};
+            return { ...state, passwordElement : { result : false, loading : true, error : null }};
         case USER_CONFIRM_CURRENT_PASSWORD_SUCCESS :
-            return { ...state, passwordElement : { result : action.payload, loading : false, error : null}};
+            return { ...state, passwordElement : { result : action.payload, loading : false, error : null }};
         case USER_CONFIRM_CURRENT_PASSWORD_FAILURE :
             error = action.payload.data || { message : action.payload.data };
-            return { ...state, passwordElement : { result : false, loading : false, error : error}};
+            return { ...state, passwordElement : { result : false, loading : false, error : error }};
         case RESET_USER_CONFIRM_CURRENT_PASSWORD :
-            return { ...state, passwordElement : { result : false, loading : false, error : null}};
+            return { ...state, passwordElement : { result : false, loading : false, error : null }};
+
+        case USER_UPDATE_SIGN_INFO_PROCESS :
+            return { ...state, detailResult : { detail : null, loading : true, error : null }};
+        case USER_UPDATE_SIGN_INFO_SUCCESS :
+            return { ...state, detailResult : { detail : action.payload, loading : false, error : null }};
+        case USER_UPDATE_SIGN_INFO_FAILURE :
+            error = action.payload.data || { message : action.payload.data };
+            return { ...state, detailResult : { detail : null, loading : false, error : error }};
+        case RESET_USER_UPDATE_SIGN_INFO :
+            return { ...state, detailResult : { detail : null, loading : false, error : null }};
 
         default :
             return state;

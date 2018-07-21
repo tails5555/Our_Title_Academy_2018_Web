@@ -33,6 +33,11 @@ export const USER_CONFIRM_CURRENT_PASSWORD_SUCCESS = 'USER_CONFIRM_CURRENT_PASSW
 export const USER_CONFIRM_CURRENT_PASSWORD_FAILURE = 'USER_CONFIRM_CURRENT_PASSWORD_FAILURE';
 export const RESET_USER_CONFIRM_CURRENT_PASSWORD = 'RESET_USER_CONFIRM_CURRENT_PASSWORD';
 
+export const USER_UPDATE_SIGN_INFO_PROCESS = 'USER_UPDATE_SIGN_INFO_PROCESS';
+export const USER_UPDATE_SIGN_INFO_SUCCESS = 'USER_UPDATE_SIGN_INFO_SUCCESS';
+export const USER_UPDATE_SIGN_INFO_FAILURE = 'USER_UPDATE_SIGN_INFO_FAILURE';
+export const RESET_USER_UPDATE_SIGN_INFO = 'RESET_USER_UPDATE_SIGN_INFO';
+
 export function userLoginProcess(loginForm){
     const request = axios({
         method : 'post',
@@ -254,5 +259,42 @@ export function userConfirmCurrentPasswordFailure(error){
 export function resetUserConfirmCurrentPassword(){
     return {
         type : RESET_USER_CONFIRM_CURRENT_PASSWORD
+    }
+}
+
+export function userUpdateSignInfoProcess(userInfoUpdateForm, userToken){
+    const request = axios({
+        method : 'put',
+        url : `${ROOT_URL}/common/sign_update`,
+        data : userInfoUpdateForm,
+        headers :
+            {
+                'Authorization' : `Bearer ${userToken}`
+            }
+    });
+
+    return {
+        type : USER_UPDATE_SIGN_INFO_PROCESS,
+        payload : request
+    }
+}
+
+export function userUpdateSignInfoSuccess(detailVO){
+    return {
+        type : USER_UPDATE_SIGN_INFO_SUCCESS,
+        payload : detailVO.data
+    }
+}
+
+export function userUpdateSignInfoFailure(error){
+    return {
+        type : USER_UPDATE_SIGN_INFO_FAILURE,
+        payload : error
+    }
+}
+
+export function resetUserUpdateSignInfo(){
+    return {
+        type : RESET_USER_UPDATE_SIGN_INFO
     }
 }
