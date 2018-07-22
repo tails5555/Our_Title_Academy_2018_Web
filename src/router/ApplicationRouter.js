@@ -15,7 +15,10 @@ class ApplicationRouter extends Component {
     }
     render(){
         let router, sidebar;
-        const { principal } = this.props.accessUser;
+        const { principal, error } = this.props.accessUser;
+        if(error !== null){
+            alert(error);
+        }
         if(principal === null){
             router = <GuestRouter />
             sidebar = <AnonymousSideBar />

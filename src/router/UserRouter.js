@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Route } from 'react-router-dom';
-import {MyInfoFormPage, MyInfoResultPage} from "../page";
+import {MyInfoFormPage, MyInfoResultPage} from "../page/common_my_info";
 class UserRouter extends Component{
     render(){
         return(

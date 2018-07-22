@@ -4,7 +4,7 @@ import { UserInfoContainer } from "../../container";
 import DevelopInfo from "../../component/slide_bar/DevelopInfo";
 import RealPopular from "../../component/slide_bar/RealPopular";
 import {UserNavMenu, ManagerNavMenu, AdminNavMenu} from "../../component/slide_bar/nav_menu";
-"../../component/slide_bar/nav_menu/UserNavMenu";
+
 const UserExistedSideBar = (props) => {
     let navMenu;
     switch(props.type){

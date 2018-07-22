@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Route } from 'react-router-dom';
-import {SignUpPage, SignResultPage} from "../page";
+import {SignUpPage, SignResultPage} from "../page/guest_sign_up";
 class GuestRouter extends Component{
     render(){
         return(

@@ -2,7 +2,7 @@ import {SignForm} from "../component/main_side/sign_page";
 import {connect} from 'react-redux';
 import {
     guestLoadAgeList, guestLoadAgeListSuccess, guestLoadAgeListFailure, resetGuestLoadAgeList,
-    guestLoadCityList, guestLoadCityListSuccess, guestLoadCityListFailure, resetGuestLoadCityist,
+    guestLoadCityList, guestLoadCityListSuccess, guestLoadCityListFailure, resetGuestLoadCityList,
     guestConfirmLoginId, guestConfirmLoginIdSuccess, guestConfirmLoginIdFailure, resetGuestConfirmLoginId
 } from "../action/action_guest";
 
@@ -40,7 +40,7 @@ const mapDispatchToProps = (dispatch) => {
             })
         },
         resetFetchCityFromServer : () => {
-            dispatch(resetGuestLoadCityist());
+            dispatch(resetGuestLoadCityList());
         },
         fetchConfirmLoginId : (loginId) => {
             dispatch(guestConfirmLoginId(loginId)).then((response) => {

@@ -38,6 +38,16 @@ export const USER_UPDATE_SIGN_INFO_SUCCESS = 'USER_UPDATE_SIGN_INFO_SUCCESS';
 export const USER_UPDATE_SIGN_INFO_FAILURE = 'USER_UPDATE_SIGN_INFO_FAILURE';
 export const RESET_USER_UPDATE_SIGN_INFO = 'RESET_USER_UPDATE_SIGN_INFO';
 
+export const ADMIN_LOAD_USER_LIST = 'ADMIN_LOAD_USER_LIST';
+export const ADMIN_LOAD_USER_LIST_SUCCESS = 'ADMIN_LOAD_USER_LIST_SUCCESS';
+export const ADMIN_LOAD_USER_LIST_FAILURE = 'ADMIN_LOAD_USER_LIST_FAILURE';
+
+export const MANAGER_LOAD_USER_LIST = 'MANAGER_LOAD_USER_LIST';
+export const MANAGER_LOAD_USER_LIST_SUCCESS = 'MANAGER_LOAD_USER_LIST_SUCCESS';
+export const MANAGER_LOAD_USER_LIST_FAILURE = 'MANAGER_LOAD_USER_LIST_FAILURE';
+
+export const RESET_COMMON_LOAD_USER_LIST = 'RESET_COMMON_LOAD_USER_LIST';
+
 export function userLoginProcess(loginForm){
     const request = axios({
         method : 'post',
@@ -298,3 +308,68 @@ export function resetUserUpdateSignInfo(){
         type : RESET_USER_UPDATE_SIGN_INFO
     }
 }
+
+export function adminLoadUserList(userToken){
+    const request = axios({
+        method : 'get',
+        url : `${ROOT_URL}/admin/user_list`,
+        headers :
+            {
+                'Authorization' : `Bearer ${userToken}`
+            }
+    });
+    return {
+        type : ADMIN_LOAD_USER_LIST,
+        payload : request
+    }
+}
+
+export function adminLoadUserListSuccess(userList){
+    return {
+        type : ADMIN_LOAD_USER_LIST_SUCCESS,
+        payload : userList.data
+    }
+}
+
+export function adminLoadUserListFailure(error){
+    return {
+        type : ADMIN_LOAD_USER_LIST_FAILURE,
+        payload : error
+    }
+}
+
+export function managerLoadUserList(userToken){
+    const request = axios({
+        method : 'get',
+        url : `${ROOT_URL}/manager/user_list`,
+        headers :
+            {
+                'Authorization' : `Bearer ${userToken}`
+            }
+    });
+    return {
+        type : MANAGER_LOAD_USER_LIST,
+        payload : request
+    }
+}
+
+export function managerLoadUserListSuccess(userList){
+    return {
+        type : MANAGER_LOAD_USER_LIST_SUCCESS,
+        payload : userList.data
+    }
+}
+
+export function managerLoadUserListFailure(error){
+    return {
+        type : MANAGER_LOAD_USER_LIST_FAILURE,
+        payload : error
+    }
+}
+
+export function resetCommonLoadUserList(){
+    return {
+        type : RESET_COMMON_LOAD_USER_LIST
+    }
+}
+

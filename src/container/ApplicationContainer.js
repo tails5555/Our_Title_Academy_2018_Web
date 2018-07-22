@@ -11,13 +11,11 @@ const mapDispatchToProps = (dispatch) => {
             if(!accessToken || accessToken === '') return;
             dispatch(fetchUserPrincipalFromServerProcess(accessToken))
                 .then((response) => {
-                    if(!response.payload && response.payload.status != 200){
-                        localStorage.removeItem('jwtToken');
-                        dispatch(fetchUserPrincipalFromServerException(response.payload));
-                    }else{
-                        localStorage.setItem('jwtToken', accessToken);
-                        dispatch(fetchUserPrincipalFromServerComplete(response.payload))
-                    }
+                    localStorage.setItem('jwtToken', accessToken);
+                    dispatch(fetchUserPrincipalFromServerComplete(response.payload))
+                }).catch((response) => {
+                    localStorage.removeItem('jwtToken');
+                    dispatch(fetchUserPrincipalFromServerException('사용자 로그인 유효 시간이 지났습니다. 유효 시간은 1시간 30분입니다.'));
                 })
         },
         resetFetchPrincipalFromServer : () => {
