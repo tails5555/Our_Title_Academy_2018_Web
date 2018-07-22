@@ -1,5 +1,5 @@
 import React from 'react';
-import {SignFormContainer} from "../container";
+import {SignFormContainer} from "../../container/index";
 
 const SignUpPage = () => <SignFormContainer />;
 

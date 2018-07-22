@@ -1,5 +1,5 @@
 import React from 'react';
-import {SignResultContainer} from "../container";
+import {SignResultContainer} from "../../container/index";
 
 const SignResultPage = () => <SignResultContainer />;
 

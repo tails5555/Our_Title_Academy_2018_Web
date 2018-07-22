@@ -20,7 +20,6 @@ class SignResult extends Component {
     render(){
         const { detail, error } = this.props.detailResult;
         let resultRender;
-        console.log(detail);
         if(detail !== null){
             resultRender =
                 <article className="w3-container">
@@ -96,7 +95,7 @@ class SignResult extends Component {
                             </b>
                             <br/>
                             아래 버튼을 클릭하여 다시 시도하시길 바랍니다.<br/>
-                            회원 가입 진행을 했음에도 이 창이 나오면 개발자의 메일 링크를 클릭하여 조치를 취하시길 바랍니다.
+                            회원 가입 진행을 했음에도 이 창이 나오면 개발자의 메일 링크를 클릭하여 조치를 취하시길 바랍니다.<br/>
                         </p>
                     </div>
                     <button type="button" className="button primary fit large" onClick={this.handleClickHome.bind(this)}>홈 으로</button>
@@ -106,6 +105,10 @@ class SignResult extends Component {
         }
         return (
             <section>
+                <header id="header">
+                    <span class="logo"><strong>Our Title Academy 2018</strong> - SIGN UP RESULT</span>
+                </header>
+                <br/><br/>
                 <header className="major">
                     <h2>회원 가입 결과</h2>
                 </header>

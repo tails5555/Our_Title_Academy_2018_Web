@@ -125,6 +125,10 @@ class SignForm extends Component {
         }
         return(
             <section>
+                <header id="header">
+                    <span class="logo"><strong>Our Title Academy 2018</strong> - SIGN UP</span>
+                </header>
+                <br/><br/>
                 <header className="major">
                     <h2>회원 가입</h2>
                 </header>
