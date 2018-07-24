@@ -6,3 +6,4 @@ export {default as SignResultContainer} from './SignResultContainer';
 export {default as MyInfoFormContainer} from './MyInfoFormContainer';
 export {default as MyInfoResultContainer} from './MyInfoResultContainer';
 export {default as UserListContainer} from './UserListContainer';
+export {default as MyProfileChangeContainer} from './MyProfileChangeContainer';

@@ -71,7 +71,7 @@ function validate(values){
 const validateAndGuestSign = (values, dispatch) => {
     return dispatch(guestSignUpProcess(values)).then(
         (response) => {
-            if(response.payload && response.payload.status != 200){
+            if(response.payload && response.payload.status !== 200){
                 dispatch(guestSignUpFailure(response.payload));
                 throw new SubmissionError(response.payload.data);
             }

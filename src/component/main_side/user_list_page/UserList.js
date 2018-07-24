@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import matchSorter from 'match-sorter';
+import {UserProfile} from "../profile_image";
 class UserList extends Component {
     componentWillMount(){
         const {principal} = this.props.accessUser;
@@ -13,7 +14,6 @@ class UserList extends Component {
     }
     render(){
         const { users } = this.props.principalList;
-
         return (
             <section>
                 <header id="header">
@@ -42,6 +42,8 @@ class UserList extends Component {
                                     filterAll: true,
                                     Cell : row =>
                                         <Link to={`/user_info/${row.value}`}>
+                                            <UserProfile loginId={row.value} />
+                                            <br/><br/>
                                             <button className="w3-button w3-pale-red">
                                                 <i className="icon fa-search-plus"></i> {row.value}
                                             </button>

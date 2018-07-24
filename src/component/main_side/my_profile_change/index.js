@@ -1,0 +1,1 @@
+export {default as MyProfileChange} from './MyProfileChange';

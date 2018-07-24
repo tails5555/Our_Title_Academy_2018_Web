@@ -20,7 +20,7 @@ const AdminNavMenu = () =>
                 </div>
             </li>
             <li onClick={handleClick.bind(this)}><Link to="/my/info_manage">내 정보 관리</Link></li>
-            <li onClick={handleClick.bind(this)}><Link to="/my/profile_manage">프로필 사진 관리</Link></li>
+            <li onClick={handleClick.bind(this)}><Link to="/my/profile_change">프로필 사진 관리</Link></li>
             <li onClick={handleClick.bind(this)}><Link to="/my/title_manage">나의 제목 관리</Link></li>
             <li onClick={handleClick.bind(this)}><Link to="/my/photo_manage">나의 사진 관리</Link></li>
             <li onClick={handleClick.bind(this)}><Link to="/my/volunteer_fire">회원 탈퇴</Link></li>

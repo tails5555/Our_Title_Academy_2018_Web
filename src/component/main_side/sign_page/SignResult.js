@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import accessError from './access_error.jpg';
+import accessError from '../../resource_image/access_error.jpg';
 class SignResult extends Component {
     pushing(){
         window.scroll({

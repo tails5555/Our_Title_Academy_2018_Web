@@ -1,5 +1,5 @@
 import axios from 'axios';
-const ROOT_URL = 'http://127.0.0.1:8080/UserAPI/auth';
+const ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth';
 
 export const GUEST_LOAD_AGE_LIST = 'GUEST_LOAD_AGE_LIST';
 export const GUEST_LOAD_AGE_LIST_SUCCESS = 'GUEST_LOAD_AGE_LIST_SUCCESS';

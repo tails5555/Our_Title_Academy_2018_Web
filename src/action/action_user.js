@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = 'http://127.0.0.1:8080/UserAPI/auth';
+const ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth';
 
 export const USER_LOGIN_PROCESS = 'USER_LOGIN_PROCESS';
 export const USER_LOGIN_EXCEPTION = 'USER_LOGIN_EXCEPTION';
@@ -84,6 +84,7 @@ export function userLoginException(error){
 }
 
 export function userLogoutProcess(userToken){
+    localStorage.removeItem('jwtToken');
     const request = axios.delete(`${ROOT_URL}/common/logout`, {
         headers:
             {

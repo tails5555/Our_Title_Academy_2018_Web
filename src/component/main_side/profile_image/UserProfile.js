@@ -11,8 +11,6 @@ class UserProfile extends Component{
     }
 
     componentWillReceiveProps(nextProps){
-        console.log(this.props.loginId);
-        console.log(nextProps.loginId);
         if (this.props.loginId !== nextProps.loginId) {
             this.propsUpdating(nextProps.loginId);
         }
@@ -44,7 +42,9 @@ class UserProfile extends Component{
                  style={{
                      width : '100%',
                      height : 'auto'
-                 }}/>
+                 }}
+                 className="w3-image w3-round-large"
+            />
         )
     }
 }
