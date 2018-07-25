@@ -48,6 +48,16 @@ export const MANAGER_LOAD_USER_LIST_FAILURE = 'MANAGER_LOAD_USER_LIST_FAILURE';
 
 export const RESET_COMMON_LOAD_USER_LIST = 'RESET_COMMON_LOAD_USER_LIST';
 
+export const ADMIN_LOAD_USER_INFO = 'ADMIN_LOAD_USER_INFO';
+export const ADMIN_LOAD_USER_INFO_SUCCESS = 'ADMIN_LOAD_USER_INFO_SUCCESS';
+export const ADMIN_LOAD_USER_INFO_FAILURE = 'ADMIN_LOAD_USER_INFO_FAILURE';
+
+export const MANAGER_LOAD_USER_INFO = 'MANAGER_LOAD_USER_INFO';
+export const MANAGER_LOAD_USER_INFO_SUCCESS = 'MANAGER_LOAD_USER_INFO_SUCCESS';
+export const MANAGER_LOAD_USER_INFO_FAILURE = 'MANAGER_LOAD_USER_INFO_FAILURE';
+
+export const RESET_COMMON_LOAD_USER_INFO = 'RESET_COMMON_LOAD_USER_INFO';
+
 export function userLoginProcess(loginForm){
     const request = axios({
         method : 'post',
@@ -374,3 +384,65 @@ export function resetCommonLoadUserList(){
     }
 }
 
+export function adminLoadUserInfo(userToken, loginId){
+    const request = axios({
+        method : 'get',
+        url : `${ROOT_URL}/admin/user_info/${loginId}`,
+        headers :
+            {
+                'Authorization' : `Bearer ${userToken}`
+            }
+    });
+    return {
+        type : ADMIN_LOAD_USER_INFO,
+        payload : request
+    }
+}
+
+export function adminLoadUserInfoSuccess(detailVO){
+    return {
+        type : ADMIN_LOAD_USER_INFO_SUCCESS,
+        payload : detailVO.data
+    }
+}
+
+export function adminLoadUserInfoFailure(error){
+    return {
+        type : ADMIN_LOAD_USER_INFO_FAILURE,
+        payload : error
+    }
+}
+
+export function managerLoadUserInfo(userToken, loginId){
+    const request = axios({
+        method : 'get',
+        url : `${ROOT_URL}/manager/user_info/${loginId}`,
+        headers :
+            {
+                'Authorization' : `Bearer ${userToken}`
+            }
+    });
+    return {
+        type : MANAGER_LOAD_USER_INFO,
+        payload : request
+    }
+}
+export function managerLoadUserInfoSuccess(detailVO){
+    return {
+        type : MANAGER_LOAD_USER_INFO_SUCCESS,
+        payload : detailVO.data
+    }
+}
+
+export function managerLoadUserInfoFailure(error){
+    return {
+        type : MANAGER_LOAD_USER_INFO_FAILURE,
+        payload : error
+    }
+}
+
+export function resetCommonLoadUserInfo(){
+    return {
+        type : RESET_COMMON_LOAD_USER_INFO
+    }
+}

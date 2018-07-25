@@ -7,7 +7,9 @@ import {
     USER_CONFIRM_CURRENT_PASSWORD, USER_CONFIRM_CURRENT_PASSWORD_SUCCESS, USER_CONFIRM_CURRENT_PASSWORD_FAILURE, RESET_USER_CONFIRM_CURRENT_PASSWORD,
     USER_UPDATE_SIGN_INFO_PROCESS, USER_UPDATE_SIGN_INFO_SUCCESS, USER_UPDATE_SIGN_INFO_FAILURE, RESET_USER_UPDATE_SIGN_INFO,
     ADMIN_LOAD_USER_LIST, ADMIN_LOAD_USER_LIST_SUCCESS, ADMIN_LOAD_USER_LIST_FAILURE,
-    MANAGER_LOAD_USER_LIST, MANAGER_LOAD_USER_LIST_SUCCESS, MANAGER_LOAD_USER_LIST_FAILURE, RESET_COMMON_LOAD_USER_LIST
+    MANAGER_LOAD_USER_LIST, MANAGER_LOAD_USER_LIST_SUCCESS, MANAGER_LOAD_USER_LIST_FAILURE, RESET_COMMON_LOAD_USER_LIST,
+    ADMIN_LOAD_USER_INFO, ADMIN_LOAD_USER_INFO_SUCCESS, ADMIN_LOAD_USER_INFO_FAILURE,
+    MANAGER_LOAD_USER_INFO, MANAGER_LOAD_USER_INFO_SUCCESS, MANAGER_LOAD_USER_INFO_FAILURE, RESET_COMMON_LOAD_USER_INFO
 } from '../action/action_user';
 
 const INITIAL_STATE = {
@@ -31,6 +33,9 @@ const INITIAL_STATE = {
     },
     principalList : {
         users : [], loading : false, error : null
+    },
+    principalInfo : {
+        detail : null, loading : false, error : null
     }
 }
 
@@ -119,6 +124,19 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, principalList : { users : [], loading : false, error : error }};
         case RESET_COMMON_LOAD_USER_LIST :
             return { ...state, principalList : { users : [], loading : false, error : null }};
+
+        case ADMIN_LOAD_USER_INFO :
+        case MANAGER_LOAD_USER_INFO :
+            return { ...state, principalInfo : { detail : null, loading : true, error : null }};
+        case ADMIN_LOAD_USER_INFO_SUCCESS :
+        case MANAGER_LOAD_USER_INFO_SUCCESS :
+            return { ...state, principalInfo : { detail : action.payload, loading : false, error : null }};
+        case ADMIN_LOAD_USER_INFO_FAILURE :
+        case MANAGER_LOAD_USER_INFO_FAILURE :
+            error = action.payload || { message : action.payload };
+            return { ...state, principalInfo : { detail : null, loading : false, error : error }};
+        case RESET_COMMON_LOAD_USER_INFO :
+            return { ...state, principalInfo : { detail : null, loading : false, error : null }};
 
         default :
             return state;

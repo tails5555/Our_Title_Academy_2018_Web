@@ -67,9 +67,9 @@ class MyProfileChange extends Component{
                 <br/>
                 <div className="w3-panel w3-round-large w3-gray">
                     <br/>
-                    <p>★ 현재 사용자의 프로필은 데스크탑 기준으로 왼쪽에 있습니다.</p>
-                    <p>★ 모바일 기준으로는 메뉴 버튼을 클릭하면 저절로 나옵니다.</p>
-                    <p>★ 프로필 사진은 회원 가입 이후에 설정이 가능하며, 아무 사진도 설정이 안 되어 있다면 검은 원에 사람 그림이 있습니다.</p>
+                    <p><i className="icon fa-star"></i> 현재 사용자의 프로필은 데스크탑 기준으로 왼쪽에 있습니다.</p>
+                    <p><i className="icon fa-star"></i> 모바일 기준으로는 메뉴 버튼을 클릭하면 저절로 나옵니다.</p>
+                    <p><i className="icon fa-star"></i> 프로필 사진은 회원 가입 이후에 설정이 가능하며, 아무 사진도 설정이 안 되어 있다면 검은 원에 사람 그림이 있습니다.</p>
                 </div>
                 <br/>
                 <form onSubmit={handleSubmit(imageUploading)}>

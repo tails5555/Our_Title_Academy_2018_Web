@@ -41,7 +41,7 @@ class UserList extends Component {
                                         matchSorter(rows, filter.value, { keys: ["loginId"] }),
                                     filterAll: true,
                                     Cell : row =>
-                                        <Link to={`/user_info/${row.value}`}>
+                                        <Link to={`user_info/${row.value}`}>
                                             <UserProfile loginId={row.value} />
                                             <br/><br/>
                                             <button className="w3-button w3-pale-red">
