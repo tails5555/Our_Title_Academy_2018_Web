@@ -24,16 +24,31 @@ const imageUploading = (values, dispatch) => {
 class MyProfileChange extends Component{
     componentWillUnmount(){
         this.props.resetUploadProfile();
+        this.props.resetReleaseProfile();
+    }
+
+    handleClickDelete(event){
+        this.props.releaseCurrentUserProfile();
     }
 
     render(){
         const { handleSubmit } = this.props;
-        const { message, error } = this.props.uploadProfile;
-        if(message !== null) {
-            alert(message);
+        const { uploadMessage, uploadError } = this.props.uploadProfile;
+        const { releaseMessage, releaseError } = this.props.releaseProfile;
+
+        if(uploadMessage !== null) {
+            alert(uploadMessage);
             window.location.reload();
-        } else if(error !== null){
-            alert(error);
+        } else if(uploadError !== null){
+            alert(uploadError);
+            window.location.reload();
+        }
+
+        if(releaseMessage !== null) {
+            alert(releaseMessage);
+            window.location.reload();
+        } else if(releaseError !== null){
+            alert(releaseError);
             window.location.reload();
         }
 
@@ -64,6 +79,8 @@ class MyProfileChange extends Component{
                     />
                     <br/>
                     <button type="submit" className="button large fit">프로필 등록하기</button>
+                    <br/><br/>
+                    <button type="button" className="button large fit primary" onClick={this.handleClickDelete.bind(this)}>프로필 해제하기</button>
                 </form>
             </section>
         )

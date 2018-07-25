@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-const RESOURCE_ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth/resource/profile';
 const COMMON_ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth/common/profile';
 
 export const USER_LOAD_MY_PROFILE = 'USER_LOAD_MY_PROFILE';
@@ -12,6 +11,11 @@ export const USER_UPLOAD_PROFILE = 'USER_UPLOAD_PROFILE';
 export const USER_UPLOAD_PROFILE_SUCCESS = 'USER_UPLOAD_PROFILE_SUCCESS';
 export const USER_UPLOAD_PROFILE_FAILURE = 'USER_UPLOAD_PROFILE_FAILURE';
 export const RESET_USER_UPLOAD_PROFILE = 'RESET_USER_UPLOAD_PROFILE';
+
+export const USER_RELEASE_PROFILE = 'USER_RELEASE_PROFILE';
+export const USER_RELEASE_PROFILE_SUCCESS = 'USER_RELEASE_PROFILE_SUCCESS';
+export const USER_RELEASE_PROFILE_FAILURE = 'USER_RELEASE_PROFILE_FAILURE';
+export const RESET_USER_RELEASE_PROFILE = 'RESET_USER_RELEASE_PROFILE';
 
 export function userLoadMyProfile(userToken){
     const request = axios({
@@ -53,7 +57,7 @@ export function userUploadProfile(file, userToken){
     formData.append('file', file);
     const request = axios({
         method : 'post',
-        url : `${COMMON_ROOT_URL}/profile_upload`,
+        url : `${COMMON_ROOT_URL}/upload`,
         data : formData,
         headers : {
             "Content-Type" : "multipart/form-data",
@@ -83,5 +87,41 @@ export function userUploadProfileFailure(error){
 export function resetUserUploadProfile(){
     return{
         type : RESET_USER_UPLOAD_PROFILE
+    }
+}
+
+export function userReleaseProfile(userToken){
+    const request = axios({
+        method : 'delete',
+        url : `${COMMON_ROOT_URL}/release`,
+        headers :
+            {
+                'Authorization' : `Bearer ${userToken}`
+            }
+    });
+
+    return {
+        type : USER_RELEASE_PROFILE,
+        payload : request
+    }
+}
+
+export function userReleaseProfileSuccess(message){
+    return {
+        type : USER_RELEASE_PROFILE_SUCCESS,
+        payload : message.data
+    }
+}
+
+export function userReleaseProfileFailure(error){
+    return {
+        type : USER_RELEASE_PROFILE_FAILURE,
+        payload : error
+    }
+}
+
+export function resetUserReleaseProfile(){
+    return {
+        type : RESET_USER_RELEASE_PROFILE
     }
 }
