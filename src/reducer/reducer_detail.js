@@ -28,7 +28,7 @@ export default function(state = INITIAL_STATE, action){
         case GUEST_LOAD_AGE_LIST_SUCCESS :
             return { ...state, ageElements : { ages : action.payload, loading : false, error : null}};
         case GUEST_LOAD_AGE_LIST_FAILURE :
-            error = action.payload.data || { message : action.payload.data };
+            error = action.payload || { message : action.payload };
             return { ...state, ageElements : { ages : [], loading : false, error : error}};
         case RESET_GUEST_LOAD_AGE_LIST :
             return { ...state, ageElements : { ages : [], loading : false, error : null}};

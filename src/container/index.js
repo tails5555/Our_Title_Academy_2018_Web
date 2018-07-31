@@ -9,3 +9,4 @@ export {default as UserListContainer} from './UserListContainer';
 export {default as MyProfileChangeContainer} from './MyProfileChangeContainer';
 export {default as UserPrincipalInfoContainer} from './UserPrincipalInfoContainer';
 export {default as CategoryMenuContainer} from './CategoryMenuContainer';
+export {default as WarmRequestListContainer} from './WarmRequestListContainer';
