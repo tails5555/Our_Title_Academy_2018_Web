@@ -15,8 +15,8 @@ const AdminNavMenu = () =>
         <ul>
             <li onClick={handleClick.bind(this)}><Link to="/">Home</Link></li>
             <li onClick={handleClick.bind(this)}>
-                <div class="w3-panel w3-pink w3-round-large w3-center">
-                    <h6 class="w3-text-white">My Menu</h6>
+                <div className="w3-panel w3-pink w3-round-large w3-center">
+                    <h6 className="w3-text-white">My Menu</h6>
                 </div>
             </li>
             <li onClick={handleClick.bind(this)}><Link to="/my/info_manage">내 정보 관리</Link></li>
@@ -25,8 +25,8 @@ const AdminNavMenu = () =>
             <li onClick={handleClick.bind(this)}><Link to="/my/photo_manage">나의 사진 관리</Link></li>
             <li onClick={handleClick.bind(this)}><Link to="/my/volunteer_fire">회원 탈퇴</Link></li>
             <li>
-                <div class="w3-panel w3-pink w3-round-large w3-center">
-                    <h6 class="w3-text-white">Admin Menu</h6>
+                <div className="w3-panel w3-pink w3-round-large w3-center">
+                    <h6 className="w3-text-white">Admin Menu</h6>
                 </div>
             </li>
             <li onClick={handleClick.bind(this)}><Link to="/admin/user_list">회원 목록 관리</Link></li>
@@ -34,22 +34,12 @@ const AdminNavMenu = () =>
             <li onClick={handleClick.bind(this)}><Link to="/admin/photo_manage">모든 사진 관리</Link></li>
             <li onClick={handleClick.bind(this)}><Link to="/admin/open_faq">관리자 FAQ 열람</Link></li>
             <li>
-                <div class="w3-panel w3-pink w3-round-large w3-center">
-                    <h6 class="w3-text-white">Today Title</h6>
+                <div className="w3-panel w3-pink w3-round-large w3-center">
+                    <h6 className="w3-text-white">Today Title</h6>
                 </div>
             </li>
             <li onClick={handleClick.bind(this)}><Link to="/today/best">오늘의 Best</Link></li>
             <li onClick={handleClick.bind(this)}><Link to="/today/battle">오늘의 Title Battle</Link></li>
-            <li>
-                <div class="w3-panel w3-pink w3-round-large w3-center">
-                    <h6 class="w3-text-white">Categories</h6>
-                </div>
-            </li>
-            <li onClick={handleClick.bind(this)}><Link to="/category/1">영화</Link></li>
-            <li onClick={handleClick.bind(this)}><Link to="/category/2">예능</Link></li>
-            <li onClick={handleClick.bind(this)}><Link to="/category/3">드라마</Link></li>
-            <li onClick={handleClick.bind(this)}><Link to="/category/4">애니/만화</Link></li>
-            <li onClick={handleClick.bind(this)}><Link to="/category/5">과학/개발</Link></li>
         </ul>
     </nav>
 

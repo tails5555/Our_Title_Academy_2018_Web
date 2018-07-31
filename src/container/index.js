@@ -8,3 +8,4 @@ export {default as MyInfoResultContainer} from './MyInfoResultContainer';
 export {default as UserListContainer} from './UserListContainer';
 export {default as MyProfileChangeContainer} from './MyProfileChangeContainer';
 export {default as UserPrincipalInfoContainer} from './UserPrincipalInfoContainer';
+export {default as CategoryMenuContainer} from './CategoryMenuContainer';

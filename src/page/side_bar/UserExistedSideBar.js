@@ -1,6 +1,6 @@
 import React from 'react';
 import { TotalSearch } from "../../component/slide_bar";
-import { UserInfoContainer } from "../../container";
+import { UserInfoContainer, CategoryMenuContainer } from "../../container";
 import DevelopInfo from "../../component/slide_bar/DevelopInfo";
 import RealPopular from "../../component/slide_bar/RealPopular";
 import {UserNavMenu, ManagerNavMenu, AdminNavMenu} from "../../component/slide_bar/nav_menu";
@@ -24,6 +24,7 @@ const UserExistedSideBar = (props) => {
             <TotalSearch />
             <UserInfoContainer />
             {navMenu}
+            <CategoryMenuContainer />
             <RealPopular />
             <DevelopInfo />
         </div>
