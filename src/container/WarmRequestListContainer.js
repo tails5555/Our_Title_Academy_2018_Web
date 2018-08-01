@@ -1,7 +1,7 @@
 import {WarmRequestList} from "../component/main_side/index_page";
 import {connect} from 'react-redux';
 import {
-    appLoadAnythingRequests, appLoadAnythingRequestsSuccess, appLoadAnythingRequestsFailure, resetAppLoadAnythingRequests
+    appFetchHomeRequestBrief, appFetchHomeRequestBriefSuccess, appFetchHomeRequestBriefFailure, resetAppFetchHomeRequestBrief
 } from "../action/action_request";
 
 function mapStateToProps(state){
@@ -13,17 +13,17 @@ function mapStateToProps(state){
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchAnythingRequests : () => {
-            dispatch(appLoadAnythingRequests()).then((response) => {
+            dispatch(appFetchHomeRequestBrief()).then((response) => {
                 if(!response.error){
-                    dispatch(appLoadAnythingRequestsSuccess(response.payload));
+                    dispatch(appFetchHomeRequestBriefSuccess(response.payload));
                 } else {
-                    dispatch(appLoadAnythingRequestsFailure(response.payload));
+                    dispatch(appFetchHomeRequestBriefFailure(response.payload));
                 }
             });
 
         },
         resetFetchAnythingRequests : () => {
-            dispatch(resetAppLoadAnythingRequests());
+            dispatch(resetAppFetchHomeRequestBrief());
         }
     }
 }
