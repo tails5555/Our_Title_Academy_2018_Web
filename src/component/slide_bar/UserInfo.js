@@ -1,9 +1,34 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
+import defaultProfile from '../resource_image/default_profile.png';
+
+const RESOURCE_ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth/resource/profile';
+
 class UserInfo extends Component{
-    handleClick(event){
+    handleClickLogout(event){
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
         this.props.history.push('/');
         this.props.logoutFromServer();
+    }
+
+    handleClickProfileInfo(event){
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    componentWillMount(){
+        this.props.fetchProfileFromServer();
+    }
+
+    componentWillUnmount(){
+        this.props.resetFetchProfile();
     }
 
     render(){
@@ -22,13 +47,14 @@ class UserInfo extends Component{
                     <p>접속 시간 : { (accessTime === null) || accessTime }</p>
                 </div>
         }
+
         return(
             <section id="user_info" className="mini-posts alt">
                 <article>
-                    <a href="#" className="image"><img src="../my_image/kimdoohan.jpg" alt="" /></a>
+                    <Link to='/my/profile_change' className="image"><img src={ (this.props.myProfile.profile !== null && this.props.myProfile.profile !== '') ? `${RESOURCE_ROOT_URL}/image_profile/${(principal === null) || (principal.loginId)}` : defaultProfile } alt="" onClick={this.handleClickProfileInfo.bind(this)}/></Link>
                     {infoMessage}
                 </article>
-                <button className="button primary fit large" onClick={this.handleClick.bind(this)}>
+                <button className="button primary fit large" onClick={this.handleClickLogout.bind(this)}>
                     Log Out
                 </button>
             </section>

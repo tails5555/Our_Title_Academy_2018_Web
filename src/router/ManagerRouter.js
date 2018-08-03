@@ -14,6 +14,7 @@ class ManagerRouter extends Component{
                 <Route exact path="/category/:id/list" component={BriefRequestListPage} />
                 <Route exact path="/category/:id/_move" render={({ match }) => <Redirect to={`/category/${match.params.id}/list`} />} />
                 <Route exact path="/view_request/:id/view" component={RequestViewPage} />
+                <Route exact path="/view_request/:id/_rank" render={({ match, location }) => <Redirect to={`/view_request/${match.params.id}/view${location.search}`} />} />
                 <Route exact path="/my/info_manage" component={MyInfoFormPage} />
                 <Route exact path="/my/info_update_result" component={MyInfoResultPage} />
                 <Route exact path="/my/profile_change" component={MyProfileChangePage} />

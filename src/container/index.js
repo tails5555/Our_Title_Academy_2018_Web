@@ -12,3 +12,4 @@ export {default as CategoryMenuContainer} from './CategoryMenuContainer';
 export {default as WarmRequestListContainer} from './WarmRequestListContainer';
 export {default as BriefRequestListContainer} from './BriefRequestListContainer';
 export {default as RequestViewContainer} from './RequestViewContainer';
+export {default as TodayRankContainer} from './TodayRankContainer';

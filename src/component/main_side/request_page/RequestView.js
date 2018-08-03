@@ -6,6 +6,7 @@ class RequestView extends Component{
     componentWillMount(){
         this.props.fetchSelectRequest(this.props.match.params.id);
     }
+
     render(){
         let paginationModel = queryString.parse(this.props.location.search);
         const {request} = this.props.selectRequest;

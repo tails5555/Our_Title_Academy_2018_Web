@@ -1,8 +1,7 @@
 import React from 'react';
 import { TotalSearch } from "../../component/slide_bar";
-import { LoginFormContainer, CategoryMenuContainer } from "../../container";
+import { LoginFormContainer, CategoryMenuContainer, TodayRankContainer } from "../../container";
 import DevelopInfo from "../../component/slide_bar/DevelopInfo";
-import RealPopular from "../../component/slide_bar/RealPopular";
 import GuestNavMenu from "../../component/slide_bar/nav_menu/GuestNavMenu";
 const AnonymousSideBar = () =>
     (
@@ -11,7 +10,7 @@ const AnonymousSideBar = () =>
             <LoginFormContainer />
             <GuestNavMenu />
             <CategoryMenuContainer />
-            <RealPopular />
+            <TodayRankContainer />
             <DevelopInfo />
         </div>
     );

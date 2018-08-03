@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import {RequestProfile, UserProfile} from "../profile_image";
 const IMAGE_URL = 'http://127.0.0.1:8082/ContextAPI/photo';
 class MainRequestView extends Component{
@@ -30,7 +29,6 @@ class MainRequestView extends Component{
 
     render(){
         const {request, bestTitles} = this.state;
-        console.log(bestTitles);
         return(
             <div>
                 <div className="w3-row-padding">
@@ -56,7 +54,7 @@ class MainRequestView extends Component{
                                     <br/>
                                     <i className="icon fa-eye"></i> 조회수 <span className="w3-badge w3-light-blue">{(request === null) || request.view}</span>
                                     <br/>
-                                    <i className="icon fa-calendar"></i> 등록 날짜 <span className="w3-tag w3-light-green">{(request === null) || request.writtenDate}</span>
+                                    <i className="icon fa-calendar"></i> 등록 날짜 <span className="w3-tag w3-light-green w3-round-large">{(request === null) || request.writtenDate}</span>
                                     <br/>
                                 </p>
                             </div>
