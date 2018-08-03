@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
-import { Link, withRouter } from 'react-router-dom';
-import {RequestProfile} from "../profile_image";
+import { withRouter } from 'react-router-dom';
+import {BriefRequestView} from "../request_component";
 import {renderField, renderSelect } from "../../form";
-import { appFetchCategoryRequestBrief, appFetchCategoryRequestBriefSuccess, appFetchCategoryRequestBriefFailure, resetAppFetchCategoryRequestBrief } from "../../../action/action_request";
-
-const IMAGE_URL = 'http://127.0.0.1:8082/ContextAPI/photo';
+import queryString from 'query-string';
+import { appFetchCategoryRequestBrief, appFetchCategoryRequestBriefSuccess, appFetchCategoryRequestBriefFailure } from "../../../action/action_request";
 
 const receivePagination = (values, dispatch, props) => {
     const { paginationModel } = props.paginate;
@@ -29,14 +28,6 @@ const receivePagination = (values, dispatch, props) => {
 }
 
 class BriefRequestList extends Component{
-    handleClick(event){
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
-    }
-
     handlePagination(event){
         const { paginationModel } = this.props.paginate;
         let newPaginationModel = { ...paginationModel, pg : event.target.id };
@@ -55,12 +46,26 @@ class BriefRequestList extends Component{
     }
 
     componentDidMount(){
+        let paginationModel = queryString.parse(this.props.location.search);
+        this.handleInitialize(paginationModel);
         this.props.fetchSelectCategory(this.props.match.params.id);
-        this.props.fetchCategoryRequestBrief(this.props.match.params.id, {});
+        // paginationModel 이 {} 모양이어도, 모든 목록이 나오기 때문에 정상적으로 돌아가는 것을 확인했습니다!
+        this.props.fetchCategoryRequestBrief(this.props.match.params.id, paginationModel);
+    }
+
+    handleInitialize(paginationModel) {
+        const initData = {
+            sb : (paginationModel.sb === undefined) ? 0 : paginationModel.sb,
+            ob : (paginationModel.ob === undefined) ? 0 : paginationModel.ob,
+            sz : (paginationModel.sz === undefined) ? 6 : paginationModel.sz,
+            st : (paginationModel.st === undefined) ? '' : paginationModel.st
+        };
+        this.props.initialize(initData);
     }
 
     componentWillUnmount(){
         this.props.resetFetchCategoryRequestBrief();
+        this.props.resetFetchSelectCategory();
         this.props.resetFetchSearchOption();
         this.props.resetFetchOrderOption();
         this.props.resetFetchSizeOption();
@@ -77,25 +82,7 @@ class BriefRequestList extends Component{
 
         const requestRender = requests.map((request) => {
             return(
-                <article>
-                    <Link className="image" to={`/view_request/${request.id}/view?${paginationModel.queryString}`}>
-                        <img src={`${IMAGE_URL}/request_image/${request.id}`}  onClick={this.handleClick.bind(this)} />
-                    </Link>
-                    <div className="w3-panel w3-topbar w3-bottombar w3-border-yellow w3-pale-yellow w3-center">
-                        <h3 style={{fontFamily : '궁서체'}}>{request.bestTitle}</h3>
-                    </div>
-                    <p className="w3-right-align">
-                        <i className="icon fa-calendar"></i> {request.writtenDate}<br/>
-                        <i className="icon fa-star"></i> {request.likeCount}<br/>
-                        <i className="icon fa-comments"></i> {request.commentCount}<br/>
-                    </p>
-                    <span className="image left"><RequestProfile loginId={request.userId}/></span>
-                    <h3>{request.intro}</h3>
-                    <p>{request.context}</p>
-                    <ul className="actions">
-                        <li onClick={this.handleClick.bind(this)}><Link className="button" to={`/view_request/${request.id}`}>제목 짓기</Link></li>
-                    </ul>
-                </article>
+                <BriefRequestView key={`request_${request.id}`} request={request} routeURI={`/view_request/${request.id}/view?${paginationModel.queryString}`} />
             )
         });
 
@@ -119,7 +106,7 @@ class BriefRequestList extends Component{
 
         const renderPageNumbers = pageNumbers.map(number => {
             return (
-                <button className="w3-button"
+                <button className={((paginationModel === null) || paginationModel.pg === number) ? "w3-button w3-pink" : "w3-button w3-hover-pink"}
                     key={number}
                     id={number}
                     onClick={this.handlePagination.bind(this)}

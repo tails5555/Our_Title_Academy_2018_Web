@@ -12,6 +12,7 @@ import {
 
 function mapStateToProps(state){
     return {
+        searchToolbar : state.form.searchToolbar,
         selectCategory : state.category.selectCategory,
         requestList : state.request.requestList,
         paginate : state.request.paginate,
