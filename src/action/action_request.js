@@ -26,6 +26,11 @@ export const FETCH_SIZE_BY_OPTION_SUCCESS = 'FETCH_SIZE_BY_OPTION_SUCCESS';
 export const FETCH_SIZE_BY_OPTION_FAILURE = 'FETCH_SIZE_BY_OPTION_FAILURE';
 export const RESET_FETCH_SIZE_BY_OPTION = 'RESET_FETCH_SIZE_BY_OPTION';
 
+export const FETCH_VIEW_REQUEST_MAIN = 'FETCH_VIEW_REQUEST_MAIN';
+export const FETCH_VIEW_REQUEST_MAIN_SUCCESS = 'FETCH_VIEW_REQUEST_MAIN_SUCCESS';
+export const FETCH_VIEW_REQUEST_MAIN_FAILURE = 'FETCH_VIEW_REQUEST_MAIN_FAILURE';
+export const RESET_FETCH_VIEW_REQUEST_MAIN = 'RESET_FETCH_VIEW_REQUEST_MAIN';
+
 export function appFetchHomeRequestBrief(){
     const request = axios({
         url : `${ROOT_URL}/fetch_brief/home`,
@@ -179,5 +184,36 @@ export function appFetchSizeByOptionFailure(error){
 export function resetAppFetchSizeByOption(){
     return {
         type : RESET_FETCH_SIZE_BY_OPTION
+    }
+}
+
+export function appFetchViewRequestMain(requestId){
+    const request = axios({
+        url : `${ROOT_URL}/fetch_main/view/${requestId}`,
+        method : 'get'
+    });
+    return {
+        type : FETCH_VIEW_REQUEST_MAIN,
+        payload : request
+    }
+}
+
+export function appFetchViewRequestMainSuccess(result){
+    return {
+        type : FETCH_VIEW_REQUEST_MAIN_SUCCESS,
+        payload : result.data
+    }
+}
+
+export function appFetchViewRequestMainFailure(error){
+    return {
+        type : FETCH_VIEW_REQUEST_MAIN_FAILURE,
+        payload : error
+    }
+}
+
+export function resetAppFetchViewRequestMain(){
+    return {
+        type : RESET_FETCH_VIEW_REQUEST_MAIN
     }
 }

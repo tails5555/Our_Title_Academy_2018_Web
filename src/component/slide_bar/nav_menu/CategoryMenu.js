@@ -19,7 +19,7 @@ class CategoryMenu extends Component{
         const { categories, error } = this.props.menuCategories;
         let menuList;
         if(categories.length > 0){
-            menuList = categories.map((category) => <li onClick={this.handleClick.bind(this)}><Link to={`/category/${category.id}`}>{category.name}</Link></li>)
+            menuList = categories.map((category) => <li onClick={this.handleClick.bind(this)}><Link to={`/category/${category.id}/_move`}>{category.name}</Link></li>)
         }else if(error !== null){
             menuList = <li onClick={this.handleClick.bind(this)}><Link to="/category/">카테고리를 불러오는 중 오류가 발생했습니다.</Link></li>
         }
