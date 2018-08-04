@@ -5,9 +5,9 @@ class DevelopInfo extends Component{
             <div>
                 <section>
                     <header className="major">
-                        <h2>Project Info</h2>
+                        <h2><i class="fab fa-react"></i> Project Info</h2>
                     </header>
-                    <p>SKHU Software Engineering. KangDB.</p>
+                    <p> SKHU Software Engineering. KangDB.</p>
                     <p>개발로 사람들에게 즐거움을 선사하고 싶습니다. 이용 시 문의사항 있으시면 아래 이메일로 통보 바랍니다.</p>
                     <ul className="contact">
                         <li className="fa-envelope-o"><a href="mailto:hogu9401@gmail.com">hogu9401@gmail.com</a></li>

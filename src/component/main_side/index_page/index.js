@@ -1,2 +1,2 @@
-export {default as MainTitle} from './MainTitle';
+export {default as MainHeader} from './MainHeader';
 export {default as WarmRequestList} from './WarmRequestList';
