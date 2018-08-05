@@ -1,20 +1,21 @@
 import React, {Component} from 'react';
 import {withRouter, Link} from 'react-router-dom';
-import {MainRequestView} from "../request_component";
+import {MainRequestView, RequestEmpathyView} from "../request_component";
 import queryString from 'query-string';
 import {MainTitleView} from "../title_component";
 class RequestView extends Component{
     componentWillMount(){
         const {principal} = this.props.accessUser;
+        let userId;
         if(principal !== null){
-            this.props.fetchTitleList(this.props.match.params.id, principal.loginId);
-            this.props.fetchHasTitle(this.props.match.params.id, principal.loginId);
+            userId = principal.loginId;
         }
         else{
-            this.props.fetchTitleList(this.props.match.params.id, 'ANONYMOUS_USER');
-            this.props.fetchHasTitle(this.props.match.params.id, 'ANONYMOUS_USER');
+            userId = 'ANONYMOUS_USER';
         }
-        this.props.fetchSelectRequest(this.props.match.params.id);
+        this.props.fetchTitleList(this.props.match.params.id, userId);
+        this.props.fetchHasTitle(this.props.match.params.id, userId);
+        this.props.fetchSelectRequest(this.props.match.params.id, userId);
     }
 
     componentWillUnmount(){
@@ -26,6 +27,10 @@ class RequestView extends Component{
     render(){
         let paginationModel = queryString.parse(this.props.location.search);
         const {request} = this.props.selectRequest;
+        let requestDTO;
+        if(request !== null){
+            requestDTO = request.requestDTO;
+        }
         const {titles} = this.props.bestTitles;
         const {principal} = this.props.accessUser;
         return(
@@ -41,9 +46,26 @@ class RequestView extends Component{
                     <Link to={`/category/${paginationModel.id}/list${this.props.location.search}`}><button className="button primary">목록으로</button></Link>
                 </div>
                 <br/>
-                <MainRequestView request={request} bestTitles={titles}/>
+                <MainRequestView request={(requestDTO !== undefined) ? requestDTO : null} bestTitles={titles}/>
                 <br/>
-                <MainTitleView pathname={this.props.location.pathname} search={this.props.location.search} loginId={(principal !== null) ? principal.loginId : 'ANONYMOUS_USER'} titles={this.props.titleList !== null ? this.props.titleList.titles : []} hasTitle={this.props.hasTitle.result}/>
+                <RequestEmpathyView
+                    pathname={this.props.location.pathname}
+                    search={this.props.location.search}
+                    requestId={this.props.match.params.id}
+                    loginId={(principal !== null) ? principal.loginId : 'ANONYMOUS_USER'}
+                    likeCount={request === null || request.likeCount}
+                    hateCount={request === null || request.hateCount}
+                    likeChecked={request === null || request.likeChecked}
+                    hateChecked={request === null || request.hateChecked}
+                />
+                <br/>
+                <MainTitleView
+                    pathname={this.props.location.pathname}
+                    search={this.props.location.search}
+                    loginId={(principal !== null) ? principal.loginId : 'ANONYMOUS_USER'}
+                    titles={this.props.titleList !== null ? this.props.titleList.titles : []}
+                    hasTitle={this.props.hasTitle.result}
+                />
             </section>
         )
     }

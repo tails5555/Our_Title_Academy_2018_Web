@@ -71,38 +71,38 @@ class MainTitleView extends Component{
                         {
                             title.likeChecked === true ?
                                 <Link to={`${pathname}/title_empathy/${title.id}/${loginId}/like${search}`}>
-                                        <span className="w3-tag w3-round-large w3-blue w3-border-light-blue">
-                                            <i className="icon fa-thumbs-up"></i> {title.likeCount} <i className="icon fa-check-circle"></i>
-                                        </span>
+                                    <span className="w3-tag w3-round-large w3-blue w3-border-light-blue">
+                                        <i className="icon fa-thumbs-up"></i> {title.likeCount} <i className="icon fa-check-circle"></i>
+                                    </span>
                                 </Link> :
                                 title.likeChecked !== null ?
                                     <Link to={`${pathname}/title_empathy/${title.id}/${loginId}/like${search}`}>
-                                            <span className="w3-tag w3-round-large w3-blue">
-                                                <i className="icon fa-thumbs-up"></i> {title.likeCount}
-                                            </span>
+                                        <span className="w3-tag w3-round-large w3-blue">
+                                            <i className="icon fa-thumbs-up"></i> {title.likeCount}
+                                        </span>
                                     </Link>
                                     :
                                     <span className="w3-tag w3-round-large w3-blue">
-                                            <i className="icon fa-thumbs-up"></i> {title.likeCount}
-                                        </span>
+                                        <i className="icon fa-thumbs-up"></i> {title.likeCount}
+                                    </span>
                         }
                         &nbsp;&nbsp;
                         {
                             title.hateChecked === true ?
                                 <Link to={`${pathname}/title_empathy/${title.id}/${loginId}/hate${search}`}>
-                                        <span className="w3-tag w3-round-large w3-red">
-                                            <i className="icon fa-thumbs-down"></i> {title.hateCount} <i className="icon fa-check-circle"></i>
-                                        </span>
+                                    <span className="w3-tag w3-round-large w3-red">
+                                        <i className="icon fa-thumbs-down"></i> {title.hateCount} <i className="icon fa-check-circle"></i>
+                                    </span>
                                 </Link> :
                                 title.hateChecked !== null ?
                                     <Link to={`${pathname}/title_empathy/${title.id}/${loginId}/hate${search}`}>
-                                            <span className="w3-tag w3-round-large w3-red">
-                                                <i className="icon fa-thumbs-down"></i> {title.hateCount}
-                                            </span>
-                                    </Link> :
-                                    <span class="w3-tag w3-round-large w3-red">
+                                        <span className="w3-tag w3-round-large w3-red">
                                             <i className="icon fa-thumbs-down"></i> {title.hateCount}
                                         </span>
+                                    </Link> :
+                                    <span class="w3-tag w3-round-large w3-red">
+                                        <i className="icon fa-thumbs-down"></i> {title.hateCount}
+                                    </span>
                         }
                     </div>
                 </div>
