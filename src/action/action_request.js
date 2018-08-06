@@ -187,9 +187,9 @@ export function resetAppFetchSizeByOption(){
     }
 }
 
-export function appFetchViewRequestMain(requestId){
+export function appFetchViewRequestMain(requestId, userId){
     const request = axios({
-        url : `${ROOT_URL}/fetch_main/view/${requestId}`,
+        url : `${ROOT_URL}/fetch_main/view/${requestId}/${userId}`,
         method : 'get'
     });
     return {

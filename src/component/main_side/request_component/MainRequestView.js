@@ -4,8 +4,9 @@ const IMAGE_URL = 'http://127.0.0.1:8082/ContextAPI/photo';
 class MainRequestView extends Component{
     constructor(props){
         super();
-        this.state = { request : null, bestTitles : [] };
+        this.state = { request : props.request, bestTitles : props.bestTitles };
     }
+
     componentWillReceiveProps(nextProps){
         if(this.props.request !== nextProps.request)
             this.propsRequestUpdating(nextProps.request);

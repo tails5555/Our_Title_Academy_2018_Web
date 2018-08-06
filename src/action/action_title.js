@@ -11,6 +11,11 @@ export const FETCH_USER_HAS_TITLE_SUCCESS = 'FETCH_USER_HAS_TITLE_SUCCESS';
 export const FETCH_USER_HAS_TITLE_FAILURE = 'FETCH_USER_HAS_TITLE_FAILURE';
 export const RESET_FETCH_USER_HAS_TITLE = 'RESET_FETCH_USER_HAS_TITLE';
 
+export const USER_EXECUTE_SAVE_TITLE = 'USER_EXECUTE_SAVE_TITLE';
+export const USER_EXECUTE_SAVE_TITLE_SUCCESS = 'USER_EXECUTE_SAVE_TITLE_SUCCESS';
+export const USER_EXECUTE_SAVE_TITLE_FAILURE = 'USER_EXECUTE_SAVE_TITLE_FAILURE';
+export const RESET_USER_EXECUTE_SAVE_TITLE = 'RESET_USER_EXECUTE_SAVE_TITLE';
+
 export function appFetchMainTitleList(requestId, userId){
     const request = axios({
         method : 'get',
@@ -70,5 +75,44 @@ export function appFetchUserHasTitleFailure(error){
 export function resetAppFetchUserHasTitle(){
     return {
         type : RESET_FETCH_USER_HAS_TITLE
+    }
+}
+
+export function appExecuteUserSaveTitle(userId, requestId, context){
+    const titleModel = {
+        userId : userId,
+        requestId : requestId,
+        context : context
+    };
+
+    const request = axios({
+        method : 'post',
+        url : `${ROOT_URL}/execute_saving`,
+        data : titleModel
+    });
+
+    return {
+        type : USER_EXECUTE_SAVE_TITLE,
+        payload : request
+    }
+}
+
+export function appExecuteUserSaveTitleSuccess(result){
+    return {
+        type : USER_EXECUTE_SAVE_TITLE_SUCCESS,
+        payload : result.data
+    }
+}
+
+export function appExecuteUserSaveTitleFailure(error){
+    return {
+        type : USER_EXECUTE_SAVE_TITLE_FAILURE,
+        payload : error
+    }
+}
+
+export function resetAppExecuteUserSaveTitle(){
+    return{
+        type : RESET_USER_EXECUTE_SAVE_TITLE
     }
 }

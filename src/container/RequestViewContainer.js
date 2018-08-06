@@ -20,8 +20,8 @@ function mapStateToProps(state){
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchSelectRequest : (id) => {
-            dispatch(appFetchViewRequestMain(id)).then((response) => {
+        fetchSelectRequest : (id, userId) => {
+            dispatch(appFetchViewRequestMain(id, userId)).then((response) => {
                 if(!response.error){
                     dispatch(appFetchViewRequestMainSuccess(response.payload));
                 }else{

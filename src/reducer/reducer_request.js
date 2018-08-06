@@ -73,10 +73,10 @@ export default function(state = INITIAL_STATE, action){
         case FETCH_VIEW_REQUEST_MAIN :
             return { ...state, selectRequest : { request : null, loading : true, error : null }, bestTitles : { titles : [] }};
         case FETCH_VIEW_REQUEST_MAIN_SUCCESS :
-            return { ...state, selectRequest : { request : action.payload.requestDTO, loading : false, error : null }, bestTitles : { titles : action.payload.bestTitles}};
+            return { ...state, selectRequest : { request : action.payload, loading : false, error : null }, bestTitles : { titles : action.payload.bestTitles }};
         case FETCH_VIEW_REQUEST_MAIN_FAILURE :
             error = action.payload || { message : action.payload };
-            return { ...state, selectRequest : { request : null, loading : null, error : error }, bestTitles : { titles : [] }};
+            return { ...state, selectRequest : { request : null, loading : false, error : error }, bestTitles : { titles : [] }};
         case RESET_FETCH_VIEW_REQUEST_MAIN :
             return { ...state, selectRequest : { request : null, loading : false, error : null }, bestTitles : { titles : [] }};
 

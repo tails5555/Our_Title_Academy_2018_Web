@@ -1,12 +1,59 @@
 import React, {Component} from 'react';
 import {UserProfile, RequestProfile} from "../profile_image";
 import {renderField} from "../../form";
-import {reduxForm, Field} from 'redux-form';
-import {Link} from 'react-router-dom';
+import {reduxForm, Field, SubmissionError} from 'redux-form';
+import {Link, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {appExecuteUserSaveTitle, appExecuteUserSaveTitleSuccess, appExecuteUserSaveTitleFailure, resetAppExecuteUserSaveTitle} from "../../../action/action_title";
+
+function validate(values){
+    var errors = {};
+    var hasErrors = false;
+
+    if(!values.context || values.context.trim() === ''){
+        errors.context = '제목 내용을 입력하세요.';
+        hasErrors = true;
+    } else if(values.context.length > 65){
+        errors.context = '제목은 65자 이하로 입력하세요.';
+        hasErrors = true;
+    }
+
+    return hasErrors && errors;
+}
+
+function mapStateToProps(state){
+    const {result} = state.title.hasTitle;
+    let contextValue = (result !== null) ? result.context : '';
+    return {
+        initialValues : {
+            context : contextValue
+        },
+        saveStatus : state.title.saveStatus
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return{
+        resetUserSaveTitle : () => dispatch(resetAppExecuteUserSaveTitle())
+    }
+}
+
+const validateAndSaveTitle = (values, dispatch, props) => {
+    return dispatch(appExecuteUserSaveTitle(props.loginId, props.requestId, values.context)).then(
+        (response) => {
+            if(response.payload && response.payload.status !== 200){
+                dispatch(appExecuteUserSaveTitleFailure(response.payload));
+                throw new SubmissionError(response.payload.data);
+            }
+            dispatch(appExecuteUserSaveTitleSuccess(response.payload));
+        }
+    )
+}
+
 class MainTitleView extends Component{
     constructor(props){
         super(props);
-        this.state = { titles : [], hasTitle : this.props.hasTitle, loginId : this.props.loginId, pathname : this.props.pathname, search : this.props.search, currentPage : 1 };
+        this.state = { titles : [], hasTitle : this.props.hasTitle, loginId : this.props.loginId, requestId : this.props.requestId, pathname : this.props.pathname, search : this.props.search, currentPage : 1 };
     }
 
     componentWillReceiveProps(nextProps){
@@ -18,6 +65,9 @@ class MainTitleView extends Component{
         }
         if (this.props.loginId !== nextProps.loginId){
             this.propsUpdating('loginId', nextProps.loginId);
+        }
+        if (this.props.requestId !== nextProps.requestId){
+            this.propsUpdating('requestId', nextProps.requestId);
         }
         if (this.props.pathname !== nextProps.pathname){
             this.propsUpdating('pathname', nextProps.pathname);
@@ -42,11 +92,25 @@ class MainTitleView extends Component{
         });
     }
 
+    componentWillUnmount(){
+        this.props.resetUserSaveTitle();
+    }
+
     render(){
-        const {titles, hasTitle, loginId, pathname, search, currentPage} = this.state;
+        const {handleSubmit} = this.props;
+        const {result} = this.props.saveStatus;
+        const {titles, hasTitle, loginId, requestId, pathname, search, currentPage} = this.state;
         const indexOfLastTitle = currentPage * 6;
         const indexOfFirstTitle = indexOfLastTitle - 6;
         const currentTitles = titles.slice(indexOfFirstTitle, indexOfLastTitle);
+
+        if(result === true){
+            alert("입력하신 제목이 저장되었습니다.");
+            this.props.history.push(`/view_request/${requestId}/_refresh${search}`);
+        } else if(result === false){
+            alert("제목 저장 도중 예기치 않는 문제가 발생했습니다. 최대한 빨리 조치하겠습니다.");
+            this.props.history.push(`/view_request/${requestId}/_refresh${search}`);
+        }
 
         let renderTitles = currentTitles.map((title, idx) => {
             let divClass;
@@ -145,15 +209,6 @@ class MainTitleView extends Component{
             );
         });
 
-        if(loginId !== 'ANONYMOUS_USER'){
-            if(hasTitle !== null){
-                const initData = {
-                    context : hasTitle.context
-                };
-                this.props.initialize(initData);
-            }
-        }
-
         return(
             <div id="title_list">
                 <h3 className="w3-border-bottom w3-border-light-blue"><i class="fas fa-box-open"></i> 현재까지 올라온 제목 목록들</h3>
@@ -165,13 +220,17 @@ class MainTitleView extends Component{
                             <p>제목을 등록하기 위해 로그인을 진행하시길 바랍니다.</p>
                         </div> :
                         hasTitle === '' ?
-                            <form>
+                            <form onSubmit={handleSubmit(validateAndSaveTitle)}>
                                 <h4><i class="icon fa-pencil"></i> 제목을 등록합니다.</h4>
                                 <Field type="text" placeholder="제목은 65자 이내로 입력하세요." name="context" component={renderField} />
+                                <br/>
+                                <button type="submit" className="button primary fit large">등록하기</button>
                             </form> :
-                            <form>
+                            <form onSubmit={handleSubmit(validateAndSaveTitle)}>
                                 <h4><i class="icon fa-eraser"></i> 제목을 수정합니다.</h4>
                                 <Field type="text" placeholder="제목은 65자 이내로 입력하세요." name="context" component={renderField} />
+                                <br/>
+                                <button type="submit" className="button primary fit large">수정하기</button>
                             </form>
                 }
                 <div>
@@ -185,7 +244,12 @@ class MainTitleView extends Component{
         )
     }
 }
-export default reduxForm({
-    form : 'titleContext',
-    enableReinitialize : true
-})(MainTitleView);
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(reduxForm({
+    form : 'titleForm',
+    enableReinitialize : true,
+    validate
+})(withRouter(MainTitleView)));

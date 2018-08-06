@@ -61,7 +61,7 @@ class TodayRank extends Component{
                                             #{request.sequence}
                                         </span>
                                         <br/><br/>
-                                        <Link to={`/view_request/${request.requestId}/_rank?id=${request.categoryId}&pg=1`}>
+                                        <Link to={`/view_request/${request.requestId}/_refresh?id=${request.categoryId}&pg=1`}>
                                             <img
                                                 style={{
                                                     width : '100%',

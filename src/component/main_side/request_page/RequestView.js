@@ -4,7 +4,7 @@ import {MainRequestView, RequestEmpathyView} from "../request_component";
 import queryString from 'query-string';
 import {MainTitleView} from "../title_component";
 class RequestView extends Component{
-    componentWillMount(){
+    currentUser(){
         const {principal} = this.props.accessUser;
         let userId;
         if(principal !== null){
@@ -13,9 +13,16 @@ class RequestView extends Component{
         else{
             userId = 'ANONYMOUS_USER';
         }
-        this.props.fetchTitleList(this.props.match.params.id, userId);
-        this.props.fetchHasTitle(this.props.match.params.id, userId);
-        this.props.fetchSelectRequest(this.props.match.params.id, userId);
+        return userId
+    }
+
+    componentWillMount(){
+        this.props.fetchSelectRequest(this.props.match.params.id, this.currentUser());
+        this.props.fetchHasTitle(this.props.match.params.id, this.currentUser());
+    }
+
+    componentDidMount(){
+        this.props.fetchTitleList(this.props.match.params.id, this.currentUser());
     }
 
     componentWillUnmount(){
@@ -61,10 +68,11 @@ class RequestView extends Component{
                 <br/>
                 <MainTitleView
                     pathname={this.props.location.pathname}
-                    search={this.props.location.search}
-                    loginId={(principal !== null) ? principal.loginId : 'ANONYMOUS_USER'}
-                    titles={this.props.titleList !== null ? this.props.titleList.titles : []}
                     hasTitle={this.props.hasTitle.result}
+                    loginId={(principal !== null) ? principal.loginId : 'ANONYMOUS_USER'}
+                    requestId={this.props.match.params.id}
+                    titles={this.props.titleList !== null ? this.props.titleList.titles : []}
+                    search={this.props.location.search}
                 />
             </section>
         )
