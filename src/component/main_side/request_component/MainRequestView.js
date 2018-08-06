@@ -88,13 +88,13 @@ class MainRequestView extends Component{
                                     break;
                             }
                             return(
-                                <li className={liClass}>
+                                <li className={liClass} key={`request_best_${idx}`}>
                                     <span className="image left w3-bar-item w3-circle" style={{
                                         width : '150px'
                                     }}>
                                         <RequestProfile loginId={title.userId} />
                                     </span>
-                                    <span class="w3-tag w3-round-large w3-blue">
+                                    <span className="w3-tag w3-round-large w3-blue">
                                         <i className="icon fa-thumbs-up"></i> {title.likeCount}
                                     </span>
                                     <h4>{title.context}</h4>

@@ -123,7 +123,7 @@ class MyInfoForm extends Component{
         return (
             <section>
                 <header id="header">
-                    <span class="logo"><strong>Our Title Academy 2018</strong> - MY INFO MANAGER</span>
+                    <span className="logo"><strong>Our Title Academy 2018</strong> - MY INFO MANAGER</span>
                 </header>
                 <br/><br/>
                 <header className="major">

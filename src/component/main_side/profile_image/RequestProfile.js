@@ -34,14 +34,16 @@ class RequestProfile extends Component{
 
     componentDidMount(){
         let self = this;
-        axios.get(`${RESOURCE_ROOT_URL}/image_profile/${this.props.loginId}`)
-            .then(response =>
-                self.setState({ status : response.status })
-            );
-        axios.get(`${NICKNAME_ROOT_URL}/${this.props.loginId}`)
-            .then(response =>
-                self.setState({ nickname : response.data })
-            );
+        if(this.props.loginId !== ''){
+            axios.get(`${RESOURCE_ROOT_URL}/image_profile/${this.props.loginId}`)
+                .then(response =>
+                    self.setState({ status : response.status })
+                );
+            axios.get(`${NICKNAME_ROOT_URL}/${this.props.loginId}`)
+                .then(response =>
+                    self.setState({ nickname : response.data })
+                );
+        }
     }
 
     render(){

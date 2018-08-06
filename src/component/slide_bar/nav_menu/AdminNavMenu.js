@@ -40,6 +40,14 @@ const AdminNavMenu = () =>
             </li>
             <li onClick={handleClick.bind(this)}><Link to="/today/best">오늘의 Best</Link></li>
             <li onClick={handleClick.bind(this)}><Link to="/today/battle">오늘의 Title Battle</Link></li>
+            <li>
+                <div className="w3-panel w3-pink w3-round-large w3-center">
+                    <h6 className="w3-text-white">Our Community</h6>
+                </div>
+            </li>
+            <li onClick={handleClick.bind(this)}><Link to="/create_request">내 사진에 제목을 올려주세요</Link></li>
+            <li onClick={handleClick.bind(this)}><Link to="/notice/view">제목학원 가정통신문</Link></li>
+            <li onClick={handleClick.bind(this)}><Link to="/notice/faq_view">FAQ 열람하러 가기</Link></li>
         </ul>
     </nav>
 

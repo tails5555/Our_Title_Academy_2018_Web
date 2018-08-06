@@ -30,10 +30,11 @@ class UserProfile extends Component{
 
     componentDidMount(){
         let self = this;
-        axios.get(`${RESOURCE_ROOT_URL}/image_profile/${this.props.loginId}`)
-            .then(response =>
-                self.setState({ status : response.status })
-            );
+        if(this.props.loginId !== '')
+            axios.get(`${RESOURCE_ROOT_URL}/image_profile/${this.props.loginId}`)
+                .then(response =>
+                    self.setState({ status : response.status })
+                );
     }
 
     render(){

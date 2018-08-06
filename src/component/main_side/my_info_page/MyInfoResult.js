@@ -25,7 +25,7 @@ class MyInfoResult extends Component {
         if(detail !== null){
             resultRender =
                 <article className="w3-container">
-                    <div class="w3-panel w3-border-left w3-pale-blue w3-border-blue">
+                    <div className="w3-panel w3-border-left w3-pale-blue w3-border-blue">
                         <h2><i className="icon fa-check-circle-o" /> 회원 수정이 정상적으로 완료 되었습니다.</h2>
                     </div>
                     <div className="w3-panel w3-leftbar w3-left-align">
@@ -68,7 +68,7 @@ class MyInfoResult extends Component {
         } else if(error !== null) {
             resultRender =
                 <article className="w3-container">
-                    <div class="w3-panel w3-border-left w3-pale-red w3-border-red">
+                    <div className="w3-panel w3-border-left w3-pale-red w3-border-red">
                         <h2><i className="icon exclamation-triangle" /> 회원 수정 중 회원 Server에 예상치 못한 에러가 발생했습니다.</h2>
                     </div>
                     <div className="w3-panel w3-leftbar w3-left-align">
@@ -89,7 +89,7 @@ class MyInfoResult extends Component {
         return (
             <section>
                 <header id="header">
-                    <span class="logo"><strong>Our Title Academy 2018</strong> - MY INFO MANAGER RESULT</span>
+                    <span className="logo"><strong>Our Title Academy 2018</strong> - MY INFO MANAGER RESULT</span>
                 </header>
                 <br/><br/>
                 <header className="major">

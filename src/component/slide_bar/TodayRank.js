@@ -40,7 +40,7 @@ class TodayRank extends Component{
                 <div className="mini-posts">
                     <Slider {...settings}>
                         {
-                            requests.map(request => {
+                            requests.map((request, idx) => {
                                 let iconClass, spanClass;
                                 if(request.difference > 0){
                                     spanClass = 'w3-tag w3-round-large w3-blue';
@@ -53,8 +53,8 @@ class TodayRank extends Component{
                                     iconClass = 'fas fa-minus-circle';
                                 }
                                 return (
-                                    <article>
-                                        <span class={spanClass}>
+                                    <article key={`rank_${idx}`}>
+                                        <span className={spanClass}>
                                             <i className={iconClass}></i> {(request.difference > 0) ? request.difference : request.difference * -1 }
                                         </span>
                                         <span className="w3-large w3-right w3-text-black w3-border-red w3-border-bottom">

@@ -119,10 +119,10 @@ class BriefRequestList extends Component{
         return (
             <section>
                 <header id="header">
-                    <span class="logo"><strong>Our Title Academy 2018</strong> - CATEGORY</span>
+                    <span className="logo"><strong>Our Title Academy 2018</strong> - CATEGORY</span>
                 </header>
                 <br/><br/>
-                <header class="major">
+                <header className="major">
                     <h2>분류 별 제목 학원 - { category === null || category.name }</h2>
                 </header>
                 <form onSubmit={handleSubmit(receivePagination, this.props.match.params.id)}>
@@ -139,7 +139,7 @@ class BriefRequestList extends Component{
                     <br/><br/>
                     <button type="submit" className="button primary fit large">검색하기</button>
                 </form>
-                <div class="posts">
+                <div className="posts">
                     {requestRender}
                 </div>
                 <div className="w3-bar w3-center">

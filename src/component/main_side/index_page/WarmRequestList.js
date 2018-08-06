@@ -12,29 +12,29 @@ class WarmRequestList extends Component {
         const {requests, error} = this.props.requestList;
         let articleList;
         if(requests.length > 0){
-            articleList = requests.map((request) => {
+            articleList = requests.map((request, idx) => {
                 return(
-                    <BriefRequestView request={request} routeURI={`/view_request/${request.id}/view?id=${request.categoryId}&pg=1`}/>
+                    <BriefRequestView key={`home_brief_${idx}`} request={request} routeURI={`/view_request/${request.id}/view?id=${request.categoryId}&pg=1`}/>
                 )
             })
         }else if(error !== null){
             articleList =
                 <article>
-                    <a href="#" class="image"><img src="my_image/leemb2.jpg" alt="" /></a>
-                    <span class="image left"><img src="my_image/profile.png" alt="" /></span>
+                    <a href="#" className="image"><img src="my_image/leemb2.jpg" alt="" /></a>
+                    <span className="image left"><img src="my_image/profile.png" alt="" /></span>
                     <h3>요청 목록을 불러오는 도중 에러가 발생했습니다.</h3>
                     <p>다시 시도해주시길 바랍니다.</p>
-                    <ul class="actions">
-                        <li><a href="#" class="button">제목 짓기</a></li>
+                    <ul className="actions">
+                        <li><a href="#" className="button">제목 짓기</a></li>
                     </ul>
                 </article>
         }
         return (
             <section>
-                <header class="major">
+                <header className="major">
                     <h2>방금 올라온 따뜻한 사진</h2>
                 </header>
-                <div class="posts">
+                <div className="posts">
                     {articleList}
                 </div>
             </section>

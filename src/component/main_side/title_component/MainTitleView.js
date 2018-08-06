@@ -104,6 +104,14 @@ class MainTitleView extends Component{
         });
     }
 
+    handleClickMyPage(page){
+        let div = document.getElementById("title_list");
+        div.scrollIntoView();
+        this.setState({
+            currentPage : page
+        })
+    }
+
     handleClickDelete(titleId){
         let isDelete = window.confirm("님이 작성한 제목을 삭제합니다. 삭제 이후에는 복구가 불가능합니다. 계속 하시겠습니까?");
         if(isDelete){
@@ -124,7 +132,17 @@ class MainTitleView extends Component{
         const indexOfLastTitle = currentPage * 6;
         const indexOfFirstTitle = indexOfLastTitle - 6;
         const currentTitles = titles.slice(indexOfFirstTitle, indexOfLastTitle);
-
+        let myPage = 1;
+        if(titles.length > 0){
+            if(hasTitle !== null){
+                for(var k=0;k<titles.length;k++){
+                    if(titles[k].id === hasTitle.id){
+                        myPage = Math.floor(k / 6) + 1;
+                        break;
+                    }
+                }
+            }
+        }
         if(saveResult === true){
             alert("입력하신 제목이 저장되었습니다.");
             this.props.history.push(`/view_request/${requestId}/_refresh${search}`);
@@ -160,7 +178,7 @@ class MainTitleView extends Component{
                         }}>
                             <RequestProfile loginId={title.userId} />
                         </span>
-                        <p><i class="icon fa-calendar"></i> {title.writtenDate}</p>
+                        <p><i className="icon fa-calendar"></i> {title.writtenDate}</p>
                         {
                             title.likeChecked === true ?
                                 <Link to={`${pathname}/title_empathy/${title.id}/${loginId}/like${search}`}>
@@ -193,7 +211,7 @@ class MainTitleView extends Component{
                                             <i className="icon fa-thumbs-down"></i> {title.hateCount}
                                         </span>
                                     </Link> :
-                                    <span class="w3-tag w3-round-large w3-red">
+                                    <span className="w3-tag w3-round-large w3-red">
                                         <i className="icon fa-thumbs-down"></i> {title.hateCount}
                                     </span>
                         }
@@ -229,7 +247,7 @@ class MainTitleView extends Component{
             return (
                 <button
                     className="w3-button w3-pale-red"
-                    key={number}
+                    key={`number_${number}`}
                     id={number}
                     onClick={this.handleClick.bind(this)}
                 >
@@ -238,31 +256,40 @@ class MainTitleView extends Component{
             );
         });
 
+        const renderMyPage =
+            <button
+                className="w3-button w3-pale-blue"
+                key={`myPage`}
+                onClick={this.handleClickMyPage.bind(this, myPage)}
+            >
+                내 제목이 있는 페이지로 이동
+            </button>
+
         return(
             <div id="title_list">
-                <h3 className="w3-border-bottom w3-border-light-blue"><i class="fas fa-box-open"></i> 현재까지 올라온 제목 목록들</h3>
+                <h3 className="w3-border-bottom w3-border-light-blue"><i className="fas fa-box-open"></i> 현재까지 올라온 제목 목록들</h3>
                 <br/>
                 {
                     loginId === 'ANONYMOUS_USER' ?
                         <div className="w3-panel w3-round-medium w3-pale-red">
-                            <h3><i class="fas fa-exclamation-triangle"></i> 제목을 등록할 수 없습니다.</h3>
+                            <h3><i className="fas fa-exclamation-triangle"></i> 제목을 등록할 수 없습니다.</h3>
                             <p>제목을 등록하기 위해 로그인을 진행하시길 바랍니다.</p>
                         </div> :
                         hasTitle === '' ?
                             <form onSubmit={handleSubmit(validateAndSaveTitle)}>
-                                <h4><i class="icon fa-pencil"></i> 제목을 등록합니다.</h4>
+                                <h4><i className="icon fa-pencil"></i> 제목을 등록합니다.</h4>
                                 <Field type="text" placeholder="제목은 65자 이내로 입력하세요." name="context" component={renderField} />
                                 <br/>
                                 <button type="submit" className="button fit large">등록하기</button>
                             </form> :
                             <form onSubmit={handleSubmit(validateAndSaveTitle)}>
-                                <h4><i class="icon fa-eraser"></i> 제목을 수정합니다.</h4>
+                                <h4><i className="icon fa-eraser"></i> 제목을 수정합니다.</h4>
                                 <Field type="text" placeholder="제목은 65자 이내로 입력하세요." name="context" component={renderField} />
                                 <br/>
                                 <button type="submit" className="button fit large">수정하기</button>
                                 <br/><br/>
                                 <button type="button" className="button primary fit large" onClick={this.handleClickDelete.bind(this, hasTitle === null || hasTitle.id)}>
-                                    <i class="icon fa-trash"></i> 제목 삭제하기
+                                    <i className="icon fa-trash"></i> 제목 삭제하기
                                 </button>
                             </form>
                 }
@@ -272,6 +299,10 @@ class MainTitleView extends Component{
                 <br/>
                 <div className="w3-center">
                     {renderPageNumbers}
+                </div>
+                <br/>
+                <div className="w3-center">
+                    { (hasTitle !== '' ) ? renderMyPage : ''}
                 </div>
             </div>
         )
