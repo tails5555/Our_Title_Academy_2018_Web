@@ -25,10 +25,10 @@ class UserRouter extends Component{
                     });
                     axios.post(`${ROOT_URL}/checking/title_empathy/${match.params.titleId}/${match.params.method}/${match.params.loginId}`).then(response => {
                         if(response.status !== 200){
-                            alert("공감 체크 도중 서버 내부에서 에러가 발생했습니다. 다시 시도 바랍니다.");
+                            alert("제목 공감 체크 도중 서버 내부에서 에러가 발생했습니다. 다시 시도 바랍니다.");
                         }
                     })
-                    return <Redirect to={`/view_request/${match.params.id}/view${location.search}`} />
+                    return <Redirect to={`/view_request/${match.params.id}/_refresh${location.search}`} />
                 }} />
                 <Route exact path="/view_request/:id/view/request_empathy/:requestId/:loginId/:method" render={({ match, location }) => {
                     window.scroll({
@@ -38,10 +38,10 @@ class UserRouter extends Component{
                     });
                     axios.post(`${ROOT_URL}/checking/request_empathy/${match.params.requestId}/${match.params.method}/${match.params.loginId}`).then(response => {
                         if(response.status !== 200){
-                            alert("공감 체크 도중 서버 내부에서 에러가 발생했습니다. 다시 시도 바랍니다.");
+                            alert("요청 공감 체크 도중 서버 내부에서 에러가 발생했습니다. 다시 시도 바랍니다.");
                         }
                     })
-                    return <Redirect to={`/view_request/${match.params.id}/view${location.search}`} />
+                    return <Redirect to={`/view_request/${match.params.id}/_refresh${location.search}`} />
                 }} />
                 <Route exact path="/view_request/:id/view" component={RequestViewPage} />
                 <Route exact path="/my/info_manage" component={MyInfoFormPage} />

@@ -16,6 +16,12 @@ export const USER_EXECUTE_SAVE_TITLE_SUCCESS = 'USER_EXECUTE_SAVE_TITLE_SUCCESS'
 export const USER_EXECUTE_SAVE_TITLE_FAILURE = 'USER_EXECUTE_SAVE_TITLE_FAILURE';
 export const RESET_USER_EXECUTE_SAVE_TITLE = 'RESET_USER_EXECUTE_SAVE_TITLE';
 
+export const USER_EXECUTE_DELETE_TITLE = 'USER_EXECUTE_DELETE_TITLE';
+export const USER_EXECUTE_DELETE_TITLE_SUCCESS = 'USER_EXECUTE_DELETE_TITLE_SUCCESS';
+export const USER_EXECUTE_DELETE_TITLE_FAILURE = 'USER_EXECUTE_DELETE_TITLE_FAILURE';
+export const RESET_USER_EXECUTE_DELETE_TITLE = 'RESET_USER_EXECUTE_DELETE_TITLE';
+
+
 export function appFetchMainTitleList(requestId, userId){
     const request = axios({
         method : 'get',
@@ -114,5 +120,35 @@ export function appExecuteUserSaveTitleFailure(error){
 export function resetAppExecuteUserSaveTitle(){
     return{
         type : RESET_USER_EXECUTE_SAVE_TITLE
+    }
+}
+
+export function appExecuteUserDeleteTitle(titleId){
+    const request = axios.delete(
+        `${ROOT_URL}/execute_delete/${titleId}`
+    );
+    return {
+        type : USER_EXECUTE_DELETE_TITLE,
+        payload : request
+    }
+}
+
+export function appExecuteUserDeleteTitleSuccess(result){
+    return {
+        type : USER_EXECUTE_DELETE_TITLE_SUCCESS,
+        payload : result.data
+    }
+}
+
+export function appExecuteUserDeleteTitleFailure(error){
+    return {
+        type : USER_EXECUTE_DELETE_TITLE_FAILURE,
+        payload : error
+    }
+}
+
+export function resetAppExecuteUserDeleteTitle(){
+    return {
+        type : RESET_USER_EXECUTE_DELETE_TITLE
     }
 }

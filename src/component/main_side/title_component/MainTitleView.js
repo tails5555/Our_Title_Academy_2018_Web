@@ -4,7 +4,10 @@ import {renderField} from "../../form";
 import {reduxForm, Field, SubmissionError} from 'redux-form';
 import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {appExecuteUserSaveTitle, appExecuteUserSaveTitleSuccess, appExecuteUserSaveTitleFailure, resetAppExecuteUserSaveTitle} from "../../../action/action_title";
+import {
+    appExecuteUserSaveTitle, appExecuteUserSaveTitleSuccess, appExecuteUserSaveTitleFailure, resetAppExecuteUserSaveTitle,
+    appExecuteUserDeleteTitle, appExecuteUserDeleteTitleSuccess, appExecuteUserDeleteTitleFailure, resetAppExecuteUserDeleteTitle
+} from "../../../action/action_title";
 
 function validate(values){
     var errors = {};
@@ -28,13 +31,22 @@ function mapStateToProps(state){
         initialValues : {
             context : contextValue
         },
-        saveStatus : state.title.saveStatus
+        saveStatus : state.title.saveStatus,
+        deleteStatus : state.title.deleteStatus
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        resetUserSaveTitle : () => dispatch(resetAppExecuteUserSaveTitle())
+        resetUserSaveTitle : () => dispatch(resetAppExecuteUserSaveTitle()),
+        resetUserDeleteTitle : () => dispatch(resetAppExecuteUserDeleteTitle()),
+        userDeleteTitle : (titleId) => dispatch(appExecuteUserDeleteTitle(titleId)).then((response) => {
+            if(!response.error){
+                dispatch(appExecuteUserDeleteTitleSuccess(response.payload));
+            }else{
+                dispatch(appExecuteUserDeleteTitleFailure(response.payload));
+            }
+        })
     }
 }
 
@@ -92,23 +104,40 @@ class MainTitleView extends Component{
         });
     }
 
+    handleClickDelete(titleId){
+        let isDelete = window.confirm("님이 작성한 제목을 삭제합니다. 삭제 이후에는 복구가 불가능합니다. 계속 하시겠습니까?");
+        if(isDelete){
+            this.props.userDeleteTitle(titleId);
+        }
+    }
+
     componentWillUnmount(){
         this.props.resetUserSaveTitle();
+        this.props.resetUserDeleteTitle();
     }
 
     render(){
         const {handleSubmit} = this.props;
-        const {result} = this.props.saveStatus;
+        const {saveResult} = this.props.saveStatus;
+        const {deleteResult} = this.props.deleteStatus;
         const {titles, hasTitle, loginId, requestId, pathname, search, currentPage} = this.state;
         const indexOfLastTitle = currentPage * 6;
         const indexOfFirstTitle = indexOfLastTitle - 6;
         const currentTitles = titles.slice(indexOfFirstTitle, indexOfLastTitle);
 
-        if(result === true){
+        if(saveResult === true){
             alert("입력하신 제목이 저장되었습니다.");
             this.props.history.push(`/view_request/${requestId}/_refresh${search}`);
-        } else if(result === false){
+        } else if(saveResult === false){
             alert("제목 저장 도중 예기치 않는 문제가 발생했습니다. 최대한 빨리 조치하겠습니다.");
+            this.props.history.push(`/view_request/${requestId}/_refresh${search}`);
+        }
+
+        if(deleteResult === true){
+            alert("입력하신 제목이 삭제되었습니다.");
+            this.props.history.push(`/view_request/${requestId}/_refresh${search}`);
+        } else if(saveResult === false){
+            alert("제목 삭제 도중 예기치 않는 문제가 발생했습니다. 최대한 빨리 조치하겠습니다.");
             this.props.history.push(`/view_request/${requestId}/_refresh${search}`);
         }
 
@@ -224,13 +253,17 @@ class MainTitleView extends Component{
                                 <h4><i class="icon fa-pencil"></i> 제목을 등록합니다.</h4>
                                 <Field type="text" placeholder="제목은 65자 이내로 입력하세요." name="context" component={renderField} />
                                 <br/>
-                                <button type="submit" className="button primary fit large">등록하기</button>
+                                <button type="submit" className="button fit large">등록하기</button>
                             </form> :
                             <form onSubmit={handleSubmit(validateAndSaveTitle)}>
                                 <h4><i class="icon fa-eraser"></i> 제목을 수정합니다.</h4>
                                 <Field type="text" placeholder="제목은 65자 이내로 입력하세요." name="context" component={renderField} />
                                 <br/>
-                                <button type="submit" className="button primary fit large">수정하기</button>
+                                <button type="submit" className="button fit large">수정하기</button>
+                                <br/><br/>
+                                <button type="button" className="button primary fit large" onClick={this.handleClickDelete.bind(this, hasTitle === null || hasTitle.id)}>
+                                    <i class="icon fa-trash"></i> 제목 삭제하기
+                                </button>
                             </form>
                 }
                 <div>
