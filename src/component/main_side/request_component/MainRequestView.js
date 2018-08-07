@@ -3,7 +3,7 @@ import {RequestProfile, UserProfile} from "../profile_image";
 const IMAGE_URL = 'http://127.0.0.1:8082/ContextAPI/photo';
 class MainRequestView extends Component{
     constructor(props){
-        super();
+        super(props);
         this.state = { request : props.request, bestTitles : props.bestTitles };
     }
 
@@ -50,7 +50,7 @@ class MainRequestView extends Component{
                             <br/><br/>
                             <div className="w3-container">
                                 <h3 className="w3-border-bottom w3-border-red">{(request === null) || request.intro}</h3>
-                                <p>{(request === null) || request.context}</p>
+                                <div dangerouslySetInnerHTML={ {__html: (request === null || request.context) } }/>
                                 <p className="w3-border-top w3-border-blue">
                                     <br/>
                                     <i className="icon fa-eye"></i> 조회수 <span className="w3-badge w3-light-blue">{(request === null) || request.view}</span>

@@ -32,6 +32,11 @@ export const FETCH_VIEW_REQUEST_MAIN_SUCCESS = 'FETCH_VIEW_REQUEST_MAIN_SUCCESS'
 export const FETCH_VIEW_REQUEST_MAIN_FAILURE = 'FETCH_VIEW_REQUEST_MAIN_FAILURE';
 export const RESET_FETCH_VIEW_REQUEST_MAIN = 'RESET_FETCH_VIEW_REQUEST_MAIN';
 
+export const FETCH_AGREE_REQUEST_BRIEF = 'FETCH_AGREE_REQUEST_BRIEF';
+export const FETCH_AGREE_REQUEST_BRIEF_SUCCESS = 'FETCH_AGREE_REQUEST_BRIEF_SUCCESS';
+export const FETCH_AGREE_REQUEST_BRIEF_FAILURE = 'FETCH_AGREE_REQUEST_BRIEF_FAILURE';
+export const RESET_FETCH_AGREE_REQUEST_BRIEF= 'RESET_FETCH_AGREE_REQUEST_BRIEF';
+
 export const USER_CREATE_REQUEST = 'USER_CREATE_REQUEST';
 export const USER_CREATE_REQUEST_SUCCESS = 'USER_CREATE_REQUEST_SUCCESS';
 export const USER_CREATE_REQUEST_FAILURE = 'USER_CREATE_REQUEST_FAILURE';
@@ -259,5 +264,36 @@ export function userCreateRequestFailure(error){
 export function resetUserCreateRequest(){
     return {
         type : RESET_USER_CREATE_REQUEST
+    }
+}
+
+export function managerFetchAgreeRequestBrief(){
+    const request = axios({
+        url : `${ROOT_URL}/fetch_brief/agree_list`,
+        method : 'get'
+    });
+    return {
+        type : FETCH_AGREE_REQUEST_BRIEF,
+        payload : request
+    }
+}
+
+export function managerFetchAgreeRequestBriefSuccess(requests){
+    return {
+        type : FETCH_AGREE_REQUEST_BRIEF_SUCCESS,
+        payload : requests.data
+    }
+}
+
+export function managerFetchAgreeRequestBriefFailure(error){
+    return {
+        type : FETCH_AGREE_REQUEST_BRIEF_FAILURE,
+        payload : error
+    }
+}
+
+export function resetManagerFetchAgreeRequestBrief(){
+    return {
+        type : RESET_FETCH_AGREE_REQUEST_BRIEF
     }
 }

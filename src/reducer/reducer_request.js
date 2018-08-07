@@ -5,7 +5,8 @@ import {
     FETCH_ORDER_BY_OPTION, FETCH_ORDER_BY_OPTION_SUCCESS, FETCH_ORDER_BY_OPTION_FAILRUE, RESET_FETCH_ORDER_BY_OPTION,
     FETCH_SIZE_BY_OPTION, FETCH_SIZE_BY_OPTION_SUCCESS, FETCH_SIZE_BY_OPTION_FAILURE, RESET_FETCH_SIZE_BY_OPTION,
     FETCH_VIEW_REQUEST_MAIN, FETCH_VIEW_REQUEST_MAIN_SUCCESS, FETCH_VIEW_REQUEST_MAIN_FAILURE, RESET_FETCH_VIEW_REQUEST_MAIN,
-    USER_CREATE_REQUEST, USER_CREATE_REQUEST_SUCCESS, USER_CREATE_REQUEST_FAILURE, RESET_USER_CREATE_REQUEST
+    USER_CREATE_REQUEST, USER_CREATE_REQUEST_SUCCESS, USER_CREATE_REQUEST_FAILURE, RESET_USER_CREATE_REQUEST,
+    FETCH_AGREE_REQUEST_BRIEF, FETCH_AGREE_REQUEST_BRIEF_SUCCESS, FETCH_AGREE_REQUEST_BRIEF_FAILURE, RESET_FETCH_AGREE_REQUEST_BRIEF
 } from "../action/action_request";
 
 const INITIAL_STATE = {
@@ -91,6 +92,16 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, createStatus : { result : null, loading : false, error : error }};
         case RESET_USER_CREATE_REQUEST :
             return { ...state, createStatus : { result : null, loading : false, error : null }};
+
+        case FETCH_AGREE_REQUEST_BRIEF :
+            return { ...state, requestList : { requests : [], loading : true, error : null }};
+        case FETCH_AGREE_REQUEST_BRIEF_SUCCESS :
+            return { ...state, requestList : { requests : action.payload, loading : false, error : null }};
+        case FETCH_AGREE_REQUEST_BRIEF_FAILURE :
+            error = action.payload || { message : action.payload };
+            return { ...state, requestList : { requests : [], loading : false, error : error }};
+        case RESET_FETCH_AGREE_REQUEST_BRIEF :
+            return { ...state, requestList : { requests : [], loading : false, error : null }};
 
         default :
             return state;

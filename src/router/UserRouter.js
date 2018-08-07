@@ -49,6 +49,7 @@ class UserRouter extends Component{
                 <Route exact path="/my/info_update_result" component={MyInfoResultPage} />
                 <Route exact path="/my/profile_change" component={MyProfileChangePage} />
                 <Route exact path="/create_request" component={CreateRequestPage} />
+                <Route exact path="/create_request/_refresh" render={() => <Redirect to={`/create_request`} />} />
             </div>
         )
     }

@@ -62,6 +62,14 @@ class RequestEmpathyView extends Component{
                 <br/>
                 <div className="w3-center">
                 {
+                    loginId === 'ANONYMOUS_USER' ?
+                        <div className="w3-panel w3-yellow w3-round-xlarge">
+                            <br/>
+                            <h3><i className="fas fa-key"></i> 사진 공감 참여를 위해 로그인이 필요합니다.</h3>
+                            <p>사진 공감 참여를 원하면 로그인을 해야 합니다. 제목 공감도 마찬가지로 로그인을 진행해야 참여 가능합니다.</p>
+                        </div> : ''
+                }
+                {
                     likeChecked === true ?
                         <Link to={`${pathname}/request_empathy/${requestId}/${loginId}/like${search}`}>
                             <button className="w3-button w3-blue">

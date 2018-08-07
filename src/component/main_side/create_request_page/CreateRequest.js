@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { renderDropzoneInput, renderQuill, renderField } from "../../form";
 import {userCreateRequest, userCreateRequestSuccess, userCreateRequestFailure} from "../../../action/action_request";
+import {withRouter} from 'react-router-dom';
 
 function validate(values){
     var errors = {};
@@ -54,6 +55,14 @@ class CreateRequest extends Component{
         const {handleSubmit} = this.props;
         const {result} = this.props.createStatus;
 
+        if(result === true){
+            alert("님이 올린 요청들이 정상적으로 올라갔습니다.");
+            this.props.history.push(`/create_request/_refresh`);
+        } else if(result === false){
+            alert("님이 올린 요청을 올리는 도중 서버에서 에러가 발생했습니다. 잠시 후 다시 시도 해주세요.");
+            this.props.history.push(`/create_request/_refresh`);
+        }
+
         return(
             <section>
                 <header id="header">
@@ -83,7 +92,8 @@ class CreateRequest extends Component{
                     <br/>
                     <p> - 부적절한 사진을 올리는 경우에는 관리자에 의해 삭제될 수 있다는 점 알립니다.</p>
                     <p> - 사진의 용량은 하나 당 1MB(png, jpg, bmp 등) ~ 3MB(gif)를 넘지 않아야 합니다.</p>
-                    <p> - 주제는 여러분들이 선택하지 않으셔도 됩니다. 매니저와 관리자의 판단 하에 설정됩니다.</p>
+                    <p> - 카테고리는 여러분들이 선택하지 않으셔도 됩니다. 매니저와 관리자의 판단 하에 설정됩니다.</p>
+                    <p> - 매니저와 관리자의 카테고리 선정은 부적절한 사진을 필터링 하기 위해 적어도 하루에서 이틀 사이 걸리오니 이 점 참고 바랍니다.</p>
                     <p> - 사진은 1장씩만 올릴 수 있습니다. 이 점 양해 부탁드립니다.</p>
                 </div>
             </section>
@@ -93,4 +103,4 @@ class CreateRequest extends Component{
 export default reduxForm({
     form : 'requestForm',
     validate
-})(CreateRequest);
+})(withRouter(CreateRequest));

@@ -14,3 +14,4 @@ export {default as BriefRequestListContainer} from './BriefRequestListContainer'
 export {default as RequestViewContainer} from './RequestViewContainer';
 export {default as TodayRankContainer} from './TodayRankContainer';
 export {default as CreateRequestContainer} from './CreateRequestContainer';
+export {default as PhotoAgreeContainer} from './PhotoAgreeContainer';

@@ -52,6 +52,7 @@ class AdminRouter extends Component {
                 <Route exact path="/admin/user_list" component={UserListPage} />
                 <Route exact path="/admin/user_info/:loginId" component={UserPrincipalInfoPage} />
                 <Route exact path="/create_request" component={CreateRequestPage} />
+                <Route exact path="/create_request/_refresh" render={() => <Redirect to={`/create_request`} />} />
             </div>
         )
     }

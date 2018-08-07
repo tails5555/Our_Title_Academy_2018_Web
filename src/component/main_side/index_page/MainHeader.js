@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import madongseok from '../../resource_image/madongseok.jpg';
 class MainHeader extends Component{
     render(){
@@ -17,9 +18,9 @@ class MainHeader extends Component{
                         </header>
                         <p>사진은 누구나 마음껏 올릴 수 있습니다. 그러나 사진에 있는 제목은 여러분들의 재치가 필요합니다. 다른 사람이 올리는 사진에 여러분의 기발한 개그를 뽐내어 웃음 바다로 만들어 주세요 :)</p>
                         <div className="w3-center">
-                            <a href="#" className="button big">오늘의 사진으로 제목 올리기</a>
+                            <Link to="/today/battle" className="button big">오늘의 사진으로 제목 올리기</Link>
                             <br/><br/>
-                            <a href="#" className="button big">내가 가진 사진 뿌리기</a>
+                            <Link to="/today/best" className="button big">베스트 사진 목록 보기</Link>
                         </div>
                     </div>
                     <span className="image object">
