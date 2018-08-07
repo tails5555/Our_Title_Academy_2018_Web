@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
+import axios from "axios";
 import { Route, Redirect } from 'react-router-dom';
 import {MyInfoFormPage, MyInfoResultPage} from "../page/common_my_info";
 import {MyProfileChangePage} from "../page/common_my_profile_change";
 import {IndexPage} from "../page/index_page";
 import {BriefRequestListPage} from "../page/category_list_page";
-import RequestViewPage from "../page/request_view_page/RequestViewPage";
-import axios from "axios";
+import {RequestViewPage} from "../page/request_view_page";
+import {CreateRequestPage} from "../page/create_request_page";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/empathy';
 
@@ -47,6 +48,7 @@ class UserRouter extends Component{
                 <Route exact path="/my/info_manage" component={MyInfoFormPage} />
                 <Route exact path="/my/info_update_result" component={MyInfoResultPage} />
                 <Route exact path="/my/profile_change" component={MyProfileChangePage} />
+                <Route exact path="/create_request" component={CreateRequestPage} />
             </div>
         )
     }

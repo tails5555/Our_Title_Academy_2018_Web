@@ -6,7 +6,8 @@ import {MyInfoFormPage, MyInfoResultPage} from "../page/common_my_info";
 import {MyProfileChangePage} from "../page/common_my_profile_change";
 import {IndexPage} from "../page/index_page";
 import {BriefRequestListPage} from "../page/category_list_page";
-import RequestViewPage from "../page/request_view_page/RequestViewPage";
+import {RequestViewPage} from "../page/request_view_page";
+import {CreateRequestPage} from "../page/create_request_page";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/empathy';
 
@@ -38,7 +39,7 @@ class ManagerRouter extends Component{
                         left: 0,
                         behavior: 'smooth'
                     });
-                    axios.post(`${ROOT_URL}/checking/request_empathy/${match.params.titleId}/${match.params.method}/${match.params.loginId}`).then(response => {
+                    axios.post(`${ROOT_URL}/checking/request_empathy/${match.params.requestId}/${match.params.method}/${match.params.loginId}`).then(response => {
                         if(response.status !== 200){
                             alert("요청 공감 체크 도중 서버 내부에서 에러가 발생했습니다. 다시 시도 바랍니다.");
                         }
@@ -50,6 +51,7 @@ class ManagerRouter extends Component{
                 <Route exact path="/my/profile_change" component={MyProfileChangePage} />
                 <Route exact path="/manager/user_list" component={UserListPage} />
                 <Route exact path="/manager/user_info/:loginId" component={UserPrincipalInfoPage} />
+                <Route exact path="/create_request" component={CreateRequestPage} />
             </div>
         )
     }

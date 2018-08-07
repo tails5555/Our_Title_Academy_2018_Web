@@ -3,7 +3,8 @@ import { Route, Redirect } from 'react-router-dom';
 import {SignUpPage, SignResultPage} from "../page/guest_sign_up";
 import {IndexPage} from "../page/index_page";
 import {BriefRequestListPage} from "../page/category_list_page";
-import RequestViewPage from "../page/request_view_page/RequestViewPage";
+import {RequestViewPage} from "../page/request_view_page";
+
 class GuestRouter extends Component{
     render(){
         return(

@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/request';
 
 export const FETCH_HOME_REQUEST_BRIEF = 'FETCH_HOME_REQUEST_BRIEF';
@@ -30,6 +31,11 @@ export const FETCH_VIEW_REQUEST_MAIN = 'FETCH_VIEW_REQUEST_MAIN';
 export const FETCH_VIEW_REQUEST_MAIN_SUCCESS = 'FETCH_VIEW_REQUEST_MAIN_SUCCESS';
 export const FETCH_VIEW_REQUEST_MAIN_FAILURE = 'FETCH_VIEW_REQUEST_MAIN_FAILURE';
 export const RESET_FETCH_VIEW_REQUEST_MAIN = 'RESET_FETCH_VIEW_REQUEST_MAIN';
+
+export const USER_CREATE_REQUEST = 'USER_CREATE_REQUEST';
+export const USER_CREATE_REQUEST_SUCCESS = 'USER_CREATE_REQUEST_SUCCESS';
+export const USER_CREATE_REQUEST_FAILURE = 'USER_CREATE_REQUEST_FAILURE';
+export const RESET_USER_CREATE_REQUEST = 'RESET_USER_CREATE_REQUEST';
 
 export function appFetchHomeRequestBrief(){
     const request = axios({
@@ -215,5 +221,43 @@ export function appFetchViewRequestMainFailure(error){
 export function resetAppFetchViewRequestMain(){
     return {
         type : RESET_FETCH_VIEW_REQUEST_MAIN
+    }
+}
+
+export function userCreateRequest(requestModel, requestPhoto){
+    let formData = new FormData();
+    formData.append('requestModel', new Blob([JSON.stringify(requestModel)], { type : 'application/json'}));
+    formData.append('file', requestPhoto);
+    const request = axios({
+        method : 'post',
+        url : `${ROOT_URL}/execute_create`,
+        data : formData,
+        headers : {
+            "Content-Type" : "multipart/form-data"
+        }
+    });
+    return{
+        type : USER_CREATE_REQUEST,
+        payload : request
+    }
+}
+
+export function userCreateRequestSuccess(result){
+    return {
+        type : USER_CREATE_REQUEST_SUCCESS,
+        payload : result.data
+    }
+}
+
+export function userCreateRequestFailure(error){
+    return {
+        type : USER_CREATE_REQUEST_FAILURE,
+        payload : error
+    }
+}
+
+export function resetUserCreateRequest(){
+    return {
+        type : RESET_USER_CREATE_REQUEST
     }
 }

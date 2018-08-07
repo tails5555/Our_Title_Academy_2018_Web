@@ -20,7 +20,7 @@ const renderDropzoneInput = (field) => {
             <br/>
             {field.meta.touched &&
             field.meta.error &&
-            <span className="error">{field.meta.error}</span>}
+            <span className="w3-tag w3-round-large w3-pale-red"><i className="icon fa-warning"></i> {field.meta.error}</span>}
             {files && Array.isArray(files) && (
                 files.map((file, i) =>
                     <div className="w3-card-4" style={{width: '100%'}} key={i}>
