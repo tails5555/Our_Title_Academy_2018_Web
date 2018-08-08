@@ -1,0 +1,1 @@
+export {default as TodayMainRank} from './TodayMainRank';

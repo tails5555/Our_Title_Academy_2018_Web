@@ -264,7 +264,6 @@ class MainTitleView extends Component{
             >
                 내 제목이 있는 페이지로 이동
             </button>
-
         return(
             <div id="title_list">
                 <h3 className="w3-border-bottom w3-border-light-blue"><i className="fas fa-box-open"></i> 현재까지 올라온 제목 목록들</h3>
@@ -275,7 +274,7 @@ class MainTitleView extends Component{
                             <h3><i className="fas fa-exclamation-triangle"></i> 제목을 등록할 수 없습니다.</h3>
                             <p>제목을 등록하기 위해 로그인을 진행하시길 바랍니다.</p>
                         </div> :
-                        hasTitle === '' ?
+                        hasTitle === null || hasTitle === '' ?
                             <form onSubmit={handleSubmit(validateAndSaveTitle)}>
                                 <h4><i className="icon fa-pencil"></i> 제목을 등록합니다.</h4>
                                 <Field type="text" placeholder="제목은 65자 이내로 입력하세요." name="context" component={renderField} />

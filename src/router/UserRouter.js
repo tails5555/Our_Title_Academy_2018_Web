@@ -7,6 +7,7 @@ import {IndexPage} from "../page/index_page";
 import {BriefRequestListPage} from "../page/category_list_page";
 import {RequestViewPage} from "../page/request_view_page";
 import {CreateRequestPage} from "../page/create_request_page";
+import {TodayBestPage} from "../page/today_best_page";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/empathy';
 
@@ -15,6 +16,7 @@ class UserRouter extends Component{
         return(
             <div className="inner">
                 <Route exact path="/" component={IndexPage} />
+                <Route exact path="/today/best" component={TodayBestPage} />
                 <Route exact path="/category/:id/list" component={BriefRequestListPage} />
                 <Route exact path="/category/:id/_move" render={({ match }) => <Redirect to={`/category/${match.params.id}/list`} />} />
                 <Route exact path="/view_request/:id/_refresh" render={({ match, location }) => <Redirect to={`/view_request/${match.params.id}/view${location.search}`} />} />

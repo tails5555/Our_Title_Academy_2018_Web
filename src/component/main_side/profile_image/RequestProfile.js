@@ -59,7 +59,6 @@ class RequestProfile extends Component{
                 <div className="w3-container w3-center">
                     <h6>{ this.state.nickname }</h6>
                 </div>
-
             </div>
         )
     }

@@ -34,8 +34,14 @@ class RequestView extends Component{
 
     handleClickBlocking(id){
         var isBlock = window.confirm("현재 사진 요청을 차단합니다. 계속 하시겠습니까?");
-        if(isBlock)
+        if(isBlock){
+            window.scroll({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
             this.props.executeBlockRequest(id);
+        }
     }
 
     render(){

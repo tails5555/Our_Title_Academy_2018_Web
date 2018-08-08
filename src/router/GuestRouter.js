@@ -4,12 +4,14 @@ import {SignUpPage, SignResultPage} from "../page/guest_sign_up";
 import {IndexPage} from "../page/index_page";
 import {BriefRequestListPage} from "../page/category_list_page";
 import {RequestViewPage} from "../page/request_view_page";
+import {TodayBestPage} from "../page/today_best_page";
 
 class GuestRouter extends Component{
     render(){
         return(
             <div className="inner">
                 <Route exact path="/" component={IndexPage} />
+                <Route exact path="/today/best" component={TodayBestPage} />
                 <Route exact path="/category/:id/list" component={BriefRequestListPage} />
                 <Route exact path="/view_request/:id/view" component={RequestViewPage} />
                 <Route exact path="/view_request/:id/_refresh" render={({ match, location }) => <Redirect to={`/view_request/${match.params.id}/view${location.search}`} />} />
