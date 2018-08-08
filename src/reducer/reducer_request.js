@@ -1,12 +1,17 @@
 import {
-    FETCH_HOME_REQUEST_BRIEF, FETCH_HOME_REQUEST_BRIEF_SUCCESS, FETCH_HOME_REQUEST_BRIEF_FAILURE, RESET_FETCH_HOME_REQUEST_BRIEF,
-    FETCH_CATEGORY_REQUEST_BRIEF, FETCH_CATEGORY_REQUEST_BRIEF_SUCCESS, FETCH_CATEGORY_REQUEST_BRIEF_FAILURE, RESET_FETCH_CATEGORY_REQUEST_BRIEF,
-    FETCH_SEARCH_BY_OPTION, FETCH_SEARCH_BY_OPTION_SUCCESS, FETCH_SEARCH_BY_OPTION_FAILRUE, RESET_FETCH_SEARCH_BY_OPTION,
+    FETCH_HOME_REQUEST_BRIEF, FETCH_HOME_REQUEST_BRIEF_SUCCESS, FETCH_HOME_REQUEST_BRIEF_FAILURE,
+    RESET_FETCH_HOME_REQUEST_BRIEF,
+    FETCH_CATEGORY_REQUEST_BRIEF, FETCH_CATEGORY_REQUEST_BRIEF_SUCCESS, FETCH_CATEGORY_REQUEST_BRIEF_FAILURE,
+    RESET_FETCH_CATEGORY_REQUEST_BRIEF,
+    FETCH_SEARCH_BY_OPTION, FETCH_SEARCH_BY_OPTION_SUCCESS, FETCH_SEARCH_BY_OPTION_FAILRUE,
+    RESET_FETCH_SEARCH_BY_OPTION,
     FETCH_ORDER_BY_OPTION, FETCH_ORDER_BY_OPTION_SUCCESS, FETCH_ORDER_BY_OPTION_FAILRUE, RESET_FETCH_ORDER_BY_OPTION,
     FETCH_SIZE_BY_OPTION, FETCH_SIZE_BY_OPTION_SUCCESS, FETCH_SIZE_BY_OPTION_FAILURE, RESET_FETCH_SIZE_BY_OPTION,
-    FETCH_VIEW_REQUEST_MAIN, FETCH_VIEW_REQUEST_MAIN_SUCCESS, FETCH_VIEW_REQUEST_MAIN_FAILURE, RESET_FETCH_VIEW_REQUEST_MAIN,
+    FETCH_VIEW_REQUEST_MAIN, FETCH_VIEW_REQUEST_MAIN_SUCCESS, FETCH_VIEW_REQUEST_MAIN_FAILURE,
+    RESET_FETCH_VIEW_REQUEST_MAIN,
     USER_CREATE_REQUEST, USER_CREATE_REQUEST_SUCCESS, USER_CREATE_REQUEST_FAILURE, RESET_USER_CREATE_REQUEST,
-    FETCH_AGREE_REQUEST_BRIEF, FETCH_AGREE_REQUEST_BRIEF_SUCCESS, FETCH_AGREE_REQUEST_BRIEF_FAILURE, RESET_FETCH_AGREE_REQUEST_BRIEF
+    FETCH_AGREE_REQUEST_BRIEF, FETCH_AGREE_REQUEST_BRIEF_SUCCESS, FETCH_AGREE_REQUEST_BRIEF_FAILURE,
+    RESET_FETCH_AGREE_REQUEST_BRIEF, EXECUTE_AGREE_REQUEST, EXECUTE_AGREE_REQUEST_SUCCESS, EXECUTE_AGREE_REQUEST_FAILURE, RESET_EXECUTE_AGREE_REQUEST
 } from "../action/action_request";
 
 const INITIAL_STATE = {
@@ -17,7 +22,8 @@ const INITIAL_STATE = {
     searchOption : { searchBy : [], loading : false, error : null },
     orderOption : { orderBy : [], loading : false, error : null },
     sizeOption : { sizeBy : [], loading : false, error : null },
-    createStatus : { result : null, loading : false, error : null }
+    createStatus : { result : null, loading : false, error : null },
+    agreeStatus : { result : null, loading : false, error : null }
 }
 
 export default function(state = INITIAL_STATE, action){
@@ -102,6 +108,16 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, requestList : { requests : [], loading : false, error : error }};
         case RESET_FETCH_AGREE_REQUEST_BRIEF :
             return { ...state, requestList : { requests : [], loading : false, error : null }};
+
+        case EXECUTE_AGREE_REQUEST :
+            return { ...state, agreeStatus : { result : null, loading : true, error : null }};
+        case EXECUTE_AGREE_REQUEST_SUCCESS :
+            return { ...state, agreeStatus : { result : action.payload, loading : false, error : null }};
+        case EXECUTE_AGREE_REQUEST_FAILURE :
+            error = action.payload || { message : action.payload };
+            return { ...state, agreeStatus : { result : null, loading : false, error : error }};
+        case RESET_EXECUTE_AGREE_REQUEST :
+            return { ...state, agreeStatus : { result : null, loading : false, error : null }};
 
         default :
             return state;

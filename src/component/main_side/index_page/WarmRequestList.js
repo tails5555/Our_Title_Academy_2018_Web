@@ -20,13 +20,8 @@ class WarmRequestList extends Component {
         }else if(error !== null){
             articleList =
                 <article>
-                    <a href="#" className="image"><img src="my_image/leemb2.jpg" alt="" /></a>
-                    <span className="image left"><img src="my_image/profile.png" alt="" /></span>
                     <h3>요청 목록을 불러오는 도중 에러가 발생했습니다.</h3>
                     <p>다시 시도해주시길 바랍니다.</p>
-                    <ul className="actions">
-                        <li><a href="#" className="button">제목 짓기</a></li>
-                    </ul>
                 </article>
         }
         return (

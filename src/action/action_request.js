@@ -42,6 +42,11 @@ export const USER_CREATE_REQUEST_SUCCESS = 'USER_CREATE_REQUEST_SUCCESS';
 export const USER_CREATE_REQUEST_FAILURE = 'USER_CREATE_REQUEST_FAILURE';
 export const RESET_USER_CREATE_REQUEST = 'RESET_USER_CREATE_REQUEST';
 
+export const EXECUTE_AGREE_REQUEST = 'EXECUTE_AGREE_REQUEST';
+export const EXECUTE_AGREE_REQUEST_SUCCESS = 'EXECUTE_AGREE_REQUEST_SUCCESS';
+export const EXECUTE_AGREE_REQUEST_FAILURE = 'EXECUTE_AGREE_REQUEST_FAILURE';
+export const RESET_EXECUTE_AGREE_REQUEST = 'RESET_EXECUTE_AGREE_REQUEST';
+
 export function appFetchHomeRequestBrief(){
     const request = axios({
         url : `${ROOT_URL}/fetch_brief/home`,
@@ -295,5 +300,37 @@ export function managerFetchAgreeRequestBriefFailure(error){
 export function resetManagerFetchAgreeRequestBrief(){
     return {
         type : RESET_FETCH_AGREE_REQUEST_BRIEF
+    }
+}
+
+export function managerExecuteFetchRequest(agreeModel){
+    const request = axios({
+        url : `${ROOT_URL}/agree_request`,
+        method : 'put',
+        data : agreeModel
+    });
+    return {
+        type : EXECUTE_AGREE_REQUEST,
+        payload : request
+    }
+}
+
+export function managerExecuteFetchRequestSuccess(result){
+    return {
+        type : EXECUTE_AGREE_REQUEST_SUCCESS,
+        payload : result.data
+    }
+}
+
+export function managerExecuteFetchRequestFailure(error){
+    return {
+        type : EXECUTE_AGREE_REQUEST_FAILURE,
+        payload : error
+    }
+}
+
+export function resetManagerExecuteFetchRequest(){
+    return {
+        type : RESET_EXECUTE_AGREE_REQUEST
     }
 }

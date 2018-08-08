@@ -9,6 +9,7 @@ import {BriefRequestListPage} from "../page/category_list_page";
 import {RequestViewPage} from "../page/request_view_page";
 import {CreateRequestPage} from "../page/create_request_page";
 import {PhotoAgreePage} from "../page/manager_photo_agree";
+import {SelectCategoryPage} from "../page/select_category_page";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/empathy';
 
@@ -55,6 +56,7 @@ class ManagerRouter extends Component{
                 <Route exact path="/create_request" component={CreateRequestPage} />
                 <Route exact path="/create_request/_refresh" render={() => <Redirect to={`/create_request`} />} />
                 <Route exact path="/manager/photo_agree" component={PhotoAgreePage} />
+                <Route exact path="/manager/photo_agree/select_category/:id" component={SelectCategoryPage} />
             </div>
         )
     }
