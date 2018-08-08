@@ -1,7 +1,9 @@
 import {connect} from 'react-redux';
 import {RequestView} from "../component/main_side/request_page";
 import {
-    appFetchViewRequestMain, appFetchViewRequestMainSuccess, appFetchViewRequestMainFailure, resetAppFetchViewRequestMain
+    appFetchViewRequestMain, appFetchViewRequestMainSuccess, appFetchViewRequestMainFailure,
+    resetAppFetchViewRequestMain, managerExecuteBlockingRequestFailure, managerExecuteBlockingRequestSuccess,
+    managerExecuteBlockingRequest, resetManagerExecuteBlockingRequest
 } from "../action/action_request";
 import {
     appFetchMainTitleList, appFetchMainTitleListSuccess, appFetchMainTitleListFailure, resetAppFetchMainTitleList,
@@ -14,7 +16,8 @@ function mapStateToProps(state){
         bestTitles : state.request.bestTitles,
         accessUser : state.user.accessUser,
         titleList : state.title.titleList,
-        hasTitle : state.title.hasTitle
+        hasTitle : state.title.hasTitle,
+        blockStatus : state.request.blockStatus
     }
 }
 
@@ -49,7 +52,17 @@ const mapDispatchToProps = (dispatch) => {
                 }
             })
         },
-        resetFetchHasTitle : () => dispatch(resetAppFetchUserHasTitle())
+        resetFetchHasTitle : () => dispatch(resetAppFetchUserHasTitle()),
+        executeBlockRequest : (id) => {
+            dispatch(managerExecuteBlockingRequest(id)).then((response) => {
+                if(!response.error){
+                    dispatch(managerExecuteBlockingRequestSuccess(response.payload));
+                }else{
+                    dispatch(managerExecuteBlockingRequestFailure(response.payload));
+                }
+            })
+        },
+        resetExecuteBlockRequest : () => dispatch(resetManagerExecuteBlockingRequest())
     }
 }
 

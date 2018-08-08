@@ -47,6 +47,11 @@ export const EXECUTE_AGREE_REQUEST_SUCCESS = 'EXECUTE_AGREE_REQUEST_SUCCESS';
 export const EXECUTE_AGREE_REQUEST_FAILURE = 'EXECUTE_AGREE_REQUEST_FAILURE';
 export const RESET_EXECUTE_AGREE_REQUEST = 'RESET_EXECUTE_AGREE_REQUEST';
 
+export const EXECUTE_BLOCK_REQUEST = 'EXECUTE_BLOCK_REQUEST';
+export const EXECUTE_BLOCK_REQUEST_SUCCESS = 'EXECUTE_BLOCK_REQUEST_SUCCESS';
+export const EXECUTE_BLOCK_REQUEST_FAILURE = 'EXECUTE_BLOCK_REQUEST_FAILURE';
+export const RESET_EXECUTE_BLOCK_REQUEST = 'RESET_EXECUTE_BLOCK_REQUEST';
+
 export function appFetchHomeRequestBrief(){
     const request = axios({
         url : `${ROOT_URL}/fetch_brief/home`,
@@ -332,5 +337,36 @@ export function managerExecuteFetchRequestFailure(error){
 export function resetManagerExecuteFetchRequest(){
     return {
         type : RESET_EXECUTE_AGREE_REQUEST
+    }
+}
+
+export function managerExecuteBlockingRequest(requestId){
+    const request = axios({
+        url : `${ROOT_URL}/block_request/${requestId}`,
+        method : 'put'
+    });
+    return {
+        type : EXECUTE_BLOCK_REQUEST,
+        payload : request
+    }
+}
+
+export function managerExecuteBlockingRequestSuccess(result){
+    return {
+        type : EXECUTE_BLOCK_REQUEST_SUCCESS,
+        payload : result.data
+    }
+}
+
+export function managerExecuteBlockingRequestFailure(error){
+    return {
+        type : EXECUTE_BLOCK_REQUEST_FAILURE,
+        payload : error
+    }
+}
+
+export function resetManagerExecuteBlockingRequest(){
+    return {
+        type : RESET_EXECUTE_BLOCK_REQUEST
     }
 }

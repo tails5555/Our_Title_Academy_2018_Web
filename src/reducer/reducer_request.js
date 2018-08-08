@@ -11,7 +11,9 @@ import {
     RESET_FETCH_VIEW_REQUEST_MAIN,
     USER_CREATE_REQUEST, USER_CREATE_REQUEST_SUCCESS, USER_CREATE_REQUEST_FAILURE, RESET_USER_CREATE_REQUEST,
     FETCH_AGREE_REQUEST_BRIEF, FETCH_AGREE_REQUEST_BRIEF_SUCCESS, FETCH_AGREE_REQUEST_BRIEF_FAILURE,
-    RESET_FETCH_AGREE_REQUEST_BRIEF, EXECUTE_AGREE_REQUEST, EXECUTE_AGREE_REQUEST_SUCCESS, EXECUTE_AGREE_REQUEST_FAILURE, RESET_EXECUTE_AGREE_REQUEST
+    RESET_FETCH_AGREE_REQUEST_BRIEF, EXECUTE_AGREE_REQUEST, EXECUTE_AGREE_REQUEST_SUCCESS,
+    EXECUTE_AGREE_REQUEST_FAILURE, RESET_EXECUTE_AGREE_REQUEST, EXECUTE_BLOCK_REQUEST, EXECUTE_BLOCK_REQUEST_SUCCESS,
+    RESET_EXECUTE_BLOCK_REQUEST, EXECUTE_BLOCK_REQUEST_FAILURE
 } from "../action/action_request";
 
 const INITIAL_STATE = {
@@ -23,7 +25,8 @@ const INITIAL_STATE = {
     orderOption : { orderBy : [], loading : false, error : null },
     sizeOption : { sizeBy : [], loading : false, error : null },
     createStatus : { result : null, loading : false, error : null },
-    agreeStatus : { result : null, loading : false, error : null }
+    agreeStatus : { result : null, loading : false, error : null },
+    blockStatus : { result : null, loading : false, error : null }
 }
 
 export default function(state = INITIAL_STATE, action){
@@ -118,6 +121,16 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, agreeStatus : { result : null, loading : false, error : error }};
         case RESET_EXECUTE_AGREE_REQUEST :
             return { ...state, agreeStatus : { result : null, loading : false, error : null }};
+
+        case EXECUTE_BLOCK_REQUEST :
+            return { ...state, blockStatus : { result : null, loading : true, error : null }};
+        case EXECUTE_BLOCK_REQUEST_SUCCESS :
+            return { ...state, blockStatus : { result : action.payload, loading : false, error : null }};
+        case EXECUTE_BLOCK_REQUEST_FAILURE :
+            error = action.payload || { message : action.payload };
+            return { ...state, blockStatus : { result : null, loading : false, error : error }};
+        case RESET_EXECUTE_BLOCK_REQUEST :
+            return { ...state, blockStatus : { result : null, loading : false, error : null }};
 
         default :
             return state;

@@ -80,12 +80,20 @@ class BriefRequestList extends Component{
         const { handleSubmit } = this.props;
         const { paginationModel } = this.props.paginate;
 
-        const requestRender = requests.map((request) => {
-            return(
-                <BriefRequestView key={`request_${request.id}`} request={request} routeURI={`/view_request/${request.id}/view?${paginationModel.queryString}`} />
-            )
-        });
-
+        const requestClass = (requests.length > 0) ? "posts" : '';
+        const requestRender = (requests.length > 0) ? requests.map((request) => {
+                return(
+                    <BriefRequestView key={`request_${request.id}`} request={request} routeURI={`/view_request/${request.id}/view?${paginationModel.queryString}`} />
+                )
+            }) :
+            <div className="w3-panel w3-pale-red w3-round-large">
+                <br/>
+                <span style={{fontSize:'80px', lineHeight:'0.6em', opacity:'0.2'}}><i className="fas fa-times-circle"></i></span>
+                <br/>
+                <h2 className="w3-xlarge"><i>현재 카테고리에 해당되는 요청이 없습니다.</i></h2>
+                <p>매니저가 빠른 시간 내에 등록 해 드립니다. 나올 때까지 기다려주세요 :)</p>
+            </div>
+        ;
         const pageNumbers = [];
         const barCount = 10;
         const pageCount = (paginationModel !== null) ? Math.ceil(paginationModel.requestCount / paginationModel.sz) : 1;
@@ -139,7 +147,7 @@ class BriefRequestList extends Component{
                     <br/><br/>
                     <button type="submit" className="button primary fit large">검색하기</button>
                 </form>
-                <div className="posts">
+                <div className={requestClass}>
                     {requestRender}
                 </div>
                 <div className="w3-bar w3-center">

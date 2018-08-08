@@ -40,6 +40,12 @@ class SelectCategory extends Component{
         const {principal} = this.props.accessUser;
         this.props.fetchSelectRequest(this.props.match.params.id, principal.loginId);
     }
+
+    componentWillUnmount(){
+        this.props.resetExecuteFetchRequest();
+        this.props.resetFetchSelectRequest();
+    }
+
     render(){
         const {handleSubmit} = this.props;
         const {request} = this.props.selectRequest;
@@ -58,6 +64,7 @@ class SelectCategory extends Component{
             alert("요청을 허가하는 도중 서버에서 에러가 발생했습니다. 잠시 후 다시 시도 해주세요.");
             this.props.history.push(`/manager/photo_agree`);
         }
+
         return(
             <section>
                 <header id="header">

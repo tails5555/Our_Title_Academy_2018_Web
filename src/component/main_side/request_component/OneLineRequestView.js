@@ -33,23 +33,31 @@ class OneLineRequestView extends Component{
         const {request} = this.state;
         let divClass = "";
         if(request.categoryId === -1){
-            divClass="w3-third w3-panel w3-border w3-light-grey w3-round-large"
+            divClass="w3-row w3-panel w3-border w3-light-grey w3-round-large"
         } else {
-            divClass="w3-third w3-panel w3-border w3-pink w3-round-large"
+            divClass="w3-row w3-panel w3-border w3-pale-red w3-round-large";
         }
         return(
             <article className={divClass}>
                 <br/>
-                <Link className="image" to={`/photo_agree/select_category/${request.id}`}>
-                    <img style={{ width:'100%' }} src={`${IMAGE_URL}/request_image/${request.id}`} onClick={this.handleClick.bind(this)} />
-                </Link>
-                <span className="image left"><RequestProfile loginId={request.userId}/></span>
-                <h3>{request.intro}</h3>
-                <p className="w3-right-align">
-                    <i className="icon fa-calendar"></i> {request.writtenDate}<br/>
-                    <i className="icon fa-star"></i> {request.likeCount}<br/>
-                    <i className="icon fa-comments"></i> {request.commentCount}<br/>
-                </p>
+                <div className="w3-third w3-center">
+                    <Link className="image w3-responsive" to={`/manager/photo_agree/select_category/${request.id}`}>
+                        <img style={{ width:'300px' }} src={`${IMAGE_URL}/request_image/${request.id}`} onClick={this.handleClick.bind(this)} />
+                    </Link>
+                    <br/>
+                </div>
+                <div className="w3-twothird">
+                    <span className="image left">
+                        <RequestProfile loginId={request.userId}/>
+                    </span>
+                    <h3 className="w3-right-align">{request.intro}</h3>
+                    <p className="w3-right-align">
+                        <i className="icon fa-calendar"></i> {request.writtenDate}<br/>
+                        <i className="icon fa-star"></i> {request.likeCount}<br/>
+                        <i className="icon fa-comments"></i> {request.commentCount}<br/>
+                    </p>
+                </div>
+                <br/>
             </article>
         )
     }

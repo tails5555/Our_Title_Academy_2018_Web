@@ -2,7 +2,8 @@ import {SelectCategory} from "../component/main_side/photo_agree_page";
 import {connect} from 'react-redux';
 import {
     appFetchViewRequestMain, appFetchViewRequestMainFailure, appFetchViewRequestMainSuccess,
-    resetAppFetchViewRequestMain
+    managerExecuteBlockingRequest, managerExecuteBlockingRequestFailure, managerExecuteBlockingRequestSuccess,
+    resetAppFetchViewRequestMain, resetManagerExecuteFetchRequest
 } from "../action/action_request";
 
 function mapStateToProps(state){
@@ -10,7 +11,7 @@ function mapStateToProps(state){
         accessUser : state.user.accessUser,
         menuCategories : state.category.menuCategories,
         selectRequest : state.request.selectRequest,
-        agreeStatus : state.request.agreeStatus
+        agreeStatus : state.request.agreeStatus,
     }
 }
 
@@ -26,6 +27,7 @@ const mapDispatchToProps = (dispatch) => {
             })
         },
         resetFetchSelectRequest : () => dispatch(resetAppFetchViewRequestMain()),
+        resetExecuteFetchRequest : () => dispatch(resetManagerExecuteFetchRequest())
     }
 }
 
