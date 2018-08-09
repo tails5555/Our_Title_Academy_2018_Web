@@ -4,6 +4,22 @@ import {MainRequestView, RequestEmpathyView} from "../request_component";
 import queryString from 'query-string';
 import {MainTitleView} from "../title_component";
 class RequestView extends Component{
+    constructor(props){
+        super(props);
+        this.state = { selectIdx : 1 };
+    }
+
+    handleClickButton(selectIdx){
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+        this.setState({
+            selectIdx : selectIdx
+        })
+    }
+
     currentUser(){
         const {principal} = this.props.accessUser;
         let userId;
@@ -45,6 +61,7 @@ class RequestView extends Component{
     }
 
     render(){
+        const {selectIdx} = this.state;
         let paginationModel = queryString.parse(this.props.location.search);
         const {request} = this.props.selectRequest;
         let requestDTO;
@@ -87,27 +104,48 @@ class RequestView extends Component{
                     }
                 </div>
                 <br/>
-                <MainRequestView request={(requestDTO !== undefined) ? requestDTO : null} bestTitles={titles}/>
-                <br/>
-                <RequestEmpathyView
-                    pathname={this.props.location.pathname}
-                    search={this.props.location.search}
-                    requestId={this.props.match.params.id}
-                    loginId={(principal !== null) ? principal.loginId : 'ANONYMOUS_USER'}
-                    likeCount={request === null || request.likeCount}
-                    hateCount={request === null || request.hateCount}
-                    likeChecked={request === null || request.likeChecked}
-                    hateChecked={request === null || request.hateChecked}
-                />
-                <br/>
-                <MainTitleView
-                    pathname={this.props.location.pathname}
-                    hasTitle={this.props.hasTitle.result}
-                    loginId={(principal !== null) ? principal.loginId : 'ANONYMOUS_USER'}
-                    requestId={this.props.match.params.id}
-                    titles={this.props.titleList !== null ? this.props.titleList.titles : []}
-                    search={this.props.location.search}
-                />
+
+                <div
+                    style={selectIdx !== 1 ? {display : 'none'} : {}}
+                    key="request_view_1"
+                >
+                    <MainRequestView request={(requestDTO !== undefined) ? requestDTO : null} bestTitles={titles}/>
+                    <br/>
+                    <RequestEmpathyView
+                        pathname={this.props.location.pathname}
+                        search={this.props.location.search}
+                        requestId={this.props.match.params.id}
+                        loginId={(principal !== null) ? principal.loginId : 'ANONYMOUS_USER'}
+                        likeCount={request === null || request.likeCount}
+                        hateCount={request === null || request.hateCount}
+                        likeChecked={request === null || request.likeChecked}
+                        hateChecked={request === null || request.hateChecked}
+                    />
+                    <br/>
+                </div>
+
+                <div
+                    style={selectIdx !== 2 ? {display : 'none'} : {}}
+                    key="request_view_2"
+                >
+                    <MainTitleView
+                        pathname={this.props.location.pathname}
+                        hasTitle={this.props.hasTitle.result}
+                        loginId={(principal !== null) ? principal.loginId : 'ANONYMOUS_USER'}
+                        requestId={this.props.match.params.id}
+                        titles={this.props.titleList !== null ? this.props.titleList.titles : []}
+                        search={this.props.location.search}
+                    />
+                    <br/>
+                </div>
+
+                <div className="w3-center">
+                    <button className={(selectIdx === 1) ? "w3-button w3-pink" : "w3-button"} onClick={() => this.handleClickButton(1)}>사진과 명예의 전당</button>
+                    &nbsp;
+                    <button className={(selectIdx === 2) ? "w3-button w3-pink" : "w3-button"} onClick={() => this.handleClickButton(2)}>제목 도전하기</button>
+                    &nbsp;
+                    <button className={(selectIdx === 3) ? "w3-button w3-pink" : "w3-button"} onClick={() => this.handleClickButton(3)}>댓글 달기</button>
+                </div>
             </section>
         )
     }

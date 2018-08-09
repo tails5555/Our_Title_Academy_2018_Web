@@ -9,6 +9,8 @@ import {
     appExecuteUserDeleteTitle, appExecuteUserDeleteTitleSuccess, appExecuteUserDeleteTitleFailure, resetAppExecuteUserDeleteTitle
 } from "../../../action/action_title";
 
+const IMAGE_URL = 'http://127.0.0.1:8082/ContextAPI/photo';
+
 function validate(values){
     var errors = {};
     var hasErrors = false;
@@ -266,6 +268,15 @@ class MainTitleView extends Component{
             </button>
         return(
             <div id="title_list">
+                <img
+                    style={{
+                        width : '100%',
+                        height : 'auto'
+                    }}
+                    src={`${IMAGE_URL}/request_image/${requestId}`}
+                    className="w3-image w3-round-large"
+                />
+                <br/><br/>
                 <h3 className="w3-border-bottom w3-border-light-blue"><i className="fas fa-box-open"></i> 현재까지 올라온 제목 목록들</h3>
                 <br/>
                 {

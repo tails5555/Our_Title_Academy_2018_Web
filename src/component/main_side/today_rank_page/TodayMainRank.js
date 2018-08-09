@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {RequestProfile} from "../profile_image";
 
 const IMAGE_URL = 'http://127.0.0.1:8082/ContextAPI/photo';
@@ -24,6 +24,13 @@ class TodayMainRank extends Component {
         this.setState({
             currentIdx : idx
         })
+    }
+    handleClickTop(event){
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
     }
     render(){
         const {requests} = this.props.mainRank;
@@ -123,7 +130,7 @@ class TodayMainRank extends Component {
                             </span>
                             <h4>이제 여러분의 차례입니다.</h4>
                                 <Link to={`/view_request/${requestDTO.id}/_refresh?id=${requestDTO.category.id}&pg=1`}>
-                                    <span className="w3-tag w3-padding-small w3-round-large w3-amber w3-center" style={{cursor : 'pointer'}}>
+                                    <span className="w3-tag w3-padding-small w3-round-large w3-amber w3-center" style={{cursor : 'pointer'}} onClick={this.handleClickTop.bind(this)}>
                                         <i className="icon fa-pencil"></i> 제목 추가하러 가기
                                     </span>
                                 </Link>
