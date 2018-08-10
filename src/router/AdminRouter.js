@@ -22,6 +22,19 @@ class AdminRouter extends Component {
                 <Route exact path="/category/:id/_move" render={({ match }) => <Redirect to={`/category/${match.params.id}/list`} />} />
                 <Route exact path="/view_request/:id/view" component={RequestViewPage} />
                 <Route exact path="/view_request/:id/_refresh" render={({ match, location }) => <Redirect to={`/view_request/${match.params.id}/view${location.search}`} />} />
+                <Route exact path="/view_request/:id/view/request_empathy/:requestId/:loginId/:method" render={({ match, location }) => {
+                    window.scroll({
+                        top: 0,
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                    axios.post(`${ROOT_URL}/checking/request_empathy/${match.params.requestId}/${match.params.method}/${match.params.loginId}`).then(response => {
+                        if(response.status !== 200){
+                            alert("요청 공감 체크 도중 서버 내부에서 에러가 발생했습니다. 다시 시도 바랍니다.");
+                        }
+                    });
+                    return <Redirect to={`/view_request/${match.params.id}/_refresh${location.search}`} />
+                }} />
                 <Route exact path="/view_request/:id/view/title_empathy/:titleId/:loginId/:method" render={({ match, location }) => {
                     window.scroll({
                         top: 0,
@@ -35,15 +48,15 @@ class AdminRouter extends Component {
                     });
                     return <Redirect to={`/view_request/${match.params.id}/_refresh${location.search}`} />
                 }} />
-                <Route exact path="/view_request/:id/view/request_empathy/:requestId/:loginId/:method" render={({ match, location }) => {
+                <Route exact path="/view_request/:id/view/comment_empathy/:commentId/:loginId/:method" render={({ match, location }) => {
                     window.scroll({
                         top: 0,
                         left: 0,
                         behavior: 'smooth'
                     });
-                    axios.post(`${ROOT_URL}/checking/request_empathy/${match.params.requestId}/${match.params.method}/${match.params.loginId}`).then(response => {
+                    axios.post(`${ROOT_URL}/checking/comment_empathy/${match.params.commentId}/${match.params.method}/${match.params.loginId}`).then(response => {
                         if(response.status !== 200){
-                            alert("요청 공감 체크 도중 서버 내부에서 에러가 발생했습니다. 다시 시도 바랍니다.");
+                            alert("댓글 공감 체크 도중 서버 내부에서 에러가 발생했습니다. 다시 시도 바랍니다.");
                         }
                     });
                     return <Redirect to={`/view_request/${match.params.id}/_refresh${location.search}`} />

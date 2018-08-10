@@ -49,6 +49,7 @@ class TodayMainRank extends Component {
                 <div
                     style={idx !== currentIdx ? {display : 'none'} : {}}
                     key={`rank_main_${idx}`}
+                    className="w3-animate-opacity"
                 >
                     <div className="w3-card-4 w3-round-large w3-display-container">
                         <img
@@ -73,7 +74,7 @@ class TodayMainRank extends Component {
                         <div className="w3-right w3-text-red"><i className="icon fa-thumbs-down"></i> { hateCount }</div>
                     </div>
                     <br/>
-                    <div className="w3-panel w3-bottombar w3-topbar w3-border-blue">
+                    <div className="w3-panel w3-bottombar w3-topbar w3-border-indigo">
                         <span className="image left" style={{width : "200px"}}>
                             <RequestProfile loginId={requestDTO.userId}/>
                         </span>
