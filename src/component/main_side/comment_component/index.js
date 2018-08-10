@@ -1,0 +1,1 @@
+export {default as MainCommentView} from './MainCommentView';

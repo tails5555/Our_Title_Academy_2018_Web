@@ -32,7 +32,6 @@ class PhotoAgree extends Component {
         else
             renderArray = requests.slice();
 
-        console.log(renderArray);
         let requestRendering = (renderArray.length > 0) ?
             renderArray.map((request) => <OneLineRequestView key={`one_line_${request.id}`} request={request} />) :
             <div className="w3-panel w3-pale-red w3-round-large">
@@ -42,6 +41,7 @@ class PhotoAgree extends Component {
                 <h2 className="w3-xlarge"><i>현재까지 등록한 새로운 요청들이 없습니다.</i></h2>
                 <p>나중에 올라온 목록을 확인하시길 바랍니다.</p>
             </div>
+
         return(
             <section>
                 <header id="header">

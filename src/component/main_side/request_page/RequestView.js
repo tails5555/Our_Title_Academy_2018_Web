@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {withRouter, Link} from 'react-router-dom';
 import {MainRequestView, RequestEmpathyView} from "../request_component";
+import {MainCommentView} from "../comment_component";
 import queryString from 'query-string';
 import {MainTitleView} from "../title_component";
 class RequestView extends Component{
@@ -107,7 +108,7 @@ class RequestView extends Component{
 
                 <div
                     style={selectIdx !== 1 ? {display : 'none'} : {}}
-                    key="request_view_1"
+                    className="w3-animate-opacity"
                 >
                     <MainRequestView request={(requestDTO !== undefined) ? requestDTO : null} bestTitles={titles}/>
                     <br/>
@@ -126,7 +127,7 @@ class RequestView extends Component{
 
                 <div
                     style={selectIdx !== 2 ? {display : 'none'} : {}}
-                    key="request_view_2"
+                    className="w3-animate-opacity"
                 >
                     <MainTitleView
                         pathname={this.props.location.pathname}
@@ -134,6 +135,19 @@ class RequestView extends Component{
                         loginId={(principal !== null) ? principal.loginId : 'ANONYMOUS_USER'}
                         requestId={this.props.match.params.id}
                         titles={this.props.titleList !== null ? this.props.titleList.titles : []}
+                        search={this.props.location.search}
+                    />
+                    <br/>
+                </div>
+
+                <div
+                    style={selectIdx !== 3 ? {display : 'none'} : {}}
+                    className="w3-animate-opacity"
+                >
+                    <MainCommentView
+                        pathname={this.props.location.pathname}
+                        loginId={(principal !== null) ? principal.loginId : 'ANONYMOUS_USER'}
+                        requestId={this.props.match.params.id}
                         search={this.props.location.search}
                     />
                     <br/>

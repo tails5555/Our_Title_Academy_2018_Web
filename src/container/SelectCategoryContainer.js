@@ -2,7 +2,6 @@ import {SelectCategory} from "../component/main_side/photo_agree_page";
 import {connect} from 'react-redux';
 import {
     appFetchViewRequestMain, appFetchViewRequestMainFailure, appFetchViewRequestMainSuccess,
-    managerExecuteBlockingRequest, managerExecuteBlockingRequestFailure, managerExecuteBlockingRequestSuccess,
     resetAppFetchViewRequestMain, resetManagerExecuteFetchRequest
 } from "../action/action_request";
 

@@ -6,7 +6,7 @@ const RESOURCE_ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth/resource/profile';
 const NICKNAME_ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth/guest/fetch_nickname';
 class RequestProfile extends Component{
     constructor(props){
-        super();
+        super(props);
         this.state = { status : 0, nickname : '' };
     }
 
