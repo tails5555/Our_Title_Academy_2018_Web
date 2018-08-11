@@ -9,7 +9,7 @@ import {
     FETCH_SIZE_BY_OPTION, FETCH_SIZE_BY_OPTION_SUCCESS, FETCH_SIZE_BY_OPTION_FAILURE, RESET_FETCH_SIZE_BY_OPTION,
     FETCH_VIEW_REQUEST_MAIN, FETCH_VIEW_REQUEST_MAIN_SUCCESS, FETCH_VIEW_REQUEST_MAIN_FAILURE,
     RESET_FETCH_VIEW_REQUEST_MAIN,
-    USER_CREATE_REQUEST, USER_CREATE_REQUEST_SUCCESS, USER_CREATE_REQUEST_FAILURE, RESET_USER_CREATE_REQUEST,
+    USER_SAVE_REQUEST, USER_SAVE_REQUEST_SUCCESS, USER_SAVE_REQUEST_FAILURE, RESET_USER_SAVE_REQUEST,
     FETCH_AGREE_REQUEST_BRIEF, FETCH_AGREE_REQUEST_BRIEF_SUCCESS, FETCH_AGREE_REQUEST_BRIEF_FAILURE,
     RESET_FETCH_AGREE_REQUEST_BRIEF, EXECUTE_AGREE_REQUEST, EXECUTE_AGREE_REQUEST_SUCCESS,
     EXECUTE_AGREE_REQUEST_FAILURE, RESET_EXECUTE_AGREE_REQUEST, EXECUTE_BLOCK_REQUEST, EXECUTE_BLOCK_REQUEST_SUCCESS,
@@ -24,7 +24,7 @@ const INITIAL_STATE = {
     searchOption : { searchBy : [], loading : false, error : null },
     orderOption : { orderBy : [], loading : false, error : null },
     sizeOption : { sizeBy : [], loading : false, error : null },
-    createStatus : { result : null, loading : false, error : null },
+    saveStatus : { result : null, loading : false, error : null },
     agreeStatus : { result : null, loading : false, error : null },
     blockStatus : { result : null, loading : false, error : null }
 }
@@ -92,15 +92,15 @@ export default function(state = INITIAL_STATE, action){
         case RESET_FETCH_VIEW_REQUEST_MAIN :
             return { ...state, selectRequest : { request : null, loading : false, error : null }, bestTitles : { titles : [] }};
 
-        case USER_CREATE_REQUEST :
-            return { ...state, createStatus : { result : null, loading : true, error : null }};
-        case USER_CREATE_REQUEST_SUCCESS :
-            return { ...state, createStatus : { result : action.payload, loading : false, error : null }};
-        case USER_CREATE_REQUEST_FAILURE :
+        case USER_SAVE_REQUEST :
+            return { ...state, saveStatus : { result : null, loading : true, error : null }};
+        case USER_SAVE_REQUEST_SUCCESS :
+            return { ...state, saveStatus : { result : action.payload, loading : false, error : null }};
+        case USER_SAVE_REQUEST_FAILURE :
             error = action.payload || { message : action.payload };
-            return { ...state, createStatus : { result : null, loading : false, error : error }};
-        case RESET_USER_CREATE_REQUEST :
-            return { ...state, createStatus : { result : null, loading : false, error : null }};
+            return { ...state, saveStatus : { result : null, loading : false, error : error }};
+        case RESET_USER_SAVE_REQUEST :
+            return { ...state, saveStatus : { result : null, loading : false, error : null }};
 
         case FETCH_AGREE_REQUEST_BRIEF :
             return { ...state, requestList : { requests : [], loading : true, error : null }};

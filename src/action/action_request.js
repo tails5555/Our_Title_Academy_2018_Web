@@ -37,10 +37,10 @@ export const FETCH_AGREE_REQUEST_BRIEF_SUCCESS = 'FETCH_AGREE_REQUEST_BRIEF_SUCC
 export const FETCH_AGREE_REQUEST_BRIEF_FAILURE = 'FETCH_AGREE_REQUEST_BRIEF_FAILURE';
 export const RESET_FETCH_AGREE_REQUEST_BRIEF= 'RESET_FETCH_AGREE_REQUEST_BRIEF';
 
-export const USER_CREATE_REQUEST = 'USER_CREATE_REQUEST';
-export const USER_CREATE_REQUEST_SUCCESS = 'USER_CREATE_REQUEST_SUCCESS';
-export const USER_CREATE_REQUEST_FAILURE = 'USER_CREATE_REQUEST_FAILURE';
-export const RESET_USER_CREATE_REQUEST = 'RESET_USER_CREATE_REQUEST';
+export const USER_SAVE_REQUEST = 'USER_SAVE_REQUEST';
+export const USER_SAVE_REQUEST_SUCCESS = 'USER_SAVE_REQUEST_SUCCESS';
+export const USER_SAVE_REQUEST_FAILURE = 'USER_SAVE_REQUEST_FAILURE';
+export const RESET_USER_SAVE_REQUEST = 'RESET_USER_SAVE_REQUEST';
 
 export const EXECUTE_AGREE_REQUEST = 'EXECUTE_AGREE_REQUEST';
 export const EXECUTE_AGREE_REQUEST_SUCCESS = 'EXECUTE_AGREE_REQUEST_SUCCESS';
@@ -252,28 +252,28 @@ export function userCreateRequest(requestModel, requestPhoto){
         }
     });
     return{
-        type : USER_CREATE_REQUEST,
+        type : USER_SAVE_REQUEST,
         payload : request
     }
 }
 
 export function userCreateRequestSuccess(result){
     return {
-        type : USER_CREATE_REQUEST_SUCCESS,
+        type : USER_SAVE_REQUEST_SUCCESS,
         payload : result.data
     }
 }
 
 export function userCreateRequestFailure(error){
     return {
-        type : USER_CREATE_REQUEST_FAILURE,
+        type : USER_SAVE_REQUEST_FAILURE,
         payload : error
     }
 }
 
 export function resetUserCreateRequest(){
     return {
-        type : RESET_USER_CREATE_REQUEST
+        type : RESET_USER_SAVE_REQUEST
     }
 }
 

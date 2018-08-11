@@ -32,6 +32,7 @@ const validateAndCreateRequest = (values, dispatch, props) => {
     if(resultCount >= 1){
         const { loginId } = props.accessUser.principal;
         let requestModel = {
+            requestId : 0,
             userId : loginId,
             intro : values.intro,
             context : values.context
@@ -53,7 +54,7 @@ class CreateRequest extends Component{
 
     render(){
         const {handleSubmit} = this.props;
-        const {result} = this.props.createStatus;
+        const {result} = this.props.saveStatus;
 
         if(result === true){
             alert("님이 올린 요청들이 정상적으로 올라갔습니다.");
@@ -90,11 +91,12 @@ class CreateRequest extends Component{
                 <hr/>
                 <div className="w3-container w3-round-medium w3-border w3-border-blue w3-light-blue">
                     <br/>
-                    <p> - 부적절한 사진을 올리는 경우에는 관리자에 의해 삭제될 수 있다는 점 알립니다.</p>
+                    <p> - 부적절한 사진을 올리는 경우(성인물, 정치물, 광고, 잔인한 사진 등)에는 관리자에 의해 삭제될 수 있다는 점 알립니다.</p>
                     <p> - 사진의 용량은 하나 당 1MB(png, jpg, bmp 등) ~ 3MB(gif)를 넘지 않아야 합니다.</p>
                     <p> - 카테고리는 여러분들이 선택하지 않으셔도 됩니다. 매니저와 관리자의 판단 하에 설정됩니다.</p>
                     <p> - 매니저와 관리자의 카테고리 선정은 부적절한 사진을 필터링 하기 위해 적어도 하루에서 이틀 사이 걸리오니 이 점 참고 바랍니다.</p>
                     <p> - 사진은 1장씩만 올릴 수 있습니다. 이 점 양해 부탁드립니다.</p>
+                    <p> - 그리고 요청 글을 올리고 난 이후의 시점으로 사진은 변경이 불가능합니다. 다만 요청 삭제는 상관 없이 언제든지 삭제 가능합니다.</p>
                 </div>
             </section>
         )

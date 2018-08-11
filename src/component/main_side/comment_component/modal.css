@@ -1,5 +1,5 @@
 @media all and (max-width: 640px){
-    .modal-main {
+    .modal-main-comment {
         position : fixed;
         background : white;
         width : 80%;
@@ -8,16 +8,36 @@
         left : 50%;
         transform: translate(-50%,-50%);
     }
+    .modal-main-request {
+        position : fixed;
+        background : white;
+        width : 80%;
+        height : auto;
+        top : 50%;
+        left : 50%;
+        overflow-y: scroll;
+        transform: translate(-50%,-50%);
+    }
 }
 
 @media all and (min-width:641px) {
-    .modal-main {
+    .modal-main-comment {
         position: fixed;
         background: white;
         width: 50%;
         height: auto;
         top: 50%;
         left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .modal-main-request {
+        position: fixed;
+        background: white;
+        width: 50%;
+        height: auto;
+        top: 50%;
+        left: 50%;
+        overflow-y: scroll;
         transform: translate(-50%, -50%);
     }
 }

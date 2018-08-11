@@ -143,7 +143,6 @@ class MainCommentView extends Component{
             this.props.userSaveComment(selectIdx, loginId, requestId, resultString);
             event.preventDefault();
         }
-
     }
 
     showModal(idx, context){
@@ -296,7 +295,7 @@ class MainCommentView extends Component{
 
         let renderModal = (
             <div className={showHideClassName}>
-                <section className="modal-main">
+                <section className="modal-main-comment">
                     <div className="w3-container w3-teal">
                         <h2 className="w3-text-white">댓글을 수정합니다.</h2>
                     </div>

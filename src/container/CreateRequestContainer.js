@@ -4,7 +4,7 @@ import {resetUserCreateRequest} from "../action/action_request";
 
 function mapStateToProps(state){
     return {
-        createStatus : state.request.createStatus,
+        saveStatus : state.request.saveStatus,
         accessUser : state.user.accessUser
     }
 }

@@ -24,6 +24,7 @@ function renderQuill({input, size, meta: { touched, error, invalid, warning }}) 
         "bold", "italic", "underline", "strike", "blockquote", "code-block",
         "list", "script", "bullet", "indent", "direction", "size", "color", "background", "font", "align"
     ]
+
     const warningStyle = {color : 'orange'};
     const dangerStyle = {color : 'red'};
     return(
@@ -37,7 +38,7 @@ function renderQuill({input, size, meta: { touched, error, invalid, warning }}) 
                 {...input}
                 modules={_quillModules}
                 formats={_quillFormats}
-                toolbar={false} // Let Quill manage toolbar
+                toolbar={false}
                 onChange={(newValue, delta, source) => {
                     if(source==='user'){
                         input.onChange(newValue);
