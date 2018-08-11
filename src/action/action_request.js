@@ -52,6 +52,11 @@ export const EXECUTE_BLOCK_REQUEST_SUCCESS = 'EXECUTE_BLOCK_REQUEST_SUCCESS';
 export const EXECUTE_BLOCK_REQUEST_FAILURE = 'EXECUTE_BLOCK_REQUEST_FAILURE';
 export const RESET_EXECUTE_BLOCK_REQUEST = 'RESET_EXECUTE_BLOCK_REQUEST';
 
+export const EXECUTE_USER_DELETE_REQUEST = 'EXECUTE_USER_DELETE_REQUEST';
+export const EXECUTE_USER_DELETE_REQUEST_SUCCESS = 'EXECUTE_USER_DELETE_REQUEST_SUCCESS';
+export const EXECUTE_USER_DELETE_REQUEST_FAILURE = 'EXECUTE_USER_DELETE_REQUEST_FAILURE';
+export const RESET_EXECUTE_USER_DELETE_REQUEST = 'RESET_EXECUTE_USER_DELETE_REQUEST';
+
 export function appFetchHomeRequestBrief(){
     const request = axios({
         url : `${ROOT_URL}/fetch_brief/home`,
@@ -239,39 +244,47 @@ export function resetAppFetchViewRequestMain(){
     }
 }
 
-export function userCreateRequest(requestModel, requestPhoto){
+export function userSaveRequest(requestModel, requestPhoto){
     let formData = new FormData();
     formData.append('requestModel', new Blob([JSON.stringify(requestModel)], { type : 'application/json'}));
     formData.append('file', requestPhoto);
-    const request = axios({
-        method : 'post',
-        url : `${ROOT_URL}/execute_create`,
-        data : formData,
-        headers : {
-            "Content-Type" : "multipart/form-data"
-        }
-    });
+
+    const request = requestModel.requestId === 0 ?
+        axios({
+            method : 'post',
+            url : `${ROOT_URL}/execute_create`,
+            data : formData,
+            headers : {
+                "Content-Type" : "multipart/form-data"
+            }
+        }) :
+        axios({
+            method : 'put',
+            url : `${ROOT_URL}/execute_update`,
+            data : requestModel
+        });
+
     return{
         type : USER_SAVE_REQUEST,
         payload : request
     }
 }
 
-export function userCreateRequestSuccess(result){
+export function userSaveRequestSuccess(result){
     return {
         type : USER_SAVE_REQUEST_SUCCESS,
         payload : result.data
     }
 }
 
-export function userCreateRequestFailure(error){
+export function userSaveRequestFailure(error){
     return {
         type : USER_SAVE_REQUEST_FAILURE,
         payload : error
     }
 }
 
-export function resetUserCreateRequest(){
+export function resetUserSaveRequest(){
     return {
         type : RESET_USER_SAVE_REQUEST
     }
@@ -368,5 +381,36 @@ export function managerExecuteBlockingRequestFailure(error){
 export function resetManagerExecuteBlockingRequest(){
     return {
         type : RESET_EXECUTE_BLOCK_REQUEST
+    }
+}
+
+export function executeUserDeleteRequest(requestId){
+    const request = axios({
+        url : `${ROOT_URL}/delete_request/${requestId}`,
+        method : 'delete'
+    });
+    return {
+        type : EXECUTE_USER_DELETE_REQUEST,
+        payload : request
+    }
+}
+
+export function executeUserDeleteRequestSuccess(result){
+    return {
+        type : EXECUTE_USER_DELETE_REQUEST_SUCCESS,
+        payload : result.data
+    }
+}
+
+export function executeUserDeleteRequestFailure(error){
+    return {
+        type : EXECUTE_USER_DELETE_REQUEST_FAILURE,
+        payload : error
+    }
+}
+
+export function resetExecuteUserDeleteRequest(){
+    return {
+        type : RESET_EXECUTE_USER_DELETE_REQUEST
     }
 }

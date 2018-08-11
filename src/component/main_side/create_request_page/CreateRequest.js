@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { renderDropzoneInput, renderQuill, renderField } from "../../form";
-import {userCreateRequest, userCreateRequestSuccess, userCreateRequestFailure} from "../../../action/action_request";
+import {userSaveRequest, userSaveRequestSuccess, userSaveRequestFailure} from "../../../action/action_request";
 import {withRouter} from 'react-router-dom';
 
 function validate(values){
@@ -37,12 +37,12 @@ const validateAndCreateRequest = (values, dispatch, props) => {
             intro : values.intro,
             context : values.context
         }
-        dispatch(userCreateRequest(requestModel, fileArray[0])).then((response) => {
+        dispatch(userSaveRequest(requestModel, fileArray[0])).then((response) => {
             if (response.payload && response.payload.status !== 200) {
-                dispatch(userCreateRequestFailure(response.payload.data));
+                dispatch(userSaveRequestFailure(response.payload.data));
                 throw new SubmissionError(response.payload.data);
             }
-            dispatch(userCreateRequestSuccess(response.payload));
+            dispatch(userSaveRequestSuccess(response.payload));
         });
     }
 }

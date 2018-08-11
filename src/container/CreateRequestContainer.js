@@ -1,6 +1,6 @@
 import {CreateRequest} from "../component/main_side/create_request_page";
 import {connect} from 'react-redux';
-import {resetUserCreateRequest} from "../action/action_request";
+import {resetUserSaveRequest} from "../action/action_request";
 
 function mapStateToProps(state){
     return {
@@ -11,7 +11,7 @@ function mapStateToProps(state){
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        resetCreateRequest : () => dispatch(resetUserCreateRequest())
+        resetCreateRequest : () => dispatch(resetUserSaveRequest())
     }
 }
 

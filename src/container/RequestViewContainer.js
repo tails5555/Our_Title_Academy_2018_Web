@@ -3,7 +3,8 @@ import {RequestView} from "../component/main_side/request_page";
 import {
     appFetchViewRequestMain, appFetchViewRequestMainSuccess, appFetchViewRequestMainFailure,
     resetAppFetchViewRequestMain, managerExecuteBlockingRequestFailure, managerExecuteBlockingRequestSuccess,
-    managerExecuteBlockingRequest, resetManagerExecuteBlockingRequest
+    managerExecuteBlockingRequest, resetManagerExecuteBlockingRequest, resetUserSaveRequest, userSaveRequest,
+    userSaveRequestSuccess, userSaveRequestFailure, executeUserDeleteRequest, executeUserDeleteRequestSuccess, executeUserDeleteRequestFailure, resetExecuteUserDeleteRequest
 } from "../action/action_request";
 import {
     appFetchMainTitleList, appFetchMainTitleListSuccess, appFetchMainTitleListFailure, resetAppFetchMainTitleList,
@@ -17,7 +18,9 @@ function mapStateToProps(state){
         accessUser : state.user.accessUser,
         titleList : state.title.titleList,
         hasTitle : state.title.hasTitle,
-        blockStatus : state.request.blockStatus
+        blockStatus : state.request.blockStatus,
+        saveStatus : state.request.saveStatus,
+        deleteStatus : state.request.deleteStatus
     }
 }
 
@@ -62,7 +65,23 @@ const mapDispatchToProps = (dispatch) => {
                 }
             })
         },
-        resetExecuteBlockRequest : () => dispatch(resetManagerExecuteBlockingRequest())
+        resetExecuteBlockRequest : () => dispatch(resetManagerExecuteBlockingRequest()),
+        userUpdateRequest : (requestModel) => dispatch(userSaveRequest(requestModel, null)).then((response) => {
+            if(!response.error){
+                dispatch(userSaveRequestSuccess(response.payload));
+            }else{
+                dispatch(userSaveRequestFailure(response.payload));
+            }
+        }),
+        resetUserUpdateRequest : () => dispatch(resetUserSaveRequest()),
+        userDeleteRequest : (requestId) => dispatch(executeUserDeleteRequest(requestId)).then((response) => {
+            if(!response.error){
+                dispatch(executeUserDeleteRequestSuccess(response.payload));
+            }else{
+                dispatch(executeUserDeleteRequestFailure(response.payload));
+            }
+        }),
+        resetUserDeleteRequest : () => dispatch(resetExecuteUserDeleteRequest())
     }
 }
 

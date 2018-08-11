@@ -1,13 +1,41 @@
 import React, {Component} from 'react';
 import {withRouter, Link} from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import queryString from 'query-string';
 import {MainRequestView, RequestEmpathyView} from "../request_component";
 import {MainCommentView} from "../comment_component";
-import queryString from 'query-string';
 import {MainTitleView} from "../title_component";
+
+import "../comment_component/modal.css";
+
+const _quillModules = {
+    toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],
+        ['blockquote', 'code-block'],
+        [{ 'header': 1 }, { 'header': 2 }],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],
+        [{ 'indent': '-1'}, { 'indent': '+1' }],
+        [{ 'direction': 'rtl' }],
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        [{ 'color': [] }, { 'background': [] }],
+        [{ 'font': [] }],
+        [{ 'align': [] }]
+    ]
+}
+
+const _quillFormats = [
+    "header",
+    "bold", "italic", "underline", "strike", "blockquote", "code-block",
+    "list", "script", "bullet", "indent", "direction", "size", "color", "background", "font", "align"
+]
+
 class RequestView extends Component{
     constructor(props){
         super(props);
-        this.state = { selectIdx : 1 };
+        this.state = { selectIdx : 1, id : -1, intro : null, context : null, show : false };
     }
 
     handleClickButton(selectIdx){
@@ -46,6 +74,8 @@ class RequestView extends Component{
         this.props.resetFetchSelectRequest();
         this.props.resetFetchTitleList();
         this.props.resetFetchHasTitle();
+        this.props.resetUserUpdateRequest();
+        this.props.resetUserDeleteRequest();
         this.props.resetExecuteBlockRequest();
     }
 
@@ -61,8 +91,82 @@ class RequestView extends Component{
         }
     }
 
+    handleClickDelete(requestId){
+        let isDelete = window.confirm("현재 님이 작성한 요청 글이 삭제 됩니다. 제목, 댓글 전부 삭제됩니다. 계속 하시겠습니까?");
+        if(isDelete){
+            window.scroll({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+            this.props.userDeleteRequest(requestId);
+        }
+    }
+
+    handleChange(event){
+        this.setState({
+            [event.target.name] : event.target.value
+        });
+    }
+
+    handleChangeQuill(value){
+        this.setState({
+            context : value
+        });
+    }
+
+    showModal(id, intro, context){
+        this.setState({
+            id : id,
+            intro : intro,
+            context : context,
+            show : true
+        })
+    }
+
+    hideModal(){
+        this.setState({
+            id : -1,
+            intro : null,
+            context : null,
+            show: false
+        });
+    }
+
+    handleSubmit(event){
+        const {principal} = this.props.accessUser;
+        const {id, intro, context} = this.state;
+
+        let requestModel = {
+            requestId : id,
+            intro : intro,
+            context : context,
+            userId : principal.loginId
+        }
+
+        if(intro.trim() === '') {
+            alert("요청 제목에는 공백이 존재할 수 없습니다. 다시 입력하세요.");
+            event.preventDefault();
+        }
+
+        if(context.trim() === '') {
+            alert("요청 내용에는 공백이 존재할 수 없습니다. 다시 입력하세요.");
+            event.preventDefault();
+        }
+
+        else{
+            window.scroll({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+            this.props.userUpdateRequest(requestModel);
+            event.preventDefault();
+        }
+    }
+
     render(){
-        const {selectIdx} = this.state;
+        const {selectIdx, show, intro, context} = this.state;
         let paginationModel = queryString.parse(this.props.location.search);
         const {request} = this.props.selectRequest;
         let requestDTO;
@@ -81,6 +185,57 @@ class RequestView extends Component{
             this.props.history.push(`/category/${paginationModel.id}/list${this.props.location.search}`);
         }
 
+        if(this.props.saveStatus.result !== null){
+            if(this.props.saveStatus.result === true){
+                alert("현재 요청 내용이 수정되었습니다.");
+                this.props.history.push(`/view_request/${requestDTO.id}/_refresh${this.props.location.search}`);
+            } else {
+                alert("현재 요청 내용 수정 도중 오류가 발생했습니다. 다시 시도해주세요.");
+                this.props.history.push(`/view_request/${requestDTO.id}/_refresh${this.props.location.search}`);
+            }
+        }
+
+        if(this.props.deleteStatus.result !== null){
+            if(this.props.deleteStatus.result === true){
+                alert("현재 요청 내용이 삭제되었습니다.");
+                this.props.history.push(`/category/${paginationModel.id}/list${this.props.location.search}`);
+            } else {
+                alert("현재 요청 내용 삭제 도중 오류가 발생했습니다. 다시 시도해주세요.");
+                this.props.history.push(`/category/${paginationModel.id}/list${this.props.location.search}`);
+            }
+        }
+
+        const showHideClassName = show ? "modal display-block w3-round-large w3-animate-opacity" : "modal display-none w3-animate-opacity";
+
+        let renderModal = (
+            <div className={showHideClassName}>
+                <section className="modal-main-request">
+                    <div className="w3-container w3-teal">
+                        <h2 className="w3-text-white">요청 내용을 수정합니다.</h2>
+                    </div>
+                    <div className="w3-container">
+                        <br/>
+                        <form onSubmit={this.handleSubmit.bind(this)}>
+                            <input name="intro" type="text" onChange={this.handleChange.bind(this)} placeholder={"수정할 요청 제목을 입력하세요."} value={intro} />
+                            <br/>
+                            <ReactQuill
+                                theme='snow'
+                                value={context}
+                                modules={_quillModules}
+                                formats={_quillFormats}
+                                toolbar={false}
+                                onChange={this.handleChangeQuill.bind(this)}
+                            />
+                            <br/>
+                            <button type="submit" className="button fit large"><i className="icon fa-pencil"></i> 요청 수정하기</button>
+                            <br/><br/>
+                            <button type="button" className="button fit large primary" onClick={() => this.hideModal()}><i className="icon fa-times"></i> 취소하기</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        );
+
         return(
             <section>
                 <header id="header">
@@ -97,11 +252,22 @@ class RequestView extends Component{
                     <br/><br/>
                     {
                         (principal !== null ? principal.type === 'MANAGER' || principal.type === 'ADMIN' : false) ?
+                            <button className="button primary" onClick={() => this.handleClickBlocking(requestDTO.id)}>
+                                <i className="fas fa-ban"></i> 차단하기
+                            </button> : null
+                    }
+                    <br/><br/>
+                    {
+                        (principal !== null ? principal.loginId === (!requestDTO || requestDTO.userId) : false) ?
                             <div>
-                                <button className="button primary" onClick={() => this.handleClickBlocking(requestDTO.id)}>
-                                    <i className="fas fa-ban"></i> 차단하기
+                                <button className="button primary" onClick={() => this.showModal(!requestDTO || requestDTO.id, !requestDTO || requestDTO.intro, !requestDTO || requestDTO.context)}>
+                                    <i className="fas fa-pencil-square"></i> 수정하기
                                 </button>
-                            </div> : ''
+                                &nbsp;&nbsp;
+                                <button className="button primary" onClick={() => this.handleClickDelete(requestDTO.id)}>
+                                    <i className="fas fa-trash"></i> 삭제하기
+                                </button>
+                            </div> : null
                     }
                 </div>
                 <br/>
@@ -160,6 +326,8 @@ class RequestView extends Component{
                     &nbsp;
                     <button className={(selectIdx === 3) ? "w3-button w3-pink" : "w3-button"} onClick={() => this.handleClickButton(3)}>댓글 달기</button>
                 </div>
+
+                {renderModal}
             </section>
         )
     }

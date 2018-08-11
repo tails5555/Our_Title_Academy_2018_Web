@@ -1,19 +1,16 @@
 import {
-    FETCH_HOME_REQUEST_BRIEF, FETCH_HOME_REQUEST_BRIEF_SUCCESS, FETCH_HOME_REQUEST_BRIEF_FAILURE,
-    RESET_FETCH_HOME_REQUEST_BRIEF,
-    FETCH_CATEGORY_REQUEST_BRIEF, FETCH_CATEGORY_REQUEST_BRIEF_SUCCESS, FETCH_CATEGORY_REQUEST_BRIEF_FAILURE,
-    RESET_FETCH_CATEGORY_REQUEST_BRIEF,
-    FETCH_SEARCH_BY_OPTION, FETCH_SEARCH_BY_OPTION_SUCCESS, FETCH_SEARCH_BY_OPTION_FAILRUE,
-    RESET_FETCH_SEARCH_BY_OPTION,
+    FETCH_HOME_REQUEST_BRIEF, FETCH_HOME_REQUEST_BRIEF_SUCCESS, FETCH_HOME_REQUEST_BRIEF_FAILURE, RESET_FETCH_HOME_REQUEST_BRIEF,
+    FETCH_CATEGORY_REQUEST_BRIEF, FETCH_CATEGORY_REQUEST_BRIEF_SUCCESS, FETCH_CATEGORY_REQUEST_BRIEF_FAILURE, RESET_FETCH_CATEGORY_REQUEST_BRIEF,
+    FETCH_SEARCH_BY_OPTION, FETCH_SEARCH_BY_OPTION_SUCCESS, FETCH_SEARCH_BY_OPTION_FAILRUE, RESET_FETCH_SEARCH_BY_OPTION,
     FETCH_ORDER_BY_OPTION, FETCH_ORDER_BY_OPTION_SUCCESS, FETCH_ORDER_BY_OPTION_FAILRUE, RESET_FETCH_ORDER_BY_OPTION,
     FETCH_SIZE_BY_OPTION, FETCH_SIZE_BY_OPTION_SUCCESS, FETCH_SIZE_BY_OPTION_FAILURE, RESET_FETCH_SIZE_BY_OPTION,
-    FETCH_VIEW_REQUEST_MAIN, FETCH_VIEW_REQUEST_MAIN_SUCCESS, FETCH_VIEW_REQUEST_MAIN_FAILURE,
-    RESET_FETCH_VIEW_REQUEST_MAIN,
+    FETCH_VIEW_REQUEST_MAIN, FETCH_VIEW_REQUEST_MAIN_SUCCESS, FETCH_VIEW_REQUEST_MAIN_FAILURE, RESET_FETCH_VIEW_REQUEST_MAIN,
     USER_SAVE_REQUEST, USER_SAVE_REQUEST_SUCCESS, USER_SAVE_REQUEST_FAILURE, RESET_USER_SAVE_REQUEST,
     FETCH_AGREE_REQUEST_BRIEF, FETCH_AGREE_REQUEST_BRIEF_SUCCESS, FETCH_AGREE_REQUEST_BRIEF_FAILURE,
     RESET_FETCH_AGREE_REQUEST_BRIEF, EXECUTE_AGREE_REQUEST, EXECUTE_AGREE_REQUEST_SUCCESS,
     EXECUTE_AGREE_REQUEST_FAILURE, RESET_EXECUTE_AGREE_REQUEST, EXECUTE_BLOCK_REQUEST, EXECUTE_BLOCK_REQUEST_SUCCESS,
-    RESET_EXECUTE_BLOCK_REQUEST, EXECUTE_BLOCK_REQUEST_FAILURE
+    RESET_EXECUTE_BLOCK_REQUEST, EXECUTE_BLOCK_REQUEST_FAILURE, EXECUTE_USER_DELETE_REQUEST,
+    EXECUTE_USER_DELETE_REQUEST_SUCCESS, EXECUTE_USER_DELETE_REQUEST_FAILURE, RESET_EXECUTE_USER_DELETE_REQUEST
 } from "../action/action_request";
 
 const INITIAL_STATE = {
@@ -26,7 +23,8 @@ const INITIAL_STATE = {
     sizeOption : { sizeBy : [], loading : false, error : null },
     saveStatus : { result : null, loading : false, error : null },
     agreeStatus : { result : null, loading : false, error : null },
-    blockStatus : { result : null, loading : false, error : null }
+    blockStatus : { result : null, loading : false, error : null },
+    deleteStatus : { result : null, loading : false, error : null }
 }
 
 export default function(state = INITIAL_STATE, action){
@@ -131,6 +129,16 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, blockStatus : { result : null, loading : false, error : error }};
         case RESET_EXECUTE_BLOCK_REQUEST :
             return { ...state, blockStatus : { result : null, loading : false, error : null }};
+
+        case EXECUTE_USER_DELETE_REQUEST :
+            return { ...state, deleteStatus : { result : null, loading : true, error : null }};
+        case EXECUTE_USER_DELETE_REQUEST_SUCCESS :
+            return { ...state, deleteStatus : { result : action.payload, loading : false, error : null}};
+        case EXECUTE_USER_DELETE_REQUEST_FAILURE :
+            error = action.payload || { message : action.payload };
+            return { ...state, deleteStatus : { result : null, loading : false, error : error }};
+        case RESET_EXECUTE_USER_DELETE_REQUEST :
+            return { ...state, deleteStatus : { result : null, loading : false, error : null }};
 
         default :
             return state;
