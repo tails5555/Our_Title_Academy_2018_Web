@@ -300,10 +300,10 @@ export function userUpdateSignInfoProcess(userInfoUpdateForm, userToken){
     }
 }
 
-export function userUpdateSignInfoSuccess(detailVO){
+export function userUpdateSignInfoSuccess(detail){
     return {
         type : USER_UPDATE_SIGN_INFO_SUCCESS,
-        payload : detailVO.data
+        payload : detail.data
     }
 }
 
@@ -427,10 +427,10 @@ export function managerLoadUserInfo(userToken, loginId){
         payload : request
     }
 }
-export function managerLoadUserInfoSuccess(detailVO){
+export function managerLoadUserInfoSuccess(detail){
     return {
         type : MANAGER_LOAD_USER_INFO_SUCCESS,
-        payload : detailVO.data
+        payload : detail.data
     }
 }
 

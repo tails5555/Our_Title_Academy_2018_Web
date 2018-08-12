@@ -25,7 +25,7 @@ export const RESET_USER_EXECUTE_DELETE_TITLE = 'RESET_USER_EXECUTE_DELETE_TITLE'
 export function appFetchMainTitleList(requestId, userId){
     const request = axios({
         method : 'get',
-        url : `${ROOT_URL}/fetch_request/${requestId}/${userId}`
+        url : `${ROOT_URL}/fetch_titles/${requestId}/${userId}`
     });
     return {
         type : FETCH_MAIN_TITLE_LIST,

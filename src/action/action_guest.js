@@ -125,10 +125,10 @@ export function guestSignUpProcess(signForm){
     }
 }
 
-export function guestSignUpSuccess(detailVO){
+export function guestSignUpSuccess(detail){
     return {
         type : GUEST_SIGN_UP_SUCCESS,
-        payload : detailVO.data
+        payload : detail.data
     }
 }
 

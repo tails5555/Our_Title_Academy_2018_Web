@@ -32,10 +32,10 @@ export function userLoadMyProfile(userToken){
     }
 }
 
-export function userLoadMyProfileSuccess(profileVO){
+export function userLoadMyProfileSuccess(profile){
     return {
         type : USER_LOAD_MY_PROFILE_SUCCESS,
-        payload : profileVO.data
+        payload : profile.data
     }
 }
 
