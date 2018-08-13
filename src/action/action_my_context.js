@@ -17,6 +17,16 @@ export const USER_FETCH_MY_REQUEST_STATISTIC_SUCCESS = 'USER_FETCH_MY_REQUEST_ST
 export const USER_FETCH_MY_REQUEST_STATISTIC_FAILURE = 'USER_FETCH_MY_REQUEST_STATISTIC_FAILURE';
 export const RESET_USER_FETCH_MY_REQUEST_STATISTIC = 'RESET_USER_FETCH_MY_REQUEST_STATISTIC';
 
+export const USER_FETCH_MY_TITLE = 'USER_FETCH_MY_TITLE';
+export const USER_FETCH_MY_TITLE_SUCCESS = 'USER_FETCH_MY_TITLE_SUCCESS';
+export const USER_FETCH_MY_TITLE_FAILURE = 'USER_FETCH_MY_TITLE_FAILURE';
+export const RESET_USER_FETCH_MY_TITLE = 'RESET_USER_FETCH_MY_TITLE';
+
+export const USER_FETCH_MY_TITLE_STATISTIC = 'USER_FETCH_MY_TITLE_STATISTIC';
+export const USER_FETCH_MY_TITLE_STATISTIC_SUCCESS = 'USER_FETCH_MY_TITLE_STATISTIC_SUCCESS';
+export const USER_FETCH_MY_TITLE_STATISTIC_FAILURE = 'USER_FETCH_MY_TITLE_STATISTIC_FAILURE';
+export const RESET_USER_FETCH_MY_TITLE_STATISTIC = 'RESET_USER_FETCH_MY_TITLE_STATISTIC';
+
 export function userFetchMyValidRequest(userId){
     const request = axios({
         url : `${ROOT_URL}/fetch_request/valid/${userId}`
@@ -104,5 +114,65 @@ export function userFetchMyRequestStatisticFailure(error){
 export function resetUserFetchMyRequestStatistic(){
     return {
         type : RESET_USER_FETCH_MY_REQUEST_STATISTIC
+    }
+}
+
+export function userFetchMyTitle(userId){
+    const request = axios({
+        url : `${ROOT_URL}/fetch_title/${userId}`
+    });
+    return {
+        type : USER_FETCH_MY_TITLE,
+        payload : request
+    }
+}
+
+export function userFetchMyTitleSuccess(titles){
+    return {
+        type : USER_FETCH_MY_TITLE_SUCCESS,
+        payload : titles.data
+    }
+}
+
+export function userFetchMyTitleFailure(error){
+    return {
+        type : USER_FETCH_MY_TITLE_FAILURE,
+        payload : error
+    }
+}
+
+export function resetUserFetchMyTitle(){
+    return {
+        type : RESET_USER_FETCH_MY_TITLE
+    }
+}
+
+export function userFetchMyTitleStatistic(userId){
+    const request = axios({
+        url : `${ROOT_URL}/fetch_title/statistic/${userId}`
+    });
+    return {
+        type : USER_FETCH_MY_TITLE_STATISTIC,
+        payload : request
+    }
+}
+
+export function userFetchMyTitleStatisticSuccess(statistics){
+    return {
+        type : USER_FETCH_MY_TITLE_STATISTIC_SUCCESS,
+        payload : statistics.data
+    }
+}
+
+export function userFetchMyTitleStatisticFailure(error){
+    return {
+        type : USER_FETCH_MY_TITLE_STATISTIC_FAILURE,
+        payload : error
+    }
+}
+
+export function resetUserFetchMyTitleStatistic(){
+    return {
+        type : RESET_USER_FETCH_MY_TITLE_STATISTIC
     }
 }
