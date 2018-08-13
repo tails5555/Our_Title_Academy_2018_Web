@@ -17,5 +17,5 @@ export const rootReducer = combineReducers({
     category : CategoryReducer,
     request : RequestReducer,
     title : TitleReducer,
-    comment : CommentReducer
+    comment : CommentReducer,
 });

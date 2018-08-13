@@ -145,6 +145,7 @@ class MainTitleView extends Component{
                 }
             }
         }
+
         if(saveResult === true){
             alert("입력하신 제목이 저장되었습니다.");
             this.props.history.push(`/view_request/${requestId}/_refresh${search}`);
@@ -266,6 +267,7 @@ class MainTitleView extends Component{
             >
                 내 제목이 있는 페이지로 이동
             </button>
+
         return(
             <div id="title_list">
                 <img

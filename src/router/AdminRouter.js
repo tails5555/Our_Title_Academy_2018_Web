@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import { Route, Redirect } from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import {IndexPage} from "../page/index_page";
 import {UserListPage, UserPrincipalInfoPage} from "../page/manager_admin_user_list";
 import {MyInfoFormPage, MyInfoResultPage} from "../page/common_my_info";
@@ -9,6 +9,7 @@ import {BriefRequestListPage} from "../page/category_list_page";
 import {RequestViewPage} from "../page/request_view_page";
 import {CreateRequestPage} from "../page/create_request_page";
 import {TodayBestPage} from "../page/today_best_page";
+import {MyRequestStatisticPage} from "../page/my_request_statistic_page";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/empathy';
 
@@ -64,6 +65,7 @@ class AdminRouter extends Component {
                 <Route exact path="/my/info_manage" component={MyInfoFormPage} />
                 <Route exact path="/my/info_update_result" component={MyInfoResultPage} />
                 <Route exact path="/my/profile_change" component={MyProfileChangePage} />
+                <Route exact path="/my/request_statistic" component={MyRequestStatisticPage} />
                 <Route exact path="/admin/user_list" component={UserListPage} />
                 <Route exact path="/admin/user_info/:loginId" component={UserPrincipalInfoPage} />
                 <Route exact path="/create_request" component={CreateRequestPage} />

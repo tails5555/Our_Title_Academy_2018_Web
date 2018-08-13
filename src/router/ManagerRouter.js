@@ -11,6 +11,7 @@ import {CreateRequestPage} from "../page/create_request_page";
 import {PhotoAgreePage} from "../page/manager_photo_agree";
 import {SelectCategoryPage} from "../page/select_category_page";
 import {TodayBestPage} from "../page/today_best_page";
+import {MyRequestStatisticPage} from "../page/my_request_statistic_page";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/empathy';
 
@@ -66,6 +67,7 @@ class ManagerRouter extends Component{
                 <Route exact path="/my/info_manage" component={MyInfoFormPage} />
                 <Route exact path="/my/info_update_result" component={MyInfoResultPage} />
                 <Route exact path="/my/profile_change" component={MyProfileChangePage} />
+                <Route exact path="/my/request_statistic" component={MyRequestStatisticPage} />
                 <Route exact path="/manager/user_list" component={UserListPage} />
                 <Route exact path="/manager/user_info/:loginId" component={UserPrincipalInfoPage} />
                 <Route exact path="/create_request" component={CreateRequestPage} />

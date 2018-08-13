@@ -26,7 +26,7 @@ const validateAndAgreePhoto = (values, dispatch, props) => {
         available : (values.available !== undefined) ? values.available : false
     }
     return dispatch(managerExecuteFetchRequest(agreeModel)).then((response) => {
-        if(response.payload && response.payload.status != 200){
+        if(response.payload && response.payload.status !== 200){
             dispatch(managerExecuteFetchRequestFailure(response.payload));
             throw new SubmissionError(response.payload.data);
         }

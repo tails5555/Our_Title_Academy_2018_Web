@@ -20,7 +20,7 @@ function validate(values){
 const validateAndUserLogin = (values, dispatch) => {
     return dispatch(userLoginProcess(values)).then(
         (response) => {
-            if(response.payload && response.payload.status != 200){
+            if(response.payload && response.payload.status !== 200){
                 dispatch(userLoginException(response.payload));
                 throw new SubmissionError(response.payload.data);
             }

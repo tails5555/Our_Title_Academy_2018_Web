@@ -17,3 +17,4 @@ export {default as CreateRequestContainer} from './CreateRequestContainer';
 export {default as PhotoAgreeContainer} from './PhotoAgreeContainer';
 export {default as SelectCategoryContainer} from './SelectCategoryContainer';
 export {default as TodayMainRankContainer} from './TodayMainRankContainer';
+export {default as MyRequestStatisticContainer} from './MyRequestStatisticContainer';
