@@ -28,6 +28,12 @@ class MyRequestStatistic extends Component{
         }
     }
 
+    componentWillUnmount(){
+        this.props.resetFetchRequestStatistic();
+        this.props.resetFetchValidRequestList();
+        this.props.resetFetchNonValidRequestList();
+    }
+
     topping(){
         window.scroll({
             top: 0,
@@ -199,7 +205,7 @@ class MyRequestStatistic extends Component{
         ];
 
         const options = {
-            title: "내 제목에 대한 통계 결과",
+            title: "내 요청에 대한 통계 결과",
             hAxis: { title: "요청 올린 수" },
             vAxis: { title: "요청 좋아요 수" },
             bubble: { textStyle: { fontSize: 11 } }

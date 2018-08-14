@@ -18,6 +18,7 @@ class ApplicationRouter extends Component {
         const { principal, error } = this.props.accessUser;
         if(error !== null){
             alert(error);
+            window.location.href = "/";
         }
         if(principal === null){
             router = <GuestRouter />
