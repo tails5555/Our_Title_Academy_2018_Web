@@ -120,10 +120,10 @@ class MyRequestStatistic extends Component{
         let renderValidRequests = currentValidRequests.length > 0 ? currentValidRequests.map((request, idx)  => {
             return (
                 <div className="w3-row w3-panel w3-border w3-pale-blue w3-round-large" key={`valid_${idx}`}>
-                    <div className="w3-third w3-center">
+                    <div className="w3-third w3-center w3-padding">
                         <br/>
                         <Link className="image w3-responsive" to={`/view_request/${request.id}/_refresh?id=${request.categoryId}&pg=1`}>
-                            <img style={{ width:'300px' }} src={`${IMAGE_URL}/request_image/${request.id}`} onClick={this.handleClick.bind(this)} />
+                            <img style={{width : '100%'}} src={`${IMAGE_URL}/request_image/${request.id}`} onClick={this.handleClick.bind(this)} />
                         </Link>
                         <br/>
                     </div>
@@ -133,6 +133,7 @@ class MyRequestStatistic extends Component{
                         </div>
                         <h3 className="w3-right-align">{request.intro}</h3>
                         <p className="w3-right-align">
+                            <i className="icon fa-book"></i> {request.categoryName}<br/>
                             <i className="icon fa-calendar"></i> {request.writtenDate}<br/>
                             <i className="icon fa-star"></i> {request.likeCount}<br/>
                             <i className="icon fa-comments"></i> {request.commentCount}<br/>
@@ -154,10 +155,9 @@ class MyRequestStatistic extends Component{
             const divClass = (request.categoryId !== -1) ? "w3-row w3-panel w3-border w3-pale-red w3-round-large" : "w3-row w3-panel w3-border w3-light-gray w3-round-large";
             return (
                 <div className={divClass} key={`non_valid_${idx}`}>
-                    <div className="w3-third w3-center">
-                        <br/>
-                        <img className="image w3-responsive" style={{ width:'300px' }} src={`${IMAGE_URL}/request_image/${request.id}`} onClick={this.handleClick.bind(this)} />
-                        <br/>
+                    <br/>
+                    <div className="w3-third w3-center w3-padding">
+                        <img className="image w3-responsive" style={{ width:'100%' }} src={`${IMAGE_URL}/request_image/${request.id}`} onClick={this.handleClick.bind(this)} />
                     </div>
                     <div className="w3-twothird">
                         {

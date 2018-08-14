@@ -40,9 +40,11 @@ class BriefRequestView extends Component{
     }
 
     render(){
+        const {isHome} = this.props;
         const {request, routeURI} = this.state;
+        const articleClass = isHome ? 'w3-display-container' : '';
         return(
-            <article>
+            <article className={articleClass}>
                 <Link className="image" to={routeURI}>
                     <img src={`${IMAGE_URL}/request_image/${request.id}`} onClick={this.handleClick.bind(this)} />
                 </Link>
@@ -59,6 +61,10 @@ class BriefRequestView extends Component{
                 <div className="actions w3-right-align">
                     <Link onClick={this.handleClick.bind(this)} className="button" to={routeURI}>제목 짓기</Link>
                 </div>
+                {isHome ?
+                    <div className="w3-display-topleft w3-large w3-container w3-padding-small w3-round-medium w3-black w3-opacity">
+                        <i className="icon fa-book"></i> {(request === null) || request.categoryName}<br/>
+                    </div> : '' }
             </article>
         );
     }

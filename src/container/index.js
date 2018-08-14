@@ -19,3 +19,4 @@ export {default as SelectCategoryContainer} from './SelectCategoryContainer';
 export {default as TodayMainRankContainer} from './TodayMainRankContainer';
 export {default as MyRequestStatisticContainer} from './MyRequestStatisticContainer';
 export {default as MyTitleStatisticContainer} from './MyTitleStatisticContainer';
+export {default as SearchResultContainer} from './SearchResultContainer';

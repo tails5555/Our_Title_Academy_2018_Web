@@ -8,6 +8,8 @@ import RequestReducer from './reducer_request';
 import RankReducer from './reducer_rank';
 import TitleReducer from './reducer_title';
 import CommentReducer from './reducer_comment';
+import SearchReducer from './reducer_search';
+
 export const rootReducer = combineReducers({
     form : formReducer,
     user : UserReducer,
@@ -18,4 +20,5 @@ export const rootReducer = combineReducers({
     request : RequestReducer,
     title : TitleReducer,
     comment : CommentReducer,
+    search : SearchReducer
 });

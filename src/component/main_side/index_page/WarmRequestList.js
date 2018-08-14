@@ -14,7 +14,7 @@ class WarmRequestList extends Component {
         if(requests.length > 0){
             articleList = requests.map((request, idx) => {
                 return(
-                    <BriefRequestView key={`home_brief_${idx}`} request={request} routeURI={`/view_request/${request.id}/view?id=${request.categoryId}&pg=1`}/>
+                    <BriefRequestView key={`home_brief_${idx}`} isHome={true} request={request} routeURI={`/view_request/${request.id}/view?id=${request.categoryId}&pg=1`}/>
                 )
             })
         }else if(error !== null){

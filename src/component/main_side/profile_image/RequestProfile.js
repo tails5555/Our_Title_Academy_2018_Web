@@ -29,7 +29,7 @@ class RequestProfile extends Component{
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        return this.state.nickname != nextState.nickname || this.state.status !== nextState.status || nextProps.loginId !== this.props.loginId;
+        return this.state.nickname !== nextState.nickname || this.state.status !== nextState.status || nextProps.loginId !== this.props.loginId;
     }
 
     componentDidMount(){

@@ -14,7 +14,7 @@ const receivePagination = (values, dispatch, props) => {
         pg : 1,
         ob : (values.ob !== undefined) ? values.ob : 0,
         sb : (values.sb !== undefined) ? values.sb : 0,
-        sz : (values.sz !== undefined) ? (values.sz != 0) ? values.sz : 6 : 6
+        sz : (values.sz !== undefined) ? (values.sz !== 0) ? values.sz : 6 : 6
     };
     return dispatch(appFetchCategoryRequestBrief(newPaginationModel.id, newPaginationModel)).then(
         (response) => {
@@ -83,7 +83,7 @@ class BriefRequestList extends Component{
         const requestClass = (requests.length > 0) ? "posts" : '';
         const requestRender = (requests.length > 0) ? requests.map((request) => {
                 return(
-                    <BriefRequestView key={`request_${request.id}`} request={request} routeURI={`/view_request/${request.id}/view?${paginationModel.queryString}`} />
+                    <BriefRequestView key={`request_${request.id}`} isHome={false} request={request} routeURI={`/view_request/${request.id}/view?${paginationModel.queryString}`} />
                 )
             }) :
             <div className="w3-panel w3-pale-red w3-round-large">

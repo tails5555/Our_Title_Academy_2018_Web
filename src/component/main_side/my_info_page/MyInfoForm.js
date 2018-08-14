@@ -76,7 +76,7 @@ const validateAndUserInfoUpdate = (values, dispatch) => {
 
     return dispatch(userUpdateSignInfoProcess(userInfoUpdateForm, accessToken)).then(
         (response) => {
-            if(response.payload && response.payload.status != 200){
+            if(response.payload && response.payload.status !== 200){
                 dispatch(userUpdateSignInfoFailure(response.payload));
                 throw new SubmissionError(response.payload.data);
             }

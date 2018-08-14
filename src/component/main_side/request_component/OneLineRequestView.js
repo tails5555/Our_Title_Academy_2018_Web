@@ -40,9 +40,10 @@ class OneLineRequestView extends Component{
         return(
             <article className={divClass}>
                 <br/>
-                <div className="w3-third w3-center">
+                <div className="w3-third w3-center w3-padding">
+                    <br/>
                     <Link className="image w3-responsive" to={`/manager/photo_agree/select_category/${request.id}`}>
-                        <img style={{ width:'300px' }} src={`${IMAGE_URL}/request_image/${request.id}`} onClick={this.handleClick.bind(this)} />
+                        <img style={{ width:'100%' }} src={`${IMAGE_URL}/request_image/${request.id}`} onClick={this.handleClick.bind(this)} />
                     </Link>
                     <br/>
                 </div>

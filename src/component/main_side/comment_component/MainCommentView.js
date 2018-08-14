@@ -203,14 +203,14 @@ class MainCommentView extends Component{
         }
 
         let renderComments = renderArray.length > 0 ? renderArray.map((comment, idx) => {
-            let liClass;
+            let divClass;
             if(loginId === comment.userId){
-                liClass = "w3-row w3-panel w3-pale-blue w3-topbar w3-bottombar w3-border-blue";
+                divClass = "w3-panel w3-pale-blue w3-topbar w3-bottombar w3-border-blue";
             }else {
-                liClass = "w3-row w3-panel w3-topbar w3-bottombar w3-border-teal"
+                divClass = "w3-panel w3-topbar w3-bottombar w3-border-teal"
             }
             return(
-                <div className={liClass} key={`comment_${idx}`}>
+                <div className={divClass} key={`comment_${idx}`}>
                     <div className="w3-quarter">
                         <br/>
                         <span className="image w3-center" style={{
@@ -330,7 +330,7 @@ class MainCommentView extends Component{
                         </form>
                 }
 
-                <div className="w3-ul">
+                <div className="w3-row">
                     {
                         renderArray.length > 0 ?
                             <InfiniteScroll

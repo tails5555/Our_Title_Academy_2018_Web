@@ -53,7 +53,7 @@ class TodayRank extends Component{
                                     iconClass = 'fas fa-minus-circle';
                                 }
                                 return (
-                                    <article key={`rank_${idx}`}>
+                                    <article key={`rank_${idx}`} className="w3-padding">
                                         <span className={spanClass}>
                                             <i className={iconClass}></i> {(request.difference > 0) ? request.difference : request.difference * -1 }
                                         </span>

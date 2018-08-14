@@ -5,12 +5,15 @@ import {IndexPage} from "../page/index_page";
 import {BriefRequestListPage} from "../page/category_list_page";
 import {RequestViewPage} from "../page/request_view_page";
 import {TodayBestPage} from "../page/today_best_page";
+import {SearchResultPage} from "../page/search_result_page";
 
 class GuestRouter extends Component{
     render(){
         return(
             <div className="inner">
                 <Route exact path="/" component={IndexPage} />
+                <Route exact path="/search_result/:keyword" component={SearchResultPage} />
+                <Route exact path="/search_result/_refresh/:keyword" render={({ match }) => <Redirect to={`/search_result/${match.params.keyword}`} />} />
                 <Route exact path="/today/best" component={TodayBestPage} />
                 <Route exact path="/category/:id/list" component={BriefRequestListPage} />
                 <Route exact path="/view_request/:id/view" component={RequestViewPage} />

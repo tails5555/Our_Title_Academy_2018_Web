@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Chart from "react-google-charts";
+import {Link} from 'react-router-dom';
 
 const IMAGE_URL = 'http://127.0.0.1:8082/ContextAPI/photo';
 
@@ -30,6 +31,10 @@ class MyTitleStatistic extends Component{
             left: 0,
             behavior: 'smooth'
         });
+    }
+
+    handleClick(event){
+        this.topping();
     }
 
     handleClickTitlePages(event){
@@ -76,9 +81,11 @@ class MyTitleStatistic extends Component{
 
             return (
                 <div className="w3-row w3-panel w3-border w3-light-gray w3-round-large" key={`title_${idx}`}>
-                    <div className="w3-third w3-center">
+                    <div className="w3-third w3-center w3-padding">
                         <br/>
-                            <img className="image w3-responsive" style={{ width:'300px' }} src={`${IMAGE_URL}/request_image/${title.requestId}`} />
+                        <Link className="image w3-responsive" to={`/view_request/${title.requestId}/_refresh?id=${title.categoryId}&pg=1`}>
+                            <img style={{ width:'100%' }} src={`${IMAGE_URL}/request_image/${title.requestId}`} onClick={this.handleClick.bind(this)} />
+                        </Link>
                         <br/>
                     </div>
                     <div className="w3-twothird">
@@ -87,6 +94,7 @@ class MyTitleStatistic extends Component{
                         </div>
                         <p className="w3-right-align">
                             <i className="icon fa-calendar"></i> {title.writtenDate}<br/>
+                            <i className="icon fa-book"></i> {title.categoryName}<br/>
                         </p>
                         <div className="w3-red w3-round">
                             <div className="w3-container w3-round w3-blue" style={{width:`${percent}%`}}><br/></div>

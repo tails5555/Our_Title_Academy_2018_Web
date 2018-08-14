@@ -13,6 +13,7 @@ import {SelectCategoryPage} from "../page/select_category_page";
 import {TodayBestPage} from "../page/today_best_page";
 import {MyRequestStatisticPage} from "../page/my_request_statistic_page";
 import {MyTitleStatisticPage} from "../page/my_title_statistic_page";
+import {SearchResultPage} from "../page/search_result_page";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/empathy';
 
@@ -21,6 +22,8 @@ class ManagerRouter extends Component{
         return(
             <div className="inner">
                 <Route exact path="/" component={IndexPage} />
+                <Route exact path="/search_result/:keyword" component={SearchResultPage} />
+                <Route exact path="/search_result/_refresh/:keyword" render={({ match }) => <Redirect to={`/search_result/${match.params.keyword}`} />} />
                 <Route exact path="/today/best" component={TodayBestPage} />
                 <Route exact path="/category/:id/list" component={BriefRequestListPage} />
                 <Route exact path="/category/:id/_move" render={({ match }) => <Redirect to={`/category/${match.params.id}/list`} />} />
