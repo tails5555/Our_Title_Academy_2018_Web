@@ -37,6 +37,11 @@ export const FETCH_AGREE_REQUEST_BRIEF_SUCCESS = 'FETCH_AGREE_REQUEST_BRIEF_SUCC
 export const FETCH_AGREE_REQUEST_BRIEF_FAILURE = 'FETCH_AGREE_REQUEST_BRIEF_FAILURE';
 export const RESET_FETCH_AGREE_REQUEST_BRIEF= 'RESET_FETCH_AGREE_REQUEST_BRIEF';
 
+export const FETCH_TODAY_BATTLE_REQUEST = 'FETCH_TODAY_BATTLE_REQUEST';
+export const FETCH_TODAY_BATTLE_REQUEST_SUCCESS = 'FETCH_TODAY_BATTLE_REQUEST_SUCCESS';
+export const FETCH_TODAY_BATTLE_REQUEST_FAILURE = 'FETCH_TODAY_BATTLE_REQUEST_FAILURE';
+export const RESET_FETCH_TODAY_BATTLE_REQUEST = 'RESET_FETCH_TODAY_BATTLE_REQUEST';
+
 export const USER_SAVE_REQUEST = 'USER_SAVE_REQUEST';
 export const USER_SAVE_REQUEST_SUCCESS = 'USER_SAVE_REQUEST_SUCCESS';
 export const USER_SAVE_REQUEST_FAILURE = 'USER_SAVE_REQUEST_FAILURE';
@@ -241,6 +246,37 @@ export function appFetchViewRequestMainFailure(error){
 export function resetAppFetchViewRequestMain(){
     return {
         type : RESET_FETCH_VIEW_REQUEST_MAIN
+    }
+}
+
+export function appFetchTodayBattleRequest(userId){
+    const request = axios({
+        url : `${ROOT_URL}/fetch_today/${userId}`,
+        method : 'get'
+    });
+    return {
+        type : FETCH_TODAY_BATTLE_REQUEST,
+        payload : request
+    }
+}
+
+export function appFetchTodayBattleRequestSuccess(battleRequest){
+    return {
+        type : FETCH_TODAY_BATTLE_REQUEST_SUCCESS,
+        payload : battleRequest.data
+    }
+}
+
+export function appFetchTodayBattleRequestFailure(error){
+    return {
+        type : FETCH_TODAY_BATTLE_REQUEST_FAILURE,
+        payload : error
+    }
+}
+
+export function resetAppFetchTodayBattleRequest() {
+    return {
+        type : RESET_FETCH_TODAY_BATTLE_REQUEST
     }
 }
 

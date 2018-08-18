@@ -5,6 +5,7 @@ import {
     FETCH_ORDER_BY_OPTION, FETCH_ORDER_BY_OPTION_SUCCESS, FETCH_ORDER_BY_OPTION_FAILRUE, RESET_FETCH_ORDER_BY_OPTION,
     FETCH_SIZE_BY_OPTION, FETCH_SIZE_BY_OPTION_SUCCESS, FETCH_SIZE_BY_OPTION_FAILURE, RESET_FETCH_SIZE_BY_OPTION,
     FETCH_VIEW_REQUEST_MAIN, FETCH_VIEW_REQUEST_MAIN_SUCCESS, FETCH_VIEW_REQUEST_MAIN_FAILURE, RESET_FETCH_VIEW_REQUEST_MAIN,
+    FETCH_TODAY_BATTLE_REQUEST, FETCH_TODAY_BATTLE_REQUEST_SUCCESS, FETCH_TODAY_BATTLE_REQUEST_FAILURE, RESET_FETCH_TODAY_BATTLE_REQUEST,
     USER_SAVE_REQUEST, USER_SAVE_REQUEST_SUCCESS, USER_SAVE_REQUEST_FAILURE, RESET_USER_SAVE_REQUEST,
     FETCH_AGREE_REQUEST_BRIEF, FETCH_AGREE_REQUEST_BRIEF_SUCCESS, FETCH_AGREE_REQUEST_BRIEF_FAILURE,
     RESET_FETCH_AGREE_REQUEST_BRIEF, EXECUTE_AGREE_REQUEST, EXECUTE_AGREE_REQUEST_SUCCESS,
@@ -99,6 +100,16 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, selectRequest : { request : null, loading : false, error : error }, bestTitles : { titles : [] }};
         case RESET_FETCH_VIEW_REQUEST_MAIN :
             return { ...state, selectRequest : { request : null, loading : false, error : null }, bestTitles : { titles : [] }};
+
+        case FETCH_TODAY_BATTLE_REQUEST :
+            return { ...state, selectRequest : { request : null, loading : true, error : null }};
+        case FETCH_TODAY_BATTLE_REQUEST_SUCCESS :
+            return { ...state, selectRequest : { request : action.payload, loading : false, error : null }};
+        case FETCH_TODAY_BATTLE_REQUEST_FAILURE :
+            error = action.payload || { message : action.payload };
+            return { ...state, selectRequest : { request : null, loading : false, error : error }};
+        case RESET_FETCH_TODAY_BATTLE_REQUEST :
+            return { ...state, selectRequest : { request : null, loading : false, error : null }};
 
         case USER_SAVE_REQUEST :
             return { ...state, saveStatus : { result : null, loading : true, error : null }};
