@@ -11,6 +11,7 @@ import {TodayBestPage} from "../page/today_best_page";
 import {MyRequestStatisticPage} from "../page/my_request_statistic_page";
 import {MyTitleStatisticPage} from "../page/my_title_statistic_page";
 import {SearchResultPage} from "../page/search_result_page";
+import {TodayTitleBattlePage} from "../page/today_title_battle_page";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/empathy';
 
@@ -22,6 +23,7 @@ class UserRouter extends Component{
                 <Route exact path="/search_result/:keyword" component={SearchResultPage} />
                 <Route exact path="/search_result/_refresh/:keyword" render={({ match }) => <Redirect to={`/search_result/${match.params.keyword}`} />} />
                 <Route exact path="/today/best" component={TodayBestPage} />
+                <Route exact path="/today/battle" component={TodayTitleBattlePage} />
                 <Route exact path="/category/:id/list" component={BriefRequestListPage} />
                 <Route exact path="/category/:id/_move" render={({ match }) => <Redirect to={`/category/${match.params.id}/list`} />} />
                 <Route exact path="/view_request/:id/_refresh" render={({ match, location }) => <Redirect to={`/view_request/${match.params.id}/view${location.search}`} />} />

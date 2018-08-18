@@ -57,6 +57,7 @@ class BriefRequestView extends Component{
                     <i className="icon fa-calendar"></i> {request.writtenDate}<br/>
                     <i className="icon fa-star"></i> {request.likeCount}<br/>
                     <i className="icon fa-comments"></i> {request.commentCount}<br/>
+                    <i className="fas fa-box-open"></i> {request.titleCount}<br/>
                 </p>
                 <div className="actions w3-right-align">
                     <Link onClick={this.handleClick.bind(this)} className="button" to={routeURI}>제목 짓기</Link>

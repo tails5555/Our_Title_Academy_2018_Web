@@ -41,13 +41,15 @@ class UserList extends Component {
                                         matchSorter(rows, filter.value, { keys: ["loginId"] }),
                                     filterAll: true,
                                     Cell : row =>
-                                        <Link to={`user_info/${row.value}`}>
+                                        <div>
                                             <UserProfile loginId={row.value} />
                                             <br/><br/>
-                                            <button className="w3-button w3-pale-red">
-                                                <i className="icon fa-search-plus"></i> {row.value}
-                                            </button>
-                                        </Link>
+                                            <Link to={`user_info/${row.value}`}>
+                                                <button className="w3-button w3-pale-red">
+                                                    <i className="icon fa-search-plus"></i> {row.value}
+                                                </button>
+                                            </Link>
+                                        </div>
                                 },
                                 {
                                     Header: "별명",

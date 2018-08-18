@@ -79,7 +79,7 @@ class TodayRank extends Component{
                                         <p>
                                             <i className="icon fa-book"></i> {request.categoryName}<br/>
                                             <i className="icon fa-star"></i> {request.likeCount}<br/>
-                                            <i className="icon fa-comments"></i> {request.commentCount}
+                                            <i className="icon fa-comments"></i> {request.commentCount}<br/>
                                         </p>
                                         <br/>
                                     </article>

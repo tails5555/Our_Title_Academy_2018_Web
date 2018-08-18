@@ -14,7 +14,6 @@ const UserNavMenu = () =>
         </header>
         <ul>
             <li onClick={handleClick.bind(this)}><Link to="/">Home</Link></li>
-            <li onClick={handleClick.bind(this)}><Link to="/admin_manager_faq">관리자에게 부탁드립니다.</Link></li>
             <li>
                 <div className="w3-panel w3-pink w3-round-large w3-center">
                     <h6 className="w3-text-white">My Menu</h6>
