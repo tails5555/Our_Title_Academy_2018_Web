@@ -11,7 +11,10 @@ class TodayTitleBattle extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            loginId : 'ANONYMOUS_USER',
             titles : [],
+            hasTitle : null,
+            context : '',
             socket : new SockJS(SOCKET_URI),
             stompClient : null,
             renderSize : 20
@@ -25,18 +28,22 @@ class TodayTitleBattle extends Component{
         let {socket, stompClient} = this.state;
         stompClient = Stomp.over(socket);
         this.setState({
+            loginId : principal !== null ? principal.loginId : 'ANONYMOUS_USER',
             stompClient : stompClient
         });
     }
 
     componentDidMount(){
-        let {stompClient} = this.state;
+        let {stompClient, loginId} = this.state;
         if(stompClient !== null){
             stompClient.connect({}, (frame) => {
-                stompClient.send("/ota_app_dist/title_first/kang123");
-                stompClient.subscribe('/ota_topic/title_view', (message) => {
+                stompClient.send(`/ota_app_dist/title_list/${loginId}`);
+                stompClient.subscribe(`/ota_topic/title_viewer/${loginId}`, (message) => {
+                    const socketObj = JSON.parse(message.body);
                     this.setState({
-                        titles : JSON.parse(message.body)
+                        titles : socketObj.titles,
+                        hasTitle : socketObj.hasTitle,
+                        context : socketObj.context
                     })
                 })
             });
@@ -59,8 +66,44 @@ class TodayTitleBattle extends Component{
         }, 2000);
     }
 
+    handleSubmit(event){
+        const { context, loginId } = this.state;
+        const { request } = this.props.selectRequest;
+        let requestDTO = request !== null ? request.requestDTO : null;
+
+        if(context.trim() === ''){
+            alert("제목에는 공백이 저장될 수 없습니다. 다시 시도 바랍니다.");
+            return;
+        }
+
+        if(requestDTO === null){
+            alert("서버 측에서 오늘의 요청을 받지 못 하였습니다. 다시 시도 바랍니다.");
+            return;
+        }
+
+        let {stompClient} = this.state;
+        if(stompClient !== null){
+            stompClient.send(`/ota_app_dist/title_saving`, {}, JSON.stringify({
+                userId : loginId,
+                requestId : requestDTO.id,
+                context : context
+            }));
+        }
+        event.preventDefault();
+    }
+
+    handleClickDelete(event, titleId){
+
+    }
+
+    handleChange(event){
+        this.setState({
+            [event.target.name] : event.target.value
+        })
+    }
+
     render(){
-        const { titles, renderSize } = this.state;
+        const { loginId, titles, renderSize, context, hasTitle } = this.state;
         const { request } = this.props.selectRequest;
         const { principal } = this.props.accessUser;
         let requestDTO = request !== null ? request.requestDTO : null;
@@ -113,9 +156,9 @@ class TodayTitleBattle extends Component{
         let renderTitles = renderArray.map((title, idx) => {
             let divClass;
             if(principal !== null){
-                divClass = (principal.loginId === title.userId) ? "box w3-pale-blue" : "box";
+                divClass = (principal.loginId === title.userId) ? "box w3-pale-blue w3-animate-left" : "box w3-animate-left";
             }else {
-                divClass = "box"
+                divClass = "box w3-animate-left"
             }
             return(
                 <div className={divClass} key={`title_${idx}`}>
@@ -179,6 +222,32 @@ class TodayTitleBattle extends Component{
                 <h3 className="w3-border-bottom w3-border-blue">
                     <i className="far fa-clock"></i> 실시간 제목 현황
                 </h3>
+                <br/>
+                {
+                    loginId === 'ANONYMOUS_USER' ?
+                        <div className="w3-panel w3-round-medium w3-pale-red">
+                            <h3><i className="fas fa-exclamation-triangle"></i> 제목을 등록할 수 없습니다.</h3>
+                            <p>제목을 등록하기 위해 로그인을 진행하시길 바랍니다.</p>
+                        </div> :
+                        hasTitle === false ?
+                            <form onSubmit={this.handleSubmit.bind(this)}>
+                                <h4><i className="icon fa-pencil"></i> 제목을 등록합니다.</h4>
+                                <input type="text" value={context} name="context" onChange={this.handleChange.bind(this)} placeholder="제목은 65자 이내로 입력하세요." />
+                                <br/>
+                                <button type="submit" className="button fit large">등록하기</button>
+                            </form> :
+                            <form onSubmit={this.handleSubmit.bind(this)}>
+                                <h4><i className="icon fa-eraser"></i> 제목을 수정합니다.</h4>
+                                <input type="text" value={context} name="context" onChange={this.handleChange.bind(this)} placeholder="제목은 65자 이내로 입력하세요." />
+                                <br/>
+                                <button type="submit" className="button fit large">수정하기</button>
+                                <br/><br/>
+                                <button type="button" className="button primary fit large" onClick={this.handleClickDelete.bind(this, hasTitle === null || hasTitle.id)}>
+                                    <i className="icon fa-trash"></i> 제목 삭제하기
+                                </button>
+                            </form>
+                }
+                <br/>
                 {
                     renderArray.length > 0 ?
                         <InfiniteScroll

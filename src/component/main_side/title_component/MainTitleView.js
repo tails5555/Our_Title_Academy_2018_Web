@@ -305,6 +305,7 @@ class MainTitleView extends Component{
                                 </button>
                             </form>
                 }
+                <br/>
                 <div>
                     {renderTitles}
                 </div>

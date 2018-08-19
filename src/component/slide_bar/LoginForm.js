@@ -24,7 +24,7 @@ const validateAndUserLogin = (values, dispatch) => {
                 dispatch(userLoginException(response.payload));
                 throw new SubmissionError(response.payload.data);
             }
-            localStorage.setItem('jwtToken', response.payload.data);
+            sessionStorage.setItem('jwtToken', response.payload.data);
             dispatch(userLoginComplete(response.payload.data));
         }
     )
