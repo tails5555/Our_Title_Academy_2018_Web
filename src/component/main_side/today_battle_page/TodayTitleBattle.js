@@ -11,7 +11,8 @@ class TodayTitleBattle extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            loginId : 'ANONYMOUS_USER',
+            loginId : '',
+            titleId : 0,
             titles : [],
             hasTitle : null,
             context : '',
@@ -34,17 +35,27 @@ class TodayTitleBattle extends Component{
     }
 
     componentDidMount(){
-        let {stompClient, loginId} = this.state;
+        let {principal} = this.props.accessUser;
+        let {stompClient} = this.state;
+        let loginId = principal !== null ? principal.loginId : 'ANONYMOUS_USER';
+
         if(stompClient !== null){
             stompClient.connect({}, (frame) => {
                 stompClient.send(`/ota_app_dist/title_list/${loginId}`);
-                stompClient.subscribe(`/ota_topic/title_viewer/${loginId}`, (message) => {
+                stompClient.subscribe('/ota_topic/title_viewer', (message) => {
                     const socketObj = JSON.parse(message.body);
                     this.setState({
-                        titles : socketObj.titles,
-                        hasTitle : socketObj.hasTitle,
-                        context : socketObj.context
+                        loginId : loginId,
+                        titles : socketObj.titles
                     })
+                    if(loginId !== 'ANONYMOUS_USER'){
+                        const {titleId, hasTitle, context} = this.state;
+                        this.setState({
+                            titleId : (loginId === socketObj.userId) ? socketObj.titleId : titleId,
+                            hasTitle : (loginId === socketObj.userId) ? socketObj.hasTitle : hasTitle,
+                            context : (loginId === socketObj.userId) ? socketObj.context : context
+                        })
+                    }
                 })
             });
         }
@@ -73,11 +84,13 @@ class TodayTitleBattle extends Component{
 
         if(context.trim() === ''){
             alert("제목에는 공백이 저장될 수 없습니다. 다시 시도 바랍니다.");
+            event.preventDefault();
             return;
         }
 
         if(requestDTO === null){
             alert("서버 측에서 오늘의 요청을 받지 못 하였습니다. 다시 시도 바랍니다.");
+            event.preventDefault();
             return;
         }
 
@@ -92,8 +105,13 @@ class TodayTitleBattle extends Component{
         event.preventDefault();
     }
 
-    handleClickDelete(event, titleId){
-
+    handleClickDelete(event){
+        let {stompClient} = this.state;
+        const {loginId, titleId} = this.state;
+        let isDelete = window.confirm("님이 현재 올린 제목을 삭제합니다. 계속 하시겠습니까?");
+        if(isDelete){
+            stompClient.send(`/ota_app_dist/title_deleting/${titleId}/${loginId}`, {}, {});
+        }
     }
 
     handleChange(event){
@@ -242,7 +260,7 @@ class TodayTitleBattle extends Component{
                                 <br/>
                                 <button type="submit" className="button fit large">수정하기</button>
                                 <br/><br/>
-                                <button type="button" className="button primary fit large" onClick={this.handleClickDelete.bind(this, hasTitle === null || hasTitle.id)}>
+                                <button type="button" className="button primary fit large" onClick={this.handleClickDelete.bind(this)}>
                                     <i className="icon fa-trash"></i> 제목 삭제하기
                                 </button>
                             </form>

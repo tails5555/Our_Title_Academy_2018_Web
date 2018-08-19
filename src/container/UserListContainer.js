@@ -13,7 +13,7 @@ function mapStateToProps(state){
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchUserList : (userType) => {
-            let accessToken = localStorage.getItem('jwtToken');
+            let accessToken = sessionStorage.getItem('jwtToken');
             if(!accessToken || accessToken === '') return;
             if(userType === 'ADMIN') {
                 dispatch(adminLoadUserList(accessToken)).then((response) => {

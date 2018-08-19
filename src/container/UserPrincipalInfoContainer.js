@@ -15,7 +15,7 @@ function mapStateToProps(state){
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchUserInfo : (userType, loginId) => {
-            let accessToken = localStorage.getItem('jwtToken');
+            let accessToken = sessionStorage.getItem('jwtToken');
             if(!accessToken || accessToken === '') return;
             if(userType === 'ADMIN') {
                 dispatch(adminLoadUserInfo(accessToken, loginId)).then((response) => {

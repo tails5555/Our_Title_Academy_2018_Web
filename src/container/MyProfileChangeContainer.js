@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
         resetUploadProfile : () => dispatch(resetUserUploadProfile()),
         resetReleaseProfile : () => dispatch(resetUserReleaseProfile()),
         releaseCurrentUserProfile : () => {
-            let accessToken = localStorage.getItem('jwtToken');
+            let accessToken = sessionStorage.getItem('jwtToken');
             if(!accessToken || accessToken === '') return;
             dispatch(userReleaseProfile(accessToken)).then((response) => {
                 if(!response.error){

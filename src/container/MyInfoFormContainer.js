@@ -35,7 +35,7 @@ function mapStateToProps(state){
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchAgeFromServer : () => {
-            let accessToken = localStorage.getItem('jwtToken');
+            let accessToken = sessionStorage.getItem('jwtToken');
             if(!accessToken || accessToken === '') return;
             dispatch(userLoadAgeList(accessToken)).then((response) => {
                 if(!response.error){
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(resetUserLoadAgeList());
         },
         fetchCityFromServer : () => {
-            let accessToken = localStorage.getItem('jwtToken');
+            let accessToken = sessionStorage.getItem('jwtToken');
             if(!accessToken || accessToken === '') return;
             dispatch(userLoadCityList(accessToken)).then((response) => {
                 if(!response.error){
@@ -63,7 +63,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(resetUserLoadCityList());
         },
         fetchSignInfoFromServer : () => {
-            let accessToken = localStorage.getItem('jwtToken');
+            let accessToken = sessionStorage.getItem('jwtToken');
             if(!accessToken || accessToken === '') return;
             dispatch(userLoadSignForm(accessToken)).then((response) => {
                 if(!response.error){
@@ -77,7 +77,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(resetUserLoadSignForm());
         },
         fetchConfirmPassword : (password) => {
-            let accessToken = localStorage.getItem('jwtToken');
+            let accessToken = sessionStorage.getItem('jwtToken');
             if(!accessToken || accessToken === '') return;
             dispatch(userConfirmCurrentPassword(password, accessToken)).then((response) => {
                 if(!response.error){

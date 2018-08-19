@@ -6,7 +6,7 @@ import { userLoadMyProfile, userLoadMyProfileSuccess, userLoadMyProfileFailure, 
 const mapDispatchToProps = (dispatch) => {
     return{
         fetchProfileFromServer : () => {
-            let accessToken = localStorage.getItem('jwtToken');
+            let accessToken = sessionStorage.getItem('jwtToken');
             if(!accessToken || accessToken === '') return;
             dispatch(userLoadMyProfile(accessToken)).then((response) => {
                 if(!response.error){
@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
             })
         },
         logoutFromServer : () => {
-            let accessToken = localStorage.getItem('jwtToken');
+            let accessToken = sessionStorage.getItem('jwtToken');
             if(!accessToken || accessToken === '') return;
             dispatch(userLogoutProcess(accessToken));
         },
