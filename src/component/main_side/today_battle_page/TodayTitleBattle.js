@@ -44,10 +44,41 @@ class TodayTitleBattle extends Component{
                 stompClient.send(`/ota_app_dist/title_list/${loginId}`);
                 stompClient.subscribe('/ota_topic/title_viewer', (message) => {
                     const socketObj = JSON.parse(message.body);
+                    const {titles} = this.state;
+                    let stateArray = titles.map(title => {
+                        return {
+                            idx : title.id,
+                            likeChecked : title.likeChecked === null ? null : title.likeChecked,
+                            hateChecked : title.hateChecked === null ? null : title.hateChecked
+                        }
+                    });
+                    let titleArray = socketObj.titles.slice();
+                    let newArray = [];
+                    if(loginId !== socketObj.userId){
+                        if(loginId !== 'ANONYMOUS_USER'){
+                            newArray = titleArray.map(title => {
+                                let lk = false, ht = false;
+                                for(var k=0;k<stateArray.length;k++){
+                                    if(title.id === stateArray[k].id){
+                                        lk = (loginId === socketObj.userId) ? title.likeChecked : stateArray[k].likeChecked;
+                                        ht = (loginId === socketObj.userId) ? title.hateChecked : stateArray[k].hateChecked;
+                                        break;
+                                    }
+                                }
+                                return {
+                                    ...title, likeChecked : lk, hateChecked : ht
+                                }
+                            });
+                        } else {
+                            newArray = titleArray;
+                        }
+                    }
+
                     this.setState({
                         loginId : loginId,
-                        titles : socketObj.titles
+                        titles : (loginId === socketObj.userId) ? titleArray : newArray
                     })
+
                     if(loginId !== 'ANONYMOUS_USER'){
                         const {titleId, hasTitle, context} = this.state;
                         this.setState({
@@ -111,6 +142,24 @@ class TodayTitleBattle extends Component{
         let isDelete = window.confirm("님이 현재 올린 제목을 삭제합니다. 계속 하시겠습니까?");
         if(isDelete){
             stompClient.send(`/ota_app_dist/title_deleting/${titleId}/${loginId}`, {}, {});
+        }
+    }
+
+    handleClickEmpathy(titleId, method){
+        let {stompClient} = this.state;
+        const {loginId} = this.state;
+        if(loginId === 'ANONYMOUS_USER')
+            alert("공감 체크는 로그인을 진행한 후에 가능합니다. 다시 시도 바랍니다.");
+        stompClient.send(`/ota_app_dist/title_empathy/${titleId}/${method}/${loginId}`, {}, {});
+    }
+
+    handleClickSynchronous(event){
+        let {principal} = this.props.accessUser;
+        let {stompClient} = this.state;
+        let loginId = principal !== null ? principal.loginId : 'ANONYMOUS_USER';
+
+        if(stompClient !== null){
+            stompClient.send(`/ota_app_dist/title_list/${loginId}`);
         }
     }
 
@@ -193,12 +242,12 @@ class TodayTitleBattle extends Component{
                         <p><i className="icon fa-calendar"></i> {title.writtenDate}</p>
                         {
                             title.likeChecked === true ?
-                                <span className="w3-tag w3-round-large w3-blue w3-border-light-blue">
+                                <span className="w3-tag w3-round-large w3-blue w3-border-light-blue" style={{cursor : 'pointer'}} onClick={() => this.handleClickEmpathy(title.id, 'LIKE')}>
                                     <i className="icon fa-thumbs-up"></i> {title.likeCount} <i className="icon fa-check-circle"></i>
                                 </span>
                                 :
-                                title.likeChecked !== null ?
-                                    <span className="w3-tag w3-round-large w3-blue">
+                                loginId !== 'ANONYMOUS_USER' ?
+                                    <span className="w3-tag w3-round-large w3-blue" style={{cursor : 'pointer'}} onClick={() => this.handleClickEmpathy(title.id, 'LIKE')}>
                                         <i className="icon fa-thumbs-up"></i> {title.likeCount}
                                     </span>
                                     :
@@ -209,12 +258,12 @@ class TodayTitleBattle extends Component{
                         &nbsp;&nbsp;
                         {
                             title.hateChecked === true ?
-                                <span className="w3-tag w3-round-large w3-red">
+                                <span className="w3-tag w3-round-large w3-red" style={{cursor : 'pointer'}} onClick={() => this.handleClickEmpathy(title.id, 'HATE')}>
                                     <i className="icon fa-thumbs-down"></i> {title.hateCount} <i className="icon fa-check-circle"></i>
                                 </span>
                                 :
-                                title.hateChecked !== null ?
-                                    <span className="w3-tag w3-round-large w3-red">
+                                loginId !== 'ANONYMOUS_USER' ?
+                                    <span className="w3-tag w3-round-large w3-red" style={{cursor : 'pointer'}} onClick={() => this.handleClickEmpathy(title.id, 'HATE')}>
                                         <i className="icon fa-thumbs-down"></i> {title.hateCount}
                                     </span>
                                     :
@@ -253,6 +302,10 @@ class TodayTitleBattle extends Component{
                                 <input type="text" value={context} name="context" onChange={this.handleChange.bind(this)} placeholder="제목은 65자 이내로 입력하세요." />
                                 <br/>
                                 <button type="submit" className="button fit large">등록하기</button>
+                                <br/><br/>
+                                <button type="button" className="button fit large" onClick={this.handleClickSynchronous.bind(this)}>
+                                    <i className="icon fa-refresh"></i> 공감 체크 동기화
+                                </button>
                             </form> :
                             <form onSubmit={this.handleSubmit.bind(this)}>
                                 <h4><i className="icon fa-eraser"></i> 제목을 수정합니다.</h4>
@@ -262,6 +315,10 @@ class TodayTitleBattle extends Component{
                                 <br/><br/>
                                 <button type="button" className="button primary fit large" onClick={this.handleClickDelete.bind(this)}>
                                     <i className="icon fa-trash"></i> 제목 삭제하기
+                                </button>
+                                <br/><br/>
+                                <button type="button" className="button fit large" onClick={this.handleClickSynchronous.bind(this)}>
+                                    <i className="icon fa-refresh"></i> 공감 체크 동기화
                                 </button>
                             </form>
                 }

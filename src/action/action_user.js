@@ -94,7 +94,7 @@ export function userLoginException(error){
 }
 
 export function userLogoutProcess(userToken){
-    localStorage.removeItem('jwtToken');
+    sessionStorage.removeItem('jwtToken');
     const request = axios.delete(`${ROOT_URL}/common/logout`, {
         headers:
             {

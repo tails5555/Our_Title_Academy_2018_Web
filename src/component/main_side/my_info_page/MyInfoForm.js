@@ -71,7 +71,7 @@ const validateAndUserInfoUpdate = (values, dispatch) => {
         cityId : (values === null) ? '' : (values.cityId === undefined) ? 0 : values.cityId
     };
 
-    let accessToken = localStorage.getItem('jwtToken');
+    let accessToken = sessionStorage.getItem('jwtToken');
     if(!accessToken || accessToken === '') return;
 
     return dispatch(userUpdateSignInfoProcess(userInfoUpdateForm, accessToken)).then(

@@ -80,7 +80,7 @@ class ManagerRouter extends Component{
                 <Route exact path="/create_request" component={CreateRequestPage} />
                 <Route exact path="/create_request/_refresh" render={() => <Redirect to={`/create_request`} />} />
                 <Route exact path="/manager/photo_agree" component={PhotoAgreePage} />
-                <Route exact path="/manager/photo_agree/select_category/:id" component={SelectCategoryPage} />
+                <Route exact path="/manager/select_category/:id" component={SelectCategoryPage} />
             </div>
         )
     }

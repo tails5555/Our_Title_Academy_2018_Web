@@ -59,10 +59,10 @@ class SelectCategory extends Component{
 
         if(result === true){
             alert("현재 사진이 요청 목록에 보여집니다. 요청 사진이 부적절하게 생각되면 다시 숨길 수 있습니다.");
-            this.props.history.push(`/manager/photo_agree`);
+            this.props.history.push(`../photo_agree`);
         } else if(result === false){
             alert("요청을 허가하는 도중 서버에서 에러가 발생했습니다. 잠시 후 다시 시도 해주세요.");
-            this.props.history.push(`/manager/photo_agree`);
+            this.props.history.push(`../photo_agree`);
         }
 
         return(
@@ -75,7 +75,7 @@ class SelectCategory extends Component{
                     <h2>카테고리 선택</h2>
                 </header>
                 <div className="w3-right-align">
-                    <Link to="/manager/photo_agree"><button className="button primary">목록으로</button></Link>
+                    <Link to="../photo_agree"><button className="button primary">목록으로</button></Link>
                 </div>
                 <br/>
                 <div className="w3-row-padding">
