@@ -15,6 +15,7 @@ import {SearchResultPage} from "../page/search_result_page";
 import {TodayTitleBattlePage} from "../page/today_title_battle_page";
 import {PhotoAgreePage} from "../page/manager_photo_agree";
 import {SelectCategoryPage} from "../page/select_category_page";
+import {TitleManagePage} from "../page/title_manage_page";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/empathy';
 
@@ -79,6 +80,8 @@ class AdminRouter extends Component {
                 <Route exact path="/admin/user_info/:loginId" component={UserPrincipalInfoPage} />
                 <Route exact path="/admin/photo_agree" component={PhotoAgreePage} />
                 <Route exact path="/admin/select_category/:id" component={SelectCategoryPage} />
+                <Route exact path="/admin/title_manage" component={TitleManagePage} />
+                <Route exact path="/admin/title_manage/_refresh" render={() => <Redirect to="/admin/title_manage" />} />
                 <Route exact path="/create_request" component={CreateRequestPage} />
                 <Route exact path="/create_request/_refresh" render={() => <Redirect to={`/create_request`} />} />
             </div>
