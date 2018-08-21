@@ -22,3 +22,4 @@ export {default as MyTitleStatisticContainer} from './MyTitleStatisticContainer'
 export {default as SearchResultContainer} from './SearchResultContainer';
 export {default as TodayTitleBattleContainer} from './TodayTitleBattleContainer';
 export {default as TitleManageContainer} from './TitleManageContainer';
+export {default as RequestManageContainer} from './RequestManageContainer';

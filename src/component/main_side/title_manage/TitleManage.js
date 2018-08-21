@@ -56,7 +56,7 @@ class TitleManage extends Component{
         this.setState({
             selectIds : selectArray,
             selectTitle : tmpTitles
-        })
+        });
     }
 
     handleClickDelete(){
@@ -68,7 +68,7 @@ class TitleManage extends Component{
     }
 
     render(){
-        const {selectIds, selectTitle,renderSize} = this.state;
+        const {selectIds, selectTitle, renderSize} = this.state;
         const {titles} = this.props.titleList;
         const {deleteResult} = this.props.deleteStatus;
 
@@ -94,7 +94,7 @@ class TitleManage extends Component{
                 <div className="w3-row w3-panel w3-border w3-light-gray w3-round-large" key={`title_${idx}`}>
                     <div className="w3-third w3-center w3-padding">
                         <br/>
-                            <img style={{ width:'100%' }} src={`${IMAGE_URL}/request_image/${title.requestId}`} />
+                            <img className="image w3-responsive" style={{ width:'100%' }} src={`${IMAGE_URL}/request_image/${title.requestId}`} />
                         <br/>
                     </div>
                     <div className="w3-twothird">
@@ -130,9 +130,10 @@ class TitleManage extends Component{
                 <span style={{fontSize:'80px', lineHeight:'0.6em', opacity:'0.2'}}><i className="fas fa-times-circle"></i></span>
                 <br/>
                 <h2 className="w3-xlarge"><i>현재까지 등록한 제목들이 없습니다.</i></h2>
-                <p>제목을 올린 후 확인 바랍니다.</p>
+                <p>사용자가 아무도 제목을 올리지 않았습니다. 다시 시도 바랍니다.</p>
             </div>
         );
+
         return (
             <section>
                 <header id="header">
@@ -146,7 +147,7 @@ class TitleManage extends Component{
                     <p><b>현재 선택된 제목은 위에서도 확인할 수 있습니다.</b></p>
                     <ul class="w3-ul w3-card-4">
                         {
-                            selectTitle.map((context, idx) => <li key={`select_${idx}`}className="w3-display-container">{context} <span className="w3-button w3-transparent w3-display-right" onClick={() => this.handleClickRelease(selectIds[idx])}>&times;</span></li>)
+                            selectTitle.map((context, idx) => <li key={`select_${idx}`} className="w3-display-container">{context} <span className="w3-button w3-transparent w3-display-right" onClick={() => this.handleClickRelease(selectIds[idx])}>&times;</span></li>)
                         }
                     </ul>
                     <br/>
@@ -176,9 +177,9 @@ class TitleManage extends Component{
                                         <p>
                                             <b>삭제를 원하는 제목 목록은 다음과 같습니다.</b>
                                         </p>
-                                        <ul class="w3-ul w3-card-4">
+                                        <ul className="w3-ul w3-card-4">
                                             {
-                                                selectTitle.map((context, idx) => <li key={`select_${idx}`}className="w3-display-container">{context} <span className="w3-button w3-transparent w3-display-right" onClick={() => this.handleClickRelease(selectIds[idx])}>&times;</span></li>)
+                                                selectTitle.map((context, idx) => <li key={`select_${idx}`} className="w3-display-container">{context} <span className="w3-button w3-transparent w3-display-right" onClick={() => this.handleClickRelease(selectIds[idx])}>&times;</span></li>)
                                             }
                                         </ul>
                                         <br/>

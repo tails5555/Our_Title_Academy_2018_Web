@@ -32,7 +32,7 @@ const AdminNavMenu = () =>
             <li onClick={handleClick.bind(this)}><Link to="/admin/user_list">회원 목록 관리</Link></li>
             <li onClick={handleClick.bind(this)}><Link to="/admin/photo_agree">실시간 사진 허가</Link></li>
             <li onClick={handleClick.bind(this)}><Link to="/admin/title_manage">모든 제목 관리</Link></li>
-            <li onClick={handleClick.bind(this)}><Link to="/admin/photo_manage">모든 사진 관리</Link></li>
+            <li onClick={handleClick.bind(this)}><Link to="/admin/request_manage">모든 요청 관리</Link></li>
             <li onClick={handleClick.bind(this)}><Link to="/admin/open_faq">관리자 FAQ 열람</Link></li>
             <li>
                 <div className="w3-panel w3-pink w3-round-large w3-center">

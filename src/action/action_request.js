@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {RESET_FETCH_ALL_TITLE_LIST} from "./action_title";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/request';
 
@@ -6,6 +7,11 @@ export const FETCH_HOME_REQUEST_BRIEF = 'FETCH_HOME_REQUEST_BRIEF';
 export const FETCH_HOME_REQUEST_BRIEF_SUCCESS = 'FETCH_HOME_REQUEST_BRIEF_SUCCESS';
 export const FETCH_HOME_REQUEST_BRIEF_FAILURE = 'FETCH_HOME_REQUEST_BRIEF_FAILURE';
 export const RESET_FETCH_HOME_REQUEST_BRIEF = 'RESET_FETCH_HOME_REQUEST_BRIEF';
+
+export const FETCH_ALL_REQUEST_BRIEF = 'FETCH_ALL_REQUEST_BRIEF';
+export const FETCH_ALL_REQUEST_BRIEF_SUCCESS = 'FETCH_ALL_REQUEST_BRIEF_SUCCESS';
+export const FETCH_ALL_REQUEST_BRIEF_FAILURE = 'FETCH_ALL_REQUEST_BRIEF_FAILURE';
+export const RESET_FETCH_ALL_REQUEST_BRIEF = 'RESET_FETCH_ALL_REQUEST_BRIEF';
 
 export const FETCH_CATEGORY_REQUEST_BRIEF = 'FETCH_CATEGORY_REQUEST_BRIEF';
 export const FETCH_CATEGORY_REQUEST_BRIEF_SUCCESS = 'FETCH_CATEGORY_REQUEST_BRIEF_SUCCESS';
@@ -62,6 +68,11 @@ export const EXECUTE_USER_DELETE_REQUEST_SUCCESS = 'EXECUTE_USER_DELETE_REQUEST_
 export const EXECUTE_USER_DELETE_REQUEST_FAILURE = 'EXECUTE_USER_DELETE_REQUEST_FAILURE';
 export const RESET_EXECUTE_USER_DELETE_REQUEST = 'RESET_EXECUTE_USER_DELETE_REQUEST';
 
+export const EXECUTE_ADMIN_DELETE_REQUEST_PARTITION = 'EXECUTE_ADMIN_DELETE_REQUEST_PARTITION';
+export const EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_SUCCESS = 'EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_SUCCESS';
+export const EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_FAILURE = 'EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_FAILURE';
+export const RESET_EXECUTE_ADMIN_DELETE_REQUEST_PARTITION = 'RESET_EXECUTE_ADMIN_DELETE_REQUEST_PARTITION';
+
 export function appFetchHomeRequestBrief(){
     const request = axios({
         url : `${ROOT_URL}/fetch_brief/home`,
@@ -90,6 +101,37 @@ export function appFetchHomeRequestBriefFailure(error){
 export function resetAppFetchHomeRequestBrief(){
     return {
         type : RESET_FETCH_HOME_REQUEST_BRIEF
+    }
+}
+
+export function appFetchAllRequestBrief(){
+    const request = axios({
+        url : `${ROOT_URL}/fetch_brief/all_valid`,
+        method : 'get'
+    });
+    return {
+        type : FETCH_ALL_REQUEST_BRIEF,
+        payload : request
+    }
+}
+
+export function appFetchAllRequestBriefSuccess(result){
+    return {
+        type : FETCH_ALL_REQUEST_BRIEF_SUCCESS,
+        payload : result.data
+    }
+}
+
+export function appFetchAllRequestBriefFailure(error){
+    return {
+        type : FETCH_ALL_REQUEST_BRIEF_FAILURE,
+        payload : error
+    }
+}
+
+export function resetAppFetchAllRequestBrief(){
+    return {
+        type : RESET_FETCH_ALL_TITLE_LIST
     }
 }
 
@@ -448,5 +490,37 @@ export function executeUserDeleteRequestFailure(error){
 export function resetExecuteUserDeleteRequest(){
     return {
         type : RESET_EXECUTE_USER_DELETE_REQUEST
+    }
+}
+
+export function adminExecuteDeleteRequestPartition(requestIds){
+    const request = axios({
+        url : `${ROOT_URL}/delete_request_partition`,
+        method : 'delete',
+        data : requestIds
+    });
+    return {
+        type : EXECUTE_ADMIN_DELETE_REQUEST_PARTITION,
+        payload : request
+    }
+}
+
+export function adminExecuteDeleteRequestPartitionSuccess(result){
+    return {
+        type : EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_SUCCESS,
+        payload : result.data
+    }
+}
+
+export function adminExecuteDeleteRequestPartitionFailure(error){
+    return {
+        type : EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_FAILURE,
+        payload : error
+    }
+}
+
+export function resetAdminExecuteDeleteRequestPartition(){
+    return {
+        type : RESET_EXECUTE_ADMIN_DELETE_REQUEST_PARTITION
     }
 }
