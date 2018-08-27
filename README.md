@@ -1,12 +1,14 @@
 # 우리들의 제목학원 2018 Web Side<br/><small>Our Title Academy With React.js + Redux</small>
 
-짧은 몇 글자만으로 사람들에게 웃음을 유발할 수 있는 Web Application 제작.
+![ota_application_description](https://github.com/tails5555/Our_Title_Academy_2018_Web/blob/master/image/ota_application_description.png)
+
+달랑 사진 한 장에 짧은 몇 글자만으로 사람들에게 웃음을 제공할 수 있는 Web Application 제작.
 
 <h3>🐸 여러분들의 제목 센스와 드립을 <b>발휘해~</b> <i>주세요!!!</i></h3>
 
 <h3>🙋 제목 학원 베타 버전을 구축하기 위해 잠깐 작업 중입니다.</h3>
 
-<h3>👩‍🔧  현재 진행 중인 Web Application 의 컴포넌트는 대부분 구성 완료 되었습니다. 이번 달 안으로 Wiki 에 화면 구성을 올리겠습니다.</h3>
+<h3>👩‍🔧  현재 진행 중인 Web Application 의 컴포넌트는 대부분 구성 완료 되었습니다. 9월 초순 안으로 기능 구현 및 Wiki 페이지에 화면 구성을 올리겠습니다.</h3>
 
 #### 💬 적극 반영하면 좋을 리뷰는 [Issues](https://github.com/tails5555/Our_Title_Academy_2018_Web/issues) 에 남겨주시면 감사하겠습니다.
 
@@ -75,7 +77,7 @@ Application 의 간략한 구성은 다음과 같습니다. Server 측에도 기
 
 이 프로젝트에서 이용한 Server 는 Spring Web MVC 를 이용하여 연동하였습니다.
 
-아래 측의 Server Side 를 참고 바랍니다.
+<h3>🖥 아래 측의 Server Side 를 참고 바랍니다.</h3>
 
 [Server Side 참고하기](https://github.com/tails5555/Our_Title_Academy_2018_Server)
 
