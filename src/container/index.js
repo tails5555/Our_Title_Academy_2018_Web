@@ -23,3 +23,4 @@ export {default as SearchResultContainer} from './SearchResultContainer';
 export {default as TodayTitleBattleContainer} from './TodayTitleBattleContainer';
 export {default as TitleManageContainer} from './TitleManageContainer';
 export {default as RequestManageContainer} from './RequestManageContainer';
+export {default as FindFormContainer} from './FindFormContainer';

@@ -7,6 +7,7 @@ import {RequestViewPage} from "../page/request_view_page";
 import {TodayBestPage} from "../page/today_best_page";
 import {SearchResultPage} from "../page/search_result_page";
 import {TodayTitleBattlePage} from "../page/today_title_battle_page";
+import {FindLoginIdPage} from "../page/find_loginId_page";
 
 class GuestRouter extends Component{
     render(){
@@ -22,6 +23,7 @@ class GuestRouter extends Component{
                 <Route exact path="/view_request/:id/_refresh" render={({ match, location }) => <Redirect to={`/view_request/${match.params.id}/view${location.search}`} />} />
                 <Route exact path="/account/sign_up" component={SignUpPage} />
                 <Route exact path="/account/sign_result" component={SignResultPage} />
+                <Route exact path="/account/find_loginId" component={FindLoginIdPage} />
                 <Route exact path="/category/:id/_move" render={({ match }) => <Redirect to={`/category/${match.params.id}/list`} />} />
             </div>
         )

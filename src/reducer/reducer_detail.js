@@ -2,7 +2,8 @@ import {
     GUEST_LOAD_AGE_LIST, GUEST_LOAD_AGE_LIST_SUCCESS, GUEST_LOAD_AGE_LIST_FAILURE, RESET_GUEST_LOAD_AGE_LIST,
     GUEST_LOAD_CITY_LIST, GUEST_LOAD_CITY_LIST_SUCCESS, GUEST_LOAD_CITY_LIST_FAILURE, RESET_GUEST_LOAD_CITY_LIST,
     GUEST_CONFIRM_LOGIN_ID, GUEST_CONFIRM_LOGIN_ID_SUCCESS, GUEST_CONFIRM_LOGIN_ID_FAILURE, RESET_GUEST_CONFIRM_LOGIN_ID,
-    GUEST_SIGN_UP_PROCESS, GUEST_SIGN_UP_SUCCESS, GUEST_SIGN_UP_FAILURE
+    GUEST_SIGN_UP_PROCESS, GUEST_SIGN_UP_SUCCESS, GUEST_SIGN_UP_FAILURE,
+    GUEST_FIND_LOGIN_ID, GUEST_FIND_LOGIN_ID_SUCCESS, GUEST_FIND_LOGIN_ID_FAILURE, RESET_GUEST_FIND_LOGIN_ID
 } from "../action/action_guest";
 
 const INITIAL_STATE = {
@@ -17,6 +18,9 @@ const INITIAL_STATE = {
     },
     detailResult : {
         detail : null, loading : false, error : null
+    },
+    findLoginId : {
+        result : null, loading : false, error : null
     }
 }
 
@@ -60,6 +64,16 @@ export default function(state = INITIAL_STATE, action){
         case GUEST_SIGN_UP_FAILURE :
             error = action.payload.data || { message : action.payload.data };
             return { ...state, detailResult : { detail : null, loading : false, error : error}};
+
+        case GUEST_FIND_LOGIN_ID :
+            return { ...state, findLoginId : { result : null, loading : true, error : null }};
+        case GUEST_FIND_LOGIN_ID_SUCCESS :
+            return { ...state, findLoginId : { result : action.payload, loading : false, error : null }};
+        case GUEST_FIND_LOGIN_ID_FAILURE :
+            error = action.payload.data || { message : action.payload.data };
+            return { ...state, findLoginId : { result : action.payload, loading : false, error : error }};
+        case RESET_GUEST_FIND_LOGIN_ID :
+            return { ...state, findLoginId : { result : null, loading : false, error : null }};
 
         default :
             return state;

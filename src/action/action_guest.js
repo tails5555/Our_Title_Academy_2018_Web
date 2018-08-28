@@ -16,6 +16,11 @@ export const GUEST_CONFIRM_LOGIN_ID_SUCCESS = 'GUEST_CONFIRM_LOGIN_ID_SUCCESS';
 export const GUEST_CONFIRM_LOGIN_ID_FAILURE = 'GUEST_CONFIRM_LOGIN_ID_FAILURE';
 export const RESET_GUEST_CONFIRM_LOGIN_ID = 'RESET_GUEST_CONFIRM_LOGIN_ID';
 
+export const GUEST_FIND_LOGIN_ID = 'GUEST_FIND_LOGIN_ID';
+export const GUEST_FIND_LOGIN_ID_SUCCESS = 'GUEST_FIND_LOGIN_ID_SUCCESS';
+export const GUEST_FIND_LOGIN_ID_FAILURE = 'GUEST_FIND_LOGIN_ID_FAILURE';
+export const RESET_GUEST_FIND_LOGIN_ID = 'RESET_GUEST_FIND_LOGIN_ID';
+
 export const GUEST_SIGN_UP_PROCESS = 'GUEST_SIGN_UP_PROCESS';
 export const GUEST_SIGN_UP_SUCCESS = 'GUEST_SIGN_UP_SUCCESS';
 export const GUEST_SIGN_UP_FAILURE = 'GUEST_SIGN_UP_FAILURE';
@@ -110,6 +115,39 @@ export function guestConfirmLoginIdFailure(error){
 export function resetGuestConfirmLoginId(){
     return {
         type : RESET_GUEST_CONFIRM_LOGIN_ID
+    }
+}
+
+export function guestFindLoginId(findModel){
+    const request = axios({
+        method : 'post',
+        url : `${ROOT_URL}/guest/find_loginId`,
+        data : findModel
+    });
+
+    return {
+        type : GUEST_FIND_LOGIN_ID,
+        payload : request
+    }
+}
+
+export function guestFindLoginIdSuccess(result){
+    return {
+        type : GUEST_FIND_LOGIN_ID_SUCCESS,
+        payload : result.data
+    }
+}
+
+export function guestFindLoginIdFailure(error) {
+    return {
+        type : GUEST_FIND_LOGIN_ID_FAILURE,
+        payload : error
+    }
+}
+
+export function resetGuestFindLoginId(){
+    return {
+        type : RESET_GUEST_FIND_LOGIN_ID
     }
 }
 

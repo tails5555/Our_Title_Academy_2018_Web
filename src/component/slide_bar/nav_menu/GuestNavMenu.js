@@ -21,7 +21,6 @@ const GuestNavMenu = () =>
             </li>
             <li onClick={handleClick.bind(this)}><Link to="/account/sign_up">회원가입</Link></li>
             <li onClick={handleClick.bind(this)}><Link to="/account/find_loginId">아이디 찾기</Link></li>
-            <li onClick={handleClick.bind(this)}><Link to="/account/update_password">비밀번호 변경</Link></li>
             <li>
                 <div className="w3-panel w3-pink w3-round-large w3-center">
                     <h6 className="w3-text-white">Today Title</h6>
