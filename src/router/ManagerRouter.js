@@ -18,6 +18,8 @@ import {TodayTitleBattlePage} from "../page/today_title_battle_page";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/empathy';
 
+const MANAGER_ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth/manager';
+
 class ManagerRouter extends Component{
     render(){
         return(
@@ -76,7 +78,24 @@ class ManagerRouter extends Component{
                 <Route exact path="/my/request_statistic" component={MyRequestStatisticPage} />
                 <Route exact path="/my/title_statistic" component={MyTitleStatisticPage} />
                 <Route exact path="/manager/user_list" component={UserListPage} />
+                <Route exact path="/manager/user_refresh" render={() => <Redirect to="/manager/user_list" />} />
                 <Route exact path="/manager/user_info/:loginId" component={UserPrincipalInfoPage} />
+                <Route exact path="/manager/level_up/:loginId/_redirect" render={({ match, location }) => {
+                    let accessToken = sessionStorage.getItem('jwtToken');
+                    if(!accessToken || accessToken === '') return;
+                    axios({
+                        method : 'put',
+                        url : `${MANAGER_ROOT_URL}/manager_up/${match.params.loginId}`,
+                        headers : {
+                            'Authorization' : `Bearer ${accessToken}`
+                        }
+                    }).then(response => {
+                        if(response.status !== 200){
+                            alert("매니저 상향 중 서버 내부에서 에러가 발생했습니다. 다시 시도 바랍니다.");
+                        } else alert(response.data);
+                    });
+                    return <Redirect to="/manager/user_refresh" />
+                }} />
                 <Route exact path="/create_request" component={CreateRequestPage} />
                 <Route exact path="/create_request/_refresh" render={() => <Redirect to={`/create_request`} />} />
                 <Route exact path="/manager/photo_agree" component={PhotoAgreePage} />

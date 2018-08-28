@@ -20,6 +20,7 @@ class UserPrincipalInfo extends Component{
         this.props.resetFetchUserInfo();
     }
     render(){
+        const { principal } = this.props.accessUser;
         const { detail, error } = this.props.principalInfo;
         let userContainer;
         let detailContainer;
@@ -82,13 +83,32 @@ class UserPrincipalInfo extends Component{
                         <br/>
                     </div>
                 </div>
-                <Link to={"../user_list"}>
+                <Link to="../user_list">
                     <button className="button primary fit large">
                         <i className="icon fa-arrow-left"></i> 회원 이전 목록으로
                     </button>
                 </Link>
                 <br/><br/>
-                <button className="button primary fit large"><i className="icon fa-fire"></i> 강퇴 시키기</button>
+                {
+                     principal.type === 'MANAGER' ?
+                        detail === null || detail.user.userType === 'USER' ?
+                            <div>
+                                <Link to={`/manager/level_up/${detail == null || detail.user.loginId}/_redirect`}>
+                                    <button className="button primary fit large"><i className="fas fa-level-up-alt"></i> 매니저로 상향 시키기</button>
+                                </Link>
+                                <br/><br/>
+                            </div>
+                            :
+                            ''
+                        : ''
+                }
+                {
+                    principal.type === 'ADMIN' ?
+                        <div>
+                            <button className="button primary fit large"><i className="icon fa-fire"></i> 강퇴 시키기</button>
+                            <br/><br/>
+                        </div> : ''
+                }
             </section>
         )
     }
