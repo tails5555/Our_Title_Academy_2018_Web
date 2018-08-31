@@ -78,9 +78,9 @@ class ManagerRouter extends Component{
                 <Route exact path="/my/request_statistic" component={MyRequestStatisticPage} />
                 <Route exact path="/my/title_statistic" component={MyTitleStatisticPage} />
                 <Route exact path="/manager/user_list" component={UserListPage} />
-                <Route exact path="/manager/user_refresh" render={() => <Redirect to="/manager/user_list" />} />
+                <Route exact path="/manager/user_list/:method" component={UserListPage} />
                 <Route exact path="/manager/user_info/:loginId" component={UserPrincipalInfoPage} />
-                <Route exact path="/manager/level_up/:loginId/_redirect" render={({ match, location }) => {
+                <Route exact path="/manager/level_up/:loginId" render={({ match, location }) => {
                     let accessToken = sessionStorage.getItem('jwtToken');
                     if(!accessToken || accessToken === '') return;
                     axios({
@@ -94,7 +94,7 @@ class ManagerRouter extends Component{
                             alert("매니저 상향 중 서버 내부에서 에러가 발생했습니다. 다시 시도 바랍니다.");
                         } else alert(response.data);
                     });
-                    return <Redirect to="/manager/user_refresh" />
+                    return <Redirect to="/manager/user_list/_refresh" />
                 }} />
                 <Route exact path="/create_request" component={CreateRequestPage} />
                 <Route exact path="/create_request/_refresh" render={() => <Redirect to={`/create_request`} />} />

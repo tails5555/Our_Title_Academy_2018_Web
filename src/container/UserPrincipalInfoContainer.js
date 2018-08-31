@@ -4,11 +4,20 @@ import {
     adminLoadUserInfo, adminLoadUserInfoSuccess, adminLoadUserInfoFailure,
     managerLoadUserInfo, managerLoadUserInfoSuccess, managerLoadUserInfoFailure, resetCommonLoadUserInfo
 } from "../action/action_user";
+import {
+    resetUserFetchMyRequestStatistic, resetUserFetchMyTitleStatistic, userFetchMyRequestStatistic,
+    userFetchMyRequestStatisticFailure,
+    userFetchMyRequestStatisticSuccess,
+    userFetchMyTitleStatistic, userFetchMyTitleStatisticFailure,
+    userFetchMyTitleStatisticSuccess
+} from "../action/action_my_context";
 
 function mapStateToProps(state){
     return {
         accessUser : state.user.accessUser,
-        principalInfo : state.user.principalInfo
+        principalInfo : state.user.principalInfo,
+        myTitleStatistic : state.title.myTitleStatistic,
+        myRequestStatistic : state.request.myRequestStatistic
     }
 }
 
@@ -37,7 +46,22 @@ const mapDispatchToProps = (dispatch) => {
         },
         resetFetchUserInfo : () => {
             dispatch(resetCommonLoadUserInfo());
-        }
+        },
+        fetchRequestStatistic : (userId) => dispatch(userFetchMyRequestStatistic(userId)).then(response => {
+            if(!response.error)
+                dispatch(userFetchMyRequestStatisticSuccess(response.payload));
+            else
+                dispatch(userFetchMyRequestStatisticFailure(response.payload));
+        }),
+        resetFetchRequestStatistic : () => dispatch(resetUserFetchMyRequestStatistic()),
+        fetchTitleStatistic : (userId) => dispatch(userFetchMyTitleStatistic(userId)).then(response => {
+            if(!response.error){
+                dispatch(userFetchMyTitleStatisticSuccess(response.payload));
+            }else{
+                dispatch(userFetchMyTitleStatisticFailure(response.payload));
+            }
+        }),
+        resetFetchTitleStatistic : () => dispatch(resetUserFetchMyTitleStatistic())
     }
 }
 

@@ -20,6 +20,8 @@ import {RequestManagePage} from "../page/request_manage_page";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/empathy';
 
+const ADMIN_ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth/admin';
+
 class AdminRouter extends Component {
     render(){
         return(
@@ -78,6 +80,23 @@ class AdminRouter extends Component {
                 <Route exact path="/my/request_statistic" component={MyRequestStatisticPage} />
                 <Route exact path="/my/title_statistic" component={MyTitleStatisticPage} />
                 <Route exact path="/admin/user_list" component={UserListPage} />
+                <Route exact path="/admin/user_list/:method" component={UserListPage} />
+                <Route exact path="/admin/type_change/:loginId/:roleSequence" render={({ match, location }) => {
+                    let accessToken = sessionStorage.getItem('jwtToken');
+                    if(!accessToken || accessToken === '') return;
+                    axios({
+                        method : 'put',
+                        url : `${ADMIN_ROOT_URL}/type_change/${match.params.loginId}/${match.params.roleSequence}`,
+                        headers : {
+                            'Authorization' : `Bearer ${accessToken}`
+                        }
+                    }).then(response => {
+                        if(response.status !== 200){
+                            alert("매니저 상향 중 서버 내부에서 에러가 발생했습니다. 다시 시도 바랍니다.");
+                        } else alert(response.data);
+                    });
+                    return <Redirect to="/admin/user_list/_refresh" />
+                }} />
                 <Route exact path="/admin/user_info/:loginId" component={UserPrincipalInfoPage} />
                 <Route exact path="/admin/photo_agree" component={PhotoAgreePage} />
                 <Route exact path="/admin/select_category/:id" component={SelectCategoryPage} />

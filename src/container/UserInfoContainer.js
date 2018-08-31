@@ -1,7 +1,10 @@
-import { UserInfo } from "../component/slide_bar";
-import { connect } from 'react-redux';
-import { userLogoutProcess } from '../action/action_user';
-import { userLoadMyProfile, userLoadMyProfileSuccess, userLoadMyProfileFailure, resetUserLoadMyProfile } from "../action/action_profile";
+import {UserInfo} from "../component/slide_bar";
+import {connect} from 'react-redux';
+import {userLogoutProcess} from '../action/action_user';
+import {
+    resetUserLoadMyProfile, userLoadMyProfile, userLoadMyProfileFailure,
+    userLoadMyProfileSuccess
+} from "../action/action_profile";
 
 const mapDispatchToProps = (dispatch) => {
     return{

@@ -4,6 +4,7 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 import matchSorter from 'match-sorter';
 import {UserProfile} from "../profile_image";
+import {withRouter} from 'react-router-dom';
 class UserList extends Component {
     componentWillMount(){
         const {principal} = this.props.accessUser;
@@ -14,6 +15,15 @@ class UserList extends Component {
     }
     render(){
         const { users } = this.props.principalList;
+        const { principal } = this.props.accessUser;
+        if(this.props.match && this.props.match.params.method === '_refresh'){
+            this.props.resetFetchUserList();
+            if(principal.type === 'MANAGER')
+                this.props.history.push('/manager/user_list');
+            else if(principal.type === 'ADMIN')
+                this.props.history.push('/admin/user_list');
+        }
+
         return (
             <section>
                 <header id="header">
@@ -107,4 +117,4 @@ class UserList extends Component {
         )
     }
 }
-export default UserList;
+export default withRouter(UserList);
