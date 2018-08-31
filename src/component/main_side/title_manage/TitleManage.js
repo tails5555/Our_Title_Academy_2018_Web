@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {withRouter} from 'react-router-dom';
+import {SmallProfile} from "../profile_image";
 const IMAGE_URL = 'http://127.0.0.1:8082/ContextAPI/photo';
 class TitleManage extends Component{
     constructor(props){
@@ -35,6 +36,18 @@ class TitleManage extends Component{
         this.setState({
             selectIds : selectArray,
             selectTitle : tmpTitles
+        });
+    }
+
+    handleClickAllRelease(){
+        const {selectIds, selectTitle} = this.state;
+        let selectArray = selectIds.slice();
+        let selectTitles = selectTitle.slice();
+        selectArray = [];
+        selectTitles = [];
+        this.setState({
+            selectIds : selectArray,
+            selectTitle : selectTitles
         });
     }
 
@@ -96,15 +109,17 @@ class TitleManage extends Component{
                         <br/>
                             <img className="image w3-responsive" style={{ width:'100%' }} src={`${IMAGE_URL}/request_image/${title.requestId}`} />
                         <br/>
+                        <SmallProfile loginId={title.userId} />
+                        <br/>
                     </div>
                     <div className="w3-twothird">
                         <div className="w3-panel w3-topbar w3-bottombar w3-border-yellow w3-pale-yellow w3-center">
                             <h3 style={{fontFamily : '궁서체'}}>{title.context}</h3>
                         </div>
-                        <p className="w3-right-align">
-                            <i className="icon fa-calendar"></i> {title.writtenDate}<br/>
-                            <i className="icon fa-book"></i> {title.categoryName}<br/>
-                        </p>
+                        <div className="w3-right-align">
+                            <p><i className="icon fa-calendar"></i> {title.writtenDate}<br/></p>
+                            <p><i className="icon fa-book"></i> {title.categoryName}<br/></p>
+                        </div>
                         <div className="w3-red w3-round">
                             <div className="w3-container w3-round w3-blue" style={{width:`${percent}%`}}><br/></div>
                             <div className="w3-left w3-text-blue"><i className="icon fa-thumbs-up"></i> { title.likeCount }</div>
@@ -156,6 +171,15 @@ class TitleManage extends Component{
                             <i className="icon fa-trash"></i> 선택한 제목 삭제하기
                         </button> : ''
                     }
+                    <br/><br/>
+                    {
+                        selectIds.length > 0 ?
+                            <div>
+                                <button type="button" className="button fit primary large" onClick={() => this.handleClickAllRelease()}>
+                                    <i className="fas fa-times-circle"></i> 전체 해제하기
+                                </button>
+                            </div> : ''
+                    }
                 </div>
                 <div className="w3-row">
                     {
@@ -184,9 +208,16 @@ class TitleManage extends Component{
                                         </ul>
                                         <br/>
                                         {
-                                            (selectIds.length > 0) ? <button type="button" className="button fit large" onClick={this.handleClickDelete.bind(this)}>
-                                                <i className="icon fa-trash"></i> 선택한 제목 삭제하기
-                                            </button> : ''
+                                            (selectIds.length > 0) ?
+                                                <div>
+                                                    <button type="button" className="button fit primary large" onClick={() => this.handleClickAllRelease()}>
+                                                        <i className="fas fa-times-circle"></i> 전체 해제하기
+                                                    </button>
+                                                    <br/><br/>
+                                                    <button type="button" className="button fit large" onClick={this.handleClickDelete.bind(this)}>
+                                                        <i className="icon fa-trash"></i> 선택한 제목 삭제하기
+                                                    </button>
+                                                </div> : ''
                                         }
                                     </div>
                                 }

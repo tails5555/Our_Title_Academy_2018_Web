@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {withRouter} from 'react-router-dom';
+import {SmallProfile} from "../profile_image";
 const IMAGE_URL = 'http://127.0.0.1:8082/ContextAPI/photo';
 class RequestManage extends Component{
     constructor(props){
@@ -31,6 +32,15 @@ class RequestManage extends Component{
         selectArray.push(titleId);
         this.setState({
             selectIds : selectArray
+        });
+    }
+
+    handleClickAllRelease(){
+        const {selectIds} = this.state;
+        let selectArray = selectIds.slice();
+        selectArray = [];
+        this.setState({
+            selectIds : selectArray,
         });
     }
 
@@ -84,14 +94,14 @@ class RequestManage extends Component{
                         <br/>
                         <img className="image w3-responsive" style={{ width:'100%' }} src={`${IMAGE_URL}/request_image/${request.id}`} />
                         <br/>
-                        <div className="w3-display-bottomleft w3-large w3-container w3-round-medium w3-black w3-opacity">
-                            <i className="icon fa-book"></i> {(request === null || request.categoryName )}<br/>
-                        </div>
+                        <SmallProfile loginId={request.userId} />
+                        <br/>
                     </div>
                     <div className="w3-twothird">
                         <h3 className="w3-border-bottom w3-border-red">{(request === null) || request.intro}</h3>
                         <div dangerouslySetInnerHTML={ {__html: (request === null || request.context) } }/>
                         <p className="w3-right-align">
+                            <i className="icon fa-book"></i> {(request === null || request.categoryName )}<br/>
                             <i className="icon fa-star"></i> { (request === null || request.likeCount) }<br/>
                             <i className="icon fa-calendar"></i> { (request === null || request.writtenDate) }<br/>
                         </p>
@@ -147,6 +157,15 @@ class RequestManage extends Component{
                             )
                         }
                     </div>
+                    {
+                        selectIds.length > 0 ?
+                            <div>
+                                <br/><br/>
+                                <button type="button" className="button fit primary large" onClick={() => this.handleClickAllRelease()}>
+                                    <i className="fas fa-times-circle"></i> 전체 해제하기
+                                </button>
+                            </div> : ''
+                    }
                 </div>
                 <br/>
                 {
@@ -192,9 +211,16 @@ class RequestManage extends Component{
                                         </div>
                                         <br/>
                                         {
-                                            (selectIds.length > 0) ? <button type="button" className="button fit large" onClick={this.handleClickDelete.bind(this)}>
-                                                <i className="icon fa-trash"></i> 선택한 제목 삭제하기
-                                            </button> : ''
+                                            (selectIds.length > 0) ?
+                                                <div>
+                                                    <button type="button" className="button fit primary large" onClick={() => this.handleClickAllRelease()}>
+                                                        <i className="fas fa-times-circle"></i> 전체 해제하기
+                                                    </button>
+                                                    <br/><br/>
+                                                    <button type="button" className="button fit large" onClick={this.handleClickDelete.bind(this)}>
+                                                        <i className="icon fa-trash"></i> 선택한 제목 삭제하기
+                                                    </button>
+                                                </div> : ''
                                         }
                                     </div>
                                 }
