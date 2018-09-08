@@ -105,7 +105,7 @@ class BriefRequestList extends Component{
         for (let i = 1; i <= barCount; i++) {
             let n = base + i;
             if(n > pageCount) break;
-            pageNumbers.push(i);
+            pageNumbers.push(n);
         }
 
         let n = base + 11;
@@ -114,13 +114,29 @@ class BriefRequestList extends Component{
 
         const renderPageNumbers = pageNumbers.map(number => {
             return (
-                <button className={((paginationModel === null) || paginationModel.pg === number) ? "w3-button w3-pink" : "w3-button w3-hover-pink"}
-                    key={number}
-                    id={number}
-                    onClick={this.handlePagination.bind(this)}
-                >
-                    &nbsp;{number}&nbsp;
-                </button>
+                (number > base && number < base + 11) ?
+                    <button className={((paginationModel === null) || paginationModel.pg === number) ? "w3-button w3-pink" : "w3-button w3-hover-pink"}
+                            key={number}
+                            id={number}
+                            onClick={this.handlePagination.bind(this)}
+                    >
+                        &nbsp;{number}&nbsp;
+                    </button> :
+                    (idx === 0) ?
+                        <button className="w3-button w3-hover-pink"
+                                key={number}
+                                id={number}
+                                onClick={this.handlePagination.bind(this)}
+                        >
+                            &nbsp;이전&nbsp;
+                        </button> :
+                        <button className="w3-button w3-hover-pink"
+                                key={number}
+                                id={number}
+                                onClick={this.handlePagination.bind(this)}
+                        >
+                            &nbsp;다음&nbsp;
+                        </button>
             );
         });
 
