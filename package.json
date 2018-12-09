@@ -7,7 +7,7 @@
     "jwt-decode": "^2.2.0",
     "match-sorter": "^2.2.3",
     "query-string": "^6.1.0",
-    "react": "^16.4.1",
+    "react": "^16.6.3",
     "react-dom": "^16.4.1",
     "react-dropzone": "^4.2.13",
     "react-google-charts": "^3.0.3",
@@ -22,6 +22,7 @@
     "redux": "^4.0.0",
     "redux-form": "^7.4.2",
     "redux-promise": "^0.6.0",
+    "redux-thunk": "^2.3.0",
     "searchkit": "^2.3.0",
     "sockjs-client": "^1.1.5",
     "stompjs": "^2.3.3"

@@ -5,7 +5,6 @@ import {WarmRequestListContainer} from '../../container'
 const IndexPage = () =>
     <div>
         <MainHeader />
-        <WarmRequestListContainer />
     </div>
 
 export default IndexPage;

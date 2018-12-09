@@ -1,74 +1,73 @@
-import axios from 'axios';
-const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/category';
+import {
+    fetchCategoryListApi, fetchCategoryElementApi
+} from './api/api_category';
+import {
+    ANYBODY_FETCH_CATEGORY_LIST, ANYBODY_FETCH_CATEGORY_LIST_SUCCESS, ANYBODY_FETCH_CATEGORY_LIST_FAILURE,
+    ANYBODY_FETCH_CATEGORY_ELEMENT, ANYBODY_FETCH_CATEGORY_ELEMENT_SUCCESS, ANYBODY_FETCH_CATEGORY_ELEMENT_FAILURE, RESET_ANYBODY_FETCH_CATEGORY_ELEMENT
+} from "./type/type_category";
 
-export const APP_LOAD_CATEGORIES = 'APP_LOAD_CATEGORIES';
-export const APP_LOAD_CATEGORIES_SUCCESS = 'APP_LOAD_CATEGORIES_SUCCESS';
-export const APP_LOAD_CATEGORIES_FAILURE = 'APP_LOAD_CATEGORIES_FAILURE';
-export const RESET_APP_LOAD_CATEGORIES = 'RESET_APP_LOAD_CATEGORIES';
+const fetchCategoryListStart = () => ({
+    type : ANYBODY_FETCH_CATEGORY_LIST
+});
 
-export const APP_SELECT_CATEGORY = 'APP_SELECT_CATEGORY';
-export const APP_SELECT_CATEGORY_SUCCESS = 'APP_SELECT_CATEGORY_SUCCESS';
-export const APP_SELECT_CATEGORY_FAILURE = 'APP_SELECT_CATEGORY_FAILURE';
-export const RESET_APP_SELECT_CATEGORY = 'RESET_APP_SELECT_CATEGORY';
-
-export function appLoadCategories(){
-    const request = axios({
-        method : 'get',
-        url : `${ROOT_URL}/list`
-    })
+const fetchCategoryListSuccess = (response) => {
+    const { data } = response;
     return {
-        type : APP_LOAD_CATEGORIES,
-        payload : request
+        type : ANYBODY_FETCH_CATEGORY_LIST_SUCCESS,
+        payload : data
     }
 }
 
-export function appLoadCategoriesSuccess(categories){
-    return {
-        type : APP_LOAD_CATEGORIES_SUCCESS,
-        payload : categories.data
-    }
+const fetchCategoryListFailure = (error) => ({
+    type : ANYBODY_FETCH_CATEGORY_LIST_FAILURE,
+    payload : error && error.message
+});
+
+export const fetchCategoryListAction = () => (dispatch) => {
+    dispatch(fetchCategoryListStart());
+
+    return fetchCategoryListApi().then((response) => {
+        setTimeout(() => {
+            dispatch(fetchCategoryListSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(fetchCategoryListFailure(error));
+    });
 }
 
-export function appLoadCategoriesFailure(error){
+const fetchCategoryElementStart = () => ({
+    type : ANYBODY_FETCH_CATEGORY_ELEMENT
+});
+
+const fetchCategoryElementSuccess = (response) => {
+    const { data } = response;
     return {
-        type : APP_LOAD_CATEGORIES_FAILURE,
-        payload : error
-    }
+        type : ANYBODY_FETCH_CATEGORY_ELEMENT_SUCCESS,
+        payload : data
+    };
 }
 
-export function resetAppLoadCategories(){
-    return {
-        type : RESET_APP_LOAD_CATEGORIES
-    }
+const fetchCategoryElementFailure = (error) => ({
+    type : ANYBODY_FETCH_CATEGORY_ELEMENT_FAILURE,
+    payload : error && error.message
+});
+
+const resetFetchCategoryElement = () => ({
+    type : RESET_ANYBODY_FETCH_CATEGORY_ELEMENT
+});
+
+export const fetchCategoryElementAction = (id) => (dispatch) => {
+    dispatch(fetchCategoryElementStart());
+
+    return fetchCategoryElementApi(id).then((response) => {
+        setTimeout(() => {
+            dispatch(fetchCategoryElementSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(fetchCategoryElementFailure(error));
+    });
 }
 
-export function appSelectCategory(id){
-    const request = axios({
-        method : 'get',
-        url : `${ROOT_URL}/find/${id}`
-    })
-    return {
-        type : APP_SELECT_CATEGORY,
-        payload : request
-    }
-}
-
-export function appSelectCategorySuccess(category){
-    return {
-        type : APP_SELECT_CATEGORY_SUCCESS,
-        payload : category.data
-    }
-}
-
-export function appSelectCategoryFailure(error){
-    return {
-        type : APP_SELECT_CATEGORY_FAILURE,
-        payload : error
-    }
-}
-
-export function resetAppSelectCategory(){
-    return {
-        type : RESET_APP_SELECT_CATEGORY
-    }
+export const resetFetchCategoryElementAction = () => (dispatch) => {
+    dispatch(resetFetchCategoryElement());
 }

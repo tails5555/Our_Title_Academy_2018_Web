@@ -1,35 +1,29 @@
 import {
-    APP_LOAD_CATEGORIES, APP_LOAD_CATEGORIES_SUCCESS, APP_LOAD_CATEGORIES_FAILURE, RESET_APP_LOAD_CATEGORIES,
-    APP_SELECT_CATEGORY, APP_SELECT_CATEGORY_SUCCESS, APP_SELECT_CATEGORY_FAILURE, RESET_APP_SELECT_CATEGORY
-} from "../action/action_category";
+    ANYBODY_FETCH_CATEGORY_LIST, ANYBODY_FETCH_CATEGORY_LIST_SUCCESS, ANYBODY_FETCH_CATEGORY_LIST_FAILURE,
+    ANYBODY_FETCH_CATEGORY_ELEMENT, ANYBODY_FETCH_CATEGORY_ELEMENT_SUCCESS, ANYBODY_FETCH_CATEGORY_ELEMENT_FAILURE, RESET_ANYBODY_FETCH_CATEGORY_ELEMENT
+} from "../action/type/type_category";
 
 const INITIAL_STATE = {
-    menuCategories : { categories : [], loading : false, error : null },
-    selectCategory : { category : null, loading : false, error : null }
+    list : [], element : null, loading : false, error : null, status : 0, type : null
 }
 
 export default function(state = INITIAL_STATE, action){
-    let error;
     switch(action.type){
-        case APP_LOAD_CATEGORIES :
-            return { ...state, menuCategories : { categories : [], loading : true, error : null}};
-        case APP_LOAD_CATEGORIES_SUCCESS :
-            return { ...state, menuCategories : { categories : action.payload, loading : false, error : null }};
-        case APP_LOAD_CATEGORIES_FAILURE :
-            error = error = action.payload || { message : action.payload };
-            return { ...state, menuCategories : { categories : [], loading : false, error : error }};
-        case RESET_APP_LOAD_CATEGORIES :
-            return { ...state, menuCategories : { categories : [], loading : false, error : null }};
+        case ANYBODY_FETCH_CATEGORY_LIST :
+            return { ...state, loading : true };
+        case ANYBODY_FETCH_CATEGORY_LIST_SUCCESS :
+            return { ...state, loading : false, list : action.payload };
+        case ANYBODY_FETCH_CATEGORY_LIST_FAILURE :
+            return { ...state, loading : false, error : action.payload };
 
-        case APP_SELECT_CATEGORY :
-            return { ...state, selectCategory : { category : null, loading : true, error : null }};
-        case APP_SELECT_CATEGORY_SUCCESS :
-            return { ...state, selectCategory : { category : action.payload, loading : false, error : null }};
-        case APP_SELECT_CATEGORY_FAILURE :
-            error = error = action.payload || { message : action.payload };
-            return { ...state, selectCategory : { category : null, loading : false, error : null }};
-        case RESET_APP_SELECT_CATEGORY :
-            return { ...state, selectCategory : { category : null, loading : false, error : null }};
+        case ANYBODY_FETCH_CATEGORY_ELEMENT :
+            return { ...state, loading : true, type : 'FETCH' };
+        case ANYBODY_FETCH_CATEGORY_ELEMENT_SUCCESS :
+            return { ...state, loading : false, element : action.payload };
+        case ANYBODY_FETCH_CATEGORY_ELEMENT_FAILURE :
+            return { ...state, loading : false, error : action.payload };
+        case RESET_ANYBODY_FETCH_CATEGORY_ELEMENT :
+            return { ...state, element : null, error : null, type : null };
 
         default :
             return state;

@@ -1,27 +1,17 @@
 import {CategoryMenu} from "../component/slide_bar/nav_menu";
-import {connect} from 'react-redux';
-import {appLoadCategories, appLoadCategoriesSuccess, appLoadCategoriesFailure, resetAppLoadCategories} from "../action/action_category";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as CategoryAction from "../action/action_category";
 
 function mapStateToProps(state){
     return {
-        menuCategories : state.category.menuCategories
+        category : state.category
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadCategories : () => {
-            dispatch(appLoadCategories()).then((response) => {
-                if(!response.error){
-                    dispatch(appLoadCategoriesSuccess(response.payload));
-                }else{
-                    dispatch(appLoadCategoriesFailure(response.payload));
-                }
-            })
-        },
-        resetLoadCategories : () => {
-            dispatch(resetAppLoadCategories());
-        }
+        categoryAction : bindActionCreators(CategoryAction, dispatch)
     }
 }
 

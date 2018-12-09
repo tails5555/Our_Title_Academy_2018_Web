@@ -1,4 +1,5 @@
 import {BriefRequestList} from "../component/main_side/category_page";
+import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import {
     appFetchCategoryRequestBrief, appFetchCategoryRequestBriefSuccess, appFetchCategoryRequestBriefFailure, resetAppFetchCategoryRequestBrief,
@@ -6,9 +7,7 @@ import {
     appFetchOrderByOption, appFetchOrderByOptionSuccess, appFetchOrderByOptionFailure, resetAppFetchOrderByOption,
     appFetchSizeByOption, appFetchSizeByOptionSuccess, appFetchSizeByOptionFailure, resetAppFetchSizeByOption
 } from "../action/action_request";
-import {
-    appSelectCategory, appSelectCategorySuccess, appSelectCategoryFailure, resetAppSelectCategory
-} from "../action/action_category";
+import * as CategoryAction from "../action/action_category";
 
 function mapStateToProps(state){
     return {
@@ -64,14 +63,7 @@ const mapDispatchToProps = (dispatch) => {
             })
         },
         resetFetchSizeOption : () => dispatch(resetAppFetchSizeByOption()),
-        fetchSelectCategory : (id) => dispatch(appSelectCategory(id)).then((response) => {
-            if(!response.error){
-                dispatch(appSelectCategorySuccess(response.payload));
-            }else{
-                dispatch(appSelectCategoryFailure(response.payload));
-            }
-        }),
-        resetFetchSelectCategory : () => dispatch(resetAppSelectCategory())
+        categoryAction : bindActionCreators(CategoryAction, dispatch)
     }
 }
 
