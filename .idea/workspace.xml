@@ -1,0 +1,1683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/README.md" line="74" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f10b8331-e572-4147-a03b-2afb00dd1c19" name="Default" comment="Update">
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/composition_academy.iml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/Our_Title_Academy_App_Structure.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/ota_application_description.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/category_search.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/index_page.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/my_info_change_result.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/my_info_page.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/my_profile_change.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/my_request_statistic_page.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/my_title_statistic_page.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/photo_agree.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/photo_upload.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/photo_upload2.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/request_manage_page.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/request_view_empathy.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/request_view_title_list.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/request_view_title_list_comment_list.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/request_view_title_list_create_after.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/request_view_title_list_delete_confirm.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/request_view_title_list_update_modal.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/select_category.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/title_manage_page.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/today_battle.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/today_best.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/total_search.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/user_info_page.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/image/web_preview/user_list_page.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/package.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/font-awesome.min.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/main.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/w3.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/fonts/FontAwesome.otf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.eot" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.svg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.ttf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.woff" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.woff2" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/breakpoints.min.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/browser.min.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/jquery.min.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/main.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/util.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/base/_page.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/base/_reset.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/base/_typography.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_actions.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_box.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_button.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_contact.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_features.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_form.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_icon.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_icons.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_image.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_list.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_mini-posts.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_pagination.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_posts.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_row.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_section.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/components/_table.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/layout/_banner.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/layout/_footer.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/layout/_header.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/layout/_main.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/layout/_menu.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/layout/_sidebar.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/layout/_wrapper.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/libs/_breakpoints.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/libs/_functions.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/libs/_html-grid.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/libs/_mixins.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/libs/_vars.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/libs/_vendor.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/main.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/manifest.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/ApplicationClient.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/action/action_category.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/action/action_comment.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/action/action_guest.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/action/action_my_context.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/action/action_profile.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/action/action_request.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/action/action_search.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/action/action_title.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/action/action_today_rank.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/action/action_user.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/action/api/api_category.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/action/type/type_category.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/form/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/form/renderDropzoneInput.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/form/renderField.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/form/renderQuill.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/form/renderSelect.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/category_page/BriefRequestList.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/category_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/comment_component/MainCommentView.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/comment_component/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/comment_component/modal.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/create_request_page/CreateRequest.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/create_request_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/find_loginId_page/FindForm.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/find_loginId_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/index_page/MainHeader.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/index_page/WarmRequestList.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/index_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/my_info_page/MyInfoForm.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/my_info_page/MyInfoResult.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/my_info_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/my_profile_change/MyProfileChange.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/my_profile_change/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/my_request_statistic/MyRequestStatistic.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/my_request_statistic/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/my_title_statistic/MyTitleStatistic.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/my_title_statistic/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/photo_agree_page/PhotoAgree.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/photo_agree_page/SelectCategory.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/photo_agree_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/profile_image/RequestProfile.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/profile_image/SmallProfile.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/profile_image/UserProfile.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/profile_image/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/request_component/BriefRequestView.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/request_component/MainRequestView.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/request_component/OneLineRequestView.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/request_component/RequestEmpathyView.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/request_component/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/request_manage/RequestManage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/request_manage/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/request_page/RequestView.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/request_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/search_result/SearchResult.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/search_result/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/sign_page/SignForm.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/sign_page/SignResult.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/sign_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/title_component/MainTitleView.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/title_component/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/title_manage/TitleManage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/title_manage/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/today_battle_page/TodayTitleBattle.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/today_battle_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/today_rank_page/TodayMainRank.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/today_rank_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/user_list_page/UserList.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/user_list_page/UserPrincipalInfo.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/main_side/user_list_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/resource_image/access_error.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/resource_image/default_profile.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/resource_image/madongseok.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/slide_bar/DevelopInfo.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/slide_bar/LoginForm.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/slide_bar/TodayRank.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/slide_bar/TotalSearch.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/slide_bar/UserInfo.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/slide_bar/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/slide_bar/nav_menu/AdminNavMenu.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/slide_bar/nav_menu/CategoryMenu.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/slide_bar/nav_menu/GuestNavMenu.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/slide_bar/nav_menu/ManagerNavMenu.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/slide_bar/nav_menu/UserNavMenu.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/component/slide_bar/nav_menu/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/ApplicationContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/BriefRequestListContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/CategoryMenuContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/CreateRequestContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/FindFormContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/LoginFormContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/MyInfoFormContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/MyInfoResultContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/MyProfileChangeContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/MyRequestStatisticContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/MyTitleStatisticContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/PhotoAgreeContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/RequestManageContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/RequestViewContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/SearchResultContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/SelectCategoryContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/SignFormContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/SignResultContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/TitleManageContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/TodayMainRankContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/TodayRankContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/TodayTitleBattleContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/UserInfoContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/UserListContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/UserPrincipalInfoContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/WarmRequestListContainer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/container/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/logo.svg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/category_list_page/BriefRequestListPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/category_list_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/common_my_info/MyInfoFormPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/common_my_info/MyInfoResultPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/common_my_info/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/common_my_profile_change/MyProfileChangePage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/common_my_profile_change/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/create_request_page/CreateRequestPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/create_request_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/find_loginId_page/FindLoginIdPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/find_loginId_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/guest_sign_up/SignResultPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/guest_sign_up/SignUpPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/guest_sign_up/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/index_page/IndexPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/index_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/manager_admin_user_list/UserListPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/manager_admin_user_list/UserPrincipalInfoPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/manager_admin_user_list/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/manager_photo_agree/PhotoAgreePage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/manager_photo_agree/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/my_request_statistic_page/MyRequestStatisticPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/my_request_statistic_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/my_title_statistic_page/MyTitleStatisticPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/my_title_statistic_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/request_manage_page/RequestManagePage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/request_manage_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/request_view_page/RequestViewPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/request_view_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/search_result_page/SearchResultPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/search_result_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/select_category_page/SelectCategoryPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/select_category_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/side_bar/AnonymousSideBar.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/side_bar/UserExistedSideBar.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/side_bar/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/title_manage_page/TitleManagePage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/title_manage_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/today_best_page/TodayBestPage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/today_best_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/today_title_battle_page/TodayTitleBattlePage.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/page/today_title_battle_page/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/reducer_category.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/reducer_comment.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/reducer_detail.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/reducer_profile.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/reducer_rank.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/reducer_request.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/reducer_search.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/reducer_title.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/reducer_user.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/registerServiceWorker.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/router/AdminRouter.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/router/ApplicationRouter.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/router/GuestRouter.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/router/ManagerRouter.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/router/UserRouter.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/store/configureStore.dev.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/store/configureStore.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/store/configureStore.prod.js" afterPath="" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="composition_academy" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="action_category.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/action/action_category.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="55" column="6" lean-forward="false" selection-start-line="55" selection-start-column="6" selection-end-line="55" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#87#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryMenuContainer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/CategoryMenuContainer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#61#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="configureStore.dev.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/configureStore.dev.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="17" column="46" lean-forward="true" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#62#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="configureStore.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/configureStore.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IndexPage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/index_page/IndexPage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BriefRequestListContainer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/BriefRequestListContainer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1380">
+              <caret line="60" column="6" lean-forward="true" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#70#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryMenu.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/component/slide_bar/nav_menu/CategoryMenu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1298">
+              <caret line="59" column="28" lean-forward="true" selection-start-line="59" selection-start-column="28" selection-end-line="59" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="api_category.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/action/api/api_category.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="type_category.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/action/type/type_category.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="2" column="89" lean-forward="false" selection-start-line="2" selection-start-column="89" selection-end-line="2" selection-end-column="89" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>menu</find>
+      <find>sidebar</find>
+      <find>header</find>
+      <find>get</find>
+      <find>RequestProfile</find>
+      <find>hasTitle</find>
+      <find>console</find>
+      <find>Link</find>
+      <find>Profile</find>
+      <find>className</find>
+      <find>map</find>
+      <find>Request</find>
+      <find>blue</find>
+      <find>pathname</find>
+      <find>comment.context</find>
+      <find>validate</find>
+      <find>name=&quot;context&quot;</find>
+      <find>comment_empathy</find>
+      <find>USER_CREATE_REQUEST</find>
+      <find>USER_SAVE</find>
+      <find>user_save</find>
+      <find>class</find>
+      <find>userSave</find>
+      <find>Manager</find>
+      <find>appfetch</find>
+      <find>alert</find>
+      <find>logout</find>
+      <find>modal</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>.my_menu</replace>
+      <replace>USER_SAVE_REQUEST</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="tails5555 &lt;tails5555@naver.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/page/request_manage_page/RequestManagePage.js" />
+        <option value="$PROJECT_DIR$/src/page/request_manage_page/index.js" />
+        <option value="$PROJECT_DIR$/src/container/RequestManageContainer.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/component/slide_bar/nav_menu/GuestNavMenu.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/find_loginId_page/index.js" />
+        <option value="$PROJECT_DIR$/src/reducer/reducer_detail.js" />
+        <option value="$PROJECT_DIR$/src/container/index.js" />
+        <option value="$PROJECT_DIR$/src/page/find_loginId_page/FindLoginIdPage.js" />
+        <option value="$PROJECT_DIR$/src/page/find_loginId_page/index.js" />
+        <option value="$PROJECT_DIR$/src/action/action_guest.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/find_loginId_page/FindForm.js" />
+        <option value="$PROJECT_DIR$/src/container/FindFormContainer.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/profile_image/index.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/profile_image/SmallProfile.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/request_manage/RequestManage.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/title_manage/TitleManage.js" />
+        <option value="$PROJECT_DIR$/src/reducer/reducer_request.js" />
+        <option value="$PROJECT_DIR$/src/reducer/reducer_title.js" />
+        <option value="$PROJECT_DIR$/src/container/UserInfoContainer.js" />
+        <option value="$PROJECT_DIR$/src/container/UserPrincipalInfoContainer.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/user_list_page/UserPrincipalInfo.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/user_list_page/UserList.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/request_page/RequestView.js" />
+        <option value="$PROJECT_DIR$/src/container/RequestViewContainer.js" />
+        <option value="$PROJECT_DIR$/src/action/action_request.js" />
+        <option value="$PROJECT_DIR$/src/router/ManagerRouter.js" />
+        <option value="$PROJECT_DIR$/src/router/UserRouter.js" />
+        <option value="$PROJECT_DIR$/src/router/GuestRouter.js" />
+        <option value="$PROJECT_DIR$/src/router/AdminRouter.js" />
+        <option value="$PROJECT_DIR$/src/component/form/renderField.js" />
+        <option value="$PROJECT_DIR$/src/component/slide_bar/LoginForm.js" />
+        <option value="$PROJECT_DIR$/src/container/ApplicationContainer.js" />
+        <option value="$PROJECT_DIR$/src/component/form/renderSelect.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/sign_page/SignForm.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/category_page/BriefRequestList.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/comment_component/MainCommentView.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/request_component/MainRequestView.js" />
+        <option value="$PROJECT_DIR$/src/component/main_side/index_page/MainHeader.js" />
+        <option value="$PROJECT_DIR$/src/store/configureStore.js" />
+        <option value="$PROJECT_DIR$/src/store/configureStore.dev.js" />
+        <option value="$PROJECT_DIR$/src/action/action_type.js" />
+        <option value="$PROJECT_DIR$/src/action/type/type_category.js" />
+        <option value="$PROJECT_DIR$/src/reducer/reducer_category.js" />
+        <option value="$PROJECT_DIR$/src/container/CategoryMenuContainer.js" />
+        <option value="$PROJECT_DIR$/src/page/index_page/IndexPage.js" />
+        <option value="$PROJECT_DIR$/src/container/BriefRequestListContainer.js" />
+        <option value="$PROJECT_DIR$/src/action/api/api_category.js" />
+        <option value="$PROJECT_DIR$/src/action/action_category.js" />
+        <option value="$PROJECT_DIR$/src/component/slide_bar/nav_menu/CategoryMenu.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="536" />
+    <option name="width" value="1392" />
+    <option name="height" value="1038" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="composition_academy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="composition_academy" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sm_mento" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="SearchEverywhereHistoryKey" value="{&#9;null&#9;null" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\KangDB\react_project\composition_academy\public" />
+      <recent name="C:\Users\KangDB\react_project\composition_academy\src\page\my_request_statistic_page" />
+      <recent name="C:\Users\KangDB\react_project\composition_academy\src\component\main_side\my_request_statistic" />
+      <recent name="C:\Users\KangDB\react_project\composition_academy\src\component\main_side" />
+      <recent name="C:\Users\KangDB\react_project\composition_academy\src\component\resource_image" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\KangDB\react_project\composition_academy\image" />
+      <recent name="C:\Users\KangDB\react_project\composition_academy\src\component\main_side\index_page" />
+      <recent name="C:\Users\KangDB\react_project\composition_academy\src\component\resource_image" />
+      <recent name="C:\Users\KangDB\react_project\composition_academy\src\component\main_side\sign_page" />
+      <recent name="C:\Users\KangDB\react_project\composition_academy\src" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Node.js.MyInfoForm.js">
+    <configuration name="MyInfoForm.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="MyInfoForm.js" working-dir="$PROJECT_DIR$/src/component/main_side/my_info_page" />
+    <configuration name="build" type="js.build_tools.npm" factoryName="npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" factoryName="npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+    </configuration>
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="npm.start" />
+      <item index="1" class="java.lang.String" itemvalue="Node.js.MyInfoForm.js" />
+      <item index="2" class="java.lang.String" itemvalue="npm.build" />
+    </list>
+    <recent_temporary>
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="npm.start" />
+        <item index="1" class="java.lang.String" itemvalue="npm.build" />
+        <item index="2" class="java.lang.String" itemvalue="Node.js.MyInfoForm.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f10b8331-e572-4147-a03b-2afb00dd1c19" name="Default" comment="" />
+      <created>1530763912446</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1530763912446</updated>
+      <workItem from="1530763913767" duration="1077000" />
+      <workItem from="1530853243372" duration="1219000" />
+      <workItem from="1530947858697" duration="924000" />
+      <workItem from="1531053974559" duration="1041000" />
+      <workItem from="1531218077642" duration="930000" />
+      <workItem from="1531309755142" duration="599000" />
+      <workItem from="1531369510202" duration="11192000" />
+      <workItem from="1531567173125" duration="1399000" />
+      <workItem from="1531654199093" duration="599000" />
+      <workItem from="1531714693928" duration="6071000" />
+      <workItem from="1531755628813" duration="2111000" />
+      <workItem from="1531804637732" duration="27582000" />
+      <workItem from="1531888149078" duration="26578000" />
+      <workItem from="1531972163121" duration="9606000" />
+      <workItem from="1532067729513" duration="16995000" />
+      <workItem from="1532152419406" duration="11132000" />
+      <workItem from="1532233965604" duration="9341000" />
+      <workItem from="1532249429721" duration="4905000" />
+      <workItem from="1532268880913" duration="1084000" />
+      <workItem from="1532323325025" duration="1016000" />
+      <workItem from="1532329068987" duration="1149000" />
+      <workItem from="1532337179617" duration="331000" />
+      <workItem from="1532409273331" duration="26410000" />
+      <workItem from="1532492927413" duration="12802000" />
+      <workItem from="1532575807667" duration="1221000" />
+      <workItem from="1532755759323" duration="2498000" />
+      <workItem from="1532792992659" duration="597000" />
+      <workItem from="1532833542929" duration="1820000" />
+      <workItem from="1532927849275" duration="1201000" />
+      <workItem from="1532951887408" duration="682000" />
+      <workItem from="1533009988249" duration="15777000" />
+      <workItem from="1533102115760" duration="4233000" />
+      <workItem from="1533135890062" duration="4783000" />
+      <workItem from="1533182046423" duration="10215000" />
+      <workItem from="1533203239409" duration="10257000" />
+      <workItem from="1533272528077" duration="24386000" />
+      <workItem from="1533359746517" duration="17056000" />
+      <workItem from="1533468306496" duration="11867000" />
+      <workItem from="1533532968439" duration="17260000" />
+      <workItem from="1533564908032" duration="7150000" />
+      <workItem from="1533619861591" duration="20106000" />
+      <workItem from="1533655719351" duration="2798000" />
+      <workItem from="1533702899236" duration="27064000" />
+      <workItem from="1533787641525" duration="5500000" />
+      <workItem from="1533828071504" duration="1189000" />
+      <workItem from="1533877490441" duration="23412000" />
+      <workItem from="1533992124914" duration="11982000" />
+      <workItem from="1534078469537" duration="2433000" />
+      <workItem from="1534137160601" duration="21114000" />
+      <workItem from="1534176245854" duration="3839000" />
+      <workItem from="1534223201957" duration="20204000" />
+      <workItem from="1534336962519" duration="1913000" />
+      <workItem from="1534381969948" duration="4836000" />
+      <workItem from="1534439670549" duration="601000" />
+      <workItem from="1534479030211" duration="7055000" />
+      <workItem from="1534522589032" duration="2020000" />
+      <workItem from="1534568948018" duration="15622000" />
+      <workItem from="1534654372753" duration="25315000" />
+      <workItem from="1534748412304" duration="16345000" />
+      <workItem from="1534781185997" duration="753000" />
+      <workItem from="1534828834891" duration="20484000" />
+      <workItem from="1534910080531" duration="1180000" />
+      <workItem from="1534996971341" duration="607000" />
+      <workItem from="1535030294697" duration="875000" />
+      <workItem from="1535388696540" duration="981000" />
+      <workItem from="1535438898832" duration="1767000" />
+      <workItem from="1535442478402" duration="11362000" />
+      <workItem from="1535535327470" duration="445000" />
+      <workItem from="1535615047028" duration="5032000" />
+      <workItem from="1535642998777" duration="1198000" />
+      <workItem from="1535694732027" duration="11349000" />
+      <workItem from="1535733357778" duration="415000" />
+      <workItem from="1535953572829" duration="6189000" />
+      <workItem from="1536038539853" duration="1350000" />
+      <workItem from="1536042182879" duration="3315000" />
+      <workItem from="1536047386697" duration="388000" />
+      <workItem from="1536048133921" duration="3546000" />
+      <workItem from="1536066623835" duration="822000" />
+      <workItem from="1536076053248" duration="4396000" />
+      <workItem from="1536124737081" duration="344000" />
+      <workItem from="1536132577330" duration="436000" />
+      <workItem from="1536134797262" duration="2533000" />
+      <workItem from="1536148354458" duration="494000" />
+      <workItem from="1536217650561" duration="1359000" />
+      <workItem from="1536226729575" duration="1157000" />
+      <workItem from="1536235873825" duration="203000" />
+      <workItem from="1536298070279" duration="78000" />
+      <workItem from="1536300114084" duration="88000" />
+      <workItem from="1536311108689" duration="8000" />
+      <workItem from="1536383641942" duration="12000" />
+      <workItem from="1536383686735" duration="1461000" />
+      <workItem from="1536391617308" duration="1071000" />
+      <workItem from="1536409508734" duration="713000" />
+      <workItem from="1536413687613" duration="3785000" />
+      <workItem from="1536424236038" duration="1332000" />
+      <workItem from="1536469937313" duration="753000" />
+      <workItem from="1536561267622" duration="682000" />
+      <workItem from="1536562115460" duration="631000" />
+      <workItem from="1536654404922" duration="751000" />
+      <workItem from="1536661908308" duration="1254000" />
+      <workItem from="1536842196598" duration="599000" />
+      <workItem from="1536902704942" duration="2015000" />
+      <workItem from="1537017044772" duration="1378000" />
+      <workItem from="1537073455963" duration="1207000" />
+      <workItem from="1537156746436" duration="599000" />
+      <workItem from="1537204562152" duration="673000" />
+      <workItem from="1537246203539" duration="670000" />
+      <workItem from="1537253611875" duration="195000" />
+      <workItem from="1537253862713" duration="670000" />
+      <workItem from="1537254935235" duration="2264000" />
+      <workItem from="1537334804321" duration="4329000" />
+      <workItem from="1537615477087" duration="572000" />
+      <workItem from="1537705209253" duration="1675000" />
+      <workItem from="1537766398618" duration="39000" />
+      <workItem from="1537850719389" duration="1447000" />
+      <workItem from="1538290218089" duration="312000" />
+      <workItem from="1542687067308" duration="876000" />
+      <workItem from="1542783709098" duration="1300000" />
+      <workItem from="1543044119982" duration="20000" />
+      <workItem from="1543299212285" duration="18000" />
+      <workItem from="1543299678290" duration="598000" />
+      <workItem from="1543498944962" duration="8000" />
+      <workItem from="1543554556997" duration="21000" />
+      <workItem from="1543564444422" duration="501000" />
+      <workItem from="1543591305755" duration="599000" />
+      <workItem from="1543743067035" duration="2000" />
+      <workItem from="1543753297371" duration="1000" />
+      <workItem from="1543923616854" duration="6000" />
+      <workItem from="1544010357192" duration="599000" />
+      <workItem from="1544337477671" duration="5536000" />
+    </task>
+    <task id="LOCAL-00023" summary="Create Main Page(index page)&#10;진행 중인 ContextAPI 에서 데이터를 얻어 보여줄 Main 페이지 일부 완성.&#10;사진은 일단 마동석으로 되어 있는데 좀 더 추가해서 slice로 바꿀 예정.">
+      <created>1533021483895</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1533021483895</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Create Category Menu at ContentAPI&#10;ContentAPI(8082 서버) 에 있는 카테고리 목록을 불러온 메뉴 구현 완료.">
+      <created>1533028159743</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1533028159743</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Create WarmRequestList Component&#10;Index 페이지에서 갓 올라온 따뜻한 사진 컴포넌트 구현 완료.&#10;API 측에서는 방금 올라온 사진 중에 허가 받은 리쿼스트와 Category 가 형성된 리쿼스트만 추출할 예정.">
+      <created>1533045064734</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1533045064734</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Update WarmRequestList Component&#10;방금 올라온 따뜻한 사진 목록에서 HOME에서 최신 날짜와 조회수가 많은 순서로 10개만 끊어서 가져와 보여주는 기능으로 고쳤음.">
+      <created>1533125599167</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1533125599167</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Create BriefRequestList Component&#10;프로젝트의 25%에 해당되는 페이징네이션 드디어 구축 완료 :)&#10;약간의 버그가 존재할 수 있어서 차후에 수정이 존재할 수도 있음.">
+      <created>1533214644971</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1533214644972</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Update BriefRequestList Pagination &amp; Create BriefRequestView&#10;어제 계속 작업했던 Pagination 을 쿼리 스트링을 이용하여 반영하는 작업 성공하였음.&#10;그리고 BriefRequestView를 이용하여 컴포넌트 별 관리하기 용이하게 정리하였음.">
+      <created>1533277035931</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1533277035932</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Create RequestView Component&#10;요청을 클릭하면 페이징네이션과 마찬가지로 반영되게 만들어서 요청과 베스트 제목을 보는 기능까지 구현 완료.&#10;요청 좋아요, 댓글 기능, 제목 목록 보기 구현은 저녁 먹고 진행할 예정.">
+      <created>1533291793302</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1533291793302</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Create TodayRank Component&#10;Redis 캐시에 저장된 실시간 베스트 요청 목록을 10개 가져와서 클라이언트 측에서 보여주는 기능을 최종적으로 완료하였음.&#10;또한 리다이렉트로 인한 문제도 location 변수를 이용하여 해결을 했음.">
+      <created>1533306504676</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1533306504676</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Update MainTitle Component&#10;MainTitle 의 명칭을 MainHeader로 수정하였음.&#10;그리고 개발자 정보 컴포넌트 정보도 수정이 있음.">
+      <created>1533372266123</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1533372266123</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Create Title Action, Reducer&#10;제목 목록을 받아오기 위한 Redux Action, Reducer 생성 완료.">
+      <created>1533374261044</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1533374261044</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Create MainTitleView Component&#10;제목 목록 보는 기능을 최종적으로 구현 완료 하였으며, 또한 공감 버튼 누르는 기능까지 axios 를 이용하여 완료하였음.&#10;그러나 Redux를 이용하지 않았으니 이에 대해서는 차후 수정이 필요할 것으로 판단.">
+      <created>1533388557751</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1533388557751</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Update MainTitleView Component - About Title List&#10;제목 목록이 너무 많아지면 보기 안 좋아지기 때문에 작은 페이징네이션으로 설정하였음.&#10;그 대신에 내 제목을 빨리 찾을 수 있는 기능을 보완할 필요가 있을 듯함.">
+      <created>1533473978127</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1533473978127</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Create RequestEmpathyView Component&#10;Request 공감 컴포넌트 생성 완료.&#10;링크에 따른 반영은 내일 계속 이어 할 예정.">
+      <created>1533480501626</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1533480501626</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Update MainTitleView Component&#10;사용자가 제목 올리는 기능과 수정하는 기능 구현 완료. 일부 reducer, action, router 등에 수정 부분이 있음.&#10;제목 올린 후에 리다이렉트 되는 기능까지 첨가하여 원활한 Component 조작이 가능하도록 조정하였음.">
+      <created>1533547420078</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1533547420078</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Update MainTitleView Component&#10;본인이 작성한 제목을 삭제하는 기능 추가 및 일부 Router 에서 post 요청 과정 중 status 에 따른 안내 창 추가.">
+      <created>1533567193294</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1533567193294</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Update Each Component For React Syntax&#10;일부 className으로 되어 있지 않은 부분을 수정하였음. 또한 key 값을 안 받은 것도 수정하여 만의 하나 에러를 없앴음.">
+      <created>1533576819220</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1533576819220</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Create createRequest Component&#10;요청을 추가하는 기능을 구현 중. 올리는 것까지 최종적으로 완료하였으며 리다이렉트 작업만 하면 됨.">
+      <created>1533632122974</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1533632122975</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Create PhotoAgree Component&#10;사용자가 사진을 올리면 매니저가 사진에 대한 카테고리를 선정하는 작업을 진행할 수 있게 도와주는 PhotoAgree (카테고리 미선정, 부적절한 차단 사진 등) 생성 완료. SelectCategory 컴포넌트는 집 가서 계속 진행하겠음.">
+      <created>1533647696238</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1533647696238</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Create SelectCategory Component&#10;매니저가 요청 사진을 허가할 수 있는 기능을 진행하는 컴포넌트 최종 완성.">
+      <created>1533709661920</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1533709661920</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Update RequestView Component - Create Request Blocking&#10;부적절한 요청(예를 들어 성인물, 정치물 등등)에 대해서 매니저와 관리자가 그 때마다 차단할 수 있도록 RequestView 에 버튼으로 첨가하였음.">
+      <created>1533719084621</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1533719084621</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Create TodayMainRank Component&#10;오늘의 베스트 제목학원 보여주는 컴포넌트 최종적으로 생성 완료. 이전에 계획했던 UI와 똑같이 편집하였음.">
+      <created>1533733920349</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1533733920349</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Update RequestView Component&#10;기존에 (요청, 명예의 전당, 요청 공감, 제목 목록, 댓글) 등을 한 번에 보여지는 것이 아니라&#10;BEST 처럼 기능 별로 (요청, 명예의 전당, 요청 공감) (제목 목록) (댓글) 영역으로 나뉘는 Tab Button 으로 변경하였음.">
+      <created>1533800819754</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1533800819754</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Create Comment Action, Reducer&#10;Comment 액션과 리듀서 추가 완료. Comment View Component 는 현재 제작 중.">
+      <created>1533895645157</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1533895645157</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Create MainCommentView Component&#10;댓글 목록을 볼 수 있는 컴포넌트 최종 제작 완료. 댓글 삽입, 수정, 삭제, 조회 기능까지 전부 적용하였음.&#10;또한 댓글 수정은 Modal 로 조정하였음.">
+      <created>1533907178592</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1533907178592</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Update Each Router - Comment Empathy&#10;댓글 공감 버튼을 누르면 체킹되는 기능을 라우팅을 통하여 작업 처리 완료하였음.">
+      <created>1533907907467</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1533907907467</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Update RequestView Component Before Workin'&#10;사용자가 요청 정보에 대해서 수정할 수 있는 기능과 삭제하는 기능을 이용할 수 있는 컴포넌트를 제작 중.&#10;이전에 사용 조건에 맞도록 타 컴포넌트 일부를 수정하였음.">
+      <created>1533999140013</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1533999140014</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Update RequestView Component - Update, Delete Request&#10;요청에 대해 그림을 제외하고 내용 수정, 전문 삭제 작업까지 완료.&#10;그림은 요청에 대한 핵심 요소이기 때문에 수정이 불가능하도록 막을 것임.">
+      <created>1534005779043</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1534005779043</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Update Redux Action For UserAPI&#10;userAPI 내용에 대하여 확실한 반영을 위해 redux action 을 수정하였음.">
+      <created>1534085582751</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1534085582752</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Create MyRequestStatistic Component&#10;내가 현재까지 올린 요청 목록을 보여줄 수 있는 기능 구현 중.&#10;구글 그래프를 이용하여 사용자 성향을 표기할 예정. 그리고 일부는 JS 문법에 안 맞는 사항을 수정하였음.">
+      <created>1534155319252</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1534155319253</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Update MyRequestStatistic Component&#10;내가 올린 요청 목록, 요청 허가를 기다리는 목록, 요청 별 통계 자료(버블 챠트, 구글 Library 이용) 조회 기능 구현 완료.&#10;그리고 내가 올린 제목 목록을 조회할 때 필요한 Action 과 Reduce 일부 구현 해뒀음.">
+      <created>1534164427805</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1534164427806</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Create MyTitleStatistic Component&#10;내가 현재까지 올린 제목 목록을 확인할 수 있는 컴포넌트를 최종 구현 완료.">
+      <created>1534229168900</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1534229168901</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Create SearchResult Component&#10;사용자가 입력한 제목과 요청 내용들로 검색하는 기능을 최종 구현하였음.&#10;댓글에 대해서 통합 검색을 할 리는 없어서 제목과 요청으로만 검색할 수 있도록 설정함.">
+      <created>1534255226017</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1534255226017</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Update README.md">
+      <created>1534339056579</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1534339056579</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Create Today Request Reducer And Action&#10;오늘의 배틀 요청에 대해서 Redux action 과 reducer 생성.&#10;요청 내용 정보에 대해서는 굳이 WebSocket 으로 받지 않고 정보만 보여주도록 할 예정.">
+      <created>1534574754262</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1534574754263</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Create TodayTitleBattle Component A Little&#10;Web Socket 먹이는 부분까지는 완료하였음. 그렇지만 오늘의 제목 배틀에서 입력하는 기능이나 수정하는 기능은 저녁 식사 이후 진행할 예정.">
+      <created>1534582004578</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1534582004579</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Update Something to Experiment Web Socket&#10;Web Socket 정상 작동 여부를 테스팅하기 위해 임시로 localStorage 에서 sessionStorage 로 교체하였음.">
+      <created>1534670360966</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1534670360967</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Update TodayTitleBattle Component - Web Socket About CUD&#10;사용자가 제목 추가, 삭제, 갱신하는 경우 Web Socket 에서 처리해야 하는 일을 구현 완료하였음.&#10;그렇지만 Web Socket 에 대해서 개인적으로 공부를 약간 더 해 볼 필요가 있어서 나중에 갱신될 수 있음.">
+      <created>1534681732573</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1534681732574</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Update README.md">
+      <created>1534759857492</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1534759857492</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Update TodayTitleBattle Component&#10;공감에 대한 실시간은 수치와 목록 조회 등은 정상 작동 되지만, 공감 체킹에 대하여 사용자 별로 동기화를 통해 간이적으로만 해결하였음.">
+      <created>1534772098277</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1534772098277</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Create TitleManage Component&#10;ADMIN(관리자) 권한을 가진 사람이 제목에 대해 최종적으로 관리하기 위한 기능 완성.&#10;선택 삭제 기능, 모든 제목 조회 가능.">
+      <created>1534837773804</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1534837773805</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Create RequestManage Component&#10;관리자(ADMIN) 가 전체 요청 목록들을 조회하여 부적절한 사진들을 삭제하는 기능을 추가하였음.">
+      <created>1534855215936</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1534855215936</updated>
+    </task>
+    <task id="LOCAL-00064" summary="File Uploading about Alpha Version Capture&#10;알파 버전 완성 결과물 이미지 파일 저장.&#10;이는 wiki 에서 어떤 기능이 있는지 소개할 예정.">
+      <created>1534859239283</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1534859239283</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Update README.md&#10;Application 홍보 그림 추가.">
+      <created>1535389087689</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1535389087690</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Create FindForm Component&#10;회원 정보를 입력하여 아이디를 찾는 기능 구현 완료.&#10;비밀번호 기능은 JMail 를 이용하여 구현할 예정.">
+      <created>1535446523478</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1535446523480</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Update UserPrincipalInfo Component&#10;매니저가 회원 등급을 변경하는 작업을 완료하였음.">
+      <created>1535465751372</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1535465751372</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Update UserPrincipalInfo - Create Role Update&#10;매니저, 관리자가 권한을 새로 바꾸는 작업을 진행하는 기능에 대해 반영하였음.">
+      <created>1535702758774</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1535702758774</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Update Each Context Manage - Add Profile&#10;프로필 사진과 올린 회원 정보를 보여줄 수 있도록 하였으며, 그리고 삭제 선택 시 전체 해제할 수 있는 기능을 부여함.">
+      <created>1535702864712</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1535702864712</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Update Brief Request List&#10;페이징네이션 작업 중 이전과 다음 버튼에 대한 오타 수정.">
+      <created>1536424367135</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1536424367135</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Update Redux Thunk For Category Action&#10;Redux Thunk 로 카테고리 요청 목록 기능 구현 완료.">
+      <created>1544346141188</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1544346141189</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="644772000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19725013" sideWeight="0.6525157" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37400228" sideWeight="0.54415655" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23261118" sideWeight="0.49814913" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31927025" sideWeight="0.45584348" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19725013" sideWeight="0.3474843" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24960339" sideWeight="0.4937304" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27480045" sideWeight="0.48069805" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19249074" sideWeight="0.35733697" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3990878" sideWeight="0.49814913" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37400228" sideWeight="0.54415655" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23261118" sideWeight="0.49814913" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37400228" sideWeight="0.45584348" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27868852" sideWeight="0.39344263" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27251995" sideWeight="0.48069805" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27868852" sideWeight="0.60655737" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24960339" sideWeight="0.4937304" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19249074" sideWeight="0.35733697" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3990878" sideWeight="0.49814913" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Create MainCommentView Component&#10;댓글 목록을 볼 수 있는 컴포넌트 최종 제작 완료. 댓글 삽입, 수정, 삭제, 조회 기능까지 전부 적용하였음.&#10;또한 댓글 수정은 Modal 로 조정하였음." />
+    <MESSAGE value="Update Each Router - Comment Empathy&#10;댓글 공감 버튼을 누르면 체킹되는 기능을 라우팅을 통하여 작업 처리 완료하였음." />
+    <MESSAGE value="Update RequestView Component Before Workin'&#10;사용자가 요청 정보에 대해서 수정할 수 있는 기능과 삭제하는 기능을 이용할 수 있는 컴포넌트를 제작 중.&#10;이전에 사용 조건에 맞도록 타 컴포넌트 일부를 수정하였음." />
+    <MESSAGE value="Update RequestView Component - Update, Delete Request&#10;요청에 대해 그림을 제외하고 내용 수정, 전문 삭제 작업까지 완료.&#10;그림은 요청에 대한 핵심 요소이기 때문에 수정이 불가능하도록 막을 것임." />
+    <MESSAGE value="Update Redux Action For UserAPI&#10;userAPI 내용에 대하여 확실한 반영을 위해 redux action 을 수정하였음." />
+    <MESSAGE value="Create MyRequestStatistic Component&#10;내가 현재까지 올린 요청 목록을 보여줄 수 있는 기능 구현 중.&#10;구글 그래프를 이용하여 사용자 성향을 표기할 예정. 그리고 일부는 JS 문법에 안 맞는 사항을 수정하였음." />
+    <MESSAGE value="Update MyRequestStatistic Component&#10;내가 올린 요청 목록, 요청 허가를 기다리는 목록, 요청 별 통계 자료(버블 챠트, 구글 Library 이용) 조회 기능 구현 완료.&#10;그리고 내가 올린 제목 목록을 조회할 때 필요한 Action 과 Reduce 일부 구현 해뒀음." />
+    <MESSAGE value="Create MyTitleStatistic Component&#10;내가 현재까지 올린 제목 목록을 확인할 수 있는 컴포넌트를 최종 구현 완료." />
+    <MESSAGE value="Create SearchResult Component&#10;사용자가 입력한 제목과 요청 내용들로 검색하는 기능을 최종 구현하였음.&#10;댓글에 대해서 통합 검색을 할 리는 없어서 제목과 요청으로만 검색할 수 있도록 설정함." />
+    <MESSAGE value="Create Today Request Reducer And Action&#10;오늘의 배틀 요청에 대해서 Redux action 과 reducer 생성.&#10;요청 내용 정보에 대해서는 굳이 WebSocket 으로 받지 않고 정보만 보여주도록 할 예정." />
+    <MESSAGE value="Create TodayTitleBattle Component A Little&#10;Web Socket 먹이는 부분까지는 완료하였음. 그렇지만 오늘의 제목 배틀에서 입력하는 기능이나 수정하는 기능은 저녁 식사 이후 진행할 예정." />
+    <MESSAGE value="Update Something to Experiment Web Socket&#10;Web Socket 정상 작동 여부를 테스팅하기 위해 임시로 localStorage 에서 sessionStorage 로 교체하였음." />
+    <MESSAGE value="Update TodayTitleBattle Component - Web Socket About CUD&#10;사용자가 제목 추가, 삭제, 갱신하는 경우 Web Socket 에서 처리해야 하는 일을 구현 완료하였음.&#10;그렇지만 Web Socket 에 대해서 개인적으로 공부를 약간 더 해 볼 필요가 있어서 나중에 갱신될 수 있음." />
+    <MESSAGE value="Update README.md" />
+    <MESSAGE value="Update TodayTitleBattle Component&#10;공감에 대한 실시간은 수치와 목록 조회 등은 정상 작동 되지만, 공감 체킹에 대하여 사용자 별로 동기화를 통해 간이적으로만 해결하였음." />
+    <MESSAGE value="Create TitleManage Component&#10;ADMIN(관리자) 권한을 가진 사람이 제목에 대해 최종적으로 관리하기 위한 기능 완성.&#10;선택 삭제 기능, 모든 제목 조회 가능." />
+    <MESSAGE value="Create RequestManage Component&#10;관리자(ADMIN) 가 전체 요청 목록들을 조회하여 부적절한 사진들을 삭제하는 기능을 추가하였음." />
+    <MESSAGE value="File Uploading about Alpha Version Capture&#10;알파 버전 완성 결과물 이미지 파일 저장.&#10;이는 wiki 에서 어떤 기능이 있는지 소개할 예정." />
+    <MESSAGE value="Update README.md&#10;Application 홍보 그림 추가." />
+    <MESSAGE value="Create FindForm Component&#10;회원 정보를 입력하여 아이디를 찾는 기능 구현 완료.&#10;비밀번호 기능은 JMail 를 이용하여 구현할 예정." />
+    <MESSAGE value="Update UserPrincipalInfo Component&#10;매니저가 회원 등급을 변경하는 작업을 완료하였음." />
+    <MESSAGE value="Update UserPrincipalInfo - Create Role Update&#10;매니저, 관리자가 권한을 새로 바꾸는 작업을 진행하는 기능에 대해 반영하였음." />
+    <MESSAGE value="Update Each Context Manage - Add Profile&#10;프로필 사진과 올린 회원 정보를 보여줄 수 있도록 하였으며, 그리고 삭제 선택 시 전체 해제할 수 있는 기능을 부여함." />
+    <MESSAGE value="Update Brief Request List&#10;페이징네이션 작업 중 이전과 다음 버튼에 대한 오타 수정." />
+    <MESSAGE value="Update Redux Thunk For Category Action&#10;Redux Thunk 로 카테고리 요청 목록 기능 구현 완료." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Redux Thunk For Category Action&#10;Redux Thunk 로 카테고리 요청 목록 기능 구현 완료." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="9" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/request_manage/RequestManage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/action_request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7452">
+          <caret line="325" column="34" lean-forward="false" selection-start-line="325" selection-start-column="34" selection-end-line="325" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/create_request_page/CreateRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="46" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/slide_bar/nav_menu/CategoryMenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="39" column="28" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/request_component/MainRequestView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1242">
+          <caret line="55" column="25" lean-forward="false" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/category_page/BriefRequestList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/request_page/RequestView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/title_component/MainTitleView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/comment_component/modal.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/comment_component/MainCommentView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1541">
+          <caret line="81" column="21" lean-forward="false" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/request_manage/RequestManage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/action_request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7452">
+          <caret line="325" column="34" lean-forward="false" selection-start-line="325" selection-start-column="34" selection-end-line="325" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/create_request_page/CreateRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="46" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/slide_bar/nav_menu/CategoryMenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="39" column="28" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/request_component/MainRequestView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1242">
+          <caret line="55" column="25" lean-forward="false" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/category_page/BriefRequestList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/request_page/RequestView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/title_component/MainTitleView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/comment_component/modal.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/comment_component/MainCommentView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1541">
+          <caret line="81" column="21" lean-forward="false" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/request_manage/RequestManage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/action_request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7452">
+          <caret line="325" column="34" lean-forward="false" selection-start-line="325" selection-start-column="34" selection-end-line="325" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/create_request_page/CreateRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="46" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/slide_bar/nav_menu/CategoryMenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="39" column="28" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/request_component/MainRequestView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1242">
+          <caret line="55" column="25" lean-forward="false" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/request_page/RequestView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/title_component/MainTitleView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/comment_component/modal.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/comment_component/MainCommentView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1541">
+          <caret line="81" column="21" lean-forward="false" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/request_manage/RequestManage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/action_request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7452">
+          <caret line="325" column="34" lean-forward="false" selection-start-line="325" selection-start-column="34" selection-end-line="325" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/create_request_page/CreateRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="46" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/request_component/MainRequestView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="58" column="41" lean-forward="false" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/index_page/MainHeader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="26" column="36" lean-forward="false" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/configureStore.prod.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#52#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/action_type.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/main_side/category_page/BriefRequestList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="85" column="18" lean-forward="false" selection-start-line="85" selection-start-column="18" selection-end-line="85" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/GuestRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="58" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/WarmRequestListContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-207">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducer/reducer_category.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="30" column="1" lean-forward="true" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#307#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/api/api_category.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/type/type_category.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="89" lean-forward="false" selection-start-line="2" selection-start-column="89" selection-end-line="2" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/index_page/IndexPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/slide_bar/nav_menu/CategoryMenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1298">
+          <caret line="59" column="28" lean-forward="true" selection-start-line="59" selection-start-column="28" selection-end-line="59" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/action_category.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="55" column="6" lean-forward="false" selection-start-line="55" selection-start-column="6" selection-end-line="55" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#87#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/BriefRequestListContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1380">
+          <caret line="60" column="6" lean-forward="true" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/CategoryMenuContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/configureStore.dev.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" column="46" lean-forward="true" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/configureStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

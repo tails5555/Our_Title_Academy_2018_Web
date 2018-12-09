@@ -112,7 +112,7 @@ class BriefRequestList extends Component{
         if(n <= pageCount)
             pageNumbers.push(n);
 
-        const renderPageNumbers = pageNumbers.map(number => {
+        const renderPageNumbers = pageNumbers.map((number, idx) => {
             return (
                 (number > base && number < base + 11) ?
                     <button className={((paginationModel === null) || paginationModel.pg === number) ? "w3-button w3-pink" : "w3-button w3-hover-pink"}
