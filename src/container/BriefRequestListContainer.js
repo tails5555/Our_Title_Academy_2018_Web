@@ -12,7 +12,7 @@ import * as CategoryAction from "../action/action_category";
 function mapStateToProps(state){
     return {
         searchToolbar : state.form.searchToolbar,
-        selectCategory : state.category.selectCategory,
+        category : state.category,
         requestList : state.request.requestList,
         paginate : state.request.paginate,
         searchOption : state.request.searchOption,

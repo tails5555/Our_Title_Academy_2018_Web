@@ -46,9 +46,10 @@ class BriefRequestList extends Component{
     }
 
     componentDidMount(){
+        const { categoryAction } = this.props;
         let paginationModel = queryString.parse(this.props.location.search);
         this.handleInitialize(paginationModel);
-        this.props.fetchSelectCategory(this.props.match.params.id);
+        categoryAction.fetchCategoryElementAction(this.props.match.params.id);
         // paginationModel 이 {} 모양이어도, 모든 목록이 나오기 때문에 정상적으로 돌아가는 것을 확인했습니다!
         this.props.fetchCategoryRequestBrief(this.props.match.params.id, paginationModel);
     }
@@ -64,15 +65,16 @@ class BriefRequestList extends Component{
     }
 
     componentWillUnmount(){
+        const { categoryAction } = this.props;
         this.props.resetFetchCategoryRequestBrief();
-        this.props.resetFetchSelectCategory();
+        categoryAction.resetFetchCategoryElementAction();
         this.props.resetFetchSearchOption();
         this.props.resetFetchOrderOption();
         this.props.resetFetchSizeOption();
     }
 
     render() {
-        const { category } = this.props.selectCategory;
+        const { element } = this.props.category;
         const { requests } = this.props.requestList;
         const { searchBy } = this.props.searchOption;
         const { orderBy } = this.props.orderOption;
@@ -147,7 +149,7 @@ class BriefRequestList extends Component{
                 </header>
                 <br/><br/>
                 <header className="major">
-                    <h2>분류 별 제목 학원 - { category === null || category.name }</h2>
+                    <h2>분류 별 제목 학원 - { element === null || element.name }</h2>
                 </header>
                 <form onSubmit={handleSubmit(receivePagination, this.props.match.params.id)}>
                     <label>검색 조건</label>
