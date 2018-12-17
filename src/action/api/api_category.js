@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { CONTEXT_ROOT_URL } from "./root_url";
 
-const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/categories';
+const ROOT_URL = `${CONTEXT_ROOT_URL}/categories`;
 
 export const fetchCategoryListApi = () => {
     return axios({

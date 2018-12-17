@@ -1,4 +1,9 @@
 import {
+    ANYBODY_FETCH_HOME_REQUESTS, ANYBODY_FETCH_HOME_REQUESTS_SUCCESS, ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
+    ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE
+} from "../action/type/type_request";
+
+import {
     FETCH_HOME_REQUEST_BRIEF, FETCH_HOME_REQUEST_BRIEF_SUCCESS, FETCH_HOME_REQUEST_BRIEF_FAILURE, RESET_FETCH_HOME_REQUEST_BRIEF,
     FETCH_ALL_REQUEST_BRIEF, FETCH_ALL_REQUEST_BRIEF_SUCCESS, FETCH_ALL_REQUEST_BRIEF_FAILURE, RESET_FETCH_ALL_REQUEST_BRIEF,
     FETCH_CATEGORY_REQUEST_BRIEF, FETCH_CATEGORY_REQUEST_BRIEF_SUCCESS, FETCH_CATEGORY_REQUEST_BRIEF_FAILURE, RESET_FETCH_CATEGORY_REQUEST_BRIEF,
@@ -25,6 +30,8 @@ import {
 } from "../action/action_my_context";
 
 const INITIAL_STATE = {
+    main : { list : [], count : 0, element : null, loading : false, error : null, status : 0, type : null },
+    rank : { list : [], loading : false, error : null },
     myRequestList : { validRequests : [], nonValidRequests : [], loading : false, error : null },
     myRequestStatistic : { statistics : [], loading : false, error : null },
     requestList : { requests : [], loading : false, error : null },
@@ -43,6 +50,22 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action){
     let error;
     switch(action.type){
+        case ANYBODY_FETCH_HOME_REQUESTS :
+        case ANYBODY_FETCH_REQUESTS_BY_QUERY :
+            return { ...state, main : { list : [], loading : true }};
+
+        case ANYBODY_FETCH_HOME_REQUESTS_SUCCESS :
+            return { ...state, main : { list : action.payload, loading : false }};
+
+        case ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS :
+            const { results, count } = action.payload;
+            return { ...state, main : { loading : false, list : results, count }};
+
+        case ANYBODY_FETCH_HOME_REQUESTS_FAILURE :
+        case ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE :
+            return { ...state, main : { loading : false, error : action.payload }};
+
+
         case FETCH_HOME_REQUEST_BRIEF :
         case FETCH_ALL_REQUEST_BRIEF :
             return { ...state, requestList : { requests : [], loading : true, error : null }};

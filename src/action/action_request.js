@@ -1,7 +1,68 @@
 import axios from 'axios';
+
+import {
+    fetchHomeBriefRequestsApi, fetchBriefRequestsApi
+} from './api/api_request';
+import {
+    ANYBODY_FETCH_HOME_REQUESTS, ANYBODY_FETCH_HOME_REQUESTS_SUCCESS, ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
+    ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE
+} from './type/type_request';
+
 import {RESET_FETCH_ALL_TITLE_LIST} from "./action_title";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/request';
+
+const fetchHomeRequestsStart = () => ({
+    type : ANYBODY_FETCH_HOME_REQUESTS
+});
+
+const fetchHomeRequestsSuccess = (response) => ({
+    type : ANYBODY_FETCH_HOME_REQUESTS_SUCCESS,
+    payload : response && response.data
+});
+
+const fetchHomeRequestsFailure = (error) => ({
+    type : ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
+    payload : error && error.message
+});
+
+export const fetchHomeRequests = () => (dispatch) => {
+    dispatch(fetchHomeRequestsStart());
+
+    return fetchHomeBriefRequestsApi().then((response) => {
+        setTimeout(() => {
+            dispatch(fetchHomeRequestsSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(fetchHomeRequestsFailure(error));
+    });
+}
+
+const fetchBriefRequestsByQueryStart = () => ({
+    type : ANYBODY_FETCH_REQUESTS_BY_QUERY
+});
+
+const fetchBriefRequestsByQuerySuccess = (response) => ({
+    type : ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS,
+    payload : response && response.data
+});
+
+const fetchBriefRequestsByQueryFailure = (error) => ({
+    type : ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE,
+    payload : error && error.message
+});
+
+export const fetchBriefRequestsByQuery = (queryModel) => (dispatch) => {
+    dispatch(fetchBriefRequestsByQueryStart());
+
+    return fetchBriefRequestsApi(queryModel).then((response) => {
+        setTimeout(() => {
+            dispatch(fetchBriefRequestsByQuerySuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(fetchBriefRequestsByQueryFailure(error));
+    });
+}
 
 export const FETCH_HOME_REQUEST_BRIEF = 'FETCH_HOME_REQUEST_BRIEF';
 export const FETCH_HOME_REQUEST_BRIEF_SUCCESS = 'FETCH_HOME_REQUEST_BRIEF_SUCCESS';
