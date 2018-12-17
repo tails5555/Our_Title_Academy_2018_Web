@@ -5,8 +5,12 @@ import { WarmRequestListContainer } from '../../container'
 
 const IndexPage = () => (
     <Fragment>
-        <MainHeader />
-        <WarmRequestListContainer/>
+        <div id="home_header">
+            <MainHeader />
+        </div>
+        <div id="home_warm_request_list">
+            <WarmRequestListContainer/>
+        </div>
     </Fragment>
 );
 

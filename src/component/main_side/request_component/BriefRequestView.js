@@ -46,7 +46,15 @@ class BriefRequestView extends Component{
         return(
             <article className={articleClass}>
                 <Link className="image" to={routeURI}>
-                    <img src={`${IMAGE_URL}/request_image/${request.id}`} onClick={this.handleClick.bind(this)} />
+                    <img
+                        src={`${IMAGE_URL}/request_image/${request.id}`}
+                        onClick={this.handleClick.bind(this)}
+                        alt="request_image"
+                        style={{
+                            height : '45vh',
+                            objectFit : 'cover'
+                        }}
+                    />
                 </Link>
                 <div className="w3-panel w3-topbar w3-bottombar w3-border-yellow w3-pale-yellow w3-center">
                     <h3 style={{fontFamily : '궁서체'}}>{request.bestTitle}</h3>

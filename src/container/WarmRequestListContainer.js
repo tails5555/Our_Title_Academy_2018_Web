@@ -1,30 +1,17 @@
 import {WarmRequestList} from "../component/main_side/index_page";
+import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
-import {
-    appFetchHomeRequestBrief, appFetchHomeRequestBriefSuccess, appFetchHomeRequestBriefFailure, resetAppFetchHomeRequestBrief
-} from "../action/action_request";
+import * as RequestAction from "../action/action_request";
 
 function mapStateToProps(state){
     return {
-        requestList : state.request.requestList
+        request : state.request.main
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchAnythingRequests : () => {
-            dispatch(appFetchHomeRequestBrief()).then((response) => {
-                if(!response.error){
-                    dispatch(appFetchHomeRequestBriefSuccess(response.payload));
-                } else {
-                    dispatch(appFetchHomeRequestBriefFailure(response.payload));
-                }
-            });
-
-        },
-        resetFetchAnythingRequests : () => {
-            dispatch(resetAppFetchHomeRequestBrief());
-        }
+        requestAction : bindActionCreators(RequestAction, dispatch)
     }
 }
 

@@ -21,7 +21,7 @@ class CategoryMenu extends Component{
         if(list.length > 0){
             menuView = list.map((category, idx) => (
                 <li key={`category_${idx}`} onClick={() => this.handleClickTop()}>
-                    <Link to={`/category/${category.id}/_move`}>
+                    <Link to={`/category/_move?cid=${category.id}&pg=1`}>
                         <i className="fas fa-book" /> {category.name}
                     </Link>
                 </li>

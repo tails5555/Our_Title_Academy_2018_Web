@@ -65,7 +65,8 @@ class TodayRank extends Component{
                                             <img
                                                 style={{
                                                     width : '100%',
-                                                    height : 'auto'
+                                                    height : '25vh',
+                                                    objectFit : 'cover'
                                                 }}
                                                 src={`${IMAGE_URL}/request_image/${request.requestId}`}
                                                 className="w3-image w3-round-large"

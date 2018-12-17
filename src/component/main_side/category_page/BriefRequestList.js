@@ -5,6 +5,9 @@ import {BriefRequestView} from "../request_component";
 import {renderField, renderSelect } from "../../form";
 import queryString from 'query-string';
 import { appFetchCategoryRequestBrief, appFetchCategoryRequestBriefSuccess, appFetchCategoryRequestBriefFailure } from "../../../action/action_request";
+import { MainTitle, CategoryTitle } from "../../unit_component";
+import {ListPagination} from "../../unit_component/request";
+import {ModalScreen} from "../../unit_component/modal";
 
 const receivePagination = (values, dispatch, props) => {
     const { paginationModel } = props.paginate;
@@ -28,15 +31,16 @@ const receivePagination = (values, dispatch, props) => {
 }
 
 class BriefRequestList extends Component{
-    handlePagination(event){
-        const { paginationModel } = this.props.paginate;
+    handlePagination = (event) => {
+        const { history, location } = this.props;
+        const paginationModel = queryString.parse(location.search);
         let newPaginationModel = { ...paginationModel, pg : event.target.id };
-        this.props.fetchCategoryRequestBrief(this.props.match.params.id, newPaginationModel);
         window.scroll({
             top: 0,
             left: 0,
             behavior: 'smooth'
         });
+        history.push(`/category/_move?${queryString.stringify(newPaginationModel)}`);
     }
 
     componentWillMount(){
@@ -46,12 +50,11 @@ class BriefRequestList extends Component{
     }
 
     componentDidMount(){
-        const { categoryAction } = this.props;
+        const { categoryAction, requestAction } = this.props;
         let paginationModel = queryString.parse(this.props.location.search);
         this.handleInitialize(paginationModel);
-        categoryAction.fetchCategoryElementAction(this.props.match.params.id);
-        // paginationModel 이 {} 모양이어도, 모든 목록이 나오기 때문에 정상적으로 돌아가는 것을 확인했습니다!
-        this.props.fetchCategoryRequestBrief(this.props.match.params.id, paginationModel);
+        categoryAction.fetchCategoryElementAction(paginationModel.cid);
+        requestAction.fetchBriefRequestsByQuery(paginationModel);
     }
 
     handleInitialize(paginationModel) {
@@ -74,83 +77,66 @@ class BriefRequestList extends Component{
     }
 
     render() {
-        const { element } = this.props.category;
-        const { requests } = this.props.requestList;
+        const { category } = this.props;
+        const { request, location } = this.props;
+        const paginationModel = queryString.parse(location.search);
+        const { list, loading, error, count } = request;
         const { searchBy } = this.props.searchOption;
         const { orderBy } = this.props.orderOption;
         const { sizeBy } = this.props.sizeOption;
         const { handleSubmit } = this.props;
-        const { paginationModel } = this.props.paginate;
 
-        const requestClass = (requests.length > 0) ? "posts" : '';
-        const requestRender = (requests.length > 0) ? requests.map((request) => {
-                return(
-                    <BriefRequestView key={`request_${request.id}`} isHome={false} request={request} routeURI={`/view_request/${request.id}/view?${paginationModel.queryString}`} />
+        let requestRender = null;
+
+        if(list){
+            if(list.length > 0){
+                requestRender =
+                    <div className="posts">
+                        {
+                            list.map((request) => (
+                                <BriefRequestView
+                                    key={`request_${request.id}`}
+                                    isHome={false}
+                                    request={request}
+                                    routeURI={`/view_request/${request.id}/view${location.search}`}
+                                />
+                            ))
+                        }
+                    </div>
+            } else {
+                requestRender = (
+                    <div id="has_no_result" className="w3-panel w3-pale-red w3-round-large" style={{ padding : '20px 10px' }}>
+                        <h2 className="w3-xlarge w3-center">
+                        <span style={{ fontSize : '80px', lineHeight : '0.6em', opacity : '0.2', marginRight : '10px' }}>
+                            <i className="fas fa-times-circle" />
+                        </span>
+                            <i>현재 분야에 해당되는 제목학원이 없습니다.</i>
+                        </h2>
+                        <h5 className="w3-center">매니저가 빠른 시간 내에 등록 해 올려 드리겠습니다. 나올 때까지 기다려주세요 :)</h5>
+                    </div>
                 )
-            }) :
-            <div className="w3-panel w3-pale-red w3-round-large">
-                <br/>
-                <span style={{fontSize:'80px', lineHeight:'0.6em', opacity:'0.2'}}><i className="fas fa-times-circle"></i></span>
-                <br/>
-                <h2 className="w3-xlarge"><i>현재 카테고리에 해당되는 요청이 없습니다.</i></h2>
-                <p>매니저가 빠른 시간 내에 등록 해 드립니다. 나올 때까지 기다려주세요 :)</p>
-            </div>
-        ;
-        const pageNumbers = [];
-        const barCount = 10;
-        const pageCount = (paginationModel !== null) ? Math.ceil(paginationModel.requestCount / paginationModel.sz) : 1;
-        let base = (paginationModel !== null) ? Math.floor((paginationModel.pg - 1) / 10) * 10 : 0;
-
-        if(base > 0)
-            pageNumbers.push(base);
-
-        for (let i = 1; i <= barCount; i++) {
-            let n = base + i;
-            if(n > pageCount) break;
-            pageNumbers.push(n);
-        }
-
-        let n = base + 11;
-        if(n <= pageCount)
-            pageNumbers.push(n);
-
-        const renderPageNumbers = pageNumbers.map((number, idx) => {
-            return (
-                (number > base && number < base + 11) ?
-                    <button className={((paginationModel === null) || paginationModel.pg === number) ? "w3-button w3-pink" : "w3-button w3-hover-pink"}
-                            key={number}
-                            id={number}
-                            onClick={this.handlePagination.bind(this)}
-                    >
-                        &nbsp;{number}&nbsp;
-                    </button> :
-                    (idx === 0) ?
-                        <button className="w3-button w3-hover-pink"
-                                key={number}
-                                id={number}
-                                onClick={this.handlePagination.bind(this)}
-                        >
-                            &nbsp;이전&nbsp;
-                        </button> :
-                        <button className="w3-button w3-hover-pink"
-                                key={number}
-                                id={number}
-                                onClick={this.handlePagination.bind(this)}
-                        >
-                            &nbsp;다음&nbsp;
-                        </button>
+            }
+        } else if(error !== null){
+            requestRender = (
+                <div id="has_error_note" className="w3-panel w3-pale-red w3-round-large" style={{ padding : '20px 10px' }}>
+                    <h2 className="w3-xlarge w3-center">
+                        <span style={{ fontSize : '80px', lineHeight : '0.6em', opacity : '0.2', marginRight : '10px' }}>
+                            <i className="fas fa-warning" />
+                        </span>
+                        <i>제목학원을 불러오는 도중 오류가 발생했습니다.</i>
+                    </h2>
+                    <h4 className="w3-center">오류 내용 : {error}</h4>
+                    <h5 className="w3-center">계속해서 오류가 발생하면 개발자나 관리자에게 알려주세요 :)</h5>
+                </div>
             );
-        });
+        } else {
+            requestRender = null;
+        }
 
         return (
             <section>
-                <header id="header">
-                    <span className="logo"><strong>Our Title Academy 2018</strong> - CATEGORY</span>
-                </header>
-                <br/><br/>
-                <header className="major">
-                    <h2>분류 별 제목 학원 - { element === null || element.name }</h2>
-                </header>
+                <MainTitle title="CATEGORY" />
+                <CategoryTitle loading={category.loading} error={category.error} element={category.element} />
                 <form onSubmit={handleSubmit(receivePagination, this.props.match.params.id)}>
                     <label>검색 조건</label>
                     <Field name="sb" component={renderSelect} children={ searchBy.map((search) => <option key={`search_${search.value}`} value={search.value}>{search.label}</option> )} />
@@ -165,12 +151,27 @@ class BriefRequestList extends Component{
                     <br/><br/>
                     <button type="submit" className="button primary fit large">검색하기</button>
                 </form>
-                <div className={requestClass}>
-                    {requestRender}
-                </div>
-                <div className="w3-bar w3-center">
-                    {renderPageNumbers}
-                </div>
+
+                { !loading ? requestRender : null }
+
+                {
+                    !loading ?
+                        <div id="request_list_pagination" className="w3-bar w3-center">
+                            <ListPagination
+                                count={count}
+                                page={paginationModel.pg}
+                                size={paginationModel.sz ? paginationModel.sz : 6}
+                                handle={this.handlePagination.bind(this)}
+                            />
+                        </div> : null
+                }
+
+                <ModalScreen title="Loading" opened={loading}>
+                    <div className="w3-center">
+                        <h1 className="fas fa-sync fa-spin" />
+                        <h4>선택하신 분야에 해당 되는 제목학원을 불러오는 중입니다!</h4>
+                    </div>
+                </ModalScreen>
             </section>
         );
     }

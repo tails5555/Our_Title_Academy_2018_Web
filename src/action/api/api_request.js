@@ -13,9 +13,17 @@ export const fetchHomeBriefRequestsApi = () => {
 }
 
 export const fetchBriefRequestsApi = (queryModel) => {
+    const serverQuery = {
+        id : queryModel && queryModel.cid,
+        pg : queryModel && queryModel.pg,
+        sz : queryModel && queryModel.sz,
+        ob : queryModel && queryModel.ob,
+        sb : queryModel && queryModel.sb,
+        st : queryModel && queryModel.st
+    }
     return axios({
         method : 'get',
-        url : `${ROOT_URL}?${queryString.stringify(queryModel)}`
+        url : `${ROOT_URL}?${queryString.stringify(serverQuery)}`
     });
 }
 
