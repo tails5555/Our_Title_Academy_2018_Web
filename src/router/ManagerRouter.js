@@ -1,20 +1,16 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Route, Redirect } from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import {UserListPage, UserPrincipalInfoPage} from "../page/manager_admin_user_list";
 import {MyInfoFormPage, MyInfoResultPage} from "../page/common_my_info";
 import {MyProfileChangePage} from "../page/common_my_profile_change";
-import {IndexPage} from "../page/index_page";
-import {BriefRequestListPage} from "../page/category_list_page";
-import {RequestViewPage} from "../page/request_view_page";
 import {CreateRequestPage} from "../page/create_request_page";
 import {PhotoAgreePage} from "../page/manager_photo_agree";
 import {SelectCategoryPage} from "../page/select_category_page";
-import {TodayBestPage} from "../page/today_best_page";
 import {MyRequestStatisticPage} from "../page/my_request_statistic_page";
 import {MyTitleStatisticPage} from "../page/my_title_statistic_page";
-import {SearchResultPage} from "../page/search_result_page";
-import {TodayTitleBattlePage} from "../page/today_title_battle_page";
+
+import CommonRouter from './CommonRouter';
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/empathy';
 
@@ -24,15 +20,7 @@ class ManagerRouter extends Component{
     render(){
         return(
             <div className="inner">
-                <Route exact path="/" component={IndexPage} />
-                <Route exact path="/search_result/:keyword" component={SearchResultPage} />
-                <Route exact path="/search_result/_refresh/:keyword" render={({ match }) => <Redirect to={`/search_result/${match.params.keyword}`} />} />
-                <Route exact path="/today/best" component={TodayBestPage} />
-                <Route exact path="/today/battle" component={TodayTitleBattlePage} />
-                <Route exact path="/category/:id/list" component={BriefRequestListPage} />
-                <Route exact path="/category/:id/_move" render={({ match }) => <Redirect to={`/category/${match.params.id}/list`} />} />
-                <Route exact path="/view_request/:id/view" component={RequestViewPage} />
-                <Route exact path="/view_request/:id/_refresh" render={({ match, location }) => <Redirect to={`/view_request/${match.params.id}/view${location.search}`} />} />
+                <CommonRouter />
                 <Route exact path="/view_request/:id/view/request_empathy/:requestId/:loginId/:method" render={({ match, location }) => {
                     window.scroll({
                         top: 0,
