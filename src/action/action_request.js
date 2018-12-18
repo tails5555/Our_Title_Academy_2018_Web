@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 import {
-    fetchHomeBriefRequestsApi, fetchBriefRequestsApi
+    fetchHomeBriefRequestsApi, fetchBriefRequestsApi, fetchSearchOptionsApi
 } from './api/api_request';
 import {
     ANYBODY_FETCH_HOME_REQUESTS, ANYBODY_FETCH_HOME_REQUESTS_SUCCESS, ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
-    ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE
+    ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE,
+    ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE
 } from './type/type_request';
 
 import {RESET_FETCH_ALL_TITLE_LIST} from "./action_title";
@@ -64,35 +65,70 @@ export const fetchBriefRequestsByQuery = (queryModel) => (dispatch) => {
     });
 }
 
-export const FETCH_HOME_REQUEST_BRIEF = 'FETCH_HOME_REQUEST_BRIEF';
-export const FETCH_HOME_REQUEST_BRIEF_SUCCESS = 'FETCH_HOME_REQUEST_BRIEF_SUCCESS';
-export const FETCH_HOME_REQUEST_BRIEF_FAILURE = 'FETCH_HOME_REQUEST_BRIEF_FAILURE';
-export const RESET_FETCH_HOME_REQUEST_BRIEF = 'RESET_FETCH_HOME_REQUEST_BRIEF';
+const fetchSearchAllOptionsStart = () => ({
+    type : ANYBODY_FETCH_SEARCH_ALL_OPTIONS
+});
+
+const fetchSearchAllOptionsSuccess = (datas) => ({
+    type: ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS,
+    payload : datas
+});
+
+const fetchSearchAllOptionsFailure = (error) => ({
+    type : ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE,
+    payload : error
+});
+
+export const fetchSearchAllOptions = () => (dispatch) => {
+    const elements = ['search', 'order', 'size'];
+
+    dispatch(fetchSearchAllOptionsStart());
+    return axios.all(
+        elements.map((element) => fetchSearchOptionsApi(element).catch((error) => error && error.message))
+    ).then(
+        axios.spread((r0, r1, r2) => {
+            const data = {}, error = {};
+            let hasError = false;
+
+            if(Array.isArray(r0 && r0.data)){
+                data[elements[0]] = r0.data;
+                error[elements[0]] = null;
+            } else {
+                data[elements[0]] = [];
+                error[elements[0]] = r0;
+                hasError = true;
+            }
+
+            if(Array.isArray(r1 && r1.data)){
+                data[elements[1]] = r1.data;
+                error[elements[1]] = null;
+            } else {
+                data[elements[1]] = [];
+                error[elements[1]] = r1;
+                hasError = true;
+            }
+
+            if(Array.isArray(r2 && r2.data)){
+                data[elements[2]] = r2.data;
+                error[elements[2]] = null;
+            } else {
+                data[elements[2]] = [];
+                error[elements[2]] = r2;
+                hasError = true;
+            }
+
+            if(hasError){
+                dispatch(fetchSearchAllOptionsFailure(error));
+            } else  {
+                setTimeout(() => dispatch(fetchSearchAllOptionsSuccess(data)), 2000);
+            }
+        })
+    );
+}
 
 export const FETCH_ALL_REQUEST_BRIEF = 'FETCH_ALL_REQUEST_BRIEF';
 export const FETCH_ALL_REQUEST_BRIEF_SUCCESS = 'FETCH_ALL_REQUEST_BRIEF_SUCCESS';
 export const FETCH_ALL_REQUEST_BRIEF_FAILURE = 'FETCH_ALL_REQUEST_BRIEF_FAILURE';
-export const RESET_FETCH_ALL_REQUEST_BRIEF = 'RESET_FETCH_ALL_REQUEST_BRIEF';
-
-export const FETCH_CATEGORY_REQUEST_BRIEF = 'FETCH_CATEGORY_REQUEST_BRIEF';
-export const FETCH_CATEGORY_REQUEST_BRIEF_SUCCESS = 'FETCH_CATEGORY_REQUEST_BRIEF_SUCCESS';
-export const FETCH_CATEGORY_REQUEST_BRIEF_FAILURE = 'FETCH_CATEGORY_REQUEST_BRIEF_FAILURE';
-export const RESET_FETCH_CATEGORY_REQUEST_BRIEF = 'RESET_FETCH_CATEGORY_REQUEST_BRIEF';
-
-export const FETCH_SEARCH_BY_OPTION = 'FETCH_SEARCH_BY_OPTION';
-export const FETCH_SEARCH_BY_OPTION_SUCCESS = 'FETCH_SEARCH_BY_OPTION_SUCCESS';
-export const FETCH_SEARCH_BY_OPTION_FAILRUE = 'FETCH_SEARCH_BY_OPTION_FAILRUE';
-export const RESET_FETCH_SEARCH_BY_OPTION = 'RESET_FETCH_SEARCH_BY_OPTION';
-
-export const FETCH_ORDER_BY_OPTION = 'FETCH_ORDER_BY_OPTION';
-export const FETCH_ORDER_BY_OPTION_SUCCESS = 'FETCH_ORDER_BY_OPTION_SUCCESS';
-export const FETCH_ORDER_BY_OPTION_FAILRUE = 'FETCH_ORDER_BY_OPTION_FAILRUE';
-export const RESET_FETCH_ORDER_BY_OPTION = 'RESET_FETCH_ORDER_BY_OPTION';
-
-export const FETCH_SIZE_BY_OPTION = 'FETCH_SIZE_BY_OPTION';
-export const FETCH_SIZE_BY_OPTION_SUCCESS = 'FETCH_SIZE_BY_OPTION_SUCCESS';
-export const FETCH_SIZE_BY_OPTION_FAILURE = 'FETCH_SIZE_BY_OPTION_FAILURE';
-export const RESET_FETCH_SIZE_BY_OPTION = 'RESET_FETCH_SIZE_BY_OPTION';
 
 export const FETCH_VIEW_REQUEST_MAIN = 'FETCH_VIEW_REQUEST_MAIN';
 export const FETCH_VIEW_REQUEST_MAIN_SUCCESS = 'FETCH_VIEW_REQUEST_MAIN_SUCCESS';
@@ -134,37 +170,6 @@ export const EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_SUCCESS = 'EXECUTE_ADMIN_DEL
 export const EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_FAILURE = 'EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_FAILURE';
 export const RESET_EXECUTE_ADMIN_DELETE_REQUEST_PARTITION = 'RESET_EXECUTE_ADMIN_DELETE_REQUEST_PARTITION';
 
-export function appFetchHomeRequestBrief(){
-    const request = axios({
-        url : `${ROOT_URL}/fetch_brief/home`,
-        method : 'get'
-    });
-    return {
-        type : FETCH_HOME_REQUEST_BRIEF,
-        payload : request
-    }
-}
-
-export function appFetchHomeRequestBriefSuccess(requests){
-    return {
-        type : FETCH_HOME_REQUEST_BRIEF_SUCCESS,
-        payload : requests.data
-    }
-}
-
-export function appFetchHomeRequestBriefFailure(error){
-    return {
-        type : FETCH_HOME_REQUEST_BRIEF_FAILURE,
-        payload : error
-    }
-}
-
-export function resetAppFetchHomeRequestBrief(){
-    return {
-        type : RESET_FETCH_HOME_REQUEST_BRIEF
-    }
-}
-
 export function appFetchAllRequestBrief(){
     const request = axios({
         url : `${ROOT_URL}/fetch_brief/all_valid`,
@@ -193,131 +198,6 @@ export function appFetchAllRequestBriefFailure(error){
 export function resetAppFetchAllRequestBrief(){
     return {
         type : RESET_FETCH_ALL_TITLE_LIST
-    }
-}
-
-export function appFetchCategoryRequestBrief(categoryId, pagination){
-    const request = axios({
-        url : `${ROOT_URL}/fetch_brief/category/${categoryId}`,
-        method : 'post',
-        data : pagination
-    })
-    return {
-        type : FETCH_CATEGORY_REQUEST_BRIEF,
-        payload : request
-    }
-}
-
-export function appFetchCategoryRequestBriefSuccess(paginationRequests){
-    return {
-        type : FETCH_CATEGORY_REQUEST_BRIEF_SUCCESS,
-        payload : paginationRequests.data
-    }
-}
-
-export function appFetchCategoryRequestBriefFailure(error){
-    return {
-        type : FETCH_CATEGORY_REQUEST_BRIEF_FAILURE,
-        payload : error
-    }
-}
-
-export function resetAppFetchCategoryRequestBrief(){
-    return {
-        type : RESET_FETCH_CATEGORY_REQUEST_BRIEF
-    }
-}
-
-export function appFetchSearchByOption(){
-    const request = axios({
-        url : `${ROOT_URL}/fetch_option/search`,
-        method : 'get'
-    });
-    return {
-        type : FETCH_SEARCH_BY_OPTION,
-        payload : request
-    }
-}
-
-export function appFetchSearchByOptionSuccess(searchBy){
-    return {
-        type : FETCH_SEARCH_BY_OPTION_SUCCESS,
-        payload : searchBy.data
-    }
-}
-
-export function appFetchSearchByOptionFailure(error){
-    return {
-        type : FETCH_SEARCH_BY_OPTION_FAILRUE,
-        payload : error
-    }
-}
-
-export function resetAppFetchSearchByOption(){
-    return {
-        type : RESET_FETCH_SEARCH_BY_OPTION
-    }
-}
-
-export function appFetchOrderByOption(){
-    const request = axios({
-        url : `${ROOT_URL}/fetch_option/order`,
-        method : 'get'
-    });
-    return {
-        type : FETCH_ORDER_BY_OPTION,
-        payload : request
-    }
-}
-
-export function appFetchOrderByOptionSuccess(orderBy){
-    return {
-        type : FETCH_ORDER_BY_OPTION_SUCCESS,
-        payload : orderBy.data
-    }
-}
-
-export function appFetchOrderByOptionFailure(error){
-    return {
-        type : FETCH_ORDER_BY_OPTION_FAILRUE,
-        payload : error
-    }
-}
-
-export function resetAppFetchOrderByOption(){
-    return {
-        type : RESET_FETCH_ORDER_BY_OPTION
-    }
-}
-
-export function appFetchSizeByOption(){
-    const request = axios({
-        url : `${ROOT_URL}/fetch_option/size`,
-        method : 'get'
-    });
-    return {
-        type : FETCH_SIZE_BY_OPTION,
-        payload : request
-    }
-}
-
-export function appFetchSizeByOptionSuccess(sizeBy){
-    return {
-        type : FETCH_SIZE_BY_OPTION_SUCCESS,
-        payload : sizeBy.data
-    }
-}
-
-export function appFetchSizeByOptionFailure(error){
-    return {
-        type : FETCH_SIZE_BY_OPTION_FAILURE,
-        payload : error
-    }
-}
-
-export function resetAppFetchSizeByOption(){
-    return {
-        type : RESET_FETCH_SIZE_BY_OPTION
     }
 }
 
@@ -394,7 +274,7 @@ export function userSaveRequest(requestModel, requestPhoto){
             url : `${ROOT_URL}/execute_create`,
             data : formData,
             headers : {
-                "Content-Type" : "multipart/form-data"
+                "Content-Type" : "multipart/input_render-data"
             }
         }) :
         axios({

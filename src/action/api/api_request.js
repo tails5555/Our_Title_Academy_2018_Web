@@ -27,3 +27,9 @@ export const fetchBriefRequestsApi = (queryModel) => {
     });
 }
 
+export const fetchSearchOptionsApi = (element) => {
+    return axios({
+        method : 'get',
+        url : `${ROOT_URL}/options/${element}`
+    });
+}

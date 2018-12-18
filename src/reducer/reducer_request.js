@@ -1,15 +1,10 @@
 import {
     ANYBODY_FETCH_HOME_REQUESTS, ANYBODY_FETCH_HOME_REQUESTS_SUCCESS, ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
-    ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE
+    ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE,
+    ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE
 } from "../action/type/type_request";
 
 import {
-    FETCH_HOME_REQUEST_BRIEF, FETCH_HOME_REQUEST_BRIEF_SUCCESS, FETCH_HOME_REQUEST_BRIEF_FAILURE, RESET_FETCH_HOME_REQUEST_BRIEF,
-    FETCH_ALL_REQUEST_BRIEF, FETCH_ALL_REQUEST_BRIEF_SUCCESS, FETCH_ALL_REQUEST_BRIEF_FAILURE, RESET_FETCH_ALL_REQUEST_BRIEF,
-    FETCH_CATEGORY_REQUEST_BRIEF, FETCH_CATEGORY_REQUEST_BRIEF_SUCCESS, FETCH_CATEGORY_REQUEST_BRIEF_FAILURE, RESET_FETCH_CATEGORY_REQUEST_BRIEF,
-    FETCH_SEARCH_BY_OPTION, FETCH_SEARCH_BY_OPTION_SUCCESS, FETCH_SEARCH_BY_OPTION_FAILRUE, RESET_FETCH_SEARCH_BY_OPTION,
-    FETCH_ORDER_BY_OPTION, FETCH_ORDER_BY_OPTION_SUCCESS, FETCH_ORDER_BY_OPTION_FAILRUE, RESET_FETCH_ORDER_BY_OPTION,
-    FETCH_SIZE_BY_OPTION, FETCH_SIZE_BY_OPTION_SUCCESS, FETCH_SIZE_BY_OPTION_FAILURE, RESET_FETCH_SIZE_BY_OPTION,
     FETCH_VIEW_REQUEST_MAIN, FETCH_VIEW_REQUEST_MAIN_SUCCESS, FETCH_VIEW_REQUEST_MAIN_FAILURE, RESET_FETCH_VIEW_REQUEST_MAIN,
     FETCH_TODAY_BATTLE_REQUEST, FETCH_TODAY_BATTLE_REQUEST_SUCCESS, FETCH_TODAY_BATTLE_REQUEST_FAILURE, RESET_FETCH_TODAY_BATTLE_REQUEST,
     USER_SAVE_REQUEST, USER_SAVE_REQUEST_SUCCESS, USER_SAVE_REQUEST_FAILURE, RESET_USER_SAVE_REQUEST,
@@ -32,15 +27,12 @@ import {
 const INITIAL_STATE = {
     main : { list : [], count : 0, element : null, loading : false, error : null, status : 0, type : null },
     rank : { list : [], loading : false, error : null },
+    options : { data : { search : [], order : [], size : [] }, loading : false, error : { search : null, order : null, size : null } },
+
     myRequestList : { validRequests : [], nonValidRequests : [], loading : false, error : null },
     myRequestStatistic : { statistics : [], loading : false, error : null },
-    requestList : { requests : [], loading : false, error : null },
     selectRequest : { request : null, loading : false, error : null },
     bestTitles : { titles : [] },
-    paginate : { paginationModel : null },
-    searchOption : { searchBy : [], loading : false, error : null },
-    orderOption : { orderBy : [], loading : false, error : null },
-    sizeOption : { sizeBy : [], loading : false, error : null },
     saveStatus : { result : null, loading : false, error : null },
     agreeStatus : { result : null, loading : false, error : null },
     blockStatus : { result : null, loading : false, error : null },
@@ -55,7 +47,7 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, main : { list : [], loading : true }};
 
         case ANYBODY_FETCH_HOME_REQUESTS_SUCCESS :
-            return { ...state, main : { list : action.payload, loading : false }};
+            return { ...state, main : { loading : false, list : action.payload, }};
 
         case ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS :
             const { results, count } = action.payload;
@@ -65,60 +57,12 @@ export default function(state = INITIAL_STATE, action){
         case ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE :
             return { ...state, main : { loading : false, error : action.payload }};
 
-
-        case FETCH_HOME_REQUEST_BRIEF :
-        case FETCH_ALL_REQUEST_BRIEF :
-            return { ...state, requestList : { requests : [], loading : true, error : null }};
-        case FETCH_HOME_REQUEST_BRIEF_SUCCESS :
-        case FETCH_ALL_REQUEST_BRIEF_SUCCESS :
-            return { ...state, requestList : { requests : action.payload, loading : false, error : null }};
-        case FETCH_HOME_REQUEST_BRIEF_FAILURE :
-        case FETCH_ALL_REQUEST_BRIEF_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, requestList : { requests : [], loading : false, error : error }};
-        case RESET_FETCH_HOME_REQUEST_BRIEF :
-        case RESET_FETCH_ALL_REQUEST_BRIEF :
-            return { ...state, requestList : { requests : [], loading : false, error : null }};
-
-        case FETCH_CATEGORY_REQUEST_BRIEF :
-            return { ...state, requestList : { requests : [], loading : true, error : null }, paginate : { paginationModel : null }};
-        case FETCH_CATEGORY_REQUEST_BRIEF_SUCCESS :
-            return { ...state, requestList : { requests : action.payload.briefFetchRequestVOList, loading : false, error : null }, paginate : { paginationModel : action.payload.paginationModel }};
-        case FETCH_CATEGORY_REQUEST_BRIEF_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, requestList : { requests : [], loading : false, error : null }, paginate : { paginationModel : null }};
-        case RESET_FETCH_CATEGORY_REQUEST_BRIEF :
-            return { ...state, requestList : { requests : [], loading : false, error : null }, paginate : { paginationModel : null }};
-
-        case FETCH_SEARCH_BY_OPTION :
-            return { ...state, searchOption : { searchBy : [], loading : true, error : null }};
-        case FETCH_SEARCH_BY_OPTION_SUCCESS :
-            return { ...state, searchOption : { searchBy : action.payload, loading : false, error : null }};
-        case FETCH_SEARCH_BY_OPTION_FAILRUE :
-            error = action.payload || { message : action.payload };
-            return { ...state, searchOption : { searchBy : [], loading : false, error : null }};
-        case RESET_FETCH_SEARCH_BY_OPTION :
-            return { ...state, searchOption : { searchBy : [], loading : false, error : null }};
-
-        case FETCH_ORDER_BY_OPTION :
-            return { ...state, orderOption : { orderBy : [], loading : true, error : null }};
-        case FETCH_ORDER_BY_OPTION_SUCCESS :
-            return { ...state, orderOption : { orderBy : action.payload, loading : false, error : null }};
-        case FETCH_ORDER_BY_OPTION_FAILRUE :
-            error = action.payload || { message : action.payload };
-            return { ...state, orderOption : { orderBy : [], loading : false, error : null }};
-        case RESET_FETCH_ORDER_BY_OPTION :
-            return { ...state, orderOption : { orderBy : [], loading : false, error : null }};
-
-        case FETCH_SIZE_BY_OPTION :
-            return { ...state, sizeOption : { sizeBy : [], loading : true, error : null }};
-        case FETCH_SIZE_BY_OPTION_SUCCESS :
-            return { ...state, sizeOption : { sizeBy : action.payload, loading : false, error : null }};
-        case FETCH_SIZE_BY_OPTION_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, sizeOption : { sizeBy : [], loading : false, error : null }};
-        case RESET_FETCH_SIZE_BY_OPTION :
-            return { ...state, sizeOption : { sizeBy : [], loading : false, error : null }};
+        case ANYBODY_FETCH_SEARCH_ALL_OPTIONS :
+            return { ...state, options : { data : { search : [], order : [], size : [] }, loading : true }};
+        case ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS :
+            return { ...state, options : { loading : false, data : action.payload }};
+        case ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE :
+            return { ...state, options : { loading : false, error : action.payload }};
 
         case FETCH_VIEW_REQUEST_MAIN :
             return { ...state, selectRequest : { request : null, loading : true, error : null }, bestTitles : { titles : [] }};
