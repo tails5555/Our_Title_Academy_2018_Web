@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import {BriefRequestView} from "./request_component";
-import {ModalScreen} from "../unit_component/modal";
+
+import { BriefRequestCard } from "./../unit_component/request";
+import { ModalScreen } from "../unit_component/modal";
+import { AlertBoxNote } from "../unit_component/alert_box";
 
 class WarmRequestListView extends Component {
     constructor(props){
@@ -25,7 +27,8 @@ class WarmRequestListView extends Component {
 
     componentDidMount(){
         const { requestAction } = this.props;
-        requestAction.fetchHomeRequests();
+        const { fetchHomeRequests } = requestAction;
+        fetchHomeRequests();
     }
 
     render(){
@@ -35,23 +38,32 @@ class WarmRequestListView extends Component {
 
         if(list){
             articleList =
-                <div className="posts">
-                {
-                    list.map((request, idx) => <BriefRequestView key={`home_brief_${idx}`} isHome={true} request={request} routeURI={`/view_request/${request.id}/view?id=${request.categoryId}&pg=1`}/>)
-                }
-                </div>
+                list.length > 0 ?
+                    (
+                        <div className="posts">
+                        {
+                            list.map((request, idx) => <BriefRequestCard key={`home_brief_${idx}`} isHome={true} element={request} />)
+                        }
+                        </div>
+                    ) :
+                    !loading ?
+                        (
+                            <AlertBoxNote
+                                id={"has_no_result"}
+                                icon={"fas fa-times-circle"}
+                                title={"현재 바로 올라온 제목학원이 없습니다."}
+                                context={"매니저가 빠른 시간 내에 등록 해 올려 드리겠습니다. 나올 때까지 기다려주세요 :)"}
+                            />
+                        ) : null;
+
         } else if(error !== null){
             articleList = (
-                <div id="has_error_note" className="w3-panel w3-pale-red w3-round-large" style={{ padding : '20px 10px' }}>
-                    <h2 className="w3-xlarge w3-center">
-                        <span style={{ fontSize : '80px', lineHeight : '0.6em', opacity : '0.2', marginRight : '10px' }}>
-                            <i className="fas fa-warning" />
-                        </span>
-                        <i>제목학원을 불러오는 도중 오류가 발생했습니다.</i>
-                    </h2>
-                    <h4 className="w3-center">오류 내용 : {error}</h4>
-                    <h5 className="w3-center">계속해서 오류가 발생하면 개발자나 관리자에게 알려주세요 :)</h5>
-                </div>
+                <AlertBoxNote
+                    id={"has_error_note"}
+                    icon={"fas fa-warning"}
+                    title={"갓 올라온 제목학원을 불러오는 도중 오류가 발생했습니다."}
+                    context={`오류 내용 : ${error}\n 계속해서 오류가 발생하면 개발자나 관리자에게 알려주세요 :)`}
+                />
             );
         } else {
             articleList = null;

@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
-import { BriefRequestView } from "./request_component/index";
 
-import { MainTitle, CategoryTitle } from "../unit_component/title/index";
-import { ListPagination } from "../unit_component/request/index";
-import { ModalScreen } from "../unit_component/modal/index";
-import { AlertBoxNote } from "../unit_component/alert_box/index";
-import { RequestSearchForm } from "../unit_component/form_model/index";
+import { BriefRequestCard } from "./../unit_component/request";
+import { MainTitle, CategoryTitle } from "../unit_component/title";
+import { ListPagination } from "../unit_component/request";
+import { ModalScreen } from "../unit_component/modal";
+import { AlertBoxNote } from "../unit_component/alert_box";
+import { RequestSearchForm } from "../unit_component/form_model";
 
 class BriefRequestListView extends Component {
     constructor(props){
@@ -72,11 +72,10 @@ class BriefRequestListView extends Component {
                     <div className="posts">
                         {
                             list.map((request) => (
-                                <BriefRequestView
+                                <BriefRequestCard
                                     key={`request_${request.id}`}
                                     isHome={false}
-                                    request={request}
-                                    routeURI={`/view_request/${request.id}/view${location.search}`}
+                                    element={request}
                                 />
                             ))
                         }
