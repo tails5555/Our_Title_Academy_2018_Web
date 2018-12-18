@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
-import { renderDropzoneInput, renderQuill, renderField } from "../../form";
+import { renderDropzoneInput, renderQuill, renderField } from "../../input_render";
 import {userSaveRequest, userSaveRequestSuccess, userSaveRequestFailure} from "../../../action/action_request";
 import {withRouter} from 'react-router-dom';
 

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
-import { MainHeader } from "../../component/main_side/index_page";
-import { WarmRequestListContainer } from '../../container'
+import { MainHeader } from "../../component/main_side";
+import { WarmRequestListViewContainer } from '../../container';
 
 const IndexPage = () => (
     <Fragment>
@@ -9,7 +9,7 @@ const IndexPage = () => (
             <MainHeader />
         </div>
         <div id="home_warm_request_list">
-            <WarmRequestListContainer/>
+            <WarmRequestListViewContainer />
         </div>
     </Fragment>
 );

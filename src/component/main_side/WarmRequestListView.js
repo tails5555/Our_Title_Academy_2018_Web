@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {BriefRequestView} from "../request_component";
-import {ModalScreen} from "../../unit_component/modal";
+import {BriefRequestView} from "./request_component";
+import {ModalScreen} from "../unit_component/modal";
 
-class WarmRequestList extends Component {
+class WarmRequestListView extends Component {
     constructor(props){
         super(props);
         this.state = { list : [], loading : false, error : null };
@@ -64,8 +64,8 @@ class WarmRequestList extends Component {
                 </header>
                 {articleList}
                 <ModalScreen title="Loading" opened={loading}>
-                    <div className="w3-center">
-                        <h1 className="fas fa-sync fa-spin" />
+                    <div className="w3-center w3-padding">
+                        <i className="fas fa-sync fa-spin" style={{ fontSize : '80px', margin : '10px' }} />
                         <h4>갓 나온 제목학원들을 불러오는 중입니다!</h4>
                     </div>
                 </ModalScreen>
@@ -73,4 +73,4 @@ class WarmRequestList extends Component {
         )
     }
 }
-export default WarmRequestList;
+export default WarmRequestListView;

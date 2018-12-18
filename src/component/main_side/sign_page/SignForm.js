@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {renderField, renderSelect} from '../../form';
+import {renderField, renderSelect} from '../../input_render';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 import {guestSignUpProcess, guestSignUpSuccess, guestSignUpFailure} from "../../../action/action_guest";

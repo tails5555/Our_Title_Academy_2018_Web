@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
-import { renderDropzoneInput } from "../../form";
+import { renderDropzoneInput } from "../../input_render";
 import { userUploadProfile, userUploadProfileSuccess, userUploadProfileFailure } from "../../../action/action_profile";
 import { withRouter } from 'react-router-dom';
 const imageUploading = (values, dispatch) => {

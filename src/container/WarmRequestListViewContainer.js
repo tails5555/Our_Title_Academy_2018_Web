@@ -1,4 +1,4 @@
-import {WarmRequestList} from "../component/main_side/index_page";
+import {WarmRequestListView} from "../component/main_side";
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import * as RequestAction from "../action/action_request";
@@ -15,4 +15,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WarmRequestList);
+export default connect(mapStateToProps, mapDispatchToProps)(WarmRequestListView);

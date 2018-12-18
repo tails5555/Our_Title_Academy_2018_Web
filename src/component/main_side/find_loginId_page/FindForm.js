@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {reduxForm, Field, SubmissionError} from 'redux-form';
-import {renderField} from "../../form";
+import {renderField} from "../../input_render";
 import {guestFindLoginId, guestFindLoginIdSuccess, guestFindLoginIdFailure} from "../../../action/action_guest";
 
 function validate(values) {

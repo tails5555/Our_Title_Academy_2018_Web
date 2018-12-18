@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {RequestProfile} from "../profile_image";
 import {reduxForm, Field, SubmissionError} from 'redux-form';
 import {Link, withRouter} from 'react-router-dom';
-import {renderSelect} from "../../form";
+import {renderSelect} from "../../input_render";
 import {managerExecuteFetchRequest, managerExecuteFetchRequestSuccess, managerExecuteFetchRequestFailure} from "../../../action/action_request";
 const IMAGE_URL = 'http://127.0.0.1:8082/ContextAPI/photo';
 

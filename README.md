@@ -6,9 +6,9 @@
 
 <h3>🐸 여러분들의 제목 센스와 드립을 <b>발휘해~</b> <i>주세요!!!</i></h3>
 
-<h3>🙋 제목 학원 베타 버전을 구축하기 위해 잠깐 작업 중입니다.</h3>
+<h3>👩‍🔧 컴포넌트 별로 어떤 요소들이 사용되었는지 쉽게 인지하기 위해 유지보수 작업을 진행하고 있습니다.</h3>
 
-<h3>👩‍🔧  현재 진행 중인 Web Application 의 컴포넌트는 대부분 구성 완료 되었습니다. 9월 초순 안으로 기능 구현 및 Wiki 페이지에 화면 구성을 올리겠습니다.</h3>
+<h3>👩‍🔧 Spring 서버에서 안내 기능을 추가로 구현하여 이 프로젝트에서 반영하겠습니다.</h3>
 
 #### 💬 적극 반영하면 좋을 리뷰는 [Issues](https://github.com/tails5555/Our_Title_Academy_2018_Web/issues) 에 남겨주시면 감사하겠습니다.
 
@@ -44,7 +44,7 @@ Application 의 간략한 구성은 다음과 같습니다. Server 측에도 기
     "jwt-decode": "^2.2.0",
     "match-sorter": "^2.2.3",
     "query-string": "^6.1.0",
-    "react": "^16.4.1",
+    "react": "^16.6.3",
     "react-dom": "^16.4.1",
     "react-dropzone": "^4.2.13",
     "react-google-charts": "^3.0.3",
@@ -59,6 +59,7 @@ Application 의 간략한 구성은 다음과 같습니다. Server 측에도 기
     "redux": "^4.0.0",
     "redux-form": "^7.4.2",
     "redux-promise": "^0.6.0",
+    "redux-thunk": "^2.3.0",
     "searchkit": "^2.3.0",
     "sockjs-client": "^1.1.5",
     "stompjs": "^2.3.3"

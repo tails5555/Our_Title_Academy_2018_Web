@@ -1,3 +1,6 @@
+export {default as WarmRequestListViewContainer} from './WarmRequestListViewContainer';
+export {default as BriefRequestListViewContainer} from './BriefRequestListViewContainer';
+
 export {default as ApplicationContainer} from './ApplicationContainer';
 export {default as LoginFormContainer} from './LoginFormContainer';
 export {default as UserInfoContainer} from './UserInfoContainer';
@@ -9,8 +12,8 @@ export {default as UserListContainer} from './UserListContainer';
 export {default as MyProfileChangeContainer} from './MyProfileChangeContainer';
 export {default as UserPrincipalInfoContainer} from './UserPrincipalInfoContainer';
 export {default as CategoryMenuContainer} from './CategoryMenuContainer';
-export {default as WarmRequestListContainer} from './WarmRequestListContainer';
-export {default as BriefRequestListContainer} from './BriefRequestListContainer';
+
+
 export {default as RequestViewContainer} from './RequestViewContainer';
 export {default as TodayRankContainer} from './TodayRankContainer';
 export {default as CreateRequestContainer} from './CreateRequestContainer';

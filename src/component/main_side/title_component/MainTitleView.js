@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {UserProfile, RequestProfile} from "../profile_image";
-import {renderField} from "../../form";
+import {renderField} from "../../input_render";
 import {reduxForm, Field, SubmissionError} from 'redux-form';
 import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';

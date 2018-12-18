@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { reduxForm, Field, SubmissionError  } from 'redux-form';
-import { renderField, renderSelect } from "../../form";
+import { renderField, renderSelect } from "../../input_render";
 import { withRouter } from 'react-router-dom';
 import {userUpdateSignInfoProcess, userUpdateSignInfoSuccess, userUpdateSignInfoFailure} from "../../../action/action_user";
 function validate(values){
