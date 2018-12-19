@@ -94,7 +94,7 @@ class RequestSearchForm extends Component {
                     <div id="search_text_form_group" style={{ marginBottom : '20px' }}>
                         <Field type="text" name="st" component={renderField} label="검색어" placeholder="검색어를 입력하세요." />
                     </div>
-                    <button type="submit" className="button primary fit large">검색하기</button>
+                    <button type="submit" className="button primary fit large"><i className="fas fa-search" /> 검색하기</button>
                 </form>
             </Fragment>
         )

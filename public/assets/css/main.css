@@ -3183,6 +3183,7 @@ input, select, textarea {
 
 			#sidebar {
 				width: 24em;
+				z-index: 10000;
 			}
 
 				#sidebar > .inner {

@@ -75,7 +75,7 @@ class SelectDisplayBox extends Component {
                 <div id="display_btn_list" className="w3-right-align">
                     { btnList }
                 </div>
-                <div id="display_children_box_list" className="w3-container" style={{ margin : '10px' }}>
+                <div id="display_children_box_list" style={{ margin : '10px' }}>
                     { displayBox }
                 </div>
             </Fragment>

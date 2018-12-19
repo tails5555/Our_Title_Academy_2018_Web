@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const CategoryTitle = ({ loading, error, element }) => {
+const CategoryTitleHeader = ({ loading, error, element }) => {
     let categoryView;
     if(loading) {
         categoryView = <h2><i className="fas fa-spinner fa-spin" /> 분류를 불러오는 중입니다...</h2>;
@@ -22,4 +22,4 @@ const CategoryTitle = ({ loading, error, element }) => {
     );
 }
 
-export default CategoryTitle;
+export default CategoryTitleHeader;

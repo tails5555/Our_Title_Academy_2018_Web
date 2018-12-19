@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
 
 import { BriefRequestCard } from "./../unit_component/request";
-import { MainTitle, CategoryTitle } from "../unit_component/title";
+import { MainTitleHeader, CategoryTitleHeader } from "../unit_component/header";
 import { ListPagination } from "../unit_component/request";
 import { ModalScreen } from "../unit_component/modal";
 import { AlertBoxNote } from "../unit_component/alert_box";
@@ -105,8 +105,8 @@ class BriefRequestListView extends Component {
 
         return (
             <section id="category_brief_requests">
-                <MainTitle title="CATEGORY" />
-                <CategoryTitle loading={category.loading} error={category.error} element={category.element} />
+                <MainTitleHeader title="CATEGORY" />
+                <CategoryTitleHeader loading={category.loading} error={category.error} element={category.element} />
                 <RequestSearchForm loading={options.loading} error={options.error} data={options.data} />
                 { !loading ? requestRender : null }
                 {

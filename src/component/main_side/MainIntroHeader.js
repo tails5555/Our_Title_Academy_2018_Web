@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import Madongseok from '../resource_image/madongseok.jpg';
-import {MainTitle} from "../unit_component/title";
+import { MainTitleHeader } from "../unit_component/header";
 
 class MainHeader extends Component{
     topping(){
@@ -19,7 +19,7 @@ class MainHeader extends Component{
     render(){
         return(
             <Fragment>
-                <MainTitle title="HOME" />
+                <MainTitleHeader title="HOME" />
                 <section id="banner">
                     <div className="content">
                         <header>

@@ -3,8 +3,17 @@ import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
 
 import { ModalScreen } from "../unit_component/modal";
-import { MainTitle } from "../unit_component/title";
+import { MainTitleHeader } from "../unit_component/header";
 import { SelectDisplayBox } from "../unit_component/select_display";
+import { MainRequestCard } from "../unit_component/request";
+import {BestTitleList} from "../unit_component/title";
+
+const HallOfFrameView = ({ element, bestTitles }) => (
+    <Fragment>
+        <MainRequestCard element={element} />
+        <BestTitleList bestTitles={bestTitles} />
+    </Fragment>
+)
 
 class RequestMainView extends Component {
     constructor(props){
@@ -43,7 +52,7 @@ class RequestMainView extends Component {
         else{
             userId = 'ANONYMOUS_USER';
         }
-        return userId
+        return userId;
     }
 
     handleClickBackward = () => {
@@ -54,11 +63,11 @@ class RequestMainView extends Component {
     }
 
     render(){
-        const { loading } = this.state;
+        const { loading, element } = this.state;
         return(
             <Fragment>
                 <section id="request_element_view">
-                    <MainTitle title="REQUEST VIEW" />
+                    <MainTitleHeader title="REQUEST VIEW" />
                 </section>
                 <div id="back_to_category_requests_list_btn" className="w3-right-align w3-margin">
                     <button className="w3-button w3-pale-red" onClick={() => this.handleClickBackward()}>
@@ -68,7 +77,7 @@ class RequestMainView extends Component {
                 <SelectDisplayBox
                     btnTitles={[{ icon : 'fas fa-crown', label : '명예의 전당' }, { icon : 'fas fa-chalkboard', label : '제목 도전' } , { icon : 'fas fa-comment', label : '나도 한마디' }]}
                 >
-                    <div>명예의 전당</div>
+                    <HallOfFrameView element={ element ? element.requestDTO : null } bestTitles={ element ? element.bestTitles : [] } />
                     <div>제목 도전</div>
                     <div>나도 한마디</div>
                 </SelectDisplayBox>

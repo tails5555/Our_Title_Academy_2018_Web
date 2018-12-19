@@ -15,8 +15,12 @@ class ProfileCard extends Component{
 
     componentDidMount(){
         const { loginId } = this.props;
-        this._isMounted = true;
-        this.fetchProfilePhotoElement(loginId);
+        if(loginId !== null) {
+            if(loginId !== '') {
+                this._isMounted = true;
+                this.fetchProfilePhotoElement(loginId);
+            }
+        }
     }
 
     fetchProfilePhotoElement = (loginId) => {
@@ -46,11 +50,12 @@ class ProfileCard extends Component{
     render(){
         const { loginId } = this.props;
         const { status, nickname } = this.state;
+        const imageSource = (status === 200) ? `${RESOURCE_ROOT_URL}/image_profile/${loginId}` : defaultProfile;
         return (
             <Fragment>
                 <div className="w3-card-4 w3-round-large">
                     <img
-                        src={(status === 200) ? `${RESOURCE_ROOT_URL}/image_profile/${loginId}` : defaultProfile}
+                        src={imageSource}
                         alt={`${loginId}_profile_photo`}
                         style={{
                              width : '100%',

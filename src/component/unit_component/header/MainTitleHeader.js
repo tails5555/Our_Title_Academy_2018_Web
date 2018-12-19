@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const MainTitle = ({ title }) => (
+const MainTitleHeader = ({ title }) => (
     <Fragment>
         <header id="header">
             <span className="logo"><strong>Our Title Academy 2018</strong> - {title}</span>
@@ -8,4 +8,4 @@ const MainTitle = ({ title }) => (
     </Fragment>
 );
 
-export default MainTitle;
+export default MainTitleHeader;
