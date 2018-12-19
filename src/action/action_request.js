@@ -1,12 +1,13 @@
 import axios from 'axios';
 
 import {
-    fetchHomeBriefRequestsApi, fetchBriefRequestsApi, fetchSearchOptionsApi
+    fetchHomeBriefRequestsApi, fetchBriefRequestsApi, fetchSearchOptionsApi, fetchMainRequestApi
 } from './api/api_request';
 import {
     ANYBODY_FETCH_HOME_REQUESTS, ANYBODY_FETCH_HOME_REQUESTS_SUCCESS, ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
     ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE,
-    ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE
+    ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE,
+    ANYBODY_FETCH_MAIN_REQUEST, ANYBODY_FETCH_REDIRECT_MAIN_REQUEST, ANYBODY_FETCH_MAIN_REQUEST_SUCCESS, ANYBODY_FETCH_MAIN_REQUEST_FAILURE, RESET_ANYBODY_FETCH_MAIN_REQUEST,
 } from './type/type_request';
 
 import {RESET_FETCH_ALL_TITLE_LIST} from "./action_title";
@@ -124,6 +125,48 @@ export const fetchSearchAllOptions = () => (dispatch) => {
             }
         })
     );
+}
+
+const fetchMainRequestStart = () => ({
+    type : ANYBODY_FETCH_MAIN_REQUEST
+});
+
+const fetchRedirectMainRequestStart = () => ({
+    type : ANYBODY_FETCH_REDIRECT_MAIN_REQUEST
+});
+
+const fetchMainRequestSuccess = (response) => ({
+    type : ANYBODY_FETCH_MAIN_REQUEST_SUCCESS,
+    payload : response && response.data
+});
+
+const fetchMainRequestFailure = (error) => ({
+    type : ANYBODY_FETCH_MAIN_REQUEST_FAILURE,
+    payload : error && error.message
+});
+
+export const fetchMainRequest = (id, loginId, redirected) => (dispatch) => {
+    if(redirected){
+        dispatch(fetchRedirectMainRequestStart());
+    } else {
+        dispatch(fetchMainRequestStart());
+    }
+
+    return fetchMainRequestApi(id, loginId, redirected).then((response) => {
+        setTimeout(() => {
+            dispatch(fetchMainRequestSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(fetchMainRequestFailure(error));
+    });
+}
+
+const resetFetchMainRequestStart = () => ({
+    type : RESET_ANYBODY_FETCH_MAIN_REQUEST
+});
+
+export const resetFetchMainRequest = () => (dispatch) => {
+    dispatch(resetFetchMainRequestStart());
 }
 
 export const FETCH_ALL_REQUEST_BRIEF = 'FETCH_ALL_REQUEST_BRIEF';

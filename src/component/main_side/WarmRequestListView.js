@@ -70,7 +70,7 @@ class WarmRequestListView extends Component {
         }
 
         return (
-            <section>
+            <section id="warm_multiple_requests_view">
                 <header className="major">
                     <h2>바로 보는 제목학원</h2>
                 </header>

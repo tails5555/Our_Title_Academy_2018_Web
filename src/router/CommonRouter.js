@@ -17,8 +17,8 @@ const CommonRouter = () => (
         <Route exact path="/today/battle" component={TodayTitleBattlePage} />
         <Route exact path="/category/list" component={BriefRequestListViewPage} />
         <Route exact path="/category/_move" render={({ location }) => <Redirect to={`/category/list${location.search}`} />} />
-        <Route exact path="/view_request/:id/view" component={RequestViewPage} />
-        <Route exact path="/view_request/:id/_refresh" render={({ match, location }) => <Redirect to={`/view_request/${match.params.id}/view${location.search}`} />} />
+        <Route exact path="/view_request" component={RequestViewPage} />
+        <Route exact path="/view_request/_refresh" render={({ location }) => <Redirect to={`/view_request${location.search}`} />} />
     </Fragment>
 );
 

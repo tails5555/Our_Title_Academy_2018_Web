@@ -1,11 +1,11 @@
 import {
     ANYBODY_FETCH_HOME_REQUESTS, ANYBODY_FETCH_HOME_REQUESTS_SUCCESS, ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
     ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE,
-    ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE
+    ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE,
+    ANYBODY_FETCH_MAIN_REQUEST, ANYBODY_FETCH_REDIRECT_MAIN_REQUEST, ANYBODY_FETCH_MAIN_REQUEST_SUCCESS, ANYBODY_FETCH_MAIN_REQUEST_FAILURE, RESET_ANYBODY_FETCH_MAIN_REQUEST,
 } from "../action/type/type_request";
 
 import {
-    FETCH_VIEW_REQUEST_MAIN, FETCH_VIEW_REQUEST_MAIN_SUCCESS, FETCH_VIEW_REQUEST_MAIN_FAILURE, RESET_FETCH_VIEW_REQUEST_MAIN,
     FETCH_TODAY_BATTLE_REQUEST, FETCH_TODAY_BATTLE_REQUEST_SUCCESS, FETCH_TODAY_BATTLE_REQUEST_FAILURE, RESET_FETCH_TODAY_BATTLE_REQUEST,
     USER_SAVE_REQUEST, USER_SAVE_REQUEST_SUCCESS, USER_SAVE_REQUEST_FAILURE, RESET_USER_SAVE_REQUEST,
     FETCH_AGREE_REQUEST_BRIEF, FETCH_AGREE_REQUEST_BRIEF_SUCCESS, FETCH_AGREE_REQUEST_BRIEF_FAILURE,
@@ -64,15 +64,15 @@ export default function(state = INITIAL_STATE, action){
         case ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE :
             return { ...state, options : { loading : false, error : action.payload }};
 
-        case FETCH_VIEW_REQUEST_MAIN :
-            return { ...state, selectRequest : { request : null, loading : true, error : null }, bestTitles : { titles : [] }};
-        case FETCH_VIEW_REQUEST_MAIN_SUCCESS :
-            return { ...state, selectRequest : { request : action.payload, loading : false, error : null }, bestTitles : { titles : action.payload.bestTitles }};
-        case FETCH_VIEW_REQUEST_MAIN_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, selectRequest : { request : null, loading : false, error : error }, bestTitles : { titles : [] }};
-        case RESET_FETCH_VIEW_REQUEST_MAIN :
-            return { ...state, selectRequest : { request : null, loading : false, error : null }, bestTitles : { titles : [] }};
+        case ANYBODY_FETCH_MAIN_REQUEST :
+        case ANYBODY_FETCH_REDIRECT_MAIN_REQUEST :
+            return { ...state, main : { element : null, loading : true }};
+        case ANYBODY_FETCH_MAIN_REQUEST_SUCCESS :
+            return { ...state, main : { element : action.payload, loading : false }};
+        case ANYBODY_FETCH_MAIN_REQUEST_FAILURE :
+            return { ...state, main : { error : action.payload, loading : false }};
+        case RESET_ANYBODY_FETCH_MAIN_REQUEST :
+            return { ...state, main : { element : null, error : null }};
 
         case FETCH_TODAY_BATTLE_REQUEST :
             return { ...state, selectRequest : { request : null, loading : true, error : null }};

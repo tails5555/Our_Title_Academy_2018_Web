@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {RequestViewContainer} from "../../container";
+import { RequestMainViewContainer } from "../../container";
 
-const RequestViewPage = () => <RequestViewContainer />;
+const RequestViewPage = () => <RequestMainViewContainer />;
 
 export default RequestViewPage;

@@ -33,3 +33,10 @@ export const fetchSearchOptionsApi = (element) => {
         url : `${ROOT_URL}/options/${element}`
     });
 }
+
+export const fetchMainRequestApi = (id, loginId, redirected) => {
+    return axios({
+        method : 'get',
+        url : redirected ? `${ROOT_URL}/_redirect/${id}/${loginId}` : `${ROOT_URL}/${id}/${loginId}`
+    });
+}

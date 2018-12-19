@@ -1,5 +1,8 @@
-import {connect} from 'react-redux';
-import {RequestView} from "../component/main_side/request_page";
+import { RequestMainView } from "../component/main_side";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as RequestAction from '../action/action_request';
+
 import {
     appFetchViewRequestMain, appFetchViewRequestMainSuccess, appFetchViewRequestMainFailure,
     resetAppFetchViewRequestMain, managerExecuteBlockingRequestFailure, managerExecuteBlockingRequestSuccess,
@@ -13,6 +16,7 @@ import {
 
 function mapStateToProps(state){
     return {
+        request : state.request.main,
         selectRequest : state.request.selectRequest,
         bestTitles : state.request.bestTitles,
         accessUser : state.user.accessUser,
@@ -26,6 +30,7 @@ function mapStateToProps(state){
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        requestAction : bindActionCreators(RequestAction, dispatch),
         fetchSelectRequest : (id, userId) => {
             dispatch(appFetchViewRequestMain(id, userId)).then((response) => {
                 if(!response.error){
@@ -85,4 +90,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RequestView);
+export default connect(mapStateToProps, mapDispatchToProps)(RequestMainView);
