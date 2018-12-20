@@ -1,23 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import queryString from 'query-string';
 import { Link, withRouter } from 'react-router-dom';
+
 import { ProfileCard } from '../photo';
+import { arrayToLocalString } from '../util_func/date_time_func';
 
 const IMAGE_URL = 'http://127.0.0.1:8082/ContextAPI/photo';
-
-const fetchArrayToLocalString = (dateArray) => {
-    const str = ['년', '월', '일', '시', '분', '초'];
-    const curYear = new Date().getFullYear();
-    let date = '';
-    let startIdx = 0;
-    if(curYear === dateArray[0]){
-        startIdx = 1;
-    }
-    for(var k=startIdx;k<dateArray.length;k++){
-        date += `${dateArray[k]}${str[k]}${k === dateArray.length - 1 ? '' : ' '}`;
-    }
-    return date;
-}
 
 class BriefRequestCard extends Component{
     constructor(props){
@@ -69,7 +57,6 @@ class BriefRequestCard extends Component{
                 <article className={articleClass}>
                     <Link className="image" to={`/view_request?${queryString.stringify(queryModel)}`}>
                         <img
-                            className="image"
                             src={`${IMAGE_URL}/request_image/${element && element.id}`}
                             alt="request_image"
                             style={{
@@ -85,24 +72,31 @@ class BriefRequestCard extends Component{
                             }}
                         />
                     </Link>
+
                     <div className="w3-panel w3-topbar w3-bottombar w3-border-yellow w3-pale-yellow w3-center">
-                        <h3 style={{fontFamily : '궁서체'}}>{element && element.bestTitle}</h3>
+                        <h3 style={{ fontFamily : '궁서체' }}>{element && element.bestTitle}</h3>
                     </div>
+
                     <span className="image left"><ProfileCard loginId={element && element.userId}/></span>
-                    <h3 className="w3-right-align">{element && element.intro}</h3>
-                    <p className="w3-right-align">
-                        <i className="icon fa-calendar"></i> {element && fetchArrayToLocalString(element.writtenDate)}<br/>
-                        <i className="icon fa-star"></i> {element && element.likeCount}<br/>
-                        <i className="icon fa-comments"></i> {element && element.commentCount}<br/>
-                        <i className="fas fa-box-open"></i> {element && element.titleCount}<br/>
-                    </p>
-                    <div className="actions w3-right-align">
-                        <button onClick={() => this.handleClickToMainView()} className="button">제목 짓기</button>
+
+                    <div className="w3-right-align">
+                        <h3 className="w3-right-align">{element && element.intro}</h3>
+                        <h6><i className="icon fa-calendar" /> {element && arrayToLocalString(element.writtenDate)}</h6>
+                        <h6><i className="icon fa-star" /> {element && element.likeCount}</h6>
+                        <h6><i className="icon fa-comments" /> {element && element.commentCount}</h6>
+                        <h6><i className="fas fa-box-open" /> {element && element.titleCount}</h6>
                     </div>
+
+                    <div className="actions w3-right-align">
+                        <button onClick={() => this.handleClickToMainView()} className="button">
+                            <i className="fas fa-pencil-square-o" /> 제목 짓기
+                        </button>
+                    </div>
+
                     {
                         isHome ?
                             <div className="w3-display-topleft w3-large w3-container w3-padding-small w3-round-medium w3-black w3-opacity">
-                                <i className="icon fa-book"></i> {element && element.categoryName}<br/>
+                                <i className="icon fa-book" /> {element && element.categoryName}
                             </div> : null
                     }
                 </article>

@@ -12,7 +12,6 @@ const getThirdHoverColors = (idx) => {
         default :
             return "w3-bar";
     }
-    return null;
 }
 
 const TitleBarView = ({ idx, userId, likeCount, context }) => (
@@ -48,7 +47,7 @@ const BestTitleList = ({ bestTitles }) => (
             {
                 bestTitles.length > 0 ?
                     bestTitles.map((title, idx) => <TitleBarView key={`best_five_title_element_${idx}`} idx={idx} userId={title.userId} likeCount={title.likeCount} context={title.context} />) :
-                    <TitleBarView idx={0} userId={''} likeCount={-1} context={'여러분의 제목을 기다립니다.'}/>
+                    <TitleBarView idx={0} userId={''} likeCount={-1} context={'여러분의 제목을 기다립니다.'} />
             }
         </ul>
     </Fragment>

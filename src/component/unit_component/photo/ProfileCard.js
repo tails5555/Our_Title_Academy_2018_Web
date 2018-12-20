@@ -64,8 +64,8 @@ class ProfileCard extends Component{
                         className="w3-image w3-round-large"
                     />
                     <div className="w3-container w3-center">
-                        <h6>{ nickname }</h6>
-                        <h6>({ loginId })</h6>
+                        <h6 id="nickname_text">{ nickname }</h6>
+                        <h6 id="loginId_text">{ loginId ? `(${ loginId })` : null}</h6>
                     </div>
                 </div>
             </Fragment>
