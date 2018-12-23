@@ -68,11 +68,11 @@ export default function(state = INITIAL_STATE, action){
         case ANYBODY_FETCH_REDIRECT_MAIN_REQUEST :
             return { ...state, main : { element : null, loading : true }};
         case ANYBODY_FETCH_MAIN_REQUEST_SUCCESS :
-            return { ...state, main : { element : action.payload, loading : false }};
+            return { ...state, main : { element : action.payload, loading : false, type : 'FETCH' }};
         case ANYBODY_FETCH_MAIN_REQUEST_FAILURE :
-            return { ...state, main : { error : action.payload, loading : false }};
+            return { ...state, main : { error : action.payload, loading : false, type : 'FETCH' }};
         case RESET_ANYBODY_FETCH_MAIN_REQUEST :
-            return { ...state, main : { element : null, error : null }};
+            return { ...state, main : { element : null, error : null, type : null }};
 
         case FETCH_TODAY_BATTLE_REQUEST :
             return { ...state, selectRequest : { request : null, loading : true, error : null }};

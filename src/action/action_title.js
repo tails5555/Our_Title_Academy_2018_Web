@@ -1,4 +1,43 @@
 import axios from 'axios';
+
+import { ANYBODY_FETCH_MAIN_TITLE_LIST, ANYBODY_FETCH_MAIN_TITLE_LIST_SUCCESS, ANYBODY_FETCH_MAIN_TITLE_LIST_FAILURE, RESET_ANYBODY_FETCH_MAIN_TITLE_LIST } from "./type/type_title";
+
+import { fetchMainTitleListApi } from './api/api_title';
+
+const anybodyFetchMainTitleListStart = () => ({
+    type : ANYBODY_FETCH_MAIN_TITLE_LIST
+});
+
+const anybodyFetchMainTitleListSuccess = (response) => ({
+    type : ANYBODY_FETCH_MAIN_TITLE_LIST_SUCCESS,
+    payload : response && response.data
+});
+
+const anybodyFetchMainTitleListFailure = (error) => ({
+    type : ANYBODY_FETCH_MAIN_TITLE_LIST_FAILURE,
+    payload : error && error.message
+});
+
+const resetAnybodyFetchMainTitleList = () => ({
+    type : RESET_ANYBODY_FETCH_MAIN_TITLE_LIST
+});
+
+export const fetchMainTitleList = (requestId, userId) => (dispatch) => {
+    dispatch(anybodyFetchMainTitleListStart());
+
+    return fetchMainTitleListApi(requestId, userId).then((response) => {
+        setTimeout(() => {
+            dispatch(anybodyFetchMainTitleListSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(anybodyFetchMainTitleListFailure(error));
+    });
+}
+
+export const resetFetchMainTitleList = () => (dispatch) => {
+    dispatch(resetAnybodyFetchMainTitleList());
+}
+
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/title';
 
 export const FETCH_MAIN_TITLE_LIST = 'FETCH_MAIN_TITLE_LIST';

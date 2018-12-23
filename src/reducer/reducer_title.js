@@ -1,4 +1,8 @@
 import {
+    ANYBODY_FETCH_MAIN_TITLE_LIST, ANYBODY_FETCH_MAIN_TITLE_LIST_SUCCESS, ANYBODY_FETCH_MAIN_TITLE_LIST_FAILURE, RESET_ANYBODY_FETCH_MAIN_TITLE_LIST
+} from "../action/type/type_title";
+
+import {
     FETCH_MAIN_TITLE_LIST, FETCH_MAIN_TITLE_LIST_SUCCESS, FETCH_MAIN_TITLE_LIST_FAILURE, RESET_FETCH_MAIN_TITLE_LIST,
     FETCH_ALL_TITLE_LIST, FETCH_ALL_TITLE_LIST_SUCCESS, FETCH_ALL_TITLE_LIST_FAILURE, RESET_FETCH_ALL_TITLE_LIST,
     FETCH_USER_HAS_TITLE, FETCH_USER_HAS_TITLE_SUCCESS, FETCH_USER_HAS_TITLE_FAILURE, RESET_FETCH_USER_HAS_TITLE,
@@ -14,6 +18,8 @@ import {
 } from "../action/action_my_context";
 
 const INITIAL_STATE = {
+    main : { list : [], element : null, loading : false, error : null, status : 0, type : null },
+
     titleList : { titles : [], loading : false, error : null },
     myTitleStatistic : { statistics : [], loading : false, error : null },
     hasTitle : { result : null, loading : false, error : null },
@@ -24,6 +30,15 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
     let error;
     switch (action.type) {
+        case ANYBODY_FETCH_MAIN_TITLE_LIST :
+            return { ...state, main : { loading : true, list : [] }};
+        case ANYBODY_FETCH_MAIN_TITLE_LIST_SUCCESS :
+            return { ...state, main : { loading : false, list : action.payload, type : 'FETCH' }};
+        case ANYBODY_FETCH_MAIN_TITLE_LIST_FAILURE :
+            return { ...state, main : { loading : false, error : action.payload, type : 'FETCH' }};
+        case RESET_ANYBODY_FETCH_MAIN_TITLE_LIST :
+            return { ...state, main : { list : [], error : null, type : null }};
+
         case FETCH_MAIN_TITLE_LIST :
         case FETCH_ALL_TITLE_LIST :
         case USER_FETCH_MY_TITLE :
