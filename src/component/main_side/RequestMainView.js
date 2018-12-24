@@ -6,14 +6,30 @@ import { ModalScreen } from "../unit_component/modal";
 import { MainTitleHeader } from "../unit_component/header";
 import { SelectDisplayBox } from "../unit_component/select_display";
 import { MainRequestCard } from "../unit_component/request";
-import {BestTitleList} from "../unit_component/title";
+import { BestTitleList, MainTitleList } from "../unit_component/title";
 
 const HallOfFrameView = ({ element, bestTitles }) => (
     <Fragment>
         <MainRequestCard element={element} />
         <BestTitleList bestTitles={bestTitles} />
     </Fragment>
-)
+);
+
+const TitleChallenge = ({ title, loginId, fetchAction, resetAction }) => (
+    <Fragment>
+        <MainTitleList
+            list={title.list} loading={title.loading} error={title.error}
+            fetchAction={fetchAction} resetAction={resetAction}
+            loginId={loginId}
+        />
+    </Fragment>
+);
+
+const CommentView = ({ comment }) => (
+    <Fragment>
+
+    </Fragment>
+);
 
 class RequestMainView extends Component {
     constructor(props){
@@ -44,7 +60,7 @@ class RequestMainView extends Component {
     }
 
     currentUser = () => {
-        const {principal} = this.props.accessUser;
+        const { principal } = this.props.accessUser;
         let userId;
         if(principal !== null){
             userId = principal.loginId;
@@ -64,6 +80,13 @@ class RequestMainView extends Component {
 
     render(){
         const { loading, element } = this.state;
+        const { titleAction, title, location, accessUser } = this.props;
+
+        const { principal } = accessUser;
+        const { fetchMainTitleList, resetFetchMainTitleList } = titleAction;
+
+        const queryModel = queryString.parse(location.search);
+
         return(
             <Fragment>
                 <section id="request_element_view">
@@ -78,7 +101,7 @@ class RequestMainView extends Component {
                     btnTitles={[{ icon : 'fas fa-crown', label : '명예의 전당' }, { icon : 'fas fa-chalkboard', label : '제목 도전' } , { icon : 'fas fa-comment', label : '나도 한마디' }]}
                 >
                     <HallOfFrameView element={ element ? element.requestDTO : null } bestTitles={ element ? element.bestTitles : [] } />
-                    <div>제목 도전</div>
+                    <TitleChallenge title={title} loginId={principal ? principal.loginId : 'ANONYMOUS_USER'} fetchAction={() => fetchMainTitleList(queryModel && queryModel.id, principal ? principal.loginId : 'ANONYMOUS_USER')} resetAction={() => resetFetchMainTitleList()} />
                     <div>나도 한마디</div>
                 </SelectDisplayBox>
                 <ModalScreen title="Loading" opened={loading}>

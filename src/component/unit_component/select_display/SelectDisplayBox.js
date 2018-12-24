@@ -2,6 +2,7 @@ import React, { Component, Fragment, Children as childrenAPI } from 'react';
 import {AlertBoxNote} from "../alert_box";
 
 import './sticky_style.css';
+
 class SelectDisplayBox extends Component {
     constructor(props){
         super(props);
@@ -40,6 +41,7 @@ class SelectDisplayBox extends Component {
         const { children, btnTitles } = this.props;
         const { selected } = this.state;
         const childrenSize = childrenAPI.count(children);
+
         if(btnTitles.length !== childrenSize){
             return (
                 <Fragment>
@@ -52,24 +54,28 @@ class SelectDisplayBox extends Component {
                 </Fragment>
             );
         }
+
         const btnList = btnTitles.map((btnContext, idx) => (
             <button
                 key={`display_btn_${idx}`}
                 style={{ margin : '10px' }}
                 className={(selected === idx) ? "w3-small w3-button w3-pink" : "w3-small w3-button w3-white"}
-                onClick={() => this.handleClickChangeSelected(idx)}>
-                <i className={ btnContext.icon } /> { btnContext.label }
+                onClick={() => this.handleClickChangeSelected(idx)}
+            >
+                <i className={ btnContext.icon } /> { window.innerWidth > 768 ? btnContext.label : null }
             </button>
         ));
+
         const displayBox = childrenAPI.map(children, (child, idx) => (
             <div
                 key={`display_children_${idx}`}
                 className="w3-animate-opacity"
-                style={selected !== idx ? { display : 'none' } : {}}
             >
-                { child }
+                { selected === idx ? child : null }
             </div>
         ));
+
+
         return (
             <Fragment>
                 <div id="display_btn_list" className="w3-right-align">
