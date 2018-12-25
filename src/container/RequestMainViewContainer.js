@@ -2,6 +2,7 @@ import { RequestMainView } from "../component/main_side";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as RequestAction from '../action/action_request';
+import * as TitleAction from '../action/action_title';
 
 import {
     appFetchViewRequestMain, appFetchViewRequestMainSuccess, appFetchViewRequestMainFailure,
@@ -17,6 +18,7 @@ import {
 function mapStateToProps(state){
     return {
         request : state.request.main,
+        title : state.title.main,
         selectRequest : state.request.selectRequest,
         bestTitles : state.request.bestTitles,
         accessUser : state.user.accessUser,
@@ -31,6 +33,7 @@ function mapStateToProps(state){
 const mapDispatchToProps = (dispatch) => {
     return {
         requestAction : bindActionCreators(RequestAction, dispatch),
+        titleAction : bindActionCreators(TitleAction, dispatch),
         fetchSelectRequest : (id, userId) => {
             dispatch(appFetchViewRequestMain(id, userId)).then((response) => {
                 if(!response.error){

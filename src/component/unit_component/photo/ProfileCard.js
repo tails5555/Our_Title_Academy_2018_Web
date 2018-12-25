@@ -53,7 +53,7 @@ class ProfileCard extends Component{
         const imageSource = (status === 200) ? `${RESOURCE_ROOT_URL}/image_profile/${loginId}` : defaultProfile;
         return (
             <Fragment>
-                <div className="w3-card-4 w3-round-large">
+                <div className="w3-card-4 w3-round-large w3-margin-bottom">
                     <img
                         src={imageSource}
                         alt={`${loginId}_profile_photo`}
@@ -63,10 +63,10 @@ class ProfileCard extends Component{
                         }}
                         className="w3-image w3-round-large"
                     />
-                    <div className="w3-container w3-center">
-                        <h6 id="nickname_text">{ nickname }</h6>
-                        <h6 id="loginId_text">{ loginId ? `(${ loginId })` : null}</h6>
-                    </div>
+                </div>
+                <div className="w3-card-4 w3-round-large w3-center" style={{ padding : '.5vw' }}>
+                    <h6 id="nickname_text" style={{ fontSize : '1vw' }}>{ nickname }</h6>
+                    <h6 id="loginId_text" style={{ fontSize : '.6vw' }}>{ loginId ? `(${ loginId })` : null}</h6>
                 </div>
             </Fragment>
         );

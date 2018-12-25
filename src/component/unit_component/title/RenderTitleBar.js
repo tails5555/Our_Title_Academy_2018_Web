@@ -44,7 +44,7 @@ const RenderTitleBar = ({ title, loginId, location }) => {
                 </div>
                 <div className="w3-container">
                     <span className="image left" style={{
-                        width : '30vw'
+                        width : window.innerWidth <= 768 ? '30vw' : '10vw'
                     }}>
                         <ProfileCard loginId={title && title.userId} />
                     </span>

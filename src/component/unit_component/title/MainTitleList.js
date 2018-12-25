@@ -3,11 +3,12 @@ import React, { Component, Fragment } from 'react';
 import RenderTitleBar from "./RenderTitleBar";
 import { AlertBoxNote } from "../alert_box";
 import { ModalScreen } from "../modal";
+import {ListPagination} from "../paginate";
 
 class MainTitleList extends Component {
     constructor(props){
         super(props);
-        this.state = { list : [], loading : false, error : null };
+        this.state = { list : [], loading : false, error : null, page : 1 };
     }
 
     static getDerivedStateFromProps(nextProps, prevState){
@@ -32,17 +33,34 @@ class MainTitleList extends Component {
         resetAction();
     }
 
+    handleClickPaginate = (event) => {
+        this.setState({
+            page : event.target.id
+        });
+        window.scroll({
+            top : 0,
+            left : 0,
+            behavior : 'smooth'
+        });
+    }
+
     render(){
         const { loginId } = this.props;
-        const { list, loading, error } = this.state;
+        const { list, loading, error, page } = this.state;
+        const pageSize = 5;
+
+        const startIdx = (page - 1) * pageSize;
+        const endIdx = page * pageSize - 1;
 
         let renderTitles = null;
 
         if(list && !loading){
             if(list.length > 0){
-                renderTitles = list.map((title, idx) => (
-                    <RenderTitleBar title={title} loginId={loginId} key={`render_title_bar_$${idx}`} />
-                ));
+                renderTitles =
+                    list
+                        .filter((title, idx) => idx >= startIdx && idx <= endIdx)
+                        .map((title, idx) => <RenderTitleBar title={title} loginId={loginId} key={`render_title_bar_$${idx}`} />
+                );
             } else {
                 renderTitles = (
                     <AlertBoxNote
@@ -72,6 +90,9 @@ class MainTitleList extends Component {
                     <i className="fas fa-chalkboard" /> 도전! 제목 학원!
                 </h3>
                 { renderTitles }
+                <div id="title_pagination_bar" className="w3-center">
+                    <ListPagination page={page} size={pageSize} count={list ? list.length : 0} handle={this.handleClickPaginate.bind(this)} />
+                </div>
                 <ModalScreen title="Loading" opened={loading}>
                     <div className="w3-center w3-padding">
                         <i className="fas fa-sync fa-spin" style={{ fontSize : '80px', margin : '10px' }} />
