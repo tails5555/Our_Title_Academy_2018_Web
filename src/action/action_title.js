@@ -1,8 +1,15 @@
 import axios from 'axios';
 
-import { ANYBODY_FETCH_MAIN_TITLE_LIST, ANYBODY_FETCH_MAIN_TITLE_LIST_SUCCESS, ANYBODY_FETCH_MAIN_TITLE_LIST_FAILURE, RESET_ANYBODY_FETCH_MAIN_TITLE_LIST } from "./type/type_title";
+import {
+    ANYBODY_FETCH_MAIN_TITLE_LIST, ANYBODY_FETCH_MAIN_TITLE_LIST_SUCCESS, ANYBODY_FETCH_MAIN_TITLE_LIST_FAILURE, RESET_ANYBODY_FETCH_MAIN_TITLE_LIST,
+    ANYBODY_FETCH_HAS_MY_TITLE, ANYBODY_FETCH_HAS_MY_TITLE_SUCCESS, ANYBODY_FETCH_HAS_MY_TITLE_FAILURE, RESET_ANYBODY_FETCH_HAS_MY_TITLE,
+    ANYBODY_SAVE_MY_TITLE, ANYBODY_SAVE_MY_TITLE_SUCCESS, ANYBODY_SAVE_MY_TITLE_FAILURE,
+    ANYBODY_DELETE_TITLE_BY_ID, ANYBODY_DELETE_TITLE_BY_ID_SUCCESS, ANYBODY_DELETE_TITLE_BY_ID_FAILURE, RESET_ANYBODY_SAVE_MY_TITLE,
+} from "./type/type_title";
 
-import { fetchMainTitleListApi } from './api/api_title';
+import {
+    fetchMainTitleListApi, fetchHasMyTitleApi, savingMyTitleApi, deleteTitleByIdApi
+} from './api/api_title';
 
 const anybodyFetchMainTitleListStart = () => ({
     type : ANYBODY_FETCH_MAIN_TITLE_LIST
@@ -37,6 +44,101 @@ export const fetchMainTitleList = (requestId, userId) => (dispatch) => {
 export const resetFetchMainTitleList = () => (dispatch) => {
     dispatch(resetAnybodyFetchMainTitleList());
 }
+
+const anybodyFetchHasMyTitleStart = () => ({
+    type : ANYBODY_FETCH_HAS_MY_TITLE
+});
+
+const anybodyFetchHasMyTitleSuccess = (response) => ({
+    type : ANYBODY_FETCH_HAS_MY_TITLE_SUCCESS,
+    payload : response && response.data
+});
+
+const anybodyFetchHasMyTitleFailure = (error) => ({
+    type : ANYBODY_FETCH_HAS_MY_TITLE_FAILURE,
+    payload : error && error.message
+});
+
+export const fetchHasMyTitle = (requestId, userId) => (dispatch) => {
+    dispatch(anybodyFetchHasMyTitleStart());
+
+    return fetchHasMyTitleApi(requestId, userId).then((response) => {
+        setTimeout(() => {
+            dispatch(anybodyFetchHasMyTitleSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(anybodyFetchHasMyTitleFailure(error));
+    });
+}
+
+const resetAnybodyFetchHasMyTitle = () => ({
+    type : RESET_ANYBODY_FETCH_HAS_MY_TITLE
+});
+
+export const resetFetchHasMyTitle = () => (dispatch) => {
+    dispatch(resetAnybodyFetchHasMyTitle());
+}
+
+const anybodySaveMyTitleStart = () => ({
+    type : ANYBODY_SAVE_MY_TITLE
+});
+
+const anybodySaveMyTitleSuccess = (response) => ({
+    type : ANYBODY_SAVE_MY_TITLE_SUCCESS,
+    payload : response && response.data
+});
+
+const anybodySaveMyTitleFailure = (error) => ({
+    type : ANYBODY_SAVE_MY_TITLE_FAILURE,
+    payload : error && error.message
+});
+
+export const saveMyTitle = (titleModel) => (dispatch) => {
+    dispatch(anybodySaveMyTitleStart());
+
+    return savingMyTitleApi(titleModel).then((response) => {
+        setTimeout(() => {
+            dispatch(anybodySaveMyTitleSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(anybodySaveMyTitleFailure(error));
+    });
+}
+
+const anybodyDeleteTitleByIdStart = () => ({
+    type : ANYBODY_DELETE_TITLE_BY_ID
+});
+
+const anybodyDeleteTitleByIdSuccess = (response) => ({
+    type : ANYBODY_DELETE_TITLE_BY_ID_SUCCESS,
+    payload : response && response.data
+});
+
+const anybodyDeleteTitleByIdFailure = (error) => ({
+    type : ANYBODY_DELETE_TITLE_BY_ID_FAILURE,
+    payload : error && error.message
+});
+
+export const deleteTitleById = (id) => (dispatch) => {
+    dispatch(anybodyDeleteTitleByIdStart());
+
+    return deleteTitleByIdApi(id).then((response) => {
+        setTimeout(() => {
+            dispatch(anybodyDeleteTitleByIdSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(anybodyDeleteTitleByIdFailure(error));
+    });
+}
+
+const resetAnybodySaveMyTitleStart = () => ({
+    type : RESET_ANYBODY_SAVE_MY_TITLE
+});
+
+export const resetSaveMyTitle = () => (dispatch) => {
+    dispatch(resetAnybodySaveMyTitleStart());
+}
+
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/title';
 

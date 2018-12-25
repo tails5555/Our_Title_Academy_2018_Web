@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import { BriefRequestCard } from "./../unit_component/request";
 import { MainTitleHeader, CategoryTitleHeader } from "../unit_component/header";
-import { ListPagination } from "../unit_component/request";
+import { ListPagination } from "../unit_component/paginate";
 import { ModalScreen } from "../unit_component/modal";
 import { AlertBoxNote } from "../unit_component/alert_box";
 import { RequestSearchForm } from "../unit_component/form_model";

@@ -10,3 +10,25 @@ export const fetchMainTitleListApi = (requestId, userId) => {
         method : 'get'
     });
 }
+
+export const fetchHasMyTitleApi = (requestId, userId) => {
+    return axios({
+        url : `${ROOT_URL}/user/${requestId}/${userId}`,
+        method : 'get'
+    });
+}
+
+export const savingMyTitleApi = (titleModel) => {
+    return axios({
+        url : `${ROOT_URL}`,
+        data : titleModel,
+        method : 'post'
+    });
+}
+
+export const deleteTitleByIdApi = (id) => {
+    return axios({
+        url : `${ROOT_URL}/${id}`,
+        method : 'delete'
+    });
+}

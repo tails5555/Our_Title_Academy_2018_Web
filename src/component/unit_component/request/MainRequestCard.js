@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 
-import { ProfileCard } from '../photo';
+import {ProfileCard, RequestPhoto} from '../photo';
 import { arrayToLocalString } from '../util_func/date_time_func';
 
 const IMAGE_URL = 'http://127.0.0.1:8082/ContextAPI/photo';
@@ -34,18 +34,7 @@ class MainRequestCard extends Component {
                     </div>
                     <div id="request_detail_view_card" className="w3-twothird w3-margin-top w3-margin-bottom">
                         <div className="w3-card-4 w3-round-large w3-display-container">
-                            {
-                                element ?
-                                    <img
-                                        style={{
-                                            width : '100%',
-                                            height : 'auto'
-                                        }}
-                                        src={`${IMAGE_URL}/request_image/${element.id}`}
-                                        className="w3-image w3-round-large"
-                                        alt={`request_photo_${element && element.id}`}
-                                    /> : null
-                            }
+                            <RequestPhoto requestId={element && element.id} />
                             <div id="request_detail_info" className="w3-container">
                                 <div className="w3-margin-top w3-margin-bottom">
                                     <h3 className="w3-border-bottom w3-border-red">{element && element.intro}</h3>

@@ -7,6 +7,8 @@ import { MainTitleHeader } from "../unit_component/header";
 import { SelectDisplayBox } from "../unit_component/select_display";
 import { MainRequestCard } from "../unit_component/request";
 import { BestTitleList, MainTitleList } from "../unit_component/title";
+import { RequestPhoto } from "../unit_component/photo";
+import { TitleSaveForm } from "../unit_component/form_model";
 
 const HallOfFrameView = ({ element, bestTitles }) => (
     <Fragment>
@@ -15,8 +17,12 @@ const HallOfFrameView = ({ element, bestTitles }) => (
     </Fragment>
 );
 
-const TitleChallenge = ({ title, loginId, fetchAction, resetAction }) => (
+const TitleChallenge = ({ requestId, title, loginId, fetchAction, resetAction }) => (
     <Fragment>
+        <div id="request_photo" style={{ marginBottom : '20px' }}>
+            <RequestPhoto requestId={requestId} />
+        </div>
+        <TitleSaveForm userId={loginId} requestId={requestId} />
         <MainTitleList
             list={title.list} loading={title.loading} error={title.error}
             fetchAction={fetchAction} resetAction={resetAction}
@@ -101,7 +107,7 @@ class RequestMainView extends Component {
                     btnTitles={[{ icon : 'fas fa-crown', label : '명예의 전당' }, { icon : 'fas fa-chalkboard', label : '제목 도전' } , { icon : 'fas fa-comment', label : '나도 한마디' }]}
                 >
                     <HallOfFrameView element={ element ? element.requestDTO : null } bestTitles={ element ? element.bestTitles : [] } />
-                    <TitleChallenge title={title} loginId={principal ? principal.loginId : 'ANONYMOUS_USER'} fetchAction={() => fetchMainTitleList(queryModel && queryModel.id, principal ? principal.loginId : 'ANONYMOUS_USER')} resetAction={() => resetFetchMainTitleList()} />
+                    <TitleChallenge requestId={ element && element.requestDTO.id } title={title} loginId={principal ? principal.loginId : 'ANONYMOUS_USER'} fetchAction={() => fetchMainTitleList(queryModel && queryModel.id, principal ? principal.loginId : 'ANONYMOUS_USER')} resetAction={() => resetFetchMainTitleList()} />
                     <div>나도 한마디</div>
                 </SelectDisplayBox>
                 <ModalScreen title="Loading" opened={loading}>
