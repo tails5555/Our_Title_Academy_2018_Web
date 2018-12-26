@@ -19,9 +19,14 @@ export const fetchHasMyTitleApi = (requestId, userId) => {
 }
 
 export const savingMyTitleApi = (titleModel) => {
+    const responseModel = {
+        context : titleModel && titleModel.context,
+        requestId : titleModel && titleModel.requestId,
+        userId : titleModel && titleModel.userId
+    };
     return axios({
         url : `${ROOT_URL}`,
-        data : titleModel,
+        data : responseModel,
         method : 'post'
     });
 }

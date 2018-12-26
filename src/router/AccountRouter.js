@@ -18,15 +18,15 @@ const AccountRouter = () => (
             let message = '';
             switch(context) {
                 case 'request' :
-                    req = 'request_empathy';
+                    req = 'request';
                     message = '사연';
                     break;
                 case 'title' :
-                    req = 'title_empathy';
+                    req = 'title';
                     message = '제목';
                     break;
                 case 'comment' :
-                    req = 'comment_empathy';
+                    req = 'comment';
                     message = '댓글';
                     break;
                 default :

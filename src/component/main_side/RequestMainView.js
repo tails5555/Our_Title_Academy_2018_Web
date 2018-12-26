@@ -9,6 +9,7 @@ import { MainRequestCard } from "../unit_component/request";
 import { BestTitleList, MainTitleList } from "../unit_component/title";
 import { RequestPhoto } from "../unit_component/photo";
 import { TitleSaveForm } from "../unit_component/form_model";
+import { MainCommentList } from "../unit_component/comment";
 
 const HallOfFrameView = ({ element, bestTitles }) => (
     <Fragment>
@@ -17,7 +18,7 @@ const HallOfFrameView = ({ element, bestTitles }) => (
     </Fragment>
 );
 
-const TitleChallenge = ({ requestId, title, loginId, fetchAction, resetAction }) => (
+const TitleChallenge = ({ requestId, loginId, title, fetchAction, resetAction }) => (
     <Fragment>
         <div id="request_photo" style={{ marginBottom : '20px' }}>
             <RequestPhoto requestId={requestId} />
@@ -31,9 +32,16 @@ const TitleChallenge = ({ requestId, title, loginId, fetchAction, resetAction })
     </Fragment>
 );
 
-const CommentView = ({ comment }) => (
+const CommentPartyView = ({ requestId, loginId, comment, fetchAction, resetAction }) => (
     <Fragment>
-
+        <div id="request_photo" style={{ marginBottom : '20px' }}>
+            <RequestPhoto requestId={requestId} />
+        </div>
+        <MainCommentList
+            list={comment.list} loading={comment.loading} error={comment.error}
+            fetchAction={fetchAction} resetAction={resetAction}
+            loginId={loginId}
+        />
     </Fragment>
 );
 
@@ -86,11 +94,11 @@ class RequestMainView extends Component {
 
     render(){
         const { loading, element } = this.state;
-        const { titleAction, title, location, accessUser } = this.props;
+        const { titleAction, title, commentAction, comment, location, accessUser } = this.props;
 
         const { principal } = accessUser;
         const { fetchMainTitleList, resetFetchMainTitleList } = titleAction;
-
+        const { fetchCommentList, resetFetchCommentList } = commentAction;
         const queryModel = queryString.parse(location.search);
 
         return(
@@ -106,9 +114,22 @@ class RequestMainView extends Component {
                 <SelectDisplayBox
                     btnTitles={[{ icon : 'fas fa-crown', label : '명예의 전당' }, { icon : 'fas fa-chalkboard', label : '제목 도전' } , { icon : 'fas fa-comment', label : '나도 한마디' }]}
                 >
-                    <HallOfFrameView element={ element ? element.requestDTO : null } bestTitles={ element ? element.bestTitles : [] } />
-                    <TitleChallenge requestId={ element && element.requestDTO.id } title={title} loginId={principal ? principal.loginId : 'ANONYMOUS_USER'} fetchAction={() => fetchMainTitleList(queryModel && queryModel.id, principal ? principal.loginId : 'ANONYMOUS_USER')} resetAction={() => resetFetchMainTitleList()} />
-                    <div>나도 한마디</div>
+                    <HallOfFrameView
+                        element={ element ? element.requestDTO : null }
+                        bestTitles={ element ? element.bestTitles : [] }
+                    />
+                    <TitleChallenge
+                        requestId={ element && element.requestDTO.id }
+                        title={ title } loginId={ principal ? principal.loginId : 'ANONYMOUS_USER' }
+                        fetchAction={() => fetchMainTitleList(queryModel && queryModel.id, principal ? principal.loginId : 'ANONYMOUS_USER')}
+                        resetAction={() => resetFetchMainTitleList()}
+                    />
+                    <CommentPartyView
+                        requestId={ element && element.requestDTO.id }
+                        comment={ comment } loginId={ principal ? principal.loginId : 'ANONYMOUS_USER' }
+                        fetchAction={() => fetchCommentList(queryModel && queryModel.id, principal ? principal.loginId : 'ANONYMOUS_USER')}
+                        resetAction={() => resetFetchCommentList()}
+                    />
                 </SelectDisplayBox>
                 <ModalScreen title="Loading" opened={loading}>
                     <div className="w3-center w3-padding">

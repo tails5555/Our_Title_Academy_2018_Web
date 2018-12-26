@@ -1,119 +1,103 @@
-import axios from 'axios';
+import {
+    ANYBODY_FETCH_COMMENT_LIST, ANYBODY_FETCH_COMMENT_LIST_SUCCESS, ANYBODY_FETCH_COMMENT_LIST_FAILURE, RESET_ANYBODY_FETCH_COMMENT_LIST,
+    ANYBODY_SAVE_COMMENT_BY_MODEL, ANYBODY_SAVE_COMMENT_BY_MODEL_SUCCESS, ANYBODY_SAVE_COMMENT_BY_MODEL_FAILURE,
+    ANYBODY_DELETE_COMMENT_BY_ID, ANYBODY_DELETE_COMMENT_BY_ID_SUCCESS, ANYBODY_DELETE_COMMENT_BY_ID_FAILURE, RESET_ANYBODY_SAVE_COMMENT_BY_MODEL
+} from "./type/type_comment";
 
-const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/comment';
+import {
+    fetchMainCommentListApi, savingCommentApi, deleteCommentByIdApi
+} from "./api/api_comment";
 
-export const FETCH_MAIN_COMMENT_LIST = 'FETCH_MAIN_COMMENT_LIST';
-export const FETCH_MAIN_COMMENT_LIST_SUCCESS = 'FETCH_MAIN_COMMENT_LIST_SUCCESS';
-export const FETCH_MAIN_COMMENT_LIST_FAILURE = 'FETCH_MAIN_COMMENT_LIST_FAILURE';
-export const RESET_FETCH_MAIN_COMMENT_LIST = 'RESET_FETCH_MAIN_COMMENT_LIST';
+const anybodyFetchCommentListStart = () => ({
+    type : ANYBODY_FETCH_COMMENT_LIST
+});
 
-export const USER_EXECUTE_SAVE_COMMENT = 'USER_EXECUTE_SAVE_COMMENT';
-export const USER_EXECUTE_SAVE_COMMENT_SUCCESS = 'USER_EXECUTE_SAVE_COMMENT_SUCCESS';
-export const USER_EXECUTE_SAVE_COMMENT_FAILURE = 'USER_EXECUTE_SAVE_COMMENT_FAILURE';
-export const RESET_USER_EXECUTE_SAVE_COMMENT = 'RESET_USER_EXECUTE_SAVE_COMMENT';
+const anybodyFetchCommentListSuccess = (response) => ({
+    type : ANYBODY_FETCH_COMMENT_LIST_SUCCESS,
+    payload : response && response.data
+});
 
-export const USER_EXECUTE_DELETE_COMMENT = 'USER_EXECUTE_DELETE_COMMENT';
-export const USER_EXECUTE_DELETE_COMMENT_SUCCESS = 'USER_EXECUTE_DELETE_COMMENT_SUCCESS';
-export const USER_EXECUTE_DELETE_COMMENT_FAILURE = 'USER_EXECUTE_DELETE_COMMENT_FAILURE';
-export const RESET_USER_EXECUTE_DELETE_COMMENT = 'RESET_USER_EXECUTE_DELETE_COMMENT';
+const anybodyFetchCommentListFailure = (error) => ({
+    type : ANYBODY_FETCH_COMMENT_LIST_FAILURE,
+    payload : error && error.message
+});
 
-export function appFetchMainCommentList(requestId, userId){
-    const request = axios({
-        method : 'get',
-        url : `${ROOT_URL}/fetch_comments/${requestId}/${userId}`
+export const fetchCommentList = (requestId, userId) => (dispatch) => {
+    dispatch(anybodyFetchCommentListStart());
+
+    return fetchMainCommentListApi(requestId, userId).then((response) => {
+        setTimeout(() => {
+            dispatch(anybodyFetchCommentListSuccess(response))
+        }, 2000);
+    }).catch((error) => {
+        dispatch(anybodyFetchCommentListFailure(error));
     });
-    return {
-        type : FETCH_MAIN_COMMENT_LIST,
-        payload : request
-    }
 }
 
-export function appFetchMainCommentListSuccess(comments){
-    return {
-        type : FETCH_MAIN_COMMENT_LIST_SUCCESS,
-        payload : comments.data
-    }
+const resetAnybodyFetchCommentListStart = () => ({
+    type : RESET_ANYBODY_FETCH_COMMENT_LIST
+});
+
+export const resetFetchCommentList = () => (dispatch) => {
+    dispatch(resetAnybodyFetchCommentListStart());
 }
 
-export function appFetchMainCommentListFailure(error){
-    return {
-        type : FETCH_MAIN_COMMENT_LIST_FAILURE,
-        payload : error
-    }
-}
+const anybodySaveCommentByModelStart = () => ({
+    type : ANYBODY_SAVE_COMMENT_BY_MODEL
+});
 
-export function resetAppFetchMainCommentList(){
-    return {
-        type : RESET_FETCH_MAIN_COMMENT_LIST
-    }
-}
+const anybodySaveCommentByModelSuccess = (response) => ({
+    type : ANYBODY_SAVE_COMMENT_BY_MODEL_SUCCESS,
+    payload : response && response.data
+});
 
-export function appExecuteUserSaveComment(commentId, userId, requestId, context){
-    const commentModel = {
-        commentId : commentId,
-        userId : userId,
-        requestId : requestId,
-        context : context
-    };
+const anybodySaveCommentByModelFailure = (error) => ({
+    type : ANYBODY_SAVE_COMMENT_BY_MODEL_FAILURE,
+    payload : error && error.message
+});
 
-    const request = axios({
-        method : 'post',
-        url : `${ROOT_URL}/execute_saving`,
-        data : commentModel
+export const saveCommentByModel = (commentModel) => (dispatch) => {
+    dispatch(anybodySaveCommentByModelStart());
+
+    return savingCommentApi(commentModel).then((response) => {
+        setTimeout(() => {
+            dispatch(anybodySaveCommentByModelSuccess(response))
+        }, 2000);
+    }).catch((error) => {
+        dispatch(anybodySaveCommentByModelFailure(error));
     });
-
-    return {
-        type : USER_EXECUTE_SAVE_COMMENT,
-        payload : request
-    }
 }
 
-export function appExecuteUserSaveCommentSuccess(result){
-    return {
-        type : USER_EXECUTE_SAVE_COMMENT_SUCCESS,
-        payload : result.data
-    }
+const anybodyDeleteCommentByIdStart = () => ({
+    type : ANYBODY_DELETE_COMMENT_BY_ID
+});
+
+const anybodyDeleteCommentByIdSuccess = (response) => ({
+    type : ANYBODY_DELETE_COMMENT_BY_ID_SUCCESS,
+    payload : response && response.data
+});
+
+const anybodyDeleteCommentByIdFailure = (error) => ({
+    type : ANYBODY_DELETE_COMMENT_BY_ID_FAILURE,
+    payload : error && error.message
+});
+
+export const deleteCommentById = (id) => (dispatch) => {
+    dispatch(anybodyDeleteCommentByIdStart());
+
+    return deleteCommentByIdApi(id).then((response) => {
+        setTimeout(() => {
+            dispatch(anybodyDeleteCommentByIdSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(anybodyDeleteCommentByIdFailure(error));
+    });
 }
 
-export function appExecuteUserSaveCommentFailure(error){
-    return {
-        type : USER_EXECUTE_SAVE_COMMENT_FAILURE,
-        payload : error
-    }
-}
+const resetAnybodySaveCommentByModelStart = () => ({
+    type : RESET_ANYBODY_SAVE_COMMENT_BY_MODEL
+});
 
-export function resetAppExecuteUserSaveComment(){
-    return {
-        type : RESET_USER_EXECUTE_SAVE_COMMENT
-    }
-}
-
-export function appExecuteUserDeleteComment(commentId){
-    const request = axios.delete(
-        `${ROOT_URL}/execute_delete/${commentId}`
-    );
-    return {
-        type : USER_EXECUTE_DELETE_COMMENT,
-        payload : request
-    }
-}
-
-export function appExecuteUserDeleteCommentSuccess(result){
-    return {
-        type : USER_EXECUTE_DELETE_COMMENT_SUCCESS,
-        payload : result.data
-    }
-}
-
-export function appExecuteUserDeleteCommentFailure(error){
-    return {
-        type : USER_EXECUTE_DELETE_COMMENT_FAILURE,
-        payload : error
-    }
-}
-
-export function resetAppExecuteUserDeleteComment(){
-    return {
-        type : RESET_USER_EXECUTE_DELETE_COMMENT
-    }
+export const resetSaveCommentByModel = () => (dispatch) => {
+    dispatch(resetAnybodySaveCommentByModelStart());
 }

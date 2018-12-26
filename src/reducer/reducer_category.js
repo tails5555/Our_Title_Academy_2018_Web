@@ -4,7 +4,7 @@ import {
 } from "../action/type/type_category";
 
 const INITIAL_STATE = {
-    list : [], element : null, loading : false, error : null, status : 0, type : null
+    list : [], element : null, loading : false, error : null, type : null
 }
 
 export default function(state = INITIAL_STATE, action){

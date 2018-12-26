@@ -21,8 +21,9 @@ import {
 } from "../action/action_my_context";
 
 const INITIAL_STATE = {
-    main : { list : [], element : null, loading : false, error : null, status : 0, type : null },
-    form : { complete : null, element : null, loading : false, error : null, type : null },
+    main : { list : [], loading : false, error : null },
+    form : { complete : null, loading : false, error : null, type : null },
+
     titleList : { titles : [], loading : false, error : null },
     myTitleStatistic : { statistics : [], loading : false, error : null },
     hasTitle : { result : null, loading : false, error : null },
@@ -36,11 +37,11 @@ export default function(state = INITIAL_STATE, action) {
         case ANYBODY_FETCH_MAIN_TITLE_LIST :
             return { ...state, main : { loading : true, list : [] }};
         case ANYBODY_FETCH_MAIN_TITLE_LIST_SUCCESS :
-            return { ...state, main : { loading : false, list : action.payload, type : 'FETCH' }};
+            return { ...state, main : { loading : false, list : action.payload }};
         case ANYBODY_FETCH_MAIN_TITLE_LIST_FAILURE :
-            return { ...state, main : { loading : false, error : action.payload, type : 'FETCH' }};
+            return { ...state, main : { loading : false, error : action.payload }};
         case RESET_ANYBODY_FETCH_MAIN_TITLE_LIST :
-            return { ...state, main : { list : [], error : null, type : null }};
+            return { ...state, main : { list : [], error : null }};
 
         case ANYBODY_FETCH_HAS_MY_TITLE :
             return { ...state, form : { loading : true, element : null, type : null }};

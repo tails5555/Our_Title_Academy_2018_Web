@@ -64,10 +64,13 @@ class ProfileCard extends Component{
                         className="w3-image w3-round-large"
                     />
                 </div>
-                <div className="w3-card-4 w3-round-large w3-center" style={{ padding : '.5vw' }}>
-                    <h6 id="nickname_text" style={{ fontSize : '1vw' }}>{ nickname }</h6>
-                    <h6 id="loginId_text" style={{ fontSize : '.6vw' }}>{ loginId ? `(${ loginId })` : null}</h6>
-                </div>
+                {
+                    loginId ?
+                        <div className="w3-card-4 w3-round-large w3-center" style={{padding: '.5vw'}}>
+                            <h6 id="nickname_text" style={{fontSize: '1vw'}}>{nickname}</h6>
+                            <h6 id="loginId_text" style={{fontSize: '.6vw'}}>{loginId ? `(${ loginId })` : null}</h6>
+                        </div> : null
+                }
             </Fragment>
         );
     }

@@ -40,9 +40,9 @@ function validate(values){
 
 const validateAndSaving = (value, dispatch) => {
     const titleModel = {
-        userId : value && value.userId,
+        context : value && value.context,
         requestId : value && value.requestId,
-        context : value && value.context
+        userId : value && value.userId
     }
     dispatch(TitleAction.saveMyTitle(titleModel));
 }
