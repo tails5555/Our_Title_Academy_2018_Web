@@ -4,11 +4,12 @@ import RenderCommentBar from './RenderCommentBar';
 import { AlertBoxNote } from "../alert_box";
 import { ListPagination } from "../paginate";
 import { ModalScreen } from "../modal";
+import { CommentSaveForm } from "../form_model";
 
 class MainCommentList extends Component {
     constructor(props){
         super(props);
-        this.state = { list : [], loading : false, error : null, page : 1 };
+        this.state = { list : [], loading : false, error : null, page : 1, element : null };
     }
 
     static getDerivedStateFromProps(nextProps, prevState){
@@ -44,9 +45,19 @@ class MainCommentList extends Component {
         });
     }
 
+    handleClickSetElement = (element) => {
+        this.setState({ element });
+    }
+
+    handleClickCancelElement = () => {
+        this.setState({
+            element : null
+        });
+    }
+
     render(){
-        const { loginId } = this.props;
-        const { list, loading, error, page } = this.state;
+        const { loginId, requestId } = this.props;
+        const { list, loading, error, page, element } = this.state;
         const pageSize = 10;
 
         const startIdx = (page - 1) * pageSize;
@@ -59,8 +70,8 @@ class MainCommentList extends Component {
                 renderComments =
                     list
                         .filter((comment, idx) => idx >= startIdx && idx <= endIdx)
-                        .map((comment, idx) => <RenderCommentBar comment={comment} loginId={loginId} key={`render_comment_bar_$${idx}`} />
-                        );
+                        .map((comment, idx) => <RenderCommentBar comment={comment} loginId={loginId} key={`render_comment_bar_${idx}`} handle={loginId === comment.userId ? () => this.handleClickSetElement(comment) : null} />
+                    );
             } else {
                 renderComments = (
                     <AlertBoxNote
@@ -97,6 +108,14 @@ class MainCommentList extends Component {
                     <div className="w3-center w3-padding">
                         <i className="fas fa-sync fa-spin" style={{ fontSize : '80px', margin : '10px' }} />
                         <h4>선택하신 요청의 댓글 목록을 불러오는 중입니다...</h4>
+                    </div>
+                </ModalScreen>
+                <ModalScreen title="댓글 수정" opened={element !== null}>
+                    <CommentSaveForm userId={loginId} requestId={requestId} element={element} />
+                    <div id="close_button" className="w3-right-align">
+                        <button className="w3-button w3-round-large w3-red" onClick={() => this.handleClickCancelElement()}>
+                            <i className="icon fa-times" /> 취소
+                        </button>
                     </div>
                 </ModalScreen>
             </Fragment>

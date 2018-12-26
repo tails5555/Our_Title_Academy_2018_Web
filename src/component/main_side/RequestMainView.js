@@ -8,7 +8,7 @@ import { SelectDisplayBox } from "../unit_component/select_display";
 import { MainRequestCard } from "../unit_component/request";
 import { BestTitleList, MainTitleList } from "../unit_component/title";
 import { RequestPhoto } from "../unit_component/photo";
-import { TitleSaveForm } from "../unit_component/form_model";
+import { TitleSaveForm, CommentSaveForm } from "../unit_component/form_model";
 import { MainCommentList } from "../unit_component/comment";
 
 const HallOfFrameView = ({ element, bestTitles }) => (
@@ -37,10 +37,11 @@ const CommentPartyView = ({ requestId, loginId, comment, fetchAction, resetActio
         <div id="request_photo" style={{ marginBottom : '20px' }}>
             <RequestPhoto requestId={requestId} />
         </div>
+        <CommentSaveForm userId={loginId} requestId={requestId} element={null} />
         <MainCommentList
             list={comment.list} loading={comment.loading} error={comment.error}
             fetchAction={fetchAction} resetAction={resetAction}
-            loginId={loginId}
+            loginId={loginId} requestId={requestId}
         />
     </Fragment>
 );

@@ -5,7 +5,7 @@ import { ProfileCard } from "../photo";
 import { EmpathySpanButton } from "../empathy";
 import { arrayToLocalString } from "../util_func/date_time_func";
 
-const RenderCommentBar = ({ comment, loginId, location }) => (
+const RenderCommentBar = ({ comment, loginId, location, handle }) => (
     <Fragment>
         <div className="box">
             <div className="w3-container">
@@ -20,6 +20,12 @@ const RenderCommentBar = ({ comment, loginId, location }) => (
                     <EmpathySpanButton id={comment && comment.id} context={'comment'} type={'like'} count={comment && comment.likeCount} checked={comment && comment.likeChecked} loginId={loginId} search={location.search} />
                     <EmpathySpanButton id={comment && comment.id} context={'comment'} type={'hate'} count={comment && comment.hateCount} checked={comment && comment.hateChecked} loginId={loginId} search={location.search} />
                 </div>
+                {
+                    (handle) ?
+                        <button className="button primary" onClick={handle}>
+                            <i className="icon fa-pencil-square-o" /> 수정
+                        </button> : null
+                }
             </div>
         </div>
     </Fragment>

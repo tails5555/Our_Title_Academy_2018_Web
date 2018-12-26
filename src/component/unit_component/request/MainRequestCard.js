@@ -3,8 +3,6 @@ import React, { Fragment, Component } from 'react';
 import {ProfileCard, RequestPhoto} from '../photo';
 import { arrayToLocalString } from '../util_func/date_time_func';
 
-const IMAGE_URL = 'http://127.0.0.1:8082/ContextAPI/photo';
-
 class MainRequestCard extends Component {
     constructor(props){
         super(props);

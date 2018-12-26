@@ -176,7 +176,7 @@ class TitleSaveForm extends Component {
                         <ModalScreen title="Loading" opened={loading}>
                             <div className="w3-center w3-padding">
                                 <i className="fas fa-sync fa-spin" style={{fontSize: '80px', margin: '10px'}}/>
-                                <h4>선택하신 분야에 해당 되는 제목학원을 {type === 'SAVING' ? '저장하는' : '삭제하는'} 중입니다!</h4>
+                                <h4>선택하신 제목학원에 제목을 {type === 'SAVING' ? '저장하는' : '삭제하는'} 중입니다!</h4>
                             </div>
                         </ModalScreen> : null
                 }
