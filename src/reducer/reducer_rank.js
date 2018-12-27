@@ -1,35 +1,32 @@
 import {
-    FETCH_CURRENT_BEST_REQUEST, FETCH_CURRENT_BEST_REQUEST_SUCCESS, FETCH_CURRENT_BEST_REQUEST_FAILURE, RESET_FETCH_CURRENT_BEST_REQUEST,
-    FETCH_CURRENT_MAIN_RANK_REQUEST, FETCH_CURRENT_MAIN_RANK_REQUEST_SUCCESS, FETCH_CURRENT_MAIN_RANK_REQUEST_FAILURE, RESET_FETCH_CURRENT_MAIN_RANK_REQUEST
-} from "../action/action_today_rank";
+    ANYBODY_FETCH_BRIEF_RANK_REQUESTS, ANYBODY_FETCH_BRIEF_RANK_REQUESTS_SUCCESS, ANYBODY_FETCH_BRIEF_RANK_REQUESTS_FAILURE, RESET_ANYBODY_FETCH_BRIEF_RANK_REQUESTS,
+    ANYBODY_FETCH_MAIN_RANK_REQUESTS, ANYBODY_FETCH_MAIN_RANK_REQUESTS_SUCCESS, ANYBODY_FETCH_MAIN_RANK_REQUESTS_FAILURE, RESET_ANYBODY_FETCH_MAIN_RANK_REQUESTS
+} from "../action/type/type_rank";
 
 const INITIAL_STATE = {
-    currentRank : { requests : [], loading : false, error : null },
-    mainRank : { requests : [], loading : false, error : null }
+    brief : { list : [], loading : false, error : null },
+    main : { list : [], loading : false, error : null }
 }
 
 export default function(state = INITIAL_STATE, action){
-    let error;
     switch(action.type){
-        case FETCH_CURRENT_BEST_REQUEST :
-            return { ...state, currentRank : { requests : [], loading : true, error : null }};
-        case FETCH_CURRENT_BEST_REQUEST_SUCCESS :
-            return { ...state, currentRank : { requests : action.payload, loading : false, error : null }};
-        case FETCH_CURRENT_BEST_REQUEST_FAILURE :
-            error = action.payload.data || { message : action.payload.data };
-            return { ...state, currentRank : { requests : [], loading : false, error : error }};
-        case RESET_FETCH_CURRENT_BEST_REQUEST :
-            return { ...state, currentRank : { requests : [], loading : false, error : null }};
+        case ANYBODY_FETCH_BRIEF_RANK_REQUESTS :
+            return { ...state, brief : { list : [], loading : true }};
+        case ANYBODY_FETCH_BRIEF_RANK_REQUESTS_SUCCESS :
+            return { ...state, brief : { list : action.payload, loading : false }};
+        case ANYBODY_FETCH_BRIEF_RANK_REQUESTS_FAILURE :
+            return { ...state, brief : { list : [], loading : false, error : action.payload }};
+        case RESET_ANYBODY_FETCH_BRIEF_RANK_REQUESTS :
+            return { ...state, brief : { list : [], error : null }};
 
-        case FETCH_CURRENT_MAIN_RANK_REQUEST :
-            return { ...state, mainRank : { requests : [], loading : true, error : null }};
-        case FETCH_CURRENT_MAIN_RANK_REQUEST_SUCCESS :
-            return { ...state, mainRank : { requests : action.payload, loading : true, error : null }};
-        case FETCH_CURRENT_MAIN_RANK_REQUEST_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, mainRank : { requests : [], loading : false, error : error }};
-        case RESET_FETCH_CURRENT_MAIN_RANK_REQUEST :
-            return { ...state, mainRank : { requests : [], loading : false, error : null }};
+        case ANYBODY_FETCH_MAIN_RANK_REQUESTS :
+            return { ...state, main : { list : [], loading : true }};
+        case ANYBODY_FETCH_MAIN_RANK_REQUESTS_SUCCESS :
+            return { ...state, main : { list : action.payload, loading : false }};
+        case ANYBODY_FETCH_MAIN_RANK_REQUESTS_FAILURE :
+            return { ...state, main : { list : [], loading : false, error : action.payload }};
+        case RESET_ANYBODY_FETCH_MAIN_RANK_REQUESTS :
+            return { ...state, main : { list : [], error : null }};
 
         default :
             return state;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TotalSearch } from "../../component/slide_bar";
-import { LoginFormContainer, CategoryMenuContainer, TodayRankContainer } from "../../container";
+import { LoginFormContainer, CategoryMenuContainer, TodayRankCardViewContainer } from "../../container";
 import DevelopInfo from "../../component/slide_bar/DevelopInfo";
 import GuestNavMenu from "../../component/slide_bar/nav_menu/GuestNavMenu";
 const AnonymousSideBar = () =>
@@ -10,7 +10,7 @@ const AnonymousSideBar = () =>
             <LoginFormContainer />
             <GuestNavMenu />
             <CategoryMenuContainer />
-            <TodayRankContainer />
+            <TodayRankCardViewContainer />
             <DevelopInfo />
         </div>
     );

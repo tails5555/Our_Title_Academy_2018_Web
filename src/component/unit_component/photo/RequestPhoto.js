@@ -51,16 +51,24 @@ class RequestPhoto extends Component {
     }
 
     render(){
-        const { requestId } = this.props;
+        const { requestId, hasSide } = this.props;
         const { status, error } = this.state;
         const imageSrc = (status === 200 && error === null && requestId !== null) ? `${IMAGE_URL}/request_image/${requestId}` : NotFoundImage;
         return(
             <Fragment>
                 <img
-                    style={{
-                        width : '100%',
-                        height : 'auto'
-                    }}
+                    style={
+                        hasSide ?
+                            {
+                                height : '20vh',
+                                objectFit : 'cover'
+                            }
+                             :
+                            {
+                                width : '100%',
+                                height : 'auto'
+                            }
+                    }
                     src={imageSrc}
                     className="w3-image w3-round-large"
                     alt={`request_photo_${requestId}`}
