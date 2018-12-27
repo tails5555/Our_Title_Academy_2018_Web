@@ -7,6 +7,9 @@ export {default as TodayRankCardViewContainer} from './TodayRankCardViewContaine
 // Home Warm Multiple Requests List View
 export {default as WarmRequestListViewContainer} from './WarmRequestListViewContainer';
 
+// Today Rank Request List View
+export {default as TodayRankMainViewContainer} from './TodayRankMainViewContainer';
+
 // Category Multiple Requests List View
 export {default as BriefRequestListViewContainer} from './BriefRequestListViewContainer';
 
@@ -29,7 +32,6 @@ export {default as UserPrincipalInfoContainer} from './UserPrincipalInfoContaine
 export {default as CreateRequestContainer} from './CreateRequestContainer';
 export {default as PhotoAgreeContainer} from './PhotoAgreeContainer';
 export {default as SelectCategoryContainer} from './SelectCategoryContainer';
-export {default as TodayMainRankContainer} from './TodayMainRankContainer';
 export {default as MyRequestStatisticContainer} from './MyRequestStatisticContainer';
 export {default as MyTitleStatisticContainer} from './MyTitleStatisticContainer';
 export {default as SearchResultContainer} from './SearchResultContainer';

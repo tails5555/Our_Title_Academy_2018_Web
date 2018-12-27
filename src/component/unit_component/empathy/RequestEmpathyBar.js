@@ -21,7 +21,7 @@ const RequestEmpathyBar = ({ location, requestId, loginId, likeCount, hateCount,
             </h3> : null;
 
     const forbiddenAlert =
-        (loginId === 'ANONYMOUS_USER') ?
+        (loginId === 'ANONYMOUS_USER' && hasMain) ?
             <AlertBoxNote
                 id={"forbidden_checking_empathy"}
                 icon={"fas fa-times-circle"}

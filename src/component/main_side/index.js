@@ -1,8 +1,9 @@
-
-
 // Home Intro Header, New Top 10 Multiple Requests View
 export {default as MainIntroHeader} from './MainIntroHeader';
 export {default as WarmRequestListView} from './WarmRequestListView';
+
+// Rank Request List Top 10 Main View
+export {default as TodayRankMainView} from './TodayRankMainView';
 
 // Category - Multiple Requests View
 export {default as BriefRequestListView} from './BriefRequestListView';

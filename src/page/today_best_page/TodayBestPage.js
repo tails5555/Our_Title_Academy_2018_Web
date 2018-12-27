@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {TodayMainRankContainer} from "../../container";
+import { TodayRankMainViewContainer } from "../../container";
 
-const TodayBestPage = () => <TodayMainRankContainer />
+const TodayBestPage = () => <TodayRankMainViewContainer />
 
 export default TodayBestPage;

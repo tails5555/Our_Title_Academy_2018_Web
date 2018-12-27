@@ -1,4 +1,4 @@
-import {TodayMainRank} from "../component/main_side/today_rank_page";
+import { TodayRankMainView } from "../component/main_side";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as RankAction from "../action/action_rank";
@@ -15,4 +15,4 @@ function mapDispatchToProps(dispatch){
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodayMainRank)
+export default connect(mapStateToProps, mapDispatchToProps)(TodayRankMainView);
