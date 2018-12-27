@@ -21,8 +21,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 function validate(values){
-    var errors = {};
-    var hasErrors = false;
+    let errors = {};
+    let hasErrors = false;
 
     if(!values.context || values.context.trim() === ''){
         errors.context = '댓글 내용을 입력하세요.';

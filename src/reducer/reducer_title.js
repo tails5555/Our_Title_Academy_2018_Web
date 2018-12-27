@@ -22,7 +22,7 @@ import {
 
 const INITIAL_STATE = {
     main : { list : [], loading : false, error : null },
-    form : { complete : null, loading : false, error : null, type : null },
+    form : { element : null, complete : null, loading : false, error : null, type : null },
 
     titleList : { titles : [], loading : false, error : null },
     myTitleStatistic : { statistics : [], loading : false, error : null },
@@ -44,30 +44,30 @@ export default function(state = INITIAL_STATE, action) {
             return { ...state, main : { list : [], error : null }};
 
         case ANYBODY_FETCH_HAS_MY_TITLE :
-            return { ...state, form : { loading : true, element : null, type : null }};
+            return { ...state, form : { ...state.form, loading : true, element : null, type : null }};
         case ANYBODY_FETCH_HAS_MY_TITLE_SUCCESS :
-            return { ...state, form : { loading : false, element : action.payload, type : null }};
+            return { ...state, form : { ...state.form, loading : false, element : action.payload, type : null }};
         case ANYBODY_FETCH_HAS_MY_TITLE_FAILURE :
-            return { ...state, form : { loading : false, error : action.payload, type : null }};
+            return { ...state, form : { ...state.form, loading : false, error : action.payload, type : null }};
         case RESET_ANYBODY_FETCH_HAS_MY_TITLE :
-            return { ...state, form : { element : null, error : null, type : null }};
+            return { ...state, form : { ...state.form, element : null, error : null, type : null }};
 
         case ANYBODY_SAVE_MY_TITLE :
-            return { ...state, form : { loading : true, complete : null, type : 'SAVING' }};
+            return { ...state, form : { ...state.form, loading : true, complete : null, type : 'SAVING' }};
         case ANYBODY_SAVE_MY_TITLE_SUCCESS :
-            return { ...state, form : { loading : false, complete : action.payload, type : 'SAVING' }};
+            return { ...state, form : { ...state.form, loading : false, complete : action.payload, type : 'SAVING' }};
         case ANYBODY_SAVE_MY_TITLE_FAILURE :
-            return { ...state, form : { loading : false, error : action.payload, type : 'SAVING' }};
+            return { ...state, form : { ...state.form, loading : false, error : action.payload, type : 'SAVING' }};
 
         case ANYBODY_DELETE_TITLE_BY_ID :
-            return { ...state, form : { loading : true, complete : null, type : 'DELETE' }};
+            return { ...state, form : { ...state.form, loading : true, complete : null, type : 'DELETE' }};
         case ANYBODY_DELETE_TITLE_BY_ID_SUCCESS :
-            return { ...state, form : { loading : false, complete : action.payload, type : 'DELETE' }};
+            return { ...state, form : { ...state.form, loading : false, complete : action.payload, type : 'DELETE' }};
         case ANYBODY_DELETE_TITLE_BY_ID_FAILURE :
-            return { ...state, form : { loading : false, error : action.payload, type : 'DELETE' }};
+            return { ...state, form : { ...state.form, loading : false, error : action.payload, type : 'DELETE' }};
 
         case RESET_ANYBODY_SAVE_MY_TITLE :
-            return { ...state, form : { complete : null, error : null, type : null }};
+            return { ...state, form : { ...state.form, complete : null, error : null, type : null }};
 
         case FETCH_MAIN_TITLE_LIST :
         case FETCH_ALL_TITLE_LIST :

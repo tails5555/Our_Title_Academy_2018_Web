@@ -9,13 +9,15 @@ import { renderField } from "../../input_render";
 import { AlertBoxNote } from "../alert_box";
 import { ModalScreen } from "../modal";
 
-const mapStateToProps = ({ title }) => {
+const mapStateToProps = (state) => {
+    const { title } = state;
     const { element } = title.form;
     return {
         title : title.form,
         initialValues : {
             context : element && element.context
-        }
+        },
+        titleId : element && element.id
     }
 }
 
@@ -24,8 +26,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 function validate(values){
-    var errors = {};
-    var hasErrors = false;
+    let errors = {};
+    let hasErrors = false;
 
     if(!values.context || values.context.trim() === ''){
         errors.context = '제목 내용을 입력하세요.';

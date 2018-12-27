@@ -10,10 +10,12 @@ import { BestTitleList, MainTitleList } from "../unit_component/title";
 import { RequestPhoto } from "../unit_component/photo";
 import { TitleSaveForm, CommentSaveForm } from "../unit_component/form_model";
 import { MainCommentList } from "../unit_component/comment";
+import { RequestEmpathyBar } from "../unit_component/empathy";
 
-const HallOfFrameView = ({ element, bestTitles }) => (
+const HallOfFrameView = ({ requestId, loginId, element, bestTitles, likeCount, hateCount, likeChecked, hateChecked }) => (
     <Fragment>
         <MainRequestCard element={element} />
+        <RequestEmpathyBar requestId={requestId} loginId={loginId} likeCount={likeCount} hateCount={hateCount} likeChecked={likeChecked} hateChecked={hateChecked} hasMain={true} />
         <BestTitleList bestTitles={bestTitles} />
     </Fragment>
 );
@@ -71,7 +73,13 @@ class RequestMainView extends Component {
         const { location, requestAction } = this.props;
         const { fetchMainRequest } = requestAction;
         const queryModel = queryString.parse(location.search);
-        fetchMainRequest(queryModel.id, this.currentUser(), false);
+        fetchMainRequest(queryModel.id, this.currentUser(), (queryModel['_red'] || false));
+    }
+
+    componentWillUnmount(){
+        const { requestAction } = this.props;
+        const { resetFetchMainRequest } = requestAction;
+        resetFetchMainRequest();
     }
 
     currentUser = () => {
@@ -90,6 +98,7 @@ class RequestMainView extends Component {
         const { location, history } = this.props;
         const queryModel = queryString.parse(location.search);
         queryModel['id'] = undefined;
+        queryModel['_red'] = undefined;
         history.push(`/category/_move?${queryString.stringify(queryModel)}`);
     }
 
@@ -117,6 +126,9 @@ class RequestMainView extends Component {
                 >
                     <HallOfFrameView
                         element={ element ? element.requestDTO : null }
+                        loginId={ principal ? principal.loginId : 'ANONYMOUS_USER' } requestId={ element && element.requestDTO.id }
+                        likeCount={ element && element.likeCount } hateCount={ element && element.hateCount }
+                        likeChecked={ element && element.likeChecked } hateChecked={ element && element.hateChecked }
                         bestTitles={ element ? element.bestTitles : [] }
                     />
                     <TitleChallenge
