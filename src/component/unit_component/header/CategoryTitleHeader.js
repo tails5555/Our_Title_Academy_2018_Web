@@ -14,8 +14,7 @@ const CategoryTitleHeader = ({ loading, error, element }) => {
 
     return (
         <Fragment>
-            <header className="major" style={{ marginTop : '30px' +
-                '' }}>
+            <header className="major" style={{ marginTop : '30px' }}>
                 { categoryView }
             </header>
         </Fragment>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { ModalScreen } from "../unit_component/modal";
 import { AlertBoxNote } from "../unit_component/alert_box";
-import { MainTitleHeader } from "../unit_component/header";
+import {MainTitleHeader, MajorTitleHeader} from "../unit_component/header";
 import { RequestEmpathyBar } from "../unit_component/empathy";
 import { MainRequestCard } from "../unit_component/request";
 import { BestTitleList } from "../unit_component/title";
@@ -41,7 +41,7 @@ class TodayRankMainView extends Component {
     }
 
     render(){
-        const { list, loading, error, selectIdx } = this.state;
+        const { list, loading, error } = this.state;
         let errorRender = null;
         let requestRender = null;
         let btnContext = [];
@@ -92,23 +92,21 @@ class TodayRankMainView extends Component {
             <Fragment>
                 <section id="request_element_view">
                     <MainTitleHeader title="TODAY BEST" />
+                    <MajorTitleHeader title="오늘의 우수 제목학원" />
+                    { errorRender }
+                    {
+                        requestRender ?
+                            <SelectDisplayBox btnTitles={btnContext}>
+                                {requestRender}
+                            </SelectDisplayBox> : null
+                    }
+                    <ModalScreen title="Loading" opened={loading}>
+                        <div className="w3-center w3-padding">
+                            <i className="fas fa-sync fa-spin" style={{ fontSize : '80px', margin : '10px' }} />
+                            <h4>실시간 랭킹 제목학원을 불러오는 중입니다...</h4>
+                        </div>
+                    </ModalScreen>
                 </section>
-                <header className="major">
-                    <h2>오늘의 우수 제목학원</h2>
-                </header>
-                { errorRender }
-                {
-                    requestRender ?
-                        <SelectDisplayBox btnTitles={btnContext}>
-                            {requestRender}
-                        </SelectDisplayBox> : null
-                }
-                <ModalScreen title="Loading" opened={loading}>
-                    <div className="w3-center w3-padding">
-                        <i className="fas fa-sync fa-spin" style={{ fontSize : '80px', margin : '10px' }} />
-                        <h4>실시간 랭킹 제목학원을 불러오는 중입니다...</h4>
-                    </div>
-                </ModalScreen>
             </Fragment>
         );
     }

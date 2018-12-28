@@ -30,7 +30,6 @@ export {default as UserListContainer} from './UserListContainer';
 export {default as MyProfileChangeContainer} from './MyProfileChangeContainer';
 export {default as UserPrincipalInfoContainer} from './UserPrincipalInfoContainer';
 
-export {default as CreateRequestContainer} from './CreateRequestContainer';
 export {default as PhotoAgreeContainer} from './PhotoAgreeContainer';
 export {default as SelectCategoryContainer} from './SelectCategoryContainer';
 export {default as MyRequestStatisticContainer} from './MyRequestStatisticContainer';

@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
 
 import { ModalScreen } from "../unit_component/modal";
-import { MainTitleHeader } from "../unit_component/header";
+import {MainTitleHeader, MajorTitleHeader} from "../unit_component/header";
 import { SelectDisplayBox } from "../unit_component/select_display";
 import { MainRequestCard, RequestEditManage } from "../unit_component/request";
 import { BestTitleList, MainTitleList } from "../unit_component/title";
@@ -116,41 +116,42 @@ class RequestMainView extends Component {
             <Fragment>
                 <section id="request_element_view">
                     <MainTitleHeader title="REQUEST VIEW" />
-                </section>
-                <div id="back_to_category_requests_list_btn" className="w3-right-align w3-margin">
-                    <button className="w3-button w3-pale-red" onClick={() => this.handleClickBackward()}>
-                        <i className="fas fa-list-alt" /> 분야 목록으로
-                    </button>
-                </div>
-                <SelectDisplayBox
-                    btnTitles={[{ icon : 'fas fa-crown', label : '명예의 전당' }, { icon : 'fas fa-chalkboard', label : '제목 도전' } , { icon : 'fas fa-comment', label : '나도 한마디' }]}
-                >
-                    <HallOfFrameView
-                        element={ element ? element.requestDTO : null }
-                        loginId={ principal ? principal.loginId : 'ANONYMOUS_USER' } requestId={ element && element.requestDTO.id }
-                        likeCount={ element && element.likeCount } hateCount={ element && element.hateCount }
-                        likeChecked={ element && element.likeChecked } hateChecked={ element && element.hateChecked }
-                        bestTitles={ element ? element.bestTitles : [] } userType={ principal ? principal.type : 'ANONYMOUS' }
-                    />
-                    <TitleChallenge
-                        requestId={ element && element.requestDTO.id }
-                        title={ title } loginId={ principal ? principal.loginId : 'ANONYMOUS_USER' }
-                        fetchAction={() => fetchMainTitleList(queryModel && queryModel.id, principal ? principal.loginId : 'ANONYMOUS_USER')}
-                        resetAction={() => resetFetchMainTitleList()}
-                    />
-                    <CommentPartyView
-                        requestId={ element && element.requestDTO.id }
-                        comment={ comment } loginId={ principal ? principal.loginId : 'ANONYMOUS_USER' }
-                        fetchAction={() => fetchCommentList(queryModel && queryModel.id, principal ? principal.loginId : 'ANONYMOUS_USER')}
-                        resetAction={() => resetFetchCommentList()}
-                    />
-                </SelectDisplayBox>
-                <ModalScreen title="Loading" opened={loading}>
-                    <div className="w3-center w3-padding">
-                        <i className="fas fa-sync fa-spin" style={{ fontSize : '80px', margin : '10px' }} />
-                        <h4>선택하신 제목학원을 불러오는 중입니다...</h4>
+                    <MajorTitleHeader title="제목학원 전당" />
+                    <div id="back_to_category_requests_list_btn" className="w3-right-align w3-margin">
+                        <button className="w3-button w3-pale-red" onClick={() => this.handleClickBackward()}>
+                            <i className="fas fa-list-alt" /> 분야 목록으로
+                        </button>
                     </div>
-                </ModalScreen>
+                    <SelectDisplayBox
+                        btnTitles={[{ icon : 'fas fa-crown', label : '명예의 전당' }, { icon : 'fas fa-chalkboard', label : '제목 도전' } , { icon : 'fas fa-comment', label : '나도 한마디' }]}
+                    >
+                        <HallOfFrameView
+                            element={ element ? element.requestDTO : null }
+                            loginId={ principal ? principal.loginId : 'ANONYMOUS_USER' } requestId={ element && element.requestDTO.id }
+                            likeCount={ element && element.likeCount } hateCount={ element && element.hateCount }
+                            likeChecked={ element && element.likeChecked } hateChecked={ element && element.hateChecked }
+                            bestTitles={ element ? element.bestTitles : [] } userType={ principal ? principal.type : 'ANONYMOUS' }
+                        />
+                        <TitleChallenge
+                            requestId={ element && element.requestDTO.id }
+                            title={ title } loginId={ principal ? principal.loginId : 'ANONYMOUS_USER' }
+                            fetchAction={() => fetchMainTitleList(queryModel && queryModel.id, principal ? principal.loginId : 'ANONYMOUS_USER')}
+                            resetAction={() => resetFetchMainTitleList()}
+                        />
+                        <CommentPartyView
+                            requestId={ element && element.requestDTO.id }
+                            comment={ comment } loginId={ principal ? principal.loginId : 'ANONYMOUS_USER' }
+                            fetchAction={() => fetchCommentList(queryModel && queryModel.id, principal ? principal.loginId : 'ANONYMOUS_USER')}
+                            resetAction={() => resetFetchCommentList()}
+                        />
+                    </SelectDisplayBox>
+                    <ModalScreen title="Loading" opened={loading}>
+                        <div className="w3-center w3-padding">
+                            <i className="fas fa-sync fa-spin" style={{ fontSize : '80px', margin : '10px' }} />
+                            <h4>선택하신 제목학원을 불러오는 중입니다...</h4>
+                        </div>
+                    </ModalScreen>
+                </section>
             </Fragment>
         )
     }

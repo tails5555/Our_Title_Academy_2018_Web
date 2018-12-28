@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import { BriefRequestCard } from "./../unit_component/request";
 import { ModalScreen } from "../unit_component/modal";
 import { AlertBoxNote } from "../unit_component/alert_box";
+import {MajorTitleHeader} from "../unit_component/header";
 
 class WarmRequestListView extends Component {
     constructor(props){
@@ -71,9 +72,7 @@ class WarmRequestListView extends Component {
 
         return (
             <section id="warm_multiple_requests_view">
-                <header className="major">
-                    <h2>바로 보는 제목학원</h2>
-                </header>
+                <MajorTitleHeader title="갓 바로 나온 제목학원"/>
                 {articleList}
                 <ModalScreen title="Loading" opened={loading}>
                     <div className="w3-center w3-padding">
