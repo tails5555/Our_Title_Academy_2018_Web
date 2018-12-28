@@ -25,13 +25,19 @@ const receivePagination = (values, dispatch) => {
 class RequestSearchForm extends Component {
     constructor(props){
         super(props);
-        this.state = { data : null, loading : false, error : null };
+        this._isMounted = false;
+        this.state = { data : null, loading : false, error : null, hasInitialize : false };
     }
 
     componentDidMount(){
         const { location } = this.props;
         const paginationModel = queryString.parse(location.search);
-        this.handleInitialize(paginationModel)
+        this._isMounted = true;
+        this.handleInitialize(paginationModel);
+    }
+
+    componentWillUnmount(){
+        this._isMounted = false;
     }
 
     handleInitialize = (paginationModel) => {
@@ -43,6 +49,42 @@ class RequestSearchForm extends Component {
             st : (paginationModel.st === undefined) ? '' : paginationModel.st
         };
         this.props.initialize(initData);
+
+        for(let key in paginationModel) {
+            switch(key){
+                case 'sb' :
+                case 'ob' :
+                    if(paginationModel[key] !== '0' && this._isMounted){
+                        this.setState({
+                            hasInitialize : true
+                        });
+                    }
+                    break;
+                case 'st' :
+                    if(paginationModel[key] && this._isMounted){
+                        this.setState({
+                            hasInitialize : true
+                        });
+                    }
+                    break;
+                case 'sz' :
+                    if(paginationModel[key]){
+                        if(paginationModel[key] !== '6' && this._isMounted){
+                            this.setState({
+                                hasInitialize: true
+                            });
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+
+    handleClickFormInitialize = () => {
+        const { location, history } = this.props;
+        const paginationModel = queryString.parse(location.search);
+        paginationModel['sb'] = paginationModel['ob'] = paginationModel['st'] = paginationModel['sz'] = undefined;
+        history.push(`/category/_move?${queryString.stringify(paginationModel)}`);
     }
 
     static getDerivedStateFromProps(nextProps, prevState){
@@ -62,15 +104,17 @@ class RequestSearchForm extends Component {
 
     render(){
         const { handleSubmit } = this.props;
-        const { data, loading, error } = this.state;
+        const { data, loading, hasInitialize } = this.state;
 
         const searchBy = data && (data['search'] || []);
         const orderBy = data && (data['order'] || []);
         const sizeBy = data && (data['size'] || []);
 
+        /*
         const searchError = error && (error['search'] || null);
         const orderError = error && (error['order'] || null);
         const sizeError = error && (error['size'] || null);
+        */
 
         return (
             <Fragment>
@@ -94,7 +138,13 @@ class RequestSearchForm extends Component {
                     <div id="search_text_form_group" style={{ marginBottom : '20px' }}>
                         <Field type="text" name="st" component={renderField} label="검색어" placeholder="검색어를 입력하세요." />
                     </div>
-                    <button type="submit" className="button primary fit large"><i className="fas fa-search" /> 검색하기</button>
+                    <button type="submit" className="w3-margin button primary fit large"><i className="fas fa-search" /> 검색하기</button>
+                    {
+                        hasInitialize ?
+                            <button type="button" className="w3-margin button fit large" onClick={() => this.handleClickFormInitialize()}>
+                                <i className="fas fa-refresh" /> 초기화
+                            </button> : null
+                    }
                 </form>
             </Fragment>
         )

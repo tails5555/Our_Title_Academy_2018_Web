@@ -5,6 +5,7 @@ import AdminRouter from "./AdminRouter";
 import ManagerRouter from "./ManagerRouter";
 import UserRouter from "./UserRouter";
 import {AnonymousSideBar, UserExistedSideBar} from "../page/side_bar";
+import ScrollTopView from './ScrollTopView';
 
 class ApplicationRouter extends Component {
     componentWillMount(){
@@ -40,14 +41,16 @@ class ApplicationRouter extends Component {
         }
         return(
             <BrowserRouter>
-                <div id="wrapper">
-                    <div id="main">
-                        {router}
+                <ScrollTopView>
+                    <div id="wrapper">
+                        <div id="main">
+                            {router}
+                        </div>
+                        <div id="sidebar">
+                            {sidebar}
+                        </div>
                     </div>
-                    <div id="sidebar">
-                        {sidebar}
-                    </div>
-                </div>
+                </ScrollTopView>
             </BrowserRouter>
         );
     }

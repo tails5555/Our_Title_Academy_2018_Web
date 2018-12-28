@@ -19,6 +19,7 @@ const CommonRouter = () => (
         <Route exact path="/category/list" component={BriefRequestListViewPage} />
         <Route exact path="/category/_move" render={({ location }) => <Redirect to={`/category/list${location.search}`} />} />
         <Route exact path="/view_request" component={RequestViewPage} />
+        <Route exact path="/view_request/_move" render={({ location }) => <Redirect to={`/view_request${location.search}`} />} />
         <Route exact path="/view_request/_refresh" render={({ location }) => {
             const queryModel = queryString.parse(location.search);
             queryModel['_red'] = true;

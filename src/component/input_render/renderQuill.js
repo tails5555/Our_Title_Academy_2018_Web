@@ -38,7 +38,6 @@ function renderQuill({input, size, meta: { touched, error, invalid, warning }}) 
                 {...input}
                 modules={_quillModules}
                 formats={_quillFormats}
-                toolbar={false}
                 onChange={(newValue, delta, source) => {
                     if(source==='user'){
                         input.onChange(newValue);
@@ -47,7 +46,7 @@ function renderQuill({input, size, meta: { touched, error, invalid, warning }}) 
                 onBlur={(range, source, quill) => {
                     input.onBlur(quill.getHTML());
                 }}
-                style={{height : `${size}px`}}
+                style={{ height : `${size}px`, marginBottom : (window.innerWidth <= 1120) ? '160px' : '80px' }}
             />
         </div>
     );

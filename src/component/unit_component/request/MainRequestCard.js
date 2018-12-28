@@ -44,15 +44,15 @@ class MainRequestCard extends Component {
                                 />
                                 <div className="w3-border-top w3-border-blue w3-margin-top w3-margin-bottom">
                                     <div className="w3-margin-top w3-margin-bottom">
-                                        <i className="icon fa-eye"></i> 조회수 <span className="w3-badge w3-light-blue">{element && element.view}</span>
+                                        <i className="icon fa-eye" /> 조회수 <span className="w3-badge w3-light-blue">{element && element.view}</span>
                                     </div>
                                     <div className="w3-margin-top w3-margin-bottom">
-                                        <i className="icon fa-calendar"></i> 등록 날짜 <span className="w3-tag w3-light-green w3-round-large">{element && arrayToLocalString(element.writtenDate)}</span>
+                                        <i className="icon fa-calendar" /> 등록 날짜 <span className="w3-tag w3-light-green w3-round-large">{element && arrayToLocalString(element.writtenDate)}</span>
                                     </div>
                                 </div>
                             </div>
                             <div className="w3-display-topleft w3-large w3-container w3-padding-small w3-round-medium w3-black w3-opacity">
-                                <i className="icon fa-book"></i> {element && element.category && (element.category.name || '분야 미정')}
+                                <i className="icon fa-book" /> {element && element.category && (element.category.name || '분야 미정')}
                             </div>
                         </div>
                     </div>

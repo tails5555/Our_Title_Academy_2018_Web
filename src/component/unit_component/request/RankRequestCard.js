@@ -18,7 +18,7 @@ const RankRequestCard = ({ request }) => {
         <Fragment>
             <article className="w3-padding">
                 <div className="w3-center">
-                    <Link to={`/view_request?cid=${request.categoryId}&id=${request.requestId}&pg=1`} className="image" style={{ margin : '10px' }}>
+                    <Link to={`/view_request/_move?cid=${request.categoryId}&id=${request.requestId}&pg=1`} className="image" style={{ margin : '10px' }}>
                         <RequestPhoto requestId={request && request.requestId} hasSide={true} />
                     </Link>
                 </div>

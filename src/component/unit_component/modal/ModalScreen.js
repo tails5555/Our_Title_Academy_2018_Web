@@ -19,27 +19,15 @@ class ModalScreen extends Component {
         return null;
     }
 
-    handleClickHide = () => {
-        this.setState({
-            show : false
-        });
-    }
-
     render(){
-        const { children, hasClose, title } = this.props;
+        const { children, title } = this.props;
         const { show } = this.state;
         return (
             <Fragment>
                 <div className={ show ? "modal display-block w3-animate-opacity" : "modal display-none w3-animate-opacity" }>
-                    {
-                        hasClose ?
-                            <ModalContext title={title} handleHide={() => this.handleClickHide()}>
-                                { children }
-                            </ModalContext> :
-                            <ModalContext title={title}>
-                                { children }
-                            </ModalContext>
-                    }
+                    <ModalContext title={title}>
+                        { children }
+                    </ModalContext>
                 </div>
             </Fragment>
         );
