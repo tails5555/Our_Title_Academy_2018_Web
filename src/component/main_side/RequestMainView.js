@@ -5,15 +5,16 @@ import { withRouter } from 'react-router-dom';
 import { ModalScreen } from "../unit_component/modal";
 import { MainTitleHeader } from "../unit_component/header";
 import { SelectDisplayBox } from "../unit_component/select_display";
-import { MainRequestCard } from "../unit_component/request";
+import { MainRequestCard, RequestEditManage } from "../unit_component/request";
 import { BestTitleList, MainTitleList } from "../unit_component/title";
 import { RequestPhoto } from "../unit_component/photo";
 import { TitleSaveForm, CommentSaveForm } from "../unit_component/form_model";
 import { MainCommentList } from "../unit_component/comment";
 import { RequestEmpathyBar } from "../unit_component/empathy";
 
-const HallOfFrameView = ({ requestId, loginId, element, bestTitles, likeCount, hateCount, likeChecked, hateChecked }) => (
+const HallOfFrameView = ({ requestId, loginId, element, bestTitles, likeCount, hateCount, likeChecked, hateChecked, userType }) => (
     <Fragment>
+        <RequestEditManage element={element} loginId={loginId} userType={userType} />
         <MainRequestCard element={element} />
         <RequestEmpathyBar requestId={requestId} loginId={loginId} likeCount={likeCount} hateCount={hateCount} likeChecked={likeChecked} hateChecked={hateChecked} hasMain={true} />
         <BestTitleList bestTitles={bestTitles} />
@@ -129,7 +130,7 @@ class RequestMainView extends Component {
                         loginId={ principal ? principal.loginId : 'ANONYMOUS_USER' } requestId={ element && element.requestDTO.id }
                         likeCount={ element && element.likeCount } hateCount={ element && element.hateCount }
                         likeChecked={ element && element.likeChecked } hateChecked={ element && element.hateChecked }
-                        bestTitles={ element ? element.bestTitles : [] }
+                        bestTitles={ element ? element.bestTitles : [] } userType={ principal ? principal.type : 'ANONYMOUS' }
                     />
                     <TitleChallenge
                         requestId={ element && element.requestDTO.id }

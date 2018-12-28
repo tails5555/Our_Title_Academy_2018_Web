@@ -11,3 +11,5 @@ export {default as BriefRequestListView} from './BriefRequestListView';
 // Main Element Request View
 export {default as RequestMainView} from './RequestMainView';
 
+// Main Request Create View
+export {default as RequestCreateView} from './RequectCreateView';

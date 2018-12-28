@@ -1,8 +1,11 @@
 import {
     ANYBODY_FETCH_HOME_REQUESTS, ANYBODY_FETCH_HOME_REQUESTS_SUCCESS, ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
     ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE,
-    ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE,
-    ANYBODY_FETCH_MAIN_REQUEST, ANYBODY_FETCH_REDIRECT_MAIN_REQUEST, ANYBODY_FETCH_MAIN_REQUEST_SUCCESS, ANYBODY_FETCH_MAIN_REQUEST_FAILURE, RESET_ANYBODY_FETCH_MAIN_REQUEST,
+    ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS,
+    ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE,
+    ANYBODY_FETCH_MAIN_REQUEST, ANYBODY_FETCH_REDIRECT_MAIN_REQUEST, ANYBODY_FETCH_MAIN_REQUEST_SUCCESS,
+    ANYBODY_FETCH_MAIN_REQUEST_FAILURE, RESET_ANYBODY_FETCH_MAIN_REQUEST, ANYBODY_SAVING_MAIN_REQUEST,
+    ANYBODY_SAVING_MAIN_REQUEST_SUCCESS, ANYBODY_SAVING_MAIN_REQUEST_FAILURE, RESET_ANYBODY_SAVING_MAIN_REQUEST,
 } from "../action/type/type_request";
 
 import {
@@ -25,7 +28,8 @@ import {
 } from "../action/action_my_context";
 
 const INITIAL_STATE = {
-    main : { list : [], count : 0, element : null, loading : false, error : null, status : 0, type : null },
+    main : { list : [], count : 0, element : null, loading : false, error : null, type : null },
+    form : { complete : null, loading : false, error : null, type : null },
     rank : { list : [], loading : false, error : null },
     options : { data : { search : [], order : [], size : [] }, loading : false, error : { search : null, order : null, size : null } },
 
@@ -73,6 +77,17 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, main : { error : action.payload, loading : false, type : 'FETCH' }};
         case RESET_ANYBODY_FETCH_MAIN_REQUEST :
             return { ...state, main : { element : null, error : null, type : null }};
+
+        case ANYBODY_SAVING_MAIN_REQUEST :
+            return { ...state, form : { ...state.form, complete : null, loading : true, type : 'SAVING' }};
+        case ANYBODY_SAVING_MAIN_REQUEST_SUCCESS :
+            return { ...state, form : { ...state.form, complete : action.payload, loading : false, type : 'SAVING' }};
+        case ANYBODY_SAVING_MAIN_REQUEST_FAILURE :
+            return { ...state, form : { ...state.form, loading : false, error : action.payload, type : 'SAVING' }};
+
+        case RESET_ANYBODY_SAVING_MAIN_REQUEST :
+            return { ...state, form : { ...state.form, complete : null, error : null, type : null }};
+
 
         case FETCH_TODAY_BATTLE_REQUEST :
             return { ...state, selectRequest : { request : null, loading : true, error : null }};

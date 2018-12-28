@@ -16,7 +16,8 @@ export {default as BriefRequestListViewContainer} from './BriefRequestListViewCo
 // Main Request Element View Container
 export {default as RequestMainViewContainer} from './RequestMainViewContainer';
 
-
+// Main Request Create View
+export {default as RequestCreateViewContainer} from './RequestCreateViewContainer';
 
 export {default as ApplicationContainer} from './ApplicationContainer';
 export {default as LoginFormContainer} from './LoginFormContainer';

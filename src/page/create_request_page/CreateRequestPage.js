@@ -1,6 +1,6 @@
 import React from 'react';
-import {CreateRequestContainer} from "../../container";
+import {RequestCreateViewContainer} from "../../container";
 
-const CreateRequestPage = () => <CreateRequestContainer />
+const CreateRequestPage = () => <RequestCreateViewContainer />
 
 export default CreateRequestPage;

@@ -1,18 +1,21 @@
 import axios from 'axios';
 
 import {
-    fetchHomeBriefRequestsApi, fetchBriefRequestsApi, fetchSearchOptionsApi, fetchMainRequestApi
+    fetchHomeBriefRequestsApi, fetchBriefRequestsApi, fetchSearchOptionsApi, fetchMainRequestApi, savingMainRequestApi
 } from './api/api_request';
 import {
     ANYBODY_FETCH_HOME_REQUESTS, ANYBODY_FETCH_HOME_REQUESTS_SUCCESS, ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
     ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE,
     ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE,
     ANYBODY_FETCH_MAIN_REQUEST, ANYBODY_FETCH_REDIRECT_MAIN_REQUEST, ANYBODY_FETCH_MAIN_REQUEST_SUCCESS, ANYBODY_FETCH_MAIN_REQUEST_FAILURE, RESET_ANYBODY_FETCH_MAIN_REQUEST,
+    ANYBODY_SAVING_MAIN_REQUEST, ANYBODY_SAVING_MAIN_REQUEST_SUCCESS, ANYBODY_SAVING_MAIN_REQUEST_FAILURE,
+    ANYBODY_DELETE_MAIN_REQUEST_BY_ID, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_SUCCESS, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_FAILURE,
+    MANAGER_BLOCK_MAIN_REQUEST_BY_ID, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_SUCCESS, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_FAILURE, RESET_ANYBODY_SAVING_MAIN_REQUEST
 } from './type/type_request';
 
 import {RESET_FETCH_ALL_TITLE_LIST} from "./action_title";
 
-const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/request';
+const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/requests';
 
 const fetchHomeRequestsStart = () => ({
     type : ANYBODY_FETCH_HOME_REQUESTS
@@ -169,6 +172,38 @@ export const resetFetchMainRequest = () => (dispatch) => {
     dispatch(resetFetchMainRequestStart());
 }
 
+const anybodySavingMainRequestStart = () => ({
+    type : ANYBODY_SAVING_MAIN_REQUEST
+});
+
+const anybodySavingMainRequestSuccess = (response) => ({
+    type : ANYBODY_SAVING_MAIN_REQUEST_SUCCESS,
+    payload : response && response.data
+});
+
+const anybodySavingMainRequestFailure = (error) => ({
+    type : ANYBODY_SAVING_MAIN_REQUEST_FAILURE,
+    payload : error && error.message
+});
+
+export const savingMainRequestByModel = (requestModel, requestPhoto) => (dispatch) => {
+    dispatch(anybodySavingMainRequestStart());
+
+    return savingMainRequestApi(requestModel, requestPhoto).then((response) => {
+        setTimeout(() => {
+            dispatch(anybodySavingMainRequestSuccess(response));
+        }, 2000);
+    }).catch((error) => dispatch(anybodySavingMainRequestFailure(error)));
+}
+
+const resetAnybodySavingMainRequestStart = () => ({
+    type : RESET_ANYBODY_SAVING_MAIN_REQUEST
+});
+
+export const resetSavingMainRequestByModel = () => (dispatch) => {
+    dispatch(resetAnybodySavingMainRequestStart());
+}
+
 export const FETCH_ALL_REQUEST_BRIEF = 'FETCH_ALL_REQUEST_BRIEF';
 export const FETCH_ALL_REQUEST_BRIEF_SUCCESS = 'FETCH_ALL_REQUEST_BRIEF_SUCCESS';
 export const FETCH_ALL_REQUEST_BRIEF_FAILURE = 'FETCH_ALL_REQUEST_BRIEF_FAILURE';
@@ -277,7 +312,7 @@ export function resetAppFetchViewRequestMain(){
 
 export function appFetchTodayBattleRequest(userId){
     const request = axios({
-        url : `${ROOT_URL}/fetch_today/${userId}`,
+        url : `${ROOT_URL}/today/${userId}`,
         method : 'get'
     });
     return {
@@ -314,7 +349,7 @@ export function userSaveRequest(requestModel, requestPhoto){
     const request = requestModel.requestId === 0 ?
         axios({
             method : 'post',
-            url : `${ROOT_URL}/execute_create`,
+            url : `${ROOT_URL}`,
             data : formData,
             headers : {
                 "Content-Type" : "multipart/input_render-data"
@@ -322,7 +357,7 @@ export function userSaveRequest(requestModel, requestPhoto){
         }) :
         axios({
             method : 'put',
-            url : `${ROOT_URL}/execute_update`,
+            url : `${ROOT_URL}`,
             data : requestModel
         });
 

@@ -68,7 +68,7 @@ class CommentSaveForm extends Component {
         if(
             loading !== prevState.loading || error !== prevState.error || complete !== prevState.complete || type !== prevState.type || element !== prevState.element
         ) {
-            return {loading, error, complete, type, element};
+            return { loading, error, complete, type, element };
         }
         return null;
     }
