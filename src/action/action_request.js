@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import {
-    fetchHomeBriefRequestsApi, fetchBriefRequestsApi, fetchSearchOptionsApi, fetchMainRequestApi, savingMainRequestApi
+    fetchHomeBriefRequestsApi, fetchBriefRequestsApi, fetchSearchOptionsApi, fetchMainRequestApi, savingMainRequestApi, deleteMainRequestApi, blockingMainRequestApi
 } from './api/api_request';
 import {
     ANYBODY_FETCH_HOME_REQUESTS, ANYBODY_FETCH_HOME_REQUESTS_SUCCESS, ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
@@ -196,6 +196,58 @@ export const savingMainRequestByModel = (requestModel, requestPhoto) => (dispatc
     }).catch((error) => dispatch(anybodySavingMainRequestFailure(error)));
 }
 
+const anybodyDeleteMainRequestStart = () => ({
+    type : ANYBODY_DELETE_MAIN_REQUEST_BY_ID
+});
+
+const anybodyDeleteMainRequestSuccess = (response) => ({
+    type : ANYBODY_DELETE_MAIN_REQUEST_BY_ID_SUCCESS,
+    payload : response && response.data
+});
+
+const anybodyDeleteMainRequestFailure = (error) => ({
+    type : ANYBODY_DELETE_MAIN_REQUEST_BY_ID_FAILURE,
+    payload : error && error.message
+});
+
+export const deleteMainRequestById = (requestId) => (dispatch) => {
+    dispatch(anybodyDeleteMainRequestStart());
+
+    return deleteMainRequestApi(requestId).then((response) => {
+        setTimeout(() => {
+            dispatch(anybodyDeleteMainRequestSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(anybodyDeleteMainRequestFailure(error));
+    });
+}
+
+const managerBlockingMainRequestStart = () => ({
+    type : MANAGER_BLOCK_MAIN_REQUEST_BY_ID
+});
+
+const managerBlockingMainRequestSuccess = (response) => ({
+    type : MANAGER_BLOCK_MAIN_REQUEST_BY_ID_SUCCESS,
+    payload : response && response.data
+});
+
+const managerBlockingMainRequestFailure = (error) => ({
+    type : MANAGER_BLOCK_MAIN_REQUEST_BY_ID_FAILURE,
+    payload : error && error.message
+});
+
+export const blockingMainRequestById = (requestId) => (dispatch) => {
+    dispatch(managerBlockingMainRequestStart());
+
+    return blockingMainRequestApi(requestId).then((response) => {
+        setTimeout(() => {
+            dispatch(managerBlockingMainRequestSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(managerBlockingMainRequestFailure(error));
+    })
+}
+
 const resetAnybodySavingMainRequestStart = () => ({
     type : RESET_ANYBODY_SAVING_MAIN_REQUEST
 });
@@ -223,25 +275,10 @@ export const FETCH_TODAY_BATTLE_REQUEST_SUCCESS = 'FETCH_TODAY_BATTLE_REQUEST_SU
 export const FETCH_TODAY_BATTLE_REQUEST_FAILURE = 'FETCH_TODAY_BATTLE_REQUEST_FAILURE';
 export const RESET_FETCH_TODAY_BATTLE_REQUEST = 'RESET_FETCH_TODAY_BATTLE_REQUEST';
 
-export const USER_SAVE_REQUEST = 'USER_SAVE_REQUEST';
-export const USER_SAVE_REQUEST_SUCCESS = 'USER_SAVE_REQUEST_SUCCESS';
-export const USER_SAVE_REQUEST_FAILURE = 'USER_SAVE_REQUEST_FAILURE';
-export const RESET_USER_SAVE_REQUEST = 'RESET_USER_SAVE_REQUEST';
-
 export const EXECUTE_AGREE_REQUEST = 'EXECUTE_AGREE_REQUEST';
 export const EXECUTE_AGREE_REQUEST_SUCCESS = 'EXECUTE_AGREE_REQUEST_SUCCESS';
 export const EXECUTE_AGREE_REQUEST_FAILURE = 'EXECUTE_AGREE_REQUEST_FAILURE';
 export const RESET_EXECUTE_AGREE_REQUEST = 'RESET_EXECUTE_AGREE_REQUEST';
-
-export const EXECUTE_BLOCK_REQUEST = 'EXECUTE_BLOCK_REQUEST';
-export const EXECUTE_BLOCK_REQUEST_SUCCESS = 'EXECUTE_BLOCK_REQUEST_SUCCESS';
-export const EXECUTE_BLOCK_REQUEST_FAILURE = 'EXECUTE_BLOCK_REQUEST_FAILURE';
-export const RESET_EXECUTE_BLOCK_REQUEST = 'RESET_EXECUTE_BLOCK_REQUEST';
-
-export const EXECUTE_USER_DELETE_REQUEST = 'EXECUTE_USER_DELETE_REQUEST';
-export const EXECUTE_USER_DELETE_REQUEST_SUCCESS = 'EXECUTE_USER_DELETE_REQUEST_SUCCESS';
-export const EXECUTE_USER_DELETE_REQUEST_FAILURE = 'EXECUTE_USER_DELETE_REQUEST_FAILURE';
-export const RESET_EXECUTE_USER_DELETE_REQUEST = 'RESET_EXECUTE_USER_DELETE_REQUEST';
 
 export const EXECUTE_ADMIN_DELETE_REQUEST_PARTITION = 'EXECUTE_ADMIN_DELETE_REQUEST_PARTITION';
 export const EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_SUCCESS = 'EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_SUCCESS';
@@ -341,52 +378,6 @@ export function resetAppFetchTodayBattleRequest() {
     }
 }
 
-export function userSaveRequest(requestModel, requestPhoto){
-    let formData = new FormData();
-    formData.append('requestModel', new Blob([JSON.stringify(requestModel)], { type : 'application/json'}));
-    formData.append('file', requestPhoto);
-
-    const request = requestModel.requestId === 0 ?
-        axios({
-            method : 'post',
-            url : `${ROOT_URL}`,
-            data : formData,
-            headers : {
-                "Content-Type" : "multipart/input_render-data"
-            }
-        }) :
-        axios({
-            method : 'put',
-            url : `${ROOT_URL}`,
-            data : requestModel
-        });
-
-    return{
-        type : USER_SAVE_REQUEST,
-        payload : request
-    }
-}
-
-export function userSaveRequestSuccess(result){
-    return {
-        type : USER_SAVE_REQUEST_SUCCESS,
-        payload : result.data
-    }
-}
-
-export function userSaveRequestFailure(error){
-    return {
-        type : USER_SAVE_REQUEST_FAILURE,
-        payload : error
-    }
-}
-
-export function resetUserSaveRequest(){
-    return {
-        type : RESET_USER_SAVE_REQUEST
-    }
-}
-
 export function managerFetchAgreeRequestBrief(){
     const request = axios({
         url : `${ROOT_URL}/fetch_brief/agree_list`,
@@ -447,68 +438,6 @@ export function managerExecuteFetchRequestFailure(error){
 export function resetManagerExecuteFetchRequest(){
     return {
         type : RESET_EXECUTE_AGREE_REQUEST
-    }
-}
-
-export function managerExecuteBlockingRequest(requestId){
-    const request = axios({
-        url : `${ROOT_URL}/block_request/${requestId}`,
-        method : 'put'
-    });
-    return {
-        type : EXECUTE_BLOCK_REQUEST,
-        payload : request
-    }
-}
-
-export function managerExecuteBlockingRequestSuccess(result){
-    return {
-        type : EXECUTE_BLOCK_REQUEST_SUCCESS,
-        payload : result.data
-    }
-}
-
-export function managerExecuteBlockingRequestFailure(error){
-    return {
-        type : EXECUTE_BLOCK_REQUEST_FAILURE,
-        payload : error
-    }
-}
-
-export function resetManagerExecuteBlockingRequest(){
-    return {
-        type : RESET_EXECUTE_BLOCK_REQUEST
-    }
-}
-
-export function executeUserDeleteRequest(requestId){
-    const request = axios({
-        url : `${ROOT_URL}/delete_request/${requestId}`,
-        method : 'delete'
-    });
-    return {
-        type : EXECUTE_USER_DELETE_REQUEST,
-        payload : request
-    }
-}
-
-export function executeUserDeleteRequestSuccess(result){
-    return {
-        type : EXECUTE_USER_DELETE_REQUEST_SUCCESS,
-        payload : result.data
-    }
-}
-
-export function executeUserDeleteRequestFailure(error){
-    return {
-        type : EXECUTE_USER_DELETE_REQUEST_FAILURE,
-        payload : error
-    }
-}
-
-export function resetExecuteUserDeleteRequest(){
-    return {
-        type : RESET_EXECUTE_USER_DELETE_REQUEST
     }
 }
 

@@ -56,7 +56,7 @@ export const savingMainRequestApi = (requestModel, requestPhoto) => {
 
         return axios({
             method: 'post',
-            url: `${ROOT_URL}`,
+            url : `${ROOT_URL}`,
             data: formData,
             headers: {
                 "Content-Type": "multipart/input_render-data"
@@ -64,3 +64,19 @@ export const savingMainRequestApi = (requestModel, requestPhoto) => {
         });
     }
 }
+
+export const blockingMainRequestApi = (requestId) => {
+    return axios({
+        method : 'put',
+        url : `${ROOT_URL}/blocking/${requestId}`
+    });
+}
+
+export const deleteMainRequestApi = (requestId) => {
+    return axios({
+        method : 'delete',
+        url : `${ROOT_URL}/${requestId}`
+    });
+}
+
+

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Dropzone from 'react-dropzone';
+
+const dropzoneStyle = {
+    cursor : "pointer"
+};
+
 const renderDropzoneInput = (field) => {
     const files = field.input.value;
-    const dropzoneStyle = {
-        cursor : "pointer"
-    };
     return (
-        <div>
+        <Fragment>
             <Dropzone
                 className="w3-panel w3-border w3-border-blue w3-pale-blue"
                 name={field.name}
@@ -25,18 +27,21 @@ const renderDropzoneInput = (field) => {
                     </span>
                 )
             }
-            {files && Array.isArray(files) && (
-                files.map((file, i) =>
-                    <div className="w3-card-4" style={{width: '100%'}} key={i}>
-                        <img src={file.preview} style={{width: '100%'}} alt={`dropzone_image_${i}`}/>
-                        <div className="w3-container w3-center">
-                            <h3>{file.name}</h3>
-                            <p>{file.size} bytes</p>
+            <div align="center" className="w3-container" style={{ marginBottom : '10px' }}>
+            {
+                files && Array.isArray(files) && (
+                    files.map((file, i) =>
+                        <div className="w3-card-4" style={{ width : (window.innerWidth <= 768) ? '100%' : '75%' }} key={`dropzone_img_card_${i}`}>
+                            <img src={ file.preview } style={{ width: '100%' }} alt={`dropzone_image_${i}`} />
+                            <div className="w3-container w3-center">
+                                <h3>{ file.name }</h3>
+                                <p>{ file.size } Bytes</p>
+                            </div>
                         </div>
-                    </div>
-                ))
+                    ))
             }
-        </div>
+            </div>
+        </Fragment>
     );
 };
 export default renderDropzoneInput;

@@ -98,14 +98,11 @@ class RequestSaveForm extends Component {
             if(requestId && type === 'SAVING'){
                 alert('저장된 사연이 수정 되었습니다. 공감은 그대로 저장 됩니다.');
                 history.push(`/view_request/_refresh${location.search}`);
-            } else if (type === 'DELETE') {
-                alert('선택하신 사연이 삭제 되었습니다.');
-                const queryModel = queryString.parse(location.search);
-                queryModel['id'] = undefined;
-                history.push(`/category/_move?${queryString.stringify(queryModel)}`);
-            } else {
+            } else if(type === 'SAVING') {
                 alert('새로운 사연이 저장 되었습니다. 선정성 확인까지 1~2일이 걸리오니, 이후에 확인 부탁 드립니다. 홈으로 이동합니다.');
                 history.push('/');
+            } else {
+                return;
             }
         } else if(complete === false){
             alert('사연을 수정하는 도중 데이터베이스 내부에 오류가 발생 했습니다.\n 이 문제가 계속 발생하면 개발자에게 조치를 취하시길 바랍니다.');

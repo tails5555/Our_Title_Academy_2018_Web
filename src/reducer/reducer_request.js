@@ -4,24 +4,21 @@ import {
     ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS,
     ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE,
     ANYBODY_FETCH_MAIN_REQUEST, ANYBODY_FETCH_REDIRECT_MAIN_REQUEST, ANYBODY_FETCH_MAIN_REQUEST_SUCCESS,
-    ANYBODY_FETCH_MAIN_REQUEST_FAILURE, RESET_ANYBODY_FETCH_MAIN_REQUEST, ANYBODY_SAVING_MAIN_REQUEST,
-    ANYBODY_SAVING_MAIN_REQUEST_SUCCESS, ANYBODY_SAVING_MAIN_REQUEST_FAILURE, RESET_ANYBODY_SAVING_MAIN_REQUEST,
+    ANYBODY_FETCH_MAIN_REQUEST_FAILURE, RESET_ANYBODY_FETCH_MAIN_REQUEST,
+    ANYBODY_SAVING_MAIN_REQUEST, ANYBODY_SAVING_MAIN_REQUEST_SUCCESS, ANYBODY_SAVING_MAIN_REQUEST_FAILURE,
+    ANYBODY_DELETE_MAIN_REQUEST_BY_ID, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_SUCCESS, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_FAILURE,
+    MANAGER_BLOCK_MAIN_REQUEST_BY_ID, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_SUCCESS, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_FAILURE, RESET_ANYBODY_SAVING_MAIN_REQUEST,
 } from "../action/type/type_request";
 
 import {
     FETCH_TODAY_BATTLE_REQUEST, FETCH_TODAY_BATTLE_REQUEST_SUCCESS, FETCH_TODAY_BATTLE_REQUEST_FAILURE, RESET_FETCH_TODAY_BATTLE_REQUEST,
-    USER_SAVE_REQUEST, USER_SAVE_REQUEST_SUCCESS, USER_SAVE_REQUEST_FAILURE, RESET_USER_SAVE_REQUEST,
-    FETCH_AGREE_REQUEST_BRIEF, FETCH_AGREE_REQUEST_BRIEF_SUCCESS, FETCH_AGREE_REQUEST_BRIEF_FAILURE,
-    RESET_FETCH_AGREE_REQUEST_BRIEF, EXECUTE_AGREE_REQUEST, EXECUTE_AGREE_REQUEST_SUCCESS,
-    EXECUTE_AGREE_REQUEST_FAILURE, RESET_EXECUTE_AGREE_REQUEST, EXECUTE_BLOCK_REQUEST, EXECUTE_BLOCK_REQUEST_SUCCESS,
-    RESET_EXECUTE_BLOCK_REQUEST, EXECUTE_BLOCK_REQUEST_FAILURE, EXECUTE_USER_DELETE_REQUEST,
-    EXECUTE_USER_DELETE_REQUEST_SUCCESS, EXECUTE_USER_DELETE_REQUEST_FAILURE, RESET_EXECUTE_USER_DELETE_REQUEST,
+    FETCH_AGREE_REQUEST_BRIEF, FETCH_AGREE_REQUEST_BRIEF_SUCCESS, FETCH_AGREE_REQUEST_BRIEF_FAILURE, RESET_FETCH_AGREE_REQUEST_BRIEF,
+    EXECUTE_AGREE_REQUEST, EXECUTE_AGREE_REQUEST_SUCCESS, EXECUTE_AGREE_REQUEST_FAILURE, RESET_EXECUTE_AGREE_REQUEST,
     EXECUTE_ADMIN_DELETE_REQUEST_PARTITION, EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_SUCCESS, EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_FAILURE, RESET_EXECUTE_ADMIN_DELETE_REQUEST_PARTITION
 } from "../action/action_request";
 
 import {
-    USER_FETCH_MY_VALID_REQUEST, USER_FETCH_MY_VALID_REQUEST_SUCCESS, USER_FETCH_MY_VALID_REQUEST_FAILURE,
-    RESET_USER_FETCH_MY_VALID_REQUEST,
+    USER_FETCH_MY_VALID_REQUEST, USER_FETCH_MY_VALID_REQUEST_SUCCESS, USER_FETCH_MY_VALID_REQUEST_FAILURE, RESET_USER_FETCH_MY_VALID_REQUEST,
     USER_FETCH_MY_NON_VALID_REQUEST, USER_FETCH_MY_NON_VALID_REQUEST_SUCCESS, USER_FETCH_MY_NON_VALID_REQUEST_FAILURE,
     RESET_USER_FETCH_MY_NON_VALID_REQUEST, USER_FETCH_MY_REQUEST_STATISTIC, USER_FETCH_MY_REQUEST_STATISTIC_SUCCESS,
     USER_FETCH_MY_REQUEST_STATISTIC_FAILURE, RESET_USER_FETCH_MY_REQUEST_STATISTIC
@@ -85,6 +82,20 @@ export default function(state = INITIAL_STATE, action){
         case ANYBODY_SAVING_MAIN_REQUEST_FAILURE :
             return { ...state, form : { ...state.form, loading : false, error : action.payload, type : 'SAVING' }};
 
+        case ANYBODY_DELETE_MAIN_REQUEST_BY_ID :
+            return { ...state, form : { ...state.form, complete : null, loading : true, type : 'DELETE' }};
+        case ANYBODY_DELETE_MAIN_REQUEST_BY_ID_SUCCESS :
+            return { ...state, form : { ...state.form, complete : action.payload, loading : false, type : 'DELETE' }};
+        case ANYBODY_DELETE_MAIN_REQUEST_BY_ID_FAILURE :
+            return { ...state, form : { ...state.form, loading : false, error : action.payload, type : 'DELETE' }};
+
+        case MANAGER_BLOCK_MAIN_REQUEST_BY_ID :
+            return { ...state, form : { ...state.form, complete : null, loading : true, type : 'BLOCKING' }};
+        case MANAGER_BLOCK_MAIN_REQUEST_BY_ID_SUCCESS :
+            return { ...state, form : { ...state.form, complete : action.payload, loading : false, type : 'BLOCKING' }};
+        case MANAGER_BLOCK_MAIN_REQUEST_BY_ID_FAILURE :
+            return { ...state, form : { ...state.form, loading : false, error : action.payload, type : 'BLOCKING' }};
+
         case RESET_ANYBODY_SAVING_MAIN_REQUEST :
             return { ...state, form : { ...state.form, complete : null, error : null, type : null }};
 
@@ -98,16 +109,6 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, selectRequest : { request : null, loading : false, error : error }};
         case RESET_FETCH_TODAY_BATTLE_REQUEST :
             return { ...state, selectRequest : { request : null, loading : false, error : null }};
-
-        case USER_SAVE_REQUEST :
-            return { ...state, saveStatus : { result : null, loading : true, error : null }};
-        case USER_SAVE_REQUEST_SUCCESS :
-            return { ...state, saveStatus : { result : action.payload, loading : false, error : null }};
-        case USER_SAVE_REQUEST_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, saveStatus : { result : null, loading : false, error : error }};
-        case RESET_USER_SAVE_REQUEST :
-            return { ...state, saveStatus : { result : null, loading : false, error : null }};
 
         case FETCH_AGREE_REQUEST_BRIEF :
             return { ...state, requestList : { requests : [], loading : true, error : null }};
@@ -129,27 +130,13 @@ export default function(state = INITIAL_STATE, action){
         case RESET_EXECUTE_AGREE_REQUEST :
             return { ...state, agreeStatus : { result : null, loading : false, error : null }};
 
-        case EXECUTE_BLOCK_REQUEST :
-            return { ...state, blockStatus : { result : null, loading : true, error : null }};
-        case EXECUTE_BLOCK_REQUEST_SUCCESS :
-            return { ...state, blockStatus : { result : action.payload, loading : false, error : null }};
-        case EXECUTE_BLOCK_REQUEST_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, blockStatus : { result : null, loading : false, error : error }};
-        case RESET_EXECUTE_BLOCK_REQUEST :
-            return { ...state, blockStatus : { result : null, loading : false, error : null }};
-
-        case EXECUTE_USER_DELETE_REQUEST :
         case EXECUTE_ADMIN_DELETE_REQUEST_PARTITION :
             return { ...state, deleteStatus : { result : null, loading : true, error : null }};
-        case EXECUTE_USER_DELETE_REQUEST_SUCCESS :
         case EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_SUCCESS :
             return { ...state, deleteStatus : { result : action.payload, loading : false, error : null}};
-        case EXECUTE_USER_DELETE_REQUEST_FAILURE :
         case EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_FAILURE :
             error = action.payload || { message : action.payload };
             return { ...state, deleteStatus : { result : null, loading : false, error : error }};
-        case RESET_EXECUTE_USER_DELETE_REQUEST :
         case RESET_EXECUTE_ADMIN_DELETE_REQUEST_PARTITION :
             return { ...state, deleteStatus : { result : null, loading : false, error : null }};
 
