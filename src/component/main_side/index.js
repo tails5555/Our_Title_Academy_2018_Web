@@ -5,6 +5,9 @@ export {default as WarmRequestListView} from './WarmRequestListView';
 // Rank Request List Top 10 Main View
 export {default as TodayRankMainView} from './TodayRankMainView';
 
+// Total Search Result View
+export {default as TotalSearchResultView} from './TotalSearchResultView';
+
 // Category - Multiple Requests View
 export {default as BriefRequestListView} from './BriefRequestListView';
 

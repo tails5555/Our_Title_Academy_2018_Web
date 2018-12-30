@@ -1,23 +1,21 @@
 import {
-    FETCH_SEARCH_RESULT, FETCH_SEARCH_RESULT_SUCCESS, FETCH_SEARCH_RESULT_FAILURE, RESET_FETCH_SEARCH_RESULT
-} from "../action/action_search";
+    ANYBODY_FETCH_SEARCH_RESULT, ANYBODY_FETCH_SEARCH_RESULT_SUCCESS, ANYBODY_FETCH_SEARCH_RESULT_FAILURE, RESET_ANYBODY_FETCH_SEARCH_RESULT
+} from "../action/type/type_search";
 
 const INITIAL_STATE = {
-    searchList : { results : [], loading : false, error : null }
+    list : [], loading : false, error : null
 }
 
 export default function(state = INITIAL_STATE, action) {
-    let error;
     switch(action.type){
-        case FETCH_SEARCH_RESULT :
-            return { ...state, searchList : { results : [], loading : true, error : null }};
-        case FETCH_SEARCH_RESULT_SUCCESS :
-            return { ...state, searchList : { results : action.payload, loading : false, error : null }};
-        case FETCH_SEARCH_RESULT_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, searchList : { results : [], loading : false, error : error }};
-        case RESET_FETCH_SEARCH_RESULT :
-            return { ...state, searchList : { results : [], loading : false, error : null }};
+        case ANYBODY_FETCH_SEARCH_RESULT :
+            return { ...state, list : [], loading : true };
+        case ANYBODY_FETCH_SEARCH_RESULT_SUCCESS :
+            return { ...state, list : action.payload, loading : false };
+        case ANYBODY_FETCH_SEARCH_RESULT_FAILURE :
+            return { ...state, loading : false, error : action.payload };
+        case RESET_ANYBODY_FETCH_SEARCH_RESULT :
+            return { ...state, list : [], error : null };
 
         default :
             return state;

@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { AlertBoxNote } from "../alert_box";
 import EmpathySpanButton from "./EmpathySpanButton";
 
-const RequestEmpathyBar = ({ location, requestId, loginId, likeCount, hateCount, likeChecked, hateChecked, hasMain }) => {
+const EmpathyPercentBar = ({ location, contextId, contextType, loginId, likeCount, hateCount, likeChecked, hateChecked, hasMain }) => {
     let lc = (likeCount === true) ? 0 : likeCount;
     let hc = (hateCount === true) ? 0 : hateCount;
 
@@ -32,8 +32,8 @@ const RequestEmpathyBar = ({ location, requestId, loginId, likeCount, hateCount,
     const checkBtns =
         (loginId !== 'ANONYMOUS_USER' && hasMain) ?
             <div className="w3-center" style={{ display : 'inline' }}>
-                <EmpathySpanButton id={requestId} context={'request'} type={'like'} count={likeCount} checked={likeChecked} loginId={loginId} search={location.search} />
-                <EmpathySpanButton id={requestId} context={'request'} type={'hate'} count={hateCount} checked={hateChecked} loginId={loginId} search={location.search} />
+                <EmpathySpanButton id={contextId} context={contextType} type={'like'} count={likeCount} checked={likeChecked} loginId={loginId} search={location.search} />
+                <EmpathySpanButton id={contextId} context={contextType} type={'hate'} count={hateCount} checked={hateChecked} loginId={loginId} search={location.search} />
             </div> : null;
 
     return(
@@ -58,4 +58,4 @@ const RequestEmpathyBar = ({ location, requestId, loginId, likeCount, hateCount,
     );
 }
 
-export default withRouter(RequestEmpathyBar);
+export default withRouter(EmpathyPercentBar);

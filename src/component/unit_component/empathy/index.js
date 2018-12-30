@@ -1,2 +1,2 @@
 export {default as EmpathySpanButton} from './EmpathySpanButton';
-export {default as RequestEmpathyBar} from './RequestEmpathyBar';
+export {default as EmpathyPercentBar} from './EmpathyPercentBar';

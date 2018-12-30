@@ -1,4 +1,4 @@
-// Side Bar Category Menu List Container
+// Side Bar Category Menu List
 export {default as CategoryMenuContainer} from './CategoryMenuContainer';
 
 // Side Bar Best Request Card View
@@ -7,13 +7,16 @@ export {default as TodayRankCardViewContainer} from './TodayRankCardViewContaine
 // Home Warm Multiple Requests List View
 export {default as WarmRequestListViewContainer} from './WarmRequestListViewContainer';
 
+// Total Search List View
+export {default as TotalSearchResultViewContainer} from './TotalSearchResultViewContainer';
+
 // Today Rank Request List View
 export {default as TodayRankMainViewContainer} from './TodayRankMainViewContainer';
 
 // Category Multiple Requests List View
 export {default as BriefRequestListViewContainer} from './BriefRequestListViewContainer';
 
-// Main Request Element View Container
+// Main Request Element View
 export {default as RequestMainViewContainer} from './RequestMainViewContainer';
 
 // Main Request Create View
@@ -34,7 +37,6 @@ export {default as PhotoAgreeContainer} from './PhotoAgreeContainer';
 export {default as SelectCategoryContainer} from './SelectCategoryContainer';
 export {default as MyRequestStatisticContainer} from './MyRequestStatisticContainer';
 export {default as MyTitleStatisticContainer} from './MyTitleStatisticContainer';
-export {default as SearchResultContainer} from './SearchResultContainer';
 export {default as TodayTitleBattleContainer} from './TodayTitleBattleContainer';
 export {default as TitleManageContainer} from './TitleManageContainer';
 export {default as RequestManageContainer} from './RequestManageContainer';

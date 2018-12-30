@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ModalScreen } from "../unit_component/modal";
 import { AlertBoxNote } from "../unit_component/alert_box";
 import {MainTitleHeader, MajorTitleHeader} from "../unit_component/header";
-import { RequestEmpathyBar } from "../unit_component/empathy";
+import { EmpathyPercentBar } from "../unit_component/empathy";
 import { MainRequestCard } from "../unit_component/request";
 import { BestTitleList } from "../unit_component/title";
 import { SelectDisplayBox } from "../unit_component/select_display";
@@ -72,7 +72,7 @@ class TodayRankMainView extends Component {
                             </Link>
                         </div>
                         <MainRequestCard element={request.requestDTO} />
-                        <RequestEmpathyBar requestId={request.requestDTO && request.requestDTO.id} loginId={'ANONYMOUS_USER'} likeCount={request.likeCount} hateCount={request.hateCount} likeChecked={false} hateChecked={false} hasMain={false} />
+                        <EmpathyPercentBar contextId={request.requestDTO && request.requestDTO.id} contextType={'request'} loginId={'ANONYMOUS_USER'} likeCount={request.likeCount} hateCount={request.hateCount} likeChecked={false} hateChecked={false} hasMain={false} />
                         <BestTitleList bestTitles={request.bestTitles} />
                     </div>
                 ));

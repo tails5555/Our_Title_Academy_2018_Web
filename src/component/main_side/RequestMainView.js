@@ -3,20 +3,20 @@ import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
 
 import { ModalScreen } from "../unit_component/modal";
-import {MainTitleHeader, MajorTitleHeader} from "../unit_component/header";
+import { MainTitleHeader, MajorTitleHeader } from "../unit_component/header";
 import { SelectDisplayBox } from "../unit_component/select_display";
 import { MainRequestCard, RequestEditManage } from "../unit_component/request";
 import { BestTitleList, MainTitleList } from "../unit_component/title";
 import { RequestPhoto } from "../unit_component/photo";
 import { TitleSaveForm, CommentSaveForm } from "../unit_component/form_model";
 import { MainCommentList } from "../unit_component/comment";
-import { RequestEmpathyBar } from "../unit_component/empathy";
+import { EmpathyPercentBar } from "../unit_component/empathy";
 
 const HallOfFrameView = ({ requestId, loginId, element, bestTitles, likeCount, hateCount, likeChecked, hateChecked, userType }) => (
     <Fragment>
         <RequestEditManage element={element} loginId={loginId} userType={userType} />
         <MainRequestCard element={element} />
-        <RequestEmpathyBar requestId={requestId} loginId={loginId} likeCount={likeCount} hateCount={hateCount} likeChecked={likeChecked} hateChecked={hateChecked} hasMain={true} />
+        <EmpathyPercentBar contextId={requestId} contextType={'request'} loginId={loginId} likeCount={likeCount} hateCount={hateCount} likeChecked={likeChecked} hateChecked={hateChecked} hasMain={true} />
         <BestTitleList bestTitles={bestTitles} />
     </Fragment>
 );

@@ -1,37 +1,41 @@
-import axios from 'axios';
-const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/search';
+import {
+    ANYBODY_FETCH_SEARCH_RESULT, ANYBODY_FETCH_SEARCH_RESULT_SUCCESS, ANYBODY_FETCH_SEARCH_RESULT_FAILURE, RESET_ANYBODY_FETCH_SEARCH_RESULT
+} from './type/type_search';
 
-export const FETCH_SEARCH_RESULT = 'FETCH_SEARCH_RESULT';
-export const FETCH_SEARCH_RESULT_SUCCESS = 'FETCH_SEARCH_RESULT_SUCCESS';
-export const FETCH_SEARCH_RESULT_FAILURE = 'FETCH_SEARCH_RESULT_FAILURE';
-export const RESET_FETCH_SEARCH_RESULT = 'RESET_FETCH_SEARCH_RESULT';
+import {
+    totalSearchContextApi
+} from './api/api_search';
 
-export function appFetchSearchResult(keyword){
-    const request = axios({
-        url : `${ROOT_URL}/fetch_keyword/${keyword}`
-    })
-    return {
-        type : FETCH_SEARCH_RESULT,
-        payload : request
-    }
+const anybodyFetchSearchResultStart = () => ({
+    type : ANYBODY_FETCH_SEARCH_RESULT
+});
+
+const anybodyFetchSearchResultSuccess = (response) => ({
+    type : ANYBODY_FETCH_SEARCH_RESULT_SUCCESS,
+    payload : response && response.data
+});
+
+const anybodyFetchSearchResultFailure = (error) => ({
+    type : ANYBODY_FETCH_SEARCH_RESULT_FAILURE,
+    payload : error && error.message
+});
+
+export const fetchTotalSearchResult = (keyword) => (dispatch) => {
+    dispatch(anybodyFetchSearchResultStart());
+
+    return totalSearchContextApi(keyword).then((response) => {
+        setTimeout(() => {
+            dispatch(anybodyFetchSearchResultSuccess(response));
+        }, 4000);
+    }).catch((error) => {
+        dispatch(anybodyFetchSearchResultFailure(error));
+    });
 }
 
-export function appFetchSearchResultSuccess(results){
-    return {
-        type : FETCH_SEARCH_RESULT_SUCCESS,
-        payload : results.data
-    }
-}
+const resetAnybodyFetchSearchResult = () => ({
+    type : RESET_ANYBODY_FETCH_SEARCH_RESULT
+});
 
-export function appFetchSearchResultFailure(error){
-    return {
-        type : FETCH_SEARCH_RESULT_FAILURE,
-        payload : error
-    }
-}
-
-export function resetAppFetchSearchResult(){
-    return {
-        type : RESET_FETCH_SEARCH_RESULT
-    }
+export const resetFetchTotalSearchResult = () => (dispatch) => {
+    dispatch(resetAnybodyFetchSearchResult());
 }

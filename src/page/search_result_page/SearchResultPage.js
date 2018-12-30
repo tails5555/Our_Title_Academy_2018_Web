@@ -1,6 +1,6 @@
 import React from 'react';
-import {SearchResultContainer} from "../../container";
+import { TotalSearchResultViewContainer } from "../../container";
 
-const SearchResultPage = () => <SearchResultContainer/>
+const SearchResultPage = () => <TotalSearchResultViewContainer />
 
 export default SearchResultPage;
