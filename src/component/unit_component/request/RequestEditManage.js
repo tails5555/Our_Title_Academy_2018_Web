@@ -109,7 +109,6 @@ class RequestEditManage extends Component {
                 break;
         }
 
-
         let mineRender = (hasMine) ?
             <Fragment>
                 <button type="button" className="w3-button w3-green w3-small w3-round-large" style={{ margin : '10px' }} onClick={() => this.handleClickOpenModal()}>

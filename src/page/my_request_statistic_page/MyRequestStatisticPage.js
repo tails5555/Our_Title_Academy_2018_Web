@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {MyRequestStatisticContainer} from "../../container";
+import {OwnerRequestMainViewContainer} from "../../container";
 
-const MyRequestStatisticPage = () => <MyRequestStatisticContainer />;
+const MyRequestStatisticPage = () => <OwnerRequestMainViewContainer />;
 
 export default MyRequestStatisticPage;

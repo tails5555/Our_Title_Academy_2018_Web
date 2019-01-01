@@ -22,6 +22,9 @@ export {default as RequestMainViewContainer} from './RequestMainViewContainer';
 // Main Request Create View
 export {default as RequestCreateViewContainer} from './RequestCreateViewContainer';
 
+// My Owner Context Main View
+export {default as OwnerRequestMainViewContainer} from './OwnerRequestMainViewContainer';
+
 export {default as ApplicationContainer} from './ApplicationContainer';
 export {default as LoginFormContainer} from './LoginFormContainer';
 export {default as UserInfoContainer} from './UserInfoContainer';
@@ -35,7 +38,6 @@ export {default as UserPrincipalInfoContainer} from './UserPrincipalInfoContaine
 
 export {default as PhotoAgreeContainer} from './PhotoAgreeContainer';
 export {default as SelectCategoryContainer} from './SelectCategoryContainer';
-export {default as MyRequestStatisticContainer} from './MyRequestStatisticContainer';
 export {default as MyTitleStatisticContainer} from './MyTitleStatisticContainer';
 export {default as TodayTitleBattleContainer} from './TodayTitleBattleContainer';
 export {default as TitleManageContainer} from './TitleManageContainer';

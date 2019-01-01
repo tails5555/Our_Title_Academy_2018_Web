@@ -16,3 +16,7 @@ export {default as RequestMainView} from './RequestMainView';
 
 // Main Request Create View
 export {default as RequestCreateView} from './RequectCreateView';
+
+// My Context View Component
+export {default as OwnerRequestMainView} from './OwnerRequestMainView';
+export {default as OwnerTitleMainView} from './OwnerTitleMainView';
