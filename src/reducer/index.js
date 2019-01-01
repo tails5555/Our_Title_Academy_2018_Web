@@ -9,6 +9,7 @@ import RankReducer from './reducer_rank';
 import TitleReducer from './reducer_title';
 import CommentReducer from './reducer_comment';
 import SearchReducer from './reducer_search';
+import OwnerReducer from './reducer_owner';
 
 export const rootReducer = combineReducers({
     form : formReducer,
@@ -20,5 +21,6 @@ export const rootReducer = combineReducers({
     request : RequestReducer,
     title : TitleReducer,
     comment : CommentReducer,
-    search : SearchReducer
+    search : SearchReducer,
+    owner : OwnerReducer
 });
