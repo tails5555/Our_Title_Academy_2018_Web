@@ -1,12 +1,14 @@
 import React, { Fragment, Component } from 'react';
-import {MajorTitleHeader} from "../unit_component/header";
-import {OwnerRequestCard} from "../unit_component/request";
-import {AlertBoxNote} from "../unit_component/alert_box";
+import { MajorTitleHeader } from "../unit_component/header";
+import { OwnerRequestCard } from "../unit_component/request";
+import { AlertBoxNote } from "../unit_component/alert_box";
+import { OwnerTitleCard } from "../unit_component/title";
+import { ListPagination } from "../unit_component/paginate";
 
 class OwnerContextList extends Component {
     constructor(props){
         super(props);
-        this.state = { list : [], loading : false, error : null };
+        this.state = { list : [], loading : false, error : null, page : 1 };
     }
 
     componentDidMount() {
@@ -31,10 +33,26 @@ class OwnerContextList extends Component {
         resetAction();
     }
 
+    handleClickPaginate = (event) => {
+        this.setState({
+            page : event.target.id
+        });
+        window.scroll({
+            top : 0,
+            left : 0,
+            behavior : 'smooth'
+        });
+    }
+
     render(){
         const { title, allowed, type } = this.props;
-        const { list, loading, error } = this.state;
+        const { list, loading, error, page } = this.state;
         let resultRender = null;
+        const pageSize = 10;
+
+        const startIdx = (page - 1) * pageSize;
+        const endIdx = page * pageSize - 1;
+
         if(error) {
             resultRender = (
                 <AlertBoxNote
@@ -48,7 +66,12 @@ class OwnerContextList extends Component {
             if(list.length > 0) {
                 resultRender =
                     (type === 'REQUEST') ?
-                        list.map((element, idx) => <OwnerRequestCard key={`owner_request_card_${idx}`} element={element} allowed={allowed} />) : null;
+                        list
+                            .filter((title, idx) => idx >= startIdx && idx <= endIdx)
+                            .map((element, idx) => <OwnerRequestCard key={`owner_request_card_${idx}`} element={element} allowed={allowed} />) :
+                        list
+                            .filter((title, idx) => idx >= startIdx && idx <= endIdx)
+                            .map((element, idx) => <OwnerTitleCard key={`owner_request_card_${idx}`} element={element} />);
             } else {
                 resultRender = !loading ? (
                     <AlertBoxNote
@@ -64,6 +87,9 @@ class OwnerContextList extends Component {
             <Fragment>
                 <MajorTitleHeader title={title} />
                 {resultRender}
+                <div id="title_pagination_bar" className="w3-center">
+                    <ListPagination page={page} size={pageSize} count={list ? list.length : 0} handle={this.handleClickPaginate.bind(this)} />
+                </div>
             </Fragment>
         );
     }

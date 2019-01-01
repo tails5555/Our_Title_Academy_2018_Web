@@ -41,7 +41,7 @@ class OwnerRequestMainView extends Component {
         const { ownerAction } = this.props;
         const { requestList, requestLoading, requestError, statisticList, statisticLoading, statisticError, principal } = this.state;
         const { fetchOwnerValidRequests, resetFetchOwnerValidRequests, fetchOwnerWaitingRequests, resetFetchOwnerWaitingRequests, fetchOwnerRequestStatistic, resetFetchOwnerRequestStatistic } = ownerAction;
-        return(
+        return (
             <Fragment>
                 <section id="my_owner_request_view">
                     <MainTitleHeader title="OWN REQUEST MAIN" />

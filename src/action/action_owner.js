@@ -76,7 +76,7 @@ const resetAnybodyFetchOwnerWaitingRequestsStart = () => ({
 });
 
 export const resetFetchOwnerWaitingRequests = () => (dispatch) => {
-    dispatch(resetAnybodyFetchOwnerValidRequestsStart());
+    dispatch(resetAnybodyFetchOwnerWaitingRequestsStart());
 }
 
 const anybodyFetchOwnerRequestStatisticStart = () => ({

@@ -2,6 +2,17 @@ import React, { Component, Fragment } from 'react';
 import Chart from "react-google-charts";
 
 import { MajorTitleHeader } from "../header";
+import { AlertBoxNote } from "../alert_box";
+
+const CategoryPartition = ({ name, likeCount, count }) => (
+    <li className="w3-padding-small">
+        { name }
+        <div className="w3-right">
+            <span className="w3-tag w3-blue w3-round-large" style={{ marginRight : '5px' }}><i className="fas fa-thumbs-up" /> {likeCount}</span>
+            <span className="w3-tag w3-light-green w3-round-large" style={{ marginLeft : '5px' }}><i className="fas fa-user-edit" /> {count}</span>
+        </div>
+    </li>
+);
 
 class ContextStatisticGraph extends Component {
     constructor(props){
@@ -57,9 +68,24 @@ class ContextStatisticGraph extends Component {
     }
 
     render(){
-        const { title } = this.props;
-        const { data, options } = this.state;
-        return(
+        const { title, type } = this.props;
+        const { data, options, list } = this.state;
+        const categoryPartyList = (list.length > 0) ? (
+            <ul className="w3-ul w3-large">
+                {
+                    list.map((party, idx) => <CategoryPartition key={`category_partition_li_${idx}`} name={party && party.categoryName} likeCount={party && party.totalStatus} count={party && party.count} />)
+                }
+            </ul>
+        ) : (
+            <AlertBoxNote
+                id={"has_no_category_party_list"}
+                icon={"fas fa-times-circle"}
+                title={`사용자가 참여하신 ${type === 'REQUEST' ? '사연' : '제목'} 이 아무 것도 없습니다.`}
+                context={`${type === 'REQUEST' ? '사연' : '제목'} 을 하나 올리고 다시 시도 바랍니다. :)`}
+            />
+        );
+
+        return (
             <Fragment>
                 <MajorTitleHeader title={title} />
                 {
@@ -72,6 +98,8 @@ class ContextStatisticGraph extends Component {
                             options={options}
                         /> : null
                 }
+                <MajorTitleHeader title={'카테고리 별 참여도 조회'} />
+                { categoryPartyList }
             </Fragment>
         );
     }

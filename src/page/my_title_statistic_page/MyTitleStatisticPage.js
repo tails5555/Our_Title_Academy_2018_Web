@@ -1,6 +1,6 @@
 import React from 'react';
-import {MyTitleStatisticContainer} from "../../container";
+import { OwnerTitleMainViewContainer } from "../../container";
 
-const MyTitleStatisticPage = () => <MyTitleStatisticContainer />
+const MyTitleStatisticPage = () => <OwnerTitleMainViewContainer />
 
 export default MyTitleStatisticPage;

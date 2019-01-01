@@ -2,7 +2,6 @@ import axios from 'axios';
 import queryString from 'query-string';
 
 import { CONTEXT_ROOT_URL } from "./root_url";
-import {USER_SAVE_REQUEST} from "../action_request";
 
 const ROOT_URL = `${CONTEXT_ROOT_URL}/requests`;
 

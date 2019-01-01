@@ -76,6 +76,8 @@ class RequestSearchForm extends Component {
                         }
                     }
                     break;
+                default :
+                    break;
             }
         }
     }

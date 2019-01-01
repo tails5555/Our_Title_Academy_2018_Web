@@ -15,7 +15,7 @@ export {default as BriefRequestListView} from './BriefRequestListView';
 export {default as RequestMainView} from './RequestMainView';
 
 // Main Request Create View
-export {default as RequestCreateView} from './RequectCreateView';
+export {default as RequestCreateView} from './RequestCreateView';
 
 // My Context View Component
 export {default as OwnerRequestMainView} from './OwnerRequestMainView';

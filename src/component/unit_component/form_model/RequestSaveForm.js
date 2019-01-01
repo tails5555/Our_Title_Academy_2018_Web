@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import queryString from 'query-string';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';

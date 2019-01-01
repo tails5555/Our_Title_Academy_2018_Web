@@ -11,7 +11,6 @@ import {
 } from "../action/action_title";
 
 import {
-    USER_FETCH_MY_TITLE, USER_FETCH_MY_TITLE_SUCCESS, USER_FETCH_MY_TITLE_FAILURE, RESET_USER_FETCH_MY_TITLE,
     USER_FETCH_MY_TITLE_STATISTIC, USER_FETCH_MY_TITLE_STATISTIC_SUCCESS, USER_FETCH_MY_TITLE_STATISTIC_FAILURE,
     RESET_USER_FETCH_MY_TITLE_STATISTIC
 } from "../action/action_my_context";
@@ -66,17 +65,13 @@ export default function(state = INITIAL_STATE, action) {
             return { ...state, form : { ...state.form, complete : null, error : null, type : null }};
 
         case FETCH_ALL_TITLE_LIST :
-        case USER_FETCH_MY_TITLE :
             return { ...state, titleList : { titles : [], loading : true, error : null }};
         case FETCH_ALL_TITLE_LIST_SUCCESS :
-        case USER_FETCH_MY_TITLE_SUCCESS :
             return { ...state, titleList : { titles : action.payload, loading : false, error : null }};
         case FETCH_ALL_TITLE_LIST_FAILURE :
-        case USER_FETCH_MY_TITLE_FAILURE :
             error = action.payload || { message : action.payload };
             return { ...state, titleList : { titles : [], loading : false, error : error }}
         case RESET_FETCH_ALL_TITLE_LIST :
-        case RESET_USER_FETCH_MY_TITLE :
             return { ...state, titleList : { titles : [], loading : false, error : null }};
 
         case ADMIN_EXECUTE_DELETE_TITLE_PARTITION :

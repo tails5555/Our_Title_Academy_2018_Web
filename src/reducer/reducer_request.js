@@ -18,9 +18,7 @@ import {
 } from "../action/action_request";
 
 import {
-    USER_FETCH_MY_VALID_REQUEST, USER_FETCH_MY_VALID_REQUEST_SUCCESS, USER_FETCH_MY_VALID_REQUEST_FAILURE, RESET_USER_FETCH_MY_VALID_REQUEST,
-    USER_FETCH_MY_NON_VALID_REQUEST, USER_FETCH_MY_NON_VALID_REQUEST_SUCCESS, USER_FETCH_MY_NON_VALID_REQUEST_FAILURE,
-    RESET_USER_FETCH_MY_NON_VALID_REQUEST, USER_FETCH_MY_REQUEST_STATISTIC, USER_FETCH_MY_REQUEST_STATISTIC_SUCCESS,
+    USER_FETCH_MY_REQUEST_STATISTIC, USER_FETCH_MY_REQUEST_STATISTIC_SUCCESS,
     USER_FETCH_MY_REQUEST_STATISTIC_FAILURE, RESET_USER_FETCH_MY_REQUEST_STATISTIC
 } from "../action/action_my_context";
 
@@ -30,7 +28,6 @@ const INITIAL_STATE = {
     rank : { list : [], loading : false, error : null },
     options : { data : { search : [], order : [], size : [] }, loading : false, error : { search : null, order : null, size : null } },
 
-    myRequestList : { validRequests : [], nonValidRequests : [], loading : false, error : null },
     myRequestStatistic : { statistics : [], loading : false, error : null },
     selectRequest : { request : null, loading : false, error : null },
     bestTitles : { titles : [] },
@@ -139,26 +136,6 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, deleteStatus : { result : null, loading : false, error : error }};
         case RESET_EXECUTE_ADMIN_DELETE_REQUEST_PARTITION :
             return { ...state, deleteStatus : { result : null, loading : false, error : null }};
-
-        case USER_FETCH_MY_VALID_REQUEST :
-            return { ...state, myRequestList : { ...state.myRequestList, validRequests : [], loading : true, error : null }};
-        case USER_FETCH_MY_VALID_REQUEST_SUCCESS :
-            return { ...state, myRequestList : { ...state.myRequestList, validRequests : action.payload, loading : false, error : null }};
-        case USER_FETCH_MY_VALID_REQUEST_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, myRequestList : { ...state.myRequestList, validRequests : [], loading : false, error : error }};
-        case RESET_USER_FETCH_MY_VALID_REQUEST :
-            return { ...state, myRequestList : { ...state.myRequestList, validRequests : [], loading : false, error : null }};
-
-        case USER_FETCH_MY_NON_VALID_REQUEST :
-            return { ...state, myRequestList : { ...state.myRequestList, nonValidRequests : [], loading : true, error : null }};
-        case USER_FETCH_MY_NON_VALID_REQUEST_SUCCESS :
-            return { ...state, myRequestList : { ...state.myRequestList, nonValidRequests : action.payload, loading : false, error : null }};
-        case USER_FETCH_MY_NON_VALID_REQUEST_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, myRequestList : { ...state.myRequestList, nonValidRequests : [], loading : false, error : error }};
-        case RESET_USER_FETCH_MY_NON_VALID_REQUEST :
-            return { ...state, myRequestList : { ...state.myRequestList, nonValidRequests : [], loading : false, error : null }};
 
         case USER_FETCH_MY_REQUEST_STATISTIC :
             return { ...state, myRequestStatistic: { statistics : [], loading : true, error : null }};

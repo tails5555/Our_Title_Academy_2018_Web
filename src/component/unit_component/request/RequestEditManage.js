@@ -107,6 +107,9 @@ class RequestEditManage extends Component {
                     hasBlock = true;
                 }
                 break;
+            default :
+                hasBlock = false;
+                break;
         }
 
         let mineRender = (hasMine) ?
