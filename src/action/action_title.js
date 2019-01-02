@@ -1,15 +1,51 @@
 import axios from 'axios';
 
 import {
+    ADMIN_FETCH_ALL_TITLES, ADMIN_FETCH_ALL_TITLES_SUCCESS, ADMIN_FETCH_ALL_TITLES_FAILURE, RESET_ADMIN_FETCH_ALL_TITLES,
     ANYBODY_FETCH_MAIN_TITLE_LIST, ANYBODY_FETCH_MAIN_TITLE_LIST_SUCCESS, ANYBODY_FETCH_MAIN_TITLE_LIST_FAILURE, RESET_ANYBODY_FETCH_MAIN_TITLE_LIST,
     ANYBODY_FETCH_HAS_MY_TITLE, ANYBODY_FETCH_HAS_MY_TITLE_SUCCESS, ANYBODY_FETCH_HAS_MY_TITLE_FAILURE, RESET_ANYBODY_FETCH_HAS_MY_TITLE,
     ANYBODY_SAVE_MY_TITLE, ANYBODY_SAVE_MY_TITLE_SUCCESS, ANYBODY_SAVE_MY_TITLE_FAILURE,
-    ANYBODY_DELETE_TITLE_BY_ID, ANYBODY_DELETE_TITLE_BY_ID_SUCCESS, ANYBODY_DELETE_TITLE_BY_ID_FAILURE, RESET_ANYBODY_SAVE_MY_TITLE,
+    ANYBODY_DELETE_TITLE_BY_ID, ANYBODY_DELETE_TITLE_BY_ID_SUCCESS, ANYBODY_DELETE_TITLE_BY_ID_FAILURE,
+    ADMIN_DELETE_TITLES_PARTITION, ADMIN_DELETE_TITLES_PARTITION_SUCCESS, ADMIN_DELETE_TITLES_PARTITION_FAILURE, RESET_ANYBODY_SAVE_MY_TITLE,
 } from "./type/type_title";
 
 import {
-    fetchMainTitleListApi, fetchHasMyTitleApi, savingMyTitleApi, deleteTitleByIdApi
+    fetchAllTitlesApi, fetchMainTitleListApi, fetchHasMyTitleApi, savingMyTitleApi, deleteTitleByIdApi, deleteTitlesPartitionApi
 } from './api/api_title';
+
+const adminFetchAllTitlesStart = () => ({
+    type : ADMIN_FETCH_ALL_TITLES
+});
+
+const adminFetchAllTitlesSuccess = (response) => ({
+    type : ADMIN_FETCH_ALL_TITLES_SUCCESS,
+    payload : response && response.data
+});
+
+const adminFetchAllTitlesFailure = (error) => ({
+    type : ADMIN_FETCH_ALL_TITLES_FAILURE,
+    payload : error && error.message
+});
+
+export const fetchAllTitles = () => (dispatch) => {
+    dispatch(adminFetchAllTitlesStart());
+
+    return fetchAllTitlesApi().then((response) => {
+        setTimeout(() => {
+            dispatch(adminFetchAllTitlesSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(adminFetchAllTitlesFailure(error));
+    });
+}
+
+const resetAdminFetchAllTitlesStart = () => ({
+    type : RESET_ADMIN_FETCH_ALL_TITLES
+});
+
+export const resetFetchAllTitles = () => (dispatch) => {
+    dispatch(resetAdminFetchAllTitlesStart());
+}
 
 const anybodyFetchMainTitleListStart = () => ({
     type : ANYBODY_FETCH_MAIN_TITLE_LIST
@@ -25,10 +61,6 @@ const anybodyFetchMainTitleListFailure = (error) => ({
     payload : error && error.message
 });
 
-const resetAnybodyFetchMainTitleList = () => ({
-    type : RESET_ANYBODY_FETCH_MAIN_TITLE_LIST
-});
-
 export const fetchMainTitleList = (requestId, userId) => (dispatch) => {
     dispatch(anybodyFetchMainTitleListStart());
 
@@ -40,6 +72,10 @@ export const fetchMainTitleList = (requestId, userId) => (dispatch) => {
         dispatch(anybodyFetchMainTitleListFailure(error));
     });
 }
+
+const resetAnybodyFetchMainTitleList = () => ({
+    type : RESET_ANYBODY_FETCH_MAIN_TITLE_LIST
+});
 
 export const resetFetchMainTitleList = () => (dispatch) => {
     dispatch(resetAnybodyFetchMainTitleList());
@@ -135,82 +171,32 @@ const resetAnybodySaveMyTitleStart = () => ({
     type : RESET_ANYBODY_SAVE_MY_TITLE
 });
 
+const adminDeleteTitlesPartitionStart = () => ({
+    type : ADMIN_DELETE_TITLES_PARTITION
+});
+
+const adminDeleteTitlesPartitionSuccess = (response) => ({
+    type : ADMIN_DELETE_TITLES_PARTITION_SUCCESS,
+    payload : response && response.data
+});
+
+const adminDeleteTitlesPartitionFailure = (error) => ({
+    type : ADMIN_DELETE_TITLES_PARTITION_FAILURE,
+    payload : error && error.message
+});
+
+export const deleteTitlesPartition = (ids) => (dispatch) => {
+    dispatch(adminDeleteTitlesPartitionStart());
+
+    return deleteTitlesPartitionApi(ids).then((response) => {
+        setTimeout(() => {
+            dispatch(adminDeleteTitlesPartitionSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(adminDeleteTitlesPartitionFailure(error));
+    });
+}
+
 export const resetSaveMyTitle = () => (dispatch) => {
     dispatch(resetAnybodySaveMyTitleStart());
-}
-
-
-const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/title';
-
-export const FETCH_ALL_TITLE_LIST = 'FETCH_ALL_TITLE_LIST';
-export const FETCH_ALL_TITLE_LIST_SUCCESS = 'FETCH_ALL_TITLE_LIST_SUCCESS';
-export const FETCH_ALL_TITLE_LIST_FAILURE = 'FETCH_ALL_TITLE_LIST_FAILURE';
-export const RESET_FETCH_ALL_TITLE_LIST = 'RESET_FETCH_ALL_TITLE_LIST';
-
-export const ADMIN_EXECUTE_DELETE_TITLE_PARTITION = 'ADMIN_EXECUTE_DELELTE_TITLE_PARTITION';
-export const ADMIN_EXECUTE_DELETE_TITLE_PARTITION_SUCCESS = 'ADMIN_EXECUTE_DELETE_TITLE_PARTITION_SUCCESS';
-export const ADMIN_EXECUTE_DELETE_TITLE_PARTITION_FAILURE = 'ADMIN_EXECUTE_DELETE_TITLE_PARTITION_FAILURE';
-export const RESET_ADMIN_EXECUTE_DELETE_TITLE_PARTITION = 'RESET_ADMIN_EXECUTE_DELETE_TITLE_PARTITION';
-
-export function appFetchAllTitleList(){
-    const request = axios({
-        method : 'get',
-        url : `${ROOT_URL}/fetch_all_titles`
-    });
-    return {
-        type : FETCH_ALL_TITLE_LIST,
-        payload : request
-    }
-}
-
-export function appFetchAllTitleListSuccess(result){
-    return {
-        type : FETCH_ALL_TITLE_LIST_SUCCESS,
-        payload : result.data
-    }
-}
-
-export function appFetchAllTitleListFailure(error){
-    return {
-        type : FETCH_ALL_TITLE_LIST_FAILURE,
-        payload : error
-    }
-}
-
-export function resetAppFetchAllTitle(){
-    return {
-        type : RESET_FETCH_ALL_TITLE_LIST
-    }
-}
-
-export function adminExecuteDeleteTitlePartition(titleIds){
-    const request = axios({
-        method : 'delete',
-        url : `${ROOT_URL}/execute_partition_delete`,
-        data : titleIds
-    });
-    return {
-        type : ADMIN_EXECUTE_DELETE_TITLE_PARTITION,
-        payload : request
-    }
-}
-
-export function adminExecuteDeleteTitlePartitionSuccess(result){
-    return {
-        type : ADMIN_EXECUTE_DELETE_TITLE_PARTITION_SUCCESS,
-        payload : result.data
-    }
-}
-
-export function adminExecuteDeleteTitlePartitionFailure(error){
-    return {
-        type : ADMIN_EXECUTE_DELETE_TITLE_PARTITION_FAILURE,
-        payload : error
-    }
-}
-
-export function resetAdminExecuteDeleteTitlePartition(){
-    return {
-        type : RESET_ADMIN_EXECUTE_DELETE_TITLE_PARTITION
-    }
 }

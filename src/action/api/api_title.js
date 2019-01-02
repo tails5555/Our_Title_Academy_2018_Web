@@ -4,6 +4,13 @@ import { CONTEXT_ROOT_URL } from "./root_url";
 
 const ROOT_URL = `${CONTEXT_ROOT_URL}/titles`;
 
+export const fetchAllTitlesApi = () => {
+    return axios({
+        method : 'get',
+        url : ROOT_URL
+    });
+}
+
 export const fetchMainTitleListApi = (requestId, userId) => {
     return axios({
         url : `${ROOT_URL}/main/${requestId}/${userId}`,
@@ -35,5 +42,13 @@ export const deleteTitleByIdApi = (id) => {
     return axios({
         url : `${ROOT_URL}/${id}`,
         method : 'delete'
+    });
+}
+
+export const deleteTitlesPartitionApi = (ids) => {
+    return axios({
+        url : ROOT_URL,
+        method : 'delete',
+        data : ids
     });
 }

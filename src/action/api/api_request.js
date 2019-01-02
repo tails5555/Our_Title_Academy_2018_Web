@@ -5,6 +5,13 @@ import { CONTEXT_ROOT_URL } from "./root_url";
 
 const ROOT_URL = `${CONTEXT_ROOT_URL}/requests`;
 
+export const fetchAllBriefValidRequestsApi = () => {
+    return axios({
+        method : 'get',
+        url : `${ROOT_URL}/valid`
+    });
+}
+
 export const fetchHomeBriefRequestsApi = () => {
     return axios({
         method : 'get',
@@ -78,4 +85,10 @@ export const deleteMainRequestApi = (requestId) => {
     });
 }
 
-
+export const deleteRequestsPartitionApi = (ids) => {
+    return axios({
+        method : 'delete',
+        url : ROOT_URL,
+        data : ids
+    });
+}

@@ -1,4 +1,5 @@
 import {
+    ADMIN_FETCH_ALL_VALID_REQUESTS, ADMIN_FETCH_ALL_VALID_REQUESTS_SUCCESS, ADMIN_FETCH_ALL_VALID_REQUESTS_FAILURE,
     ANYBODY_FETCH_HOME_REQUESTS, ANYBODY_FETCH_HOME_REQUESTS_SUCCESS, ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
     ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE,
     ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS,
@@ -7,14 +8,15 @@ import {
     ANYBODY_FETCH_MAIN_REQUEST_FAILURE, RESET_ANYBODY_FETCH_MAIN_REQUEST,
     ANYBODY_SAVING_MAIN_REQUEST, ANYBODY_SAVING_MAIN_REQUEST_SUCCESS, ANYBODY_SAVING_MAIN_REQUEST_FAILURE,
     ANYBODY_DELETE_MAIN_REQUEST_BY_ID, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_SUCCESS, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_FAILURE,
-    MANAGER_BLOCK_MAIN_REQUEST_BY_ID, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_SUCCESS, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_FAILURE, RESET_ANYBODY_SAVING_MAIN_REQUEST,
+    MANAGER_BLOCK_MAIN_REQUEST_BY_ID, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_SUCCESS, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_FAILURE,
+    ADMIN_DELETE_REQUESTS_PARTITION, ADMIN_DELETE_REQUESTS_PARTITION_SUCCESS, ADMIN_DELETE_REQUESTS_PARTITION_FAILURE,
+    RESET_ANYBODY_SAVING_MAIN_REQUEST,
 } from "../action/type/type_request";
 
 import {
     FETCH_TODAY_BATTLE_REQUEST, FETCH_TODAY_BATTLE_REQUEST_SUCCESS, FETCH_TODAY_BATTLE_REQUEST_FAILURE, RESET_FETCH_TODAY_BATTLE_REQUEST,
     FETCH_AGREE_REQUEST_BRIEF, FETCH_AGREE_REQUEST_BRIEF_SUCCESS, FETCH_AGREE_REQUEST_BRIEF_FAILURE, RESET_FETCH_AGREE_REQUEST_BRIEF,
     EXECUTE_AGREE_REQUEST, EXECUTE_AGREE_REQUEST_SUCCESS, EXECUTE_AGREE_REQUEST_FAILURE, RESET_EXECUTE_AGREE_REQUEST,
-    EXECUTE_ADMIN_DELETE_REQUEST_PARTITION, EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_SUCCESS, EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_FAILURE, RESET_EXECUTE_ADMIN_DELETE_REQUEST_PARTITION
 } from "../action/action_request";
 
 import {
@@ -28,22 +30,22 @@ const INITIAL_STATE = {
     rank : { list : [], loading : false, error : null },
     options : { data : { search : [], order : [], size : [] }, loading : false, error : { search : null, order : null, size : null } },
 
+    requestList : { requests : [], loading : false, error : null },
     myRequestStatistic : { statistics : [], loading : false, error : null },
     selectRequest : { request : null, loading : false, error : null },
     bestTitles : { titles : [] },
-    saveStatus : { result : null, loading : false, error : null },
     agreeStatus : { result : null, loading : false, error : null },
-    blockStatus : { result : null, loading : false, error : null },
-    deleteStatus : { result : null, loading : false, error : null }
 }
 
 export default function(state = INITIAL_STATE, action){
     let error;
     switch(action.type){
+        case ADMIN_FETCH_ALL_VALID_REQUESTS :
         case ANYBODY_FETCH_HOME_REQUESTS :
         case ANYBODY_FETCH_REQUESTS_BY_QUERY :
             return { ...state, main : { list : [], loading : true }};
 
+        case ADMIN_FETCH_ALL_VALID_REQUESTS_SUCCESS :
         case ANYBODY_FETCH_HOME_REQUESTS_SUCCESS :
             return { ...state, main : { loading : false, list : action.payload, }};
 
@@ -51,6 +53,7 @@ export default function(state = INITIAL_STATE, action){
             const { results, count } = action.payload;
             return { ...state, main : { loading : false, list : results, count }};
 
+        case ADMIN_FETCH_ALL_VALID_REQUESTS_FAILURE :
         case ANYBODY_FETCH_HOME_REQUESTS_FAILURE :
         case ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE :
             return { ...state, main : { loading : false, error : action.payload }};
@@ -80,10 +83,13 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, form : { ...state.form, loading : false, error : action.payload, type : 'SAVING' }};
 
         case ANYBODY_DELETE_MAIN_REQUEST_BY_ID :
+        case ADMIN_DELETE_REQUESTS_PARTITION :
             return { ...state, form : { ...state.form, complete : null, loading : true, type : 'DELETE' }};
         case ANYBODY_DELETE_MAIN_REQUEST_BY_ID_SUCCESS :
+        case ADMIN_DELETE_REQUESTS_PARTITION_SUCCESS :
             return { ...state, form : { ...state.form, complete : action.payload, loading : false, type : 'DELETE' }};
         case ANYBODY_DELETE_MAIN_REQUEST_BY_ID_FAILURE :
+        case ADMIN_DELETE_REQUESTS_PARTITION_FAILURE :
             return { ...state, form : { ...state.form, loading : false, error : action.payload, type : 'DELETE' }};
 
         case MANAGER_BLOCK_MAIN_REQUEST_BY_ID :
@@ -126,16 +132,6 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, agreeStatus : { result : null, loading : false, error : error }};
         case RESET_EXECUTE_AGREE_REQUEST :
             return { ...state, agreeStatus : { result : null, loading : false, error : null }};
-
-        case EXECUTE_ADMIN_DELETE_REQUEST_PARTITION :
-            return { ...state, deleteStatus : { result : null, loading : true, error : null }};
-        case EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_SUCCESS :
-            return { ...state, deleteStatus : { result : action.payload, loading : false, error : null}};
-        case EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, deleteStatus : { result : null, loading : false, error : error }};
-        case RESET_EXECUTE_ADMIN_DELETE_REQUEST_PARTITION :
-            return { ...state, deleteStatus : { result : null, loading : false, error : null }};
 
         case USER_FETCH_MY_REQUEST_STATISTIC :
             return { ...state, myRequestStatistic: { statistics : [], loading : true, error : null }};

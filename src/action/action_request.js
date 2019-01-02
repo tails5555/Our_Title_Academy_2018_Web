@@ -1,22 +1,59 @@
 import axios from 'axios';
 
 import {
-    fetchHomeBriefRequestsApi, fetchBriefRequestsApi, fetchSearchOptionsApi, fetchMainRequestApi, savingMainRequestApi, deleteMainRequestApi, blockingMainRequestApi
+    fetchAllBriefValidRequestsApi, fetchHomeBriefRequestsApi, fetchBriefRequestsApi, fetchSearchOptionsApi, fetchMainRequestApi, savingMainRequestApi, deleteMainRequestApi, blockingMainRequestApi, deleteRequestsPartitionApi
 } from './api/api_request';
 
 import {
+    ADMIN_FETCH_ALL_VALID_REQUESTS, ADMIN_FETCH_ALL_VALID_REQUESTS_SUCCESS, ADMIN_FETCH_ALL_VALID_REQUESTS_FAILURE, RESET_ADMIN_FETCH_ALL_VALID_REQUESTS,
     ANYBODY_FETCH_HOME_REQUESTS, ANYBODY_FETCH_HOME_REQUESTS_SUCCESS, ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
     ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE,
     ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE,
     ANYBODY_FETCH_MAIN_REQUEST, ANYBODY_FETCH_REDIRECT_MAIN_REQUEST, ANYBODY_FETCH_MAIN_REQUEST_SUCCESS, ANYBODY_FETCH_MAIN_REQUEST_FAILURE, RESET_ANYBODY_FETCH_MAIN_REQUEST,
     ANYBODY_SAVING_MAIN_REQUEST, ANYBODY_SAVING_MAIN_REQUEST_SUCCESS, ANYBODY_SAVING_MAIN_REQUEST_FAILURE,
     ANYBODY_DELETE_MAIN_REQUEST_BY_ID, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_SUCCESS, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_FAILURE,
-    MANAGER_BLOCK_MAIN_REQUEST_BY_ID, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_SUCCESS, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_FAILURE, RESET_ANYBODY_SAVING_MAIN_REQUEST
+    MANAGER_BLOCK_MAIN_REQUEST_BY_ID, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_SUCCESS, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_FAILURE,
+    ADMIN_DELETE_REQUESTS_PARTITION, ADMIN_DELETE_REQUESTS_PARTITION_SUCCESS, ADMIN_DELETE_REQUESTS_PARTITION_FAILURE,
+    RESET_ANYBODY_SAVING_MAIN_REQUEST
 } from './type/type_request';
 
 import {RESET_FETCH_ALL_TITLE_LIST} from "./action_title";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/requests';
+
+const adminFetchAllValidRequestsStart = () => ({
+    type : ADMIN_FETCH_ALL_VALID_REQUESTS
+});
+
+const adminFetchAllValidRequestsSuccess = (response) => ({
+    type : ADMIN_FETCH_ALL_VALID_REQUESTS_SUCCESS,
+    payload : response && response.data
+});
+
+const adminFetchAllValidRequestsFailure = (error) => ({
+    type : ADMIN_FETCH_ALL_VALID_REQUESTS_FAILURE,
+    payload : error && error.message
+});
+
+export const fetchAllValidRequests = () => (dispatch) => {
+    dispatch(adminFetchAllValidRequestsStart());
+
+    return fetchAllBriefValidRequestsApi().then((response) => {
+        setTimeout(() => {
+            dispatch(adminFetchAllValidRequestsSuccess(response));
+        }, 3000);
+    }).catch((error) => {
+        dispatch(adminFetchAllValidRequestsFailure(error));
+    });
+}
+
+const resetAdminFetchAllValidRequestsStart = () => ({
+    type : RESET_ADMIN_FETCH_ALL_VALID_REQUESTS
+});
+
+export const resetFetchAllValidRequests = () => (dispatch) => {
+    dispatch(resetAdminFetchAllValidRequestsStart());
+}
 
 const fetchHomeRequestsStart = () => ({
     type : ANYBODY_FETCH_HOME_REQUESTS
@@ -249,17 +286,38 @@ export const blockingMainRequestById = (requestId) => (dispatch) => {
     })
 }
 
+const adminDeleteRequestsPartitionStart = () => ({
+    type : ADMIN_DELETE_REQUESTS_PARTITION
+});
+
+const adminDeleteRequestsPartitionSuccess = (response) => ({
+    type : ADMIN_DELETE_REQUESTS_PARTITION_SUCCESS,
+    payload : response && response.data
+});
+
+const adminDeleteRequestsPartitionFailure = (error) => ({
+    type : ADMIN_DELETE_REQUESTS_PARTITION_FAILURE,
+    payload : error && error.message
+});
+
+export const deleteRequestsPartition = (ids) => (dispatch) => {
+    dispatch(adminDeleteRequestsPartitionStart());
+
+    return deleteRequestsPartitionApi(ids).then((response) => {
+        setTimeout(() => {
+            dispatch(adminDeleteRequestsPartitionSuccess(response));
+        }, 3000);
+    }).catch((error) => {
+        dispatch(adminDeleteRequestsPartitionFailure(error));
+    });
+}
+
 const resetAnybodySavingMainRequestStart = () => ({
     type : RESET_ANYBODY_SAVING_MAIN_REQUEST
 });
-
 export const resetSavingMainRequestByModel = () => (dispatch) => {
     dispatch(resetAnybodySavingMainRequestStart());
 }
-
-export const FETCH_ALL_REQUEST_BRIEF = 'FETCH_ALL_REQUEST_BRIEF';
-export const FETCH_ALL_REQUEST_BRIEF_SUCCESS = 'FETCH_ALL_REQUEST_BRIEF_SUCCESS';
-export const FETCH_ALL_REQUEST_BRIEF_FAILURE = 'FETCH_ALL_REQUEST_BRIEF_FAILURE';
 
 export const FETCH_VIEW_REQUEST_MAIN = 'FETCH_VIEW_REQUEST_MAIN';
 export const FETCH_VIEW_REQUEST_MAIN_SUCCESS = 'FETCH_VIEW_REQUEST_MAIN_SUCCESS';
@@ -281,45 +339,9 @@ export const EXECUTE_AGREE_REQUEST_SUCCESS = 'EXECUTE_AGREE_REQUEST_SUCCESS';
 export const EXECUTE_AGREE_REQUEST_FAILURE = 'EXECUTE_AGREE_REQUEST_FAILURE';
 export const RESET_EXECUTE_AGREE_REQUEST = 'RESET_EXECUTE_AGREE_REQUEST';
 
-export const EXECUTE_ADMIN_DELETE_REQUEST_PARTITION = 'EXECUTE_ADMIN_DELETE_REQUEST_PARTITION';
-export const EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_SUCCESS = 'EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_SUCCESS';
-export const EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_FAILURE = 'EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_FAILURE';
-export const RESET_EXECUTE_ADMIN_DELETE_REQUEST_PARTITION = 'RESET_EXECUTE_ADMIN_DELETE_REQUEST_PARTITION';
-
-export function appFetchAllRequestBrief(){
-    const request = axios({
-        url : `${ROOT_URL}/fetch_brief/all_valid`,
-        method : 'get'
-    });
-    return {
-        type : FETCH_ALL_REQUEST_BRIEF,
-        payload : request
-    }
-}
-
-export function appFetchAllRequestBriefSuccess(result){
-    return {
-        type : FETCH_ALL_REQUEST_BRIEF_SUCCESS,
-        payload : result.data
-    }
-}
-
-export function appFetchAllRequestBriefFailure(error){
-    return {
-        type : FETCH_ALL_REQUEST_BRIEF_FAILURE,
-        payload : error
-    }
-}
-
-export function resetAppFetchAllRequestBrief(){
-    return {
-        type : RESET_FETCH_ALL_TITLE_LIST
-    }
-}
-
 export function appFetchViewRequestMain(requestId, userId){
     const request = axios({
-        url : `${ROOT_URL}/fetch_main/view/${requestId}/${userId}`,
+        url : `${ROOT_URL}/${requestId}/${userId}`,
         method : 'get'
     });
     return {
@@ -439,37 +461,5 @@ export function managerExecuteFetchRequestFailure(error){
 export function resetManagerExecuteFetchRequest(){
     return {
         type : RESET_EXECUTE_AGREE_REQUEST
-    }
-}
-
-export function adminExecuteDeleteRequestPartition(requestIds){
-    const request = axios({
-        url : `${ROOT_URL}/delete_request_partition`,
-        method : 'delete',
-        data : requestIds
-    });
-    return {
-        type : EXECUTE_ADMIN_DELETE_REQUEST_PARTITION,
-        payload : request
-    }
-}
-
-export function adminExecuteDeleteRequestPartitionSuccess(result){
-    return {
-        type : EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_SUCCESS,
-        payload : result.data
-    }
-}
-
-export function adminExecuteDeleteRequestPartitionFailure(error){
-    return {
-        type : EXECUTE_ADMIN_DELETE_REQUEST_PARTITION_FAILURE,
-        payload : error
-    }
-}
-
-export function resetAdminExecuteDeleteRequestPartition(){
-    return {
-        type : RESET_EXECUTE_ADMIN_DELETE_REQUEST_PARTITION
     }
 }
