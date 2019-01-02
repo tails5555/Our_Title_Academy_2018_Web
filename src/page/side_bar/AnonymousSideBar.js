@@ -1,10 +1,11 @@
-import React from 'react';
-import { TotalSearch } from "../../component/slide_bar";
+import React, { Fragment } from 'react';
+
+import { GuestNavMenu } from "../../component/slide_bar/nav_menu";
+import { TotalSearch, DevelopInfo } from "../../component/slide_bar";
 import { LoginFormContainer, CategoryMenuContainer, TodayRankCardViewContainer } from "../../container";
-import DevelopInfo from "../../component/slide_bar/DevelopInfo";
-import GuestNavMenu from "../../component/slide_bar/nav_menu/GuestNavMenu";
-const AnonymousSideBar = () =>
-    (
+
+const AnonymousSideBar = () => (
+    <Fragment>
         <div className="inner">
             <TotalSearch />
             <LoginFormContainer />
@@ -13,6 +14,7 @@ const AnonymousSideBar = () =>
             <TodayRankCardViewContainer />
             <DevelopInfo />
         </div>
-    );
+    </Fragment>
+);
 
 export default AnonymousSideBar;

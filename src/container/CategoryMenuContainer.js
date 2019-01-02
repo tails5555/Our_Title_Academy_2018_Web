@@ -1,4 +1,4 @@
-import {CategoryMenu} from "../component/slide_bar/nav_menu";
+import { CategoryMenus } from "../component/slide_bar/nav_menu";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as CategoryAction from "../action/action_category";
@@ -15,4 +15,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryMenus);
