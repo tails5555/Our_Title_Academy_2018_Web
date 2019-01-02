@@ -11,7 +11,7 @@ const verticalParent = {
     justifyContent: 'center'
 }
 
-const OwnerTitleCard = ({ element }) => (
+const EditableTitleCard = ({ element, children }) => (
     <Fragment>
         <div className="w3-row w3-panel w3-border w3-pale-green w3-round-large" style={(window.innerWidth >= 768) ? verticalParent : null}>
             <div className="w3-third w3-center w3-padding">
@@ -32,9 +32,10 @@ const OwnerTitleCard = ({ element }) => (
                     loginId={'ANONYMOUS_USER'} likeCount={element && element.likeCount} likeChecked={false}
                     hateCount={element && element.hateCount} hateChecked={false}
                 />
+                { children }
             </div>
         </div>
     </Fragment>
 );
 
-export default OwnerTitleCard;
+export default EditableTitleCard;

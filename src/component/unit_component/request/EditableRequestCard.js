@@ -11,7 +11,7 @@ const verticalParent = {
     justifyContent: 'center'
 }
 
-const OwnerRequestCard = ({ element, allowed }) => {
+const EditableRequestCard = ({ element, allowed, children }) => {
     const divClass = (element.categoryId !== -1 && !allowed) ? "w3-row w3-panel w3-border w3-pale-yellow w3-round-large" : "w3-row w3-panel w3-border w3-light-gray w3-round-large"
     const mainView =
         (allowed) ? (
@@ -57,10 +57,11 @@ const OwnerRequestCard = ({ element, allowed }) => {
                         <i className="icon fa-star" /> {element && element.likeCount}<br/>
                         <i className="icon fa-comments" /> {element && element.commentCount}<br/>
                     </p>
+                    { children }
                 </div>
             </div>
         </Fragment>
     );
 }
 
-export default OwnerRequestCard;
+export default EditableRequestCard;

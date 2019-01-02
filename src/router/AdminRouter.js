@@ -9,8 +9,7 @@ import {MyRequestStatisticPage} from "../page/my_request_statistic_page";
 import {MyTitleStatisticPage} from "../page/my_title_statistic_page";
 import {PhotoAgreePage} from "../page/manager_photo_agree";
 import {SelectCategoryPage} from "../page/select_category_page";
-import {TitleManagePage} from "../page/title_manage_page";
-import {RequestManagePage} from "../page/request_manage_page";
+import {AdminContextManagerPage} from "../page/admin_context_manager_page";
 
 import CommonRouter from './CommonRouter';
 import AccountRouter from './AccountRouter';
@@ -49,10 +48,8 @@ class AdminRouter extends Component {
                 <Route exact path="/admin/user_info/:loginId" component={UserPrincipalInfoPage} />
                 <Route exact path="/admin/photo_agree" component={PhotoAgreePage} />
                 <Route exact path="/admin/select_category/:id" component={SelectCategoryPage} />
-                <Route exact path="/admin/title_manage" component={TitleManagePage} />
-                <Route exact path="/admin/title_manage/_refresh" render={() => <Redirect to="/admin/title_manage" />} />
-                <Route exact path="/admin/request_manage" component={RequestManagePage} />
-                <Route exact path="/admin/request_manage/_refresh" render={() => <Redirect to="/admin/request_manage" />} />
+                <Route exact path="/admin/manager/:context" component={AdminContextManagerPage} />
+                <Route exact path="/admin/manager/:context/_refresh" render={({ match }) => <Redirect to={`/admin/manager/${match.params.context}`} />} />
                 <Route exact path="/create_request" component={CreateRequestPage} />
                 <Route exact path="/create_request/_refresh" render={() => <Redirect to={`/create_request`} />} />
             </div>

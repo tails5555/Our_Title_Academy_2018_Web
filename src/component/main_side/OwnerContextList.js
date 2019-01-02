@@ -1,8 +1,8 @@
 import React, { Fragment, Component } from 'react';
 import { MajorTitleHeader } from "../unit_component/header";
-import { OwnerRequestCard } from "../unit_component/request";
+import { EditableRequestCard } from "../unit_component/request";
 import { AlertBoxNote } from "../unit_component/alert_box";
-import { OwnerTitleCard } from "../unit_component/title";
+import { EditableTitleCard } from "../unit_component/title";
 import { ListPagination } from "../unit_component/paginate";
 
 class OwnerContextList extends Component {
@@ -68,10 +68,10 @@ class OwnerContextList extends Component {
                     (type === 'REQUEST') ?
                         list
                             .filter((title, idx) => idx >= startIdx && idx <= endIdx)
-                            .map((element, idx) => <OwnerRequestCard key={`owner_request_card_${idx}`} element={element} allowed={allowed} />) :
+                            .map((element, idx) => <EditableRequestCard key={`owner_request_card_${idx}`} element={element} allowed={allowed} />) :
                         list
                             .filter((title, idx) => idx >= startIdx && idx <= endIdx)
-                            .map((element, idx) => <OwnerTitleCard key={`owner_request_card_${idx}`} element={element} />);
+                            .map((element, idx) => <EditableTitleCard key={`owner_request_card_${idx}`} element={element} />);
             } else {
                 resultRender = !loading ? (
                     <AlertBoxNote
@@ -83,6 +83,7 @@ class OwnerContextList extends Component {
                 ) : null;
             }
         }
+
         return(
             <Fragment>
                 <MajorTitleHeader title={title} />

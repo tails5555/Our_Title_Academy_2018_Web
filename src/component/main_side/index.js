@@ -20,3 +20,7 @@ export {default as RequestCreateView} from './RequestCreateView';
 // My Context View Component
 export {default as OwnerRequestMainView} from './OwnerRequestMainView';
 export {default as OwnerTitleMainView} from './OwnerTitleMainView';
+
+// Admin Context(Title, Request) Manager Component
+export {default as AdminContextManger} from './AdminContextManager';
+

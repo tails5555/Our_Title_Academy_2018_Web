@@ -13,7 +13,7 @@ const UnitMenu = ({ title, color, titleColor, children }) => (
 
 export const HomeMenu = () => (
     <UnitMenu title={'HOME'} color={'pink'} titleColor={'white'}>
-        <NavMenuButton to="/create_request">
+        <NavMenuButton to="/">
             <i className="fas fa-home" /> HOME
         </NavMenuButton>
     </UnitMenu>
@@ -97,11 +97,11 @@ export const AdminMenu = () => (
         <NavMenuButton to="/admin/photo_agree">
             <i className="fas fa-check-double" /> 제목학원 사연 허가
         </NavMenuButton>
-        <NavMenuButton to="/admin/title_manage">
+        <NavMenuButton to="/admin/manager/title/_refresh">
             <i className="fas fa-tasks" /> 모든 제목 관리
         </NavMenuButton>
-        <NavMenuButton to="/admin/request_manage">
-            <i className="fas fa-book-open" /> 모든 요청 관리
+        <NavMenuButton to="/admin/manager/request/_refresh">
+            <i className="fas fa-book-open" /> 모든 사연 관리
         </NavMenuButton>
         <NavMenuButton to="/common_owner/open_faq/_refresh?pg=1">
             <i className="fas fa-question-circle" /> 궁금사항 열람 및 해결
