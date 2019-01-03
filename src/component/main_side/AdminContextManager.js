@@ -8,6 +8,22 @@ import { EditableRequestCard } from "../unit_component/request";
 import { EditableTitleCard } from "../unit_component/title";
 import { ListPagination } from "../unit_component/paginate";
 
+const SelectedButton = ({ element, selectIds, handleRelease, handleSelect }) => (
+    <div className="w3-right-align w3-margin">
+    {
+        selectIds.includes(element && element.id) ? (
+            <button onClick={() => handleRelease()} className="button primary">
+                <i className="fas fa-check-square" />
+            </button>
+        ) : (
+            <button onClick={() => handleSelect()} className="button">
+                <i className="far fa-square" />
+            </button>
+        )
+    }
+    </div>
+);
+
 class AdminContextManager extends Component {
     constructor(props){
         super(props);
@@ -158,7 +174,7 @@ class AdminContextManager extends Component {
                 deleteTitlesPartition(selectIds);
             } else {
                 alert('접속하신 요청이 잘 못 되었습니다. 홈으로 이동합니다.');
-                history.push('/')
+                history.push('/');
             }
         }
     }
@@ -188,34 +204,22 @@ class AdminContextManager extends Component {
                             .filter((title, idx) => idx >= startIdx && idx <= endIdx)
                             .map((element, idx) => (
                                 <EditableRequestCard key={`owner_request_card_${idx}`} element={element} allowed={true}>
-                                    <div className="w3-right-align w3-margin">
-                                        {
-                                            selectIds.includes(element && element.id) ?
-                                                <button onClick={() => this.handleClickRelease(element && element.id)} className="button primary">
-                                                    <i className="far fa-square" /> 해제
-                                                </button> :
-                                                <button onClick={() => this.handleClickSelect(element && element.id)} className="button">
-                                                    <i className="fas fa-check-square" /> 선택
-                                                </button>
-                                        }
-                                    </div>
+                                    <SelectedButton
+                                        element={element} selectIds={selectIds}
+                                        handleRelease={() => this.handleClickRelease(element && element.id)}
+                                        handleSelect={() => this.handleClickSelect(element && element.id)}
+                                    />
                                 </EditableRequestCard>
                             )) :
                         list
                             .filter((title, idx) => idx >= startIdx && idx <= endIdx)
                             .map((element, idx) => (
                                 <EditableTitleCard key={`owner_request_card_${idx}`} element={element}>
-                                    <div className="w3-right-align w3-margin">
-                                        {
-                                            selectIds.includes(element && element.id) ?
-                                                <button onClick={() => this.handleClickRelease(element && element.id)} className="button primary">
-                                                    <i className="far fa-square" /> 해제
-                                                </button> :
-                                                <button onClick={() => this.handleClickSelect(element && element.id)} className="button">
-                                                    <i className="fas fa-check-square" /> 선택
-                                                </button>
-                                        }
-                                    </div>
+                                    <SelectedButton
+                                        element={element} selectIds={selectIds}
+                                        handleRelease={() => this.handleClickRelease(element && element.id)}
+                                        handleSelect={() => this.handleClickSelect(element && element.id)}
+                                    />
                                 </EditableTitleCard>
                             ));
             } else {
@@ -277,7 +281,7 @@ class AdminContextManager extends Component {
                     </ModalScreen>
                 </section>
             </Fragment>
-        )
+        );
     }
 }
 

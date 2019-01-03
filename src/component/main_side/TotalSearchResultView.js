@@ -1,16 +1,16 @@
 import React, { Fragment, Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { MainTitleHeader, MajorTitleHeader } from "../unit_component/header";
 import { ResultContextBox } from "../unit_component/search";
 import { AlertBoxNote } from "../unit_component/alert_box";
 import { ModalScreen } from "../unit_component/modal";
+import {RenderInfiniteScroll} from "../unit_component/infinite_scroll";
 
 class TotalSearchResultView extends Component {
     constructor(props){
         super(props);
-        this.state = { list : [], loading : false, error : null, renderCapacity : 20, keyword : '' };
+        this.state = { list : [], loading : false, error : null, keyword : '' };
     }
 
     componentDidMount(){
@@ -43,17 +43,8 @@ class TotalSearchResultView extends Component {
         resetFetchTotalSearchResult();
     }
 
-    fetchMoreData = () => {
-        const { renderCapacity } = this.state;
-        setTimeout(() => {
-            this.setState({
-                renderCapacity : renderCapacity + 10
-            });
-        }, 2000);
-    }
-
     render(){
-        const { list, loading, error, keyword, renderCapacity } = this.state;
+        const { list, loading, error, keyword } = this.state;
 
         let searchResult = null;
 
@@ -67,31 +58,12 @@ class TotalSearchResultView extends Component {
                 />
             );
         } else if(list.length > 0){
-            let resultArray = [];
-            if(list.length > renderCapacity)
-                resultArray = list.slice(0, renderCapacity);
-            else
-                resultArray = list.slice();
-
-            const renderBoxes = resultArray.map((element, idx) => <ResultContextBox element={element} keyword={keyword} key={`search_result_box_${idx}`}/>);
             searchResult = (
-                <InfiniteScroll
-                    dataLength={resultArray.length}
-                    next={this.fetchMoreData.bind(this)}
-                    hasMore={resultArray.length < list.length}
-                    loader={
-                        <h2 className="w3-center">
-                            <i className="fa fa-spinner w3-spin" />
-                        </h2>
-                    }
-                    endMessage={
-                        <p style={{textAlign: 'center'}}>
-                            <b>모든 목록을 다 불러 왔습니다.</b>
-                        </p>
-                    }
-                >
-                    {renderBoxes}
-                </InfiniteScroll>
+                <RenderInfiniteScroll unit={20}>
+                {
+                    list.map((element, idx) => <ResultContextBox element={element} keyword={keyword} key={`search_result_box_${idx}`} />)
+                }
+                </RenderInfiniteScroll>
             );
         } else {
             if(!loading) {

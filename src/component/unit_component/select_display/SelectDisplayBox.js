@@ -75,7 +75,6 @@ class SelectDisplayBox extends Component {
             </div>
         ));
 
-
         return (
             <Fragment>
                 <div id="display_btn_list" className="w3-right-align">

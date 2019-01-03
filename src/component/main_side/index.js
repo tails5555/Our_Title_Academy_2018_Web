@@ -24,3 +24,5 @@ export {default as OwnerTitleMainView} from './OwnerTitleMainView';
 // Admin Context(Title, Request) Manager Component
 export {default as AdminContextManger} from './AdminContextManager';
 
+// Manager - Admin Request Agree View Component
+export {default as RequestAgreeView} from './RequestAgreeView';
