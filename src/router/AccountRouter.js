@@ -2,6 +2,11 @@ import React, { Fragment } from 'react';
 import axios from 'axios';
 import { Route, Redirect } from 'react-router-dom';
 
+import {CreateRequestPage} from "../page/create_request_page";
+import {MyInfoFormPage, MyInfoResultPage} from "../page/common_my_info";
+import {MyProfileChangePage} from "../page/common_my_profile_change";
+import {MyRequestStatisticPage} from "../page/my_request_statistic_page";
+import {MyTitleStatisticPage} from "../page/my_title_statistic_page";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/empathy';
 
@@ -42,6 +47,13 @@ const AccountRouter = () => (
             }
             return <Redirect to={`/view_request/_refresh${location.search}`}/>
         }} />
+        <Route exact path="/my/info_manage" component={MyInfoFormPage} />
+        <Route exact path="/my/info_update_result" component={MyInfoResultPage} />
+        <Route exact path="/my/profile_change" component={MyProfileChangePage} />
+        <Route exact path="/my/request_statistic" component={MyRequestStatisticPage} />
+        <Route exact path="/my/title_statistic" component={MyTitleStatisticPage} />
+        <Route exact path="/create_request" component={CreateRequestPage} />
+        <Route exact path="/create_request/_refresh" render={() => <Redirect to="/create_request" />} />
     </Fragment>
 );
 

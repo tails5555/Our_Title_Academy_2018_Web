@@ -1,23 +1,25 @@
 import axios from 'axios';
 
 import {
-    fetchAllBriefValidRequestsApi, fetchHomeBriefRequestsApi, fetchBriefRequestsApi, fetchSearchOptionsApi, fetchMainRequestApi, savingMainRequestApi, deleteMainRequestApi, blockingMainRequestApi, deleteRequestsPartitionApi
+    fetchAllBriefValidRequestsApi, fetchHomeBriefRequestsApi, fetchAgreeBriefRequestsApi, fetchBriefRequestsApi,
+    fetchSearchOptionsApi, fetchMainRequestApi, savingMainRequestApi, deleteMainRequestApi, blockingMainRequestApi,
+    deleteRequestsPartitionApi, agreeMainRequestApi
 } from './api/api_request';
 
 import {
     ADMIN_FETCH_ALL_VALID_REQUESTS, ADMIN_FETCH_ALL_VALID_REQUESTS_SUCCESS, ADMIN_FETCH_ALL_VALID_REQUESTS_FAILURE, RESET_ADMIN_FETCH_ALL_VALID_REQUESTS,
     ANYBODY_FETCH_HOME_REQUESTS, ANYBODY_FETCH_HOME_REQUESTS_SUCCESS, ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
+    MANAGER_FETCH_AGREE_REQUESTS, MANAGER_FETCH_AGREE_REQUESTS_SUCCESS, MANAGER_FETCH_AGREE_REQUESTS_FAILURE,
     ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE,
     ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE,
     ANYBODY_FETCH_MAIN_REQUEST, ANYBODY_FETCH_REDIRECT_MAIN_REQUEST, ANYBODY_FETCH_MAIN_REQUEST_SUCCESS, ANYBODY_FETCH_MAIN_REQUEST_FAILURE, RESET_ANYBODY_FETCH_MAIN_REQUEST,
     ANYBODY_SAVING_MAIN_REQUEST, ANYBODY_SAVING_MAIN_REQUEST_SUCCESS, ANYBODY_SAVING_MAIN_REQUEST_FAILURE,
-    ANYBODY_DELETE_MAIN_REQUEST_BY_ID, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_SUCCESS, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_FAILURE,
+    MANAGER_AGREE_MAIN_REQUEST_BY_MODEL, MANAGER_AGREE_MAIN_REQUEST_BY_MODEL_SUCCESS, MANAGER_AGREE_MAIN_REQUEST_BY_MODEL_FAILURE,
     MANAGER_BLOCK_MAIN_REQUEST_BY_ID, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_SUCCESS, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_FAILURE,
+    ANYBODY_DELETE_MAIN_REQUEST_BY_ID, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_SUCCESS, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_FAILURE,
     ADMIN_DELETE_REQUESTS_PARTITION, ADMIN_DELETE_REQUESTS_PARTITION_SUCCESS, ADMIN_DELETE_REQUESTS_PARTITION_FAILURE,
     RESET_ANYBODY_SAVING_MAIN_REQUEST
 } from './type/type_request';
-
-import {RESET_FETCH_ALL_TITLE_LIST} from "./action_title";
 
 const ROOT_URL = 'http://127.0.0.1:8082/ContextAPI/requests';
 
@@ -78,6 +80,32 @@ export const fetchHomeRequests = () => (dispatch) => {
         }, 2000);
     }).catch((error) => {
         dispatch(fetchHomeRequestsFailure(error));
+    });
+}
+
+const fetchAgreeRequestsStart = () => ({
+    type : MANAGER_FETCH_AGREE_REQUESTS
+});
+
+const fetchAgreeRequestsSuccess = (response) => ({
+    type : MANAGER_FETCH_AGREE_REQUESTS_SUCCESS,
+    payload : response && response.data
+});
+
+const fetchAgreeRequestsFailure = (error) => ({
+    type : MANAGER_FETCH_AGREE_REQUESTS_FAILURE,
+    payload : error && error.message
+});
+
+export const fetchAgreeRequests = () => (dispatch) => {
+    dispatch(fetchAgreeRequestsStart());
+
+    return fetchAgreeBriefRequestsApi().then((response) => {
+        setTimeout(() => {
+            dispatch(fetchAgreeRequestsSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(fetchAgreeRequestsFailure(error));
     });
 }
 
@@ -234,30 +262,28 @@ export const savingMainRequestByModel = (requestModel, requestPhoto) => (dispatc
     }).catch((error) => dispatch(anybodySavingMainRequestFailure(error)));
 }
 
-const anybodyDeleteMainRequestStart = () => ({
-    type : ANYBODY_DELETE_MAIN_REQUEST_BY_ID
+const managerAgreeMainRequestStart = () => ({
+    type : MANAGER_AGREE_MAIN_REQUEST_BY_MODEL
 });
 
-const anybodyDeleteMainRequestSuccess = (response) => ({
-    type : ANYBODY_DELETE_MAIN_REQUEST_BY_ID_SUCCESS,
+const managerAgreeMainRequestSuccess = (response) => ({
+    type : MANAGER_AGREE_MAIN_REQUEST_BY_MODEL_SUCCESS,
     payload : response && response.data
 });
 
-const anybodyDeleteMainRequestFailure = (error) => ({
-    type : ANYBODY_DELETE_MAIN_REQUEST_BY_ID_FAILURE,
+const managerAgreeMainRequestFailure = (error) => ({
+    type : MANAGER_AGREE_MAIN_REQUEST_BY_MODEL_FAILURE,
     payload : error && error.message
 });
 
-export const deleteMainRequestById = (requestId) => (dispatch) => {
-    dispatch(anybodyDeleteMainRequestStart());
+export const agreeMainRequest = (agreeModel) => (dispatch) => {
+    dispatch(managerAgreeMainRequestStart());
 
-    return deleteMainRequestApi(requestId).then((response) => {
+    return agreeMainRequestApi(agreeModel).then((response) => {
         setTimeout(() => {
-            dispatch(anybodyDeleteMainRequestSuccess(response));
+            dispatch(managerAgreeMainRequestSuccess(response));
         }, 2000);
-    }).catch((error) => {
-        dispatch(anybodyDeleteMainRequestFailure(error));
-    });
+    }).catch((error) => dispatch(managerAgreeMainRequestFailure(error)));
 }
 
 const managerBlockingMainRequestStart = () => ({
@@ -283,7 +309,33 @@ export const blockingMainRequestById = (requestId) => (dispatch) => {
         }, 2000);
     }).catch((error) => {
         dispatch(managerBlockingMainRequestFailure(error));
-    })
+    });
+}
+
+const anybodyDeleteMainRequestStart = () => ({
+    type : ANYBODY_DELETE_MAIN_REQUEST_BY_ID
+});
+
+const anybodyDeleteMainRequestSuccess = (response) => ({
+    type : ANYBODY_DELETE_MAIN_REQUEST_BY_ID_SUCCESS,
+    payload : response && response.data
+});
+
+const anybodyDeleteMainRequestFailure = (error) => ({
+    type : ANYBODY_DELETE_MAIN_REQUEST_BY_ID_FAILURE,
+    payload : error && error.message
+});
+
+export const deleteMainRequestById = (requestId) => (dispatch) => {
+    dispatch(anybodyDeleteMainRequestStart());
+
+    return deleteMainRequestApi(requestId).then((response) => {
+        setTimeout(() => {
+            dispatch(anybodyDeleteMainRequestSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(anybodyDeleteMainRequestFailure(error));
+    });
 }
 
 const adminDeleteRequestsPartitionStart = () => ({
@@ -319,56 +371,10 @@ export const resetSavingMainRequestByModel = () => (dispatch) => {
     dispatch(resetAnybodySavingMainRequestStart());
 }
 
-export const FETCH_VIEW_REQUEST_MAIN = 'FETCH_VIEW_REQUEST_MAIN';
-export const FETCH_VIEW_REQUEST_MAIN_SUCCESS = 'FETCH_VIEW_REQUEST_MAIN_SUCCESS';
-export const FETCH_VIEW_REQUEST_MAIN_FAILURE = 'FETCH_VIEW_REQUEST_MAIN_FAILURE';
-export const RESET_FETCH_VIEW_REQUEST_MAIN = 'RESET_FETCH_VIEW_REQUEST_MAIN';
-
-export const FETCH_AGREE_REQUEST_BRIEF = 'FETCH_AGREE_REQUEST_BRIEF';
-export const FETCH_AGREE_REQUEST_BRIEF_SUCCESS = 'FETCH_AGREE_REQUEST_BRIEF_SUCCESS';
-export const FETCH_AGREE_REQUEST_BRIEF_FAILURE = 'FETCH_AGREE_REQUEST_BRIEF_FAILURE';
-export const RESET_FETCH_AGREE_REQUEST_BRIEF= 'RESET_FETCH_AGREE_REQUEST_BRIEF';
-
 export const FETCH_TODAY_BATTLE_REQUEST = 'FETCH_TODAY_BATTLE_REQUEST';
 export const FETCH_TODAY_BATTLE_REQUEST_SUCCESS = 'FETCH_TODAY_BATTLE_REQUEST_SUCCESS';
 export const FETCH_TODAY_BATTLE_REQUEST_FAILURE = 'FETCH_TODAY_BATTLE_REQUEST_FAILURE';
 export const RESET_FETCH_TODAY_BATTLE_REQUEST = 'RESET_FETCH_TODAY_BATTLE_REQUEST';
-
-export const EXECUTE_AGREE_REQUEST = 'EXECUTE_AGREE_REQUEST';
-export const EXECUTE_AGREE_REQUEST_SUCCESS = 'EXECUTE_AGREE_REQUEST_SUCCESS';
-export const EXECUTE_AGREE_REQUEST_FAILURE = 'EXECUTE_AGREE_REQUEST_FAILURE';
-export const RESET_EXECUTE_AGREE_REQUEST = 'RESET_EXECUTE_AGREE_REQUEST';
-
-export function appFetchViewRequestMain(requestId, userId){
-    const request = axios({
-        url : `${ROOT_URL}/${requestId}/${userId}`,
-        method : 'get'
-    });
-    return {
-        type : FETCH_VIEW_REQUEST_MAIN,
-        payload : request
-    }
-}
-
-export function appFetchViewRequestMainSuccess(result){
-    return {
-        type : FETCH_VIEW_REQUEST_MAIN_SUCCESS,
-        payload : result.data
-    }
-}
-
-export function appFetchViewRequestMainFailure(error){
-    return {
-        type : FETCH_VIEW_REQUEST_MAIN_FAILURE,
-        payload : error
-    }
-}
-
-export function resetAppFetchViewRequestMain(){
-    return {
-        type : RESET_FETCH_VIEW_REQUEST_MAIN
-    }
-}
 
 export function appFetchTodayBattleRequest(userId){
     const request = axios({
@@ -398,68 +404,5 @@ export function appFetchTodayBattleRequestFailure(error){
 export function resetAppFetchTodayBattleRequest() {
     return {
         type : RESET_FETCH_TODAY_BATTLE_REQUEST
-    }
-}
-
-export function managerFetchAgreeRequestBrief(){
-    const request = axios({
-        url : `${ROOT_URL}/fetch_brief/agree_list`,
-        method : 'get'
-    });
-    return {
-        type : FETCH_AGREE_REQUEST_BRIEF,
-        payload : request
-    }
-}
-
-export function managerFetchAgreeRequestBriefSuccess(requests){
-    return {
-        type : FETCH_AGREE_REQUEST_BRIEF_SUCCESS,
-        payload : requests.data
-    }
-}
-
-export function managerFetchAgreeRequestBriefFailure(error){
-    return {
-        type : FETCH_AGREE_REQUEST_BRIEF_FAILURE,
-        payload : error
-    }
-}
-
-export function resetManagerFetchAgreeRequestBrief(){
-    return {
-        type : RESET_FETCH_AGREE_REQUEST_BRIEF
-    }
-}
-
-export function managerExecuteFetchRequest(agreeModel){
-    const request = axios({
-        url : `${ROOT_URL}/agree_request`,
-        method : 'put',
-        data : agreeModel
-    });
-    return {
-        type : EXECUTE_AGREE_REQUEST,
-        payload : request
-    }
-}
-
-export function managerExecuteFetchRequestSuccess(result){
-    return {
-        type : EXECUTE_AGREE_REQUEST_SUCCESS,
-        payload : result.data
-    }
-}
-
-export function managerExecuteFetchRequestFailure(error){
-    return {
-        type : EXECUTE_AGREE_REQUEST_FAILURE,
-        payload : error
-    }
-}
-
-export function resetManagerExecuteFetchRequest(){
-    return {
-        type : RESET_EXECUTE_AGREE_REQUEST
     }
 }

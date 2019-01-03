@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {PhotoAgreeContainer} from "../../container";
+import {RequestAgreeViewContainer} from "../../container";
 
-const PhotoAgreePage = () => <PhotoAgreeContainer />
+const PhotoAgreePage = () => <RequestAgreeViewContainer />
 
 export default PhotoAgreePage;

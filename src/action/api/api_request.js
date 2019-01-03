@@ -19,6 +19,13 @@ export const fetchHomeBriefRequestsApi = () => {
     });
 }
 
+export const fetchAgreeBriefRequestsApi = () => {
+    return axios({
+        method : 'get',
+        url : `${ROOT_URL}/agree`
+    });
+}
+
 export const fetchBriefRequestsApi = (queryModel) => {
     const serverQuery = {
         id : queryModel && queryModel.cid,
@@ -69,6 +76,14 @@ export const savingMainRequestApi = (requestModel, requestPhoto) => {
             }
         });
     }
+}
+
+export const agreeMainRequestApi = (agreeModel) => {
+    return axios({
+        url : `${ROOT_URL}/agree`,
+        method : 'put',
+        data : agreeModel
+    });
 }
 
 export const blockingMainRequestApi = (requestId) => {

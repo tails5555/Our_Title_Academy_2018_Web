@@ -1,22 +1,22 @@
 import {
     ADMIN_FETCH_ALL_VALID_REQUESTS, ADMIN_FETCH_ALL_VALID_REQUESTS_SUCCESS, ADMIN_FETCH_ALL_VALID_REQUESTS_FAILURE,
     ANYBODY_FETCH_HOME_REQUESTS, ANYBODY_FETCH_HOME_REQUESTS_SUCCESS, ANYBODY_FETCH_HOME_REQUESTS_FAILURE,
+    MANAGER_FETCH_AGREE_REQUESTS, MANAGER_FETCH_AGREE_REQUESTS_SUCCESS, MANAGER_FETCH_AGREE_REQUESTS_FAILURE,
     ANYBODY_FETCH_REQUESTS_BY_QUERY, ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS, ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE,
     ANYBODY_FETCH_SEARCH_ALL_OPTIONS, ANYBODY_FETCH_SEARCH_ALL_OPTIONS_SUCCESS,
     ANYBODY_FETCH_SEARCH_ALL_OPTIONS_FAILURE,
     ANYBODY_FETCH_MAIN_REQUEST, ANYBODY_FETCH_REDIRECT_MAIN_REQUEST, ANYBODY_FETCH_MAIN_REQUEST_SUCCESS,
     ANYBODY_FETCH_MAIN_REQUEST_FAILURE, RESET_ANYBODY_FETCH_MAIN_REQUEST,
     ANYBODY_SAVING_MAIN_REQUEST, ANYBODY_SAVING_MAIN_REQUEST_SUCCESS, ANYBODY_SAVING_MAIN_REQUEST_FAILURE,
-    ANYBODY_DELETE_MAIN_REQUEST_BY_ID, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_SUCCESS, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_FAILURE,
+    MANAGER_AGREE_MAIN_REQUEST_BY_MODEL, MANAGER_AGREE_MAIN_REQUEST_BY_MODEL_SUCCESS, MANAGER_AGREE_MAIN_REQUEST_BY_MODEL_FAILURE,
     MANAGER_BLOCK_MAIN_REQUEST_BY_ID, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_SUCCESS, MANAGER_BLOCK_MAIN_REQUEST_BY_ID_FAILURE,
+    ANYBODY_DELETE_MAIN_REQUEST_BY_ID, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_SUCCESS, ANYBODY_DELETE_MAIN_REQUEST_BY_ID_FAILURE,
     ADMIN_DELETE_REQUESTS_PARTITION, ADMIN_DELETE_REQUESTS_PARTITION_SUCCESS, ADMIN_DELETE_REQUESTS_PARTITION_FAILURE,
     RESET_ANYBODY_SAVING_MAIN_REQUEST,
 } from "../action/type/type_request";
 
 import {
-    FETCH_TODAY_BATTLE_REQUEST, FETCH_TODAY_BATTLE_REQUEST_SUCCESS, FETCH_TODAY_BATTLE_REQUEST_FAILURE, RESET_FETCH_TODAY_BATTLE_REQUEST,
-    FETCH_AGREE_REQUEST_BRIEF, FETCH_AGREE_REQUEST_BRIEF_SUCCESS, FETCH_AGREE_REQUEST_BRIEF_FAILURE, RESET_FETCH_AGREE_REQUEST_BRIEF,
-    EXECUTE_AGREE_REQUEST, EXECUTE_AGREE_REQUEST_SUCCESS, EXECUTE_AGREE_REQUEST_FAILURE, RESET_EXECUTE_AGREE_REQUEST,
+    FETCH_TODAY_BATTLE_REQUEST, FETCH_TODAY_BATTLE_REQUEST_SUCCESS, FETCH_TODAY_BATTLE_REQUEST_FAILURE, RESET_FETCH_TODAY_BATTLE_REQUEST
 } from "../action/action_request";
 
 import {
@@ -30,11 +30,8 @@ const INITIAL_STATE = {
     rank : { list : [], loading : false, error : null },
     options : { data : { search : [], order : [], size : [] }, loading : false, error : { search : null, order : null, size : null } },
 
-    requestList : { requests : [], loading : false, error : null },
     myRequestStatistic : { statistics : [], loading : false, error : null },
-    selectRequest : { request : null, loading : false, error : null },
-    bestTitles : { titles : [] },
-    agreeStatus : { result : null, loading : false, error : null },
+    selectRequest : { request : null, loading : false, error : null }
 }
 
 export default function(state = INITIAL_STATE, action){
@@ -42,12 +39,14 @@ export default function(state = INITIAL_STATE, action){
     switch(action.type){
         case ADMIN_FETCH_ALL_VALID_REQUESTS :
         case ANYBODY_FETCH_HOME_REQUESTS :
+        case MANAGER_FETCH_AGREE_REQUESTS :
         case ANYBODY_FETCH_REQUESTS_BY_QUERY :
             return { ...state, main : { list : [], loading : true }};
 
         case ADMIN_FETCH_ALL_VALID_REQUESTS_SUCCESS :
         case ANYBODY_FETCH_HOME_REQUESTS_SUCCESS :
-            return { ...state, main : { loading : false, list : action.payload, }};
+        case MANAGER_FETCH_AGREE_REQUESTS_SUCCESS :
+            return { ...state, main : { loading : false, list : action.payload }};
 
         case ANYBODY_FETCH_REQUESTS_BY_QUERY_SUCCESS :
             const { results, count } = action.payload;
@@ -55,6 +54,7 @@ export default function(state = INITIAL_STATE, action){
 
         case ADMIN_FETCH_ALL_VALID_REQUESTS_FAILURE :
         case ANYBODY_FETCH_HOME_REQUESTS_FAILURE :
+        case MANAGER_FETCH_AGREE_REQUESTS_FAILURE :
         case ANYBODY_FETCH_REQUESTS_BY_QUERY_FAILURE :
             return { ...state, main : { loading : false, error : action.payload }};
 
@@ -92,6 +92,13 @@ export default function(state = INITIAL_STATE, action){
         case ADMIN_DELETE_REQUESTS_PARTITION_FAILURE :
             return { ...state, form : { ...state.form, loading : false, error : action.payload, type : 'DELETE' }};
 
+        case MANAGER_AGREE_MAIN_REQUEST_BY_MODEL :
+            return { ...state, form : { ...state.form, loading : true, complete : null, type : 'AGREE' }};
+        case MANAGER_AGREE_MAIN_REQUEST_BY_MODEL_SUCCESS :
+            return { ...state, form : { ...state.form, loading : false, complete : action.payload, type : 'AGREE' }};
+        case MANAGER_AGREE_MAIN_REQUEST_BY_MODEL_FAILURE :
+            return { ...state, form : { ...state.form, loading : false, error : action.payload, type : 'AGREE' }};
+
         case MANAGER_BLOCK_MAIN_REQUEST_BY_ID :
             return { ...state, form : { ...state.form, complete : null, loading : true, type : 'BLOCKING' }};
         case MANAGER_BLOCK_MAIN_REQUEST_BY_ID_SUCCESS :
@@ -103,6 +110,7 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, form : { ...state.form, complete : null, error : null, type : null }};
 
 
+
         case FETCH_TODAY_BATTLE_REQUEST :
             return { ...state, selectRequest : { request : null, loading : true, error : null }};
         case FETCH_TODAY_BATTLE_REQUEST_SUCCESS :
@@ -112,26 +120,6 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, selectRequest : { request : null, loading : false, error : error }};
         case RESET_FETCH_TODAY_BATTLE_REQUEST :
             return { ...state, selectRequest : { request : null, loading : false, error : null }};
-
-        case FETCH_AGREE_REQUEST_BRIEF :
-            return { ...state, requestList : { requests : [], loading : true, error : null }};
-        case FETCH_AGREE_REQUEST_BRIEF_SUCCESS :
-            return { ...state, requestList : { requests : action.payload, loading : false, error : null }};
-        case FETCH_AGREE_REQUEST_BRIEF_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, requestList : { requests : [], loading : false, error : error }};
-        case RESET_FETCH_AGREE_REQUEST_BRIEF :
-            return { ...state, requestList : { requests : [], loading : false, error : null }};
-
-        case EXECUTE_AGREE_REQUEST :
-            return { ...state, agreeStatus : { result : null, loading : true, error : null }};
-        case EXECUTE_AGREE_REQUEST_SUCCESS :
-            return { ...state, agreeStatus : { result : action.payload, loading : false, error : null }};
-        case EXECUTE_AGREE_REQUEST_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, agreeStatus : { result : null, loading : false, error : error }};
-        case RESET_EXECUTE_AGREE_REQUEST :
-            return { ...state, agreeStatus : { result : null, loading : false, error : null }};
 
         case USER_FETCH_MY_REQUEST_STATISTIC :
             return { ...state, myRequestStatistic: { statistics : [], loading : true, error : null }};

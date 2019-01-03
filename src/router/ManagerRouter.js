@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Redirect, Route} from 'react-router-dom';
+
 import {UserListPage, UserPrincipalInfoPage} from "../page/manager_admin_user_list";
-import {MyInfoFormPage, MyInfoResultPage} from "../page/common_my_info";
-import {MyProfileChangePage} from "../page/common_my_profile_change";
-import {CreateRequestPage} from "../page/create_request_page";
 import {PhotoAgreePage} from "../page/manager_photo_agree";
-import {SelectCategoryPage} from "../page/select_category_page";
-import {MyRequestStatisticPage} from "../page/my_request_statistic_page";
-import {MyTitleStatisticPage} from "../page/my_title_statistic_page";
 
 import CommonRouter from './CommonRouter';
 import AccountRouter from './AccountRouter';
@@ -21,11 +16,6 @@ class ManagerRouter extends Component{
             <div className="inner">
                 <CommonRouter />
                 <AccountRouter />
-                <Route exact path="/my/info_manage" component={MyInfoFormPage} />
-                <Route exact path="/my/info_update_result" component={MyInfoResultPage} />
-                <Route exact path="/my/profile_change" component={MyProfileChangePage} />
-                <Route exact path="/my/request_statistic" component={MyRequestStatisticPage} />
-                <Route exact path="/my/title_statistic" component={MyTitleStatisticPage} />
                 <Route exact path="/manager/user_list" component={UserListPage} />
                 <Route exact path="/manager/user_list/:method" component={UserListPage} />
                 <Route exact path="/manager/user_info/:loginId" component={UserPrincipalInfoPage} />
@@ -45,10 +35,9 @@ class ManagerRouter extends Component{
                     });
                     return <Redirect to="/manager/user_list/_refresh" />
                 }} />
-                <Route exact path="/create_request" component={CreateRequestPage} />
-                <Route exact path="/create_request/_refresh" render={() => <Redirect to={`/create_request`} />} />
+
                 <Route exact path="/manager/photo_agree" component={PhotoAgreePage} />
-                <Route exact path="/manager/select_category/:id" component={SelectCategoryPage} />
+                <Route exact path="/manager/photo_agree/_refresh" render={() => <Redirect to="/manager/photo_agree" />} />
             </div>
         )
     }

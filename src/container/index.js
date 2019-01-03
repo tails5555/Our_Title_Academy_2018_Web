@@ -29,6 +29,8 @@ export {default as OwnerTitleMainViewContainer} from './OwnerTitleMainViewContai
 // Admin Context Manager View
 export {default as AdminContextMangerContainer} from './AdminContextManagerContainer';
 
+// Manager - Admin Request Agree View
+export {default as RequestAgreeViewContainer} from './RequestAgreeViewContainer';
 
 
 export {default as ApplicationContainer} from './ApplicationContainer';
@@ -42,7 +44,5 @@ export {default as UserListContainer} from './UserListContainer';
 export {default as MyProfileChangeContainer} from './MyProfileChangeContainer';
 export {default as UserPrincipalInfoContainer} from './UserPrincipalInfoContainer';
 
-export {default as PhotoAgreeContainer} from './PhotoAgreeContainer';
-export {default as SelectCategoryContainer} from './SelectCategoryContainer';
 export {default as TodayTitleBattleContainer} from './TodayTitleBattleContainer';
 export {default as FindFormContainer} from './FindFormContainer';

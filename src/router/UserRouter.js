@@ -16,13 +16,6 @@ class UserRouter extends Component{
             <div className="inner">
                 <CommonRouter />
                 <AccountRouter />
-                <Route exact path="/my/info_manage" component={MyInfoFormPage} />
-                <Route exact path="/my/info_update_result" component={MyInfoResultPage} />
-                <Route exact path="/my/profile_change" component={MyProfileChangePage} />
-                <Route exact path="/my/request_statistic" component={MyRequestStatisticPage} />
-                <Route exact path="/my/title_statistic" component={MyTitleStatisticPage} />
-                <Route exact path="/create_request" component={CreateRequestPage} />
-                <Route exact path="/create_request/_refresh" render={() => <Redirect to={`/create_request`} />} />
             </div>
         )
     }
