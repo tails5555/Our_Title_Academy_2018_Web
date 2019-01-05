@@ -26,7 +26,7 @@ class RequestPhoto extends Component {
 
     fetchRequestImageStatus = (requestId) => {
         axios
-            .get(`${IMAGE_URL}/request_image/${requestId}`)
+            .get(`${IMAGE_URL}/request/${requestId}`)
             .then((response) => {
                 const { status } = response;
                 if(this._isMounted){
@@ -53,7 +53,7 @@ class RequestPhoto extends Component {
     render(){
         const { requestId, hasSide } = this.props;
         const { status, error } = this.state;
-        const imageSrc = (status === 200 && error === null && requestId !== null) ? `${IMAGE_URL}/request_image/${requestId}` : NotFoundImage;
+        const imageSrc = (status === 200 && error === null && requestId !== null) ? `${IMAGE_URL}/request/${requestId}` : NotFoundImage;
         return(
             <Fragment>
                 <img

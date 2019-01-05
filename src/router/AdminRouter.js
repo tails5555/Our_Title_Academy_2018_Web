@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 import axios from "axios";
 import {Redirect, Route} from 'react-router-dom';
 import {UserListPage, UserPrincipalInfoPage} from "../page/manager_admin_user_list";
-import {MyInfoFormPage, MyInfoResultPage} from "../page/common_my_info";
-import {MyProfileChangePage} from "../page/common_my_profile_change";
-import {CreateRequestPage} from "../page/create_request_page";
-import {MyRequestStatisticPage} from "../page/my_request_statistic_page";
-import {MyTitleStatisticPage} from "../page/my_title_statistic_page";
 import {PhotoAgreePage} from "../page/manager_photo_agree";
 import {AdminContextManagerPage} from "../page/admin_context_manager_page";
 

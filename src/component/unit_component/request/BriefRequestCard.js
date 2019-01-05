@@ -57,7 +57,7 @@ class BriefRequestCard extends Component{
                 <article className={articleClass}>
                     <Link className="image" to={`/view_request?${queryString.stringify(queryModel)}`}>
                         <img
-                            src={`${IMAGE_URL}/request_image/${element && element.id}`}
+                            src={`${IMAGE_URL}/request/${element && element.id}`}
                             alt="request_image"
                             style={{
                                 height : '45vh',
