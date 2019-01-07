@@ -6,7 +6,7 @@ import {
 
 function mapStateToProps(state){
     return {
-        accessUser : state.user.accessUser,
+        accessor : state.user.accessor,
         selectRequest : state.request.selectRequest
     }
 }

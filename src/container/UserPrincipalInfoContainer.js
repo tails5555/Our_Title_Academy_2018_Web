@@ -14,7 +14,7 @@ import {
 
 function mapStateToProps(state){
     return {
-        accessUser : state.user.accessUser,
+        accessor : state.user.accessor,
         principalInfo : state.user.principalInfo,
         myTitleStatistic : state.title.myTitleStatistic,
         myRequestStatistic : state.request.myRequestStatistic

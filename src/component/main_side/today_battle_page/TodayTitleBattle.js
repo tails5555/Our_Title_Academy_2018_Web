@@ -23,7 +23,7 @@ class TodayTitleBattle extends Component{
     };
 
     componentWillMount(){
-        let {principal} = this.props.accessUser;
+        let {principal} = this.props.accessor;
         this.props.fetchTodayBattleRequest(principal !== null ? principal.loginId : 'ANONYMOUS_USER');
 
         let {socket, stompClient} = this.state;
@@ -35,7 +35,7 @@ class TodayTitleBattle extends Component{
     }
 
     componentDidMount(){
-        let {principal} = this.props.accessUser;
+        let {principal} = this.props.accessor;
         let {stompClient} = this.state;
         let loginId = principal !== null ? principal.loginId : 'ANONYMOUS_USER';
 
@@ -154,7 +154,7 @@ class TodayTitleBattle extends Component{
     }
 
     handleClickSynchronous(event){
-        let {principal} = this.props.accessUser;
+        let {principal} = this.props.accessor;
         let {stompClient} = this.state;
         let loginId = principal !== null ? principal.loginId : 'ANONYMOUS_USER';
 
@@ -172,7 +172,7 @@ class TodayTitleBattle extends Component{
     render(){
         const { loginId, titles, renderSize, context, hasTitle } = this.state;
         const { request } = this.props.selectRequest;
-        const { principal } = this.props.accessUser;
+        const { principal } = this.props.accessor;
         let requestDTO = request !== null ? request.requestDTO : null;
 
         let renderRequests =

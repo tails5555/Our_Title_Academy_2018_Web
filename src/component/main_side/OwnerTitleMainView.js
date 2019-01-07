@@ -13,7 +13,7 @@ class OwnerTitleMainView extends Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState){
-        const { title, statistic, accessUser } = nextProps;
+        const { title, statistic, accessor } = nextProps;
         const { titleList, titleLoading, titleError, statisticList, statisticLoading, statisticError, principal } = prevState;
         if(
             title.list !== titleList ||
@@ -22,7 +22,7 @@ class OwnerTitleMainView extends Component {
             statistic.list !== statisticList ||
             statistic.loading !== statisticLoading ||
             statistic.error !== statisticError ||
-            accessUser.principal !== principal
+            accessor.principal !== principal
         ) {
             return {
                 titleList : title.list,
@@ -31,7 +31,7 @@ class OwnerTitleMainView extends Component {
                 statisticList : statistic.list,
                 statisticLoading : statistic.loading,
                 statisticError : statistic.error,
-                principal : accessUser.principal
+                principal : accessor.principal
             };
         }
         return null;

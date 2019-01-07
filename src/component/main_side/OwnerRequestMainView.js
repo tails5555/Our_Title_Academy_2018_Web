@@ -13,7 +13,7 @@ class OwnerRequestMainView extends Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState){
-        const { request, statistic, accessUser } = nextProps;
+        const { request, statistic, accessor } = nextProps;
         const { requestList, requestLoading, requestError, statisticList, statisticLoading, statisticError, principal } = prevState;
         if(
             request.list !== requestList ||
@@ -22,7 +22,7 @@ class OwnerRequestMainView extends Component {
             statistic.list !== statisticList ||
             statistic.loading !== statisticLoading ||
             statistic.error !== statisticError ||
-            accessUser.principal !== principal
+            accessor.principal !== principal
         ) {
             return {
                 requestList : request.list,
@@ -31,7 +31,7 @@ class OwnerRequestMainView extends Component {
                 statisticList : statistic.list,
                 statisticLoading : statistic.loading,
                 statisticError : statistic.error,
-                principal : accessUser.principal
+                principal : accessor.principal
             };
         }
         return null;

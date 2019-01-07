@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import Slider from "react-slick";
 import { RankRequestCard } from "../unit_component/request";
-import {AlertBoxNote} from "../unit_component/alert_box";
-import {MajorTitleHeader} from "../unit_component/header";
+import { AlertBoxNote } from "../unit_component/alert_box";
+import { MajorTitleHeader } from "../unit_component/header";
 
 const ONE_SECOND_MILLS = 3600;
 const ONE_MINUTE_MILLS = 60 * ONE_SECOND_MILLS;

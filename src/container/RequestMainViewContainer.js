@@ -12,7 +12,7 @@ function mapStateToProps(state){
         comment : state.comment.main,
         selectRequest : state.request.selectRequest,
         bestTitles : state.request.bestTitles,
-        accessUser : state.user.accessUser,
+        accessor : state.user.accessor,
         titleList : state.title.titleList,
         hasTitle : state.title.hasTitle,
         blockStatus : state.request.blockStatus,

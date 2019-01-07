@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import * as OwnerAction from '../action/action_owner';
 
 const mapStateToProps = (state) => ({
-    accessUser : state.user.accessUser,
+    accessor : state.user.accessor,
     request : state.owner.request,
     statistic : state.owner.statistic
 });

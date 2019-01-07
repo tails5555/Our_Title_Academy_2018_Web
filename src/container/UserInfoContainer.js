@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
 
 function mapStateToProps(state){
     return {
-        accessUser : state.user.accessUser,
+        accessor : state.user.accessor,
         myProfile : state.profile.myProfile
     };
 }

@@ -6,7 +6,7 @@ import { MajorTitleHeader } from "../../unit_component/header";
 const GuestNavMenu = () => (
     <Fragment>
         <nav id="menu" className="my_menu">
-            <MajorTitleHeader title={'Menu'} />
+            <MajorTitleHeader title={'메뉴'} />
             <ul>
                 <HomeMenu />
                 <AccountMenu />

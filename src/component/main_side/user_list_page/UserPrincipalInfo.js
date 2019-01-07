@@ -13,7 +13,7 @@ class UserPrincipalInfo extends Component{
             left: 0,
             behavior: 'smooth'
         });
-        const { principal } = this.props.accessUser;
+        const { principal } = this.props.accessor;
         this.props.fetchUserInfo(principal.type, this.props.match.params === null || this.props.match.params.loginId );
         this.props.fetchRequestStatistic( this.props.match.params === null || this.props.match.params.loginId );
         this.props.fetchTitleStatistic( this.props.match.params === null || this.props.match.params.loginId );
@@ -44,7 +44,7 @@ class UserPrincipalInfo extends Component{
         }
     }
     render(){
-        const { principal } = this.props.accessUser;
+        const { principal } = this.props.accessor;
         const { detail, error } = this.props.principalInfo;
         const { roleSequence } = this.state;
         let userContainer;

@@ -35,7 +35,9 @@ export const executeLoginByModel = (loginModel) => (dispatch) => {
         }, 3000);
     }).catch((error) => {
         const { response } = error;
-        dispatch(executeLoginByModelFailure(response));
+        setTimeout(() => {
+            dispatch(executeLoginByModelFailure(response));
+        }, 1500);
     });
 }
 
@@ -45,6 +47,56 @@ const resetExecuteLoginByModelStart = () => ({
 
 export const resetExecuteLoginByModel = () => (dispatch) => {
     dispatch(resetExecuteLoginByModelStart());
+}
+
+const guestFetchAgeListStart = () => ({
+    type : GUEST_FETCH_AGE_LIST
+});
+
+const guestFetchAgeListSuccess = (response) => ({
+    type : GUEST_FETCH_AGE_LIST_SUCCESS
+});
+
+const guestFetchAgeListFailure = (error) => ({
+    type : GUEST_FETCH_AGE_LIST_FAILURE
+});
+
+export const fetchAgeList = () => (dispatch) => {
+    dispatch(guestFetchAgeListStart());
+
+    return guestFetchAgeListApi().then((response) => {
+        setTimeout(() => {
+            dispatch(guestFetchAgeListSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(guestFetchAgeListFailure(error));
+    });
+}
+
+const guestFetchCityListStart = () => ({
+    type : GUEST_FETCH_CITY_LIST
+});
+
+const guestFetchCityListSuccess = (response) => ({
+    type : GUEST_FETCH_CITY_LIST_SUCCESS,
+    payload : response && response.data
+});
+
+const guestFetchCityListFailure = (error) => ({
+    type : GUEST_FETCH_CITY_LIST_FAILURE,
+    payload : error && error.message
+});
+
+export const fetchCityList = () => (dispatch) => {
+    dispatch(guestFetchCityListStart());
+
+    return guestFetchCityListApi().then((response) => {
+        setTimeout(() => {
+            dispatch(guestFetchCityListSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(guestFetchCityListFailure(error));
+    });
 }
 
 const ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth';

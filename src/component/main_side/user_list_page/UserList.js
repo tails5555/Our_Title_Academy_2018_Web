@@ -7,7 +7,7 @@ import {UserProfile} from "../profile_image";
 import {withRouter} from 'react-router-dom';
 class UserList extends Component {
     componentWillMount(){
-        const {principal} = this.props.accessUser;
+        const {principal} = this.props.accessor;
         this.props.fetchUserList(principal === null || principal.type);
     }
     componentWillUnmount(){
@@ -15,7 +15,7 @@ class UserList extends Component {
     }
     render(){
         const { users } = this.props.principalList;
-        const { principal } = this.props.accessUser;
+        const { principal } = this.props.accessor;
         if(this.props.match && this.props.match.params.method === '_refresh'){
             this.props.resetFetchUserList();
             if(principal.type === 'MANAGER')

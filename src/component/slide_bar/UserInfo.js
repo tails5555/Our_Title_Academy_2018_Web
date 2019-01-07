@@ -32,7 +32,7 @@ class UserInfo extends Component{
     }
 
     render(){
-        const { principal, loading, error } = this.props.accessUser;
+        const { principal, loading, error } = this.props.accessor;
         let infoMessage;
         if(loading) {
             infoMessage = <p>사용자 정보를 불러오는 중입니다...</p>

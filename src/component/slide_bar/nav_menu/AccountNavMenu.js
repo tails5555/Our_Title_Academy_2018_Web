@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { HomeMenu, MyMenu, TodayMenu, NoticeMenu, AdminMenu, ManagerMenu } from './SmallUnitMenu';
-import {MajorTitleHeader} from "../../unit_component/header";
+import { MajorTitleHeader } from "../../unit_component/header";
 
 const ManagerNavMenu = ({ userType }) => (
     <Fragment>

@@ -25,7 +25,7 @@ const INITIAL_STATE = {
     passwordElement : {
         result : false, loading : false, error : null
     },
-    accessUser : {
+    accessor : {
         principal : null, loading : false, error : null
     },
     detailResult : {
@@ -63,17 +63,17 @@ export default function(state = INITIAL_STATE, action){
             return { ...state, cityElements : { cities : [], loading : false, error : null}};
 
         case USER_LOGOUT_PROCESS :
-            return { ...state, accessUser : { principal : null, loading : false, error : null }};
+            return { ...state, accessor : { principal : null, loading : false, error : null }};
 
         case FETCH_USER_PRINCIPAL_FROM_SERVER_PROCESS :
-            return { ...state, accessUser : { principal : null, loading : true, error : null }};
+            return { ...state, accessor : { principal : null, loading : true, error : null }};
         case FETCH_USER_PRINCIPAL_FROM_SERVER_COMPLETE :
-            return { ...state, accessUser : { principal : action.payload, loading : false, error : null }};
+            return { ...state, accessor : { principal : action.payload, loading : false, error : null }};
         case FETCH_USER_PRINCIPAL_FROM_SERVER_EXCEPTION :
             error = action.payload || { message : action.payload };
-            return { ...state, accessUser : { principal : null, loading : false, error : error }};
+            return { ...state, accessor : { principal : null, loading : false, error : error }};
         case RESET_FETCH_USER_PRINCIPAL_FROM_SERVER :
-            return { ...state, accessUser : { principal : null, loading : false, error : null }};
+            return { ...state, accessor : { principal : null, loading : false, error : null }};
 
         case USER_LOAD_SIGN_FORM :
             return { ...state, signInfo : { signModel : null, loading : true, error : null }};

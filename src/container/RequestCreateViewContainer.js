@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 function mapStateToProps(state){
     return {
-        accessUser : state.user.accessUser
+        accessor : state.user.accessor
     }
 }
 

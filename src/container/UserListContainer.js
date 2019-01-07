@@ -5,7 +5,7 @@ import {adminLoadUserList, adminLoadUserListSuccess, adminLoadUserListFailure,
 
 function mapStateToProps(state){
     return {
-        accessUser : state.user.accessUser,
+        accessor : state.user.accessor,
         principalList : state.user.principalList
     }
 }

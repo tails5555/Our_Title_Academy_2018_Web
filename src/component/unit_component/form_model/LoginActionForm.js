@@ -49,6 +49,12 @@ class LoginActionForm extends Component {
         }
     }
 
+    componentWillUnmount(){
+        const { guestAction } = this.props;
+        const { resetExecuteLoginByModel } = guestAction;
+        resetExecuteLoginByModel();
+    }
+
     render(){
         const { handleSubmit } = this.props;
         const { loading, error, complete } = this.state;

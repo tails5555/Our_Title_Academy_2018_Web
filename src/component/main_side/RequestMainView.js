@@ -84,7 +84,7 @@ class RequestMainView extends Component {
     }
 
     currentUser = () => {
-        const { principal } = this.props.accessUser;
+        const { principal } = this.props.accessor;
         let userId;
         if(principal !== null){
             userId = principal.loginId;
@@ -105,9 +105,9 @@ class RequestMainView extends Component {
 
     render(){
         const { loading, element } = this.state;
-        const { titleAction, title, commentAction, comment, location, accessUser } = this.props;
+        const { titleAction, title, commentAction, comment, location, accessor } = this.props;
 
-        const { principal } = accessUser;
+        const { principal } = accessor;
         const { fetchMainTitleList, resetFetchMainTitleList } = titleAction;
         const { fetchCommentList, resetFetchCommentList } = commentAction;
         const queryModel = queryString.parse(location.search);

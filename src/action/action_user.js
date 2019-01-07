@@ -70,11 +70,11 @@ export function userLogoutProcess(userToken){
 }
 
 export function fetchUserPrincipalFromServerProcess(userToken){
-    const request = axios.get(`${ROOT_URL}/common/current_access`,{
-            headers :
-                {
-                    'Authorization' : `Bearer ${userToken}`
-                }
+    const request = axios.get(`${ROOT_URL}/common/accessor`, {
+        headers :
+            {
+                'Authorization' : `Bearer ${userToken}`
+            }
         }
     );
     return {

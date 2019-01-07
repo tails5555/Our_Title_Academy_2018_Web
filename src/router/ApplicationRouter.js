@@ -16,7 +16,7 @@ class ApplicationRouter extends Component {
     }
     render(){
         let router, sidebar;
-        const { principal, error } = this.props.accessUser;
+        const { principal, error } = this.props.accessor;
         if(error !== null){
             alert(error);
             window.location.href = "/";
