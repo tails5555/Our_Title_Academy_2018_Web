@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Slider from "react-slick";
 import { RankRequestCard } from "../unit_component/request";
 import {AlertBoxNote} from "../unit_component/alert_box";
+import {MajorTitleHeader} from "../unit_component/header";
 
 const ONE_SECOND_MILLS = 3600;
 const ONE_MINUTE_MILLS = 60 * ONE_SECOND_MILLS;
@@ -104,9 +105,7 @@ class TodayRankCardView extends Component {
         return(
             <Fragment>
                 <section id="today_best">
-                    <header className="major">
-                        <h2>실시간 인기 제목</h2>
-                    </header>
+                    <MajorTitleHeader title={'Best Requests'} />
                     { renderRanking }
                 </section>
             </Fragment>

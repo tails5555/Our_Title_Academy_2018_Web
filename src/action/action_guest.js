@@ -1,4 +1,52 @@
 import axios from 'axios';
+
+import {
+    guestLoginApi, guestFetchAgeListApi, guestFetchCityListApi
+} from "./api/api_user";
+
+import {
+    GUEST_EXECUTE_LOGIN_BY_MODEL, GUEST_EXECUTE_LOGIN_BY_MODEL_SUCCESS, GUEST_EXECUTE_LOGIN_BY_MODEL_FAILURE, RESET_GUEST_EXECUTE_LOGIN_BY_MODEL,
+    GUEST_FETCH_AGE_LIST, GUEST_FETCH_AGE_LIST_SUCCESS, GUEST_FETCH_AGE_LIST_FAILURE,
+    GUEST_FETCH_CITY_LIST, GUEST_FETCH_CITY_LIST_SUCCESS, GUEST_FETCH_CITY_LIST_FAILURE
+} from "./type/type_user";
+
+const executeLoginByModelStart = () => ({
+    type : GUEST_EXECUTE_LOGIN_BY_MODEL
+});
+
+const executeLoginByModelSuccess = (response) => ({
+    type : GUEST_EXECUTE_LOGIN_BY_MODEL_SUCCESS,
+    payload : response && response.status
+});
+
+const executeLoginByModelFailure = (error) => ({
+    type : GUEST_EXECUTE_LOGIN_BY_MODEL_FAILURE,
+    payload : error && error.data
+});
+
+export const executeLoginByModel = (loginModel) => (dispatch) => {
+    dispatch(executeLoginByModelStart());
+
+    return guestLoginApi(loginModel).then((response) => {
+        if(response && response.status === 200)
+            sessionStorage.setItem('jwtToken', response && response.data);
+        setTimeout(() => {
+            dispatch(executeLoginByModelSuccess(response));
+        }, 3000);
+    }).catch((error) => {
+        const { response } = error;
+        dispatch(executeLoginByModelFailure(response));
+    });
+}
+
+const resetExecuteLoginByModelStart = () => ({
+    type : RESET_GUEST_EXECUTE_LOGIN_BY_MODEL
+});
+
+export const resetExecuteLoginByModel = () => (dispatch) => {
+    dispatch(resetExecuteLoginByModelStart());
+}
+
 const ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth';
 
 export const GUEST_LOAD_AGE_LIST = 'GUEST_LOAD_AGE_LIST';

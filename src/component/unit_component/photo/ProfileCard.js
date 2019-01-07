@@ -4,7 +4,7 @@ import axios from "axios";
 import defaultProfile from '../../resource_image/default_profile.png';
 
 const RESOURCE_ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth/resource/profile';
-const NICKNAME_ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth/guest/fetch_nickname';
+const NICKNAME_ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth/guest/nickname';
 
 class ProfileCard extends Component{
     constructor(props){
@@ -25,7 +25,7 @@ class ProfileCard extends Component{
 
     fetchProfilePhotoElement = (loginId) => {
         let self = this;
-        axios.get(`${RESOURCE_ROOT_URL}/image_profile/${loginId}`)
+        axios.get(`${RESOURCE_ROOT_URL}/image/${loginId}`)
             .then((response) => {
                 if(this._isMounted) {
                     self.setState({ status : response && response.status });
@@ -50,7 +50,7 @@ class ProfileCard extends Component{
     render(){
         const { loginId } = this.props;
         const { status, nickname } = this.state;
-        const imageSource = (status === 200) ? `${RESOURCE_ROOT_URL}/image_profile/${loginId}` : defaultProfile;
+        const imageSource = (status === 200) ? `${RESOURCE_ROOT_URL}/image/${loginId}` : defaultProfile;
         return (
             <Fragment>
                 <div className="w3-card-4 w3-round-large w3-margin-bottom">

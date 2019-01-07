@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+
+import GuestRender from './reducer_guest';
 import UserReducer from './reducer_user';
 import DetailReducer from './reducer_detail';
 import ProfileReducer from './reducer_profile';
@@ -12,6 +14,7 @@ import SearchReducer from './reducer_search';
 import OwnerReducer from './reducer_owner';
 
 export const rootReducer = combineReducers({
+    guest : GuestRender,
     form : formReducer,
     user : UserReducer,
     detail : DetailReducer,

@@ -2,10 +2,6 @@ import axios from 'axios';
 
 const ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth';
 
-export const USER_LOGIN_PROCESS = 'USER_LOGIN_PROCESS';
-export const USER_LOGIN_EXCEPTION = 'USER_LOGIN_EXCEPTION';
-export const USER_LOGIN_COMPLETE = 'USER_LOGIN_COMPLETE';
-
 export const USER_LOGOUT_PROCESS = 'USER_LOGOUT_PROCESS';
 
 export const FETCH_USER_PRINCIPAL_FROM_SERVER_PROCESS = 'FETCH_USER_PRINCIPAL_FROM_SERVER_PROCESS';
@@ -57,41 +53,6 @@ export const MANAGER_LOAD_USER_INFO_SUCCESS = 'MANAGER_LOAD_USER_INFO_SUCCESS';
 export const MANAGER_LOAD_USER_INFO_FAILURE = 'MANAGER_LOAD_USER_INFO_FAILURE';
 
 export const RESET_COMMON_LOAD_USER_INFO = 'RESET_COMMON_LOAD_USER_INFO';
-
-export function userLoginProcess(loginForm){
-    const request = axios({
-        method : 'post',
-        url : `${ROOT_URL}/guest/login`,
-        data : loginForm
-    });
-    return {
-        type : USER_LOGIN_PROCESS,
-        payload : request
-    }
-}
-
-export function userLoginComplete(userToken){
-    const request = axios.get(`${ROOT_URL}/common/current_access`,{
-        headers :
-            {
-                'Authorization' : `Bearer ${userToken}`
-            }
-        }
-    );
-    return {
-        type : USER_LOGIN_COMPLETE,
-        payload : request.then(access => {
-            return access.data
-        })
-    }
-}
-
-export function userLoginException(error){
-    return {
-        type : USER_LOGIN_EXCEPTION,
-        payload : error
-    }
-}
 
 export function userLogoutProcess(userToken){
     sessionStorage.removeItem('jwtToken');

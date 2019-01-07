@@ -1,5 +1,5 @@
 import {
-    USER_LOGIN_PROCESS, USER_LOGIN_COMPLETE, USER_LOGIN_EXCEPTION, USER_LOGOUT_PROCESS,
+    USER_LOGOUT_PROCESS,
     FETCH_USER_PRINCIPAL_FROM_SERVER_PROCESS, FETCH_USER_PRINCIPAL_FROM_SERVER_COMPLETE, FETCH_USER_PRINCIPAL_FROM_SERVER_EXCEPTION, RESET_FETCH_USER_PRINCIPAL_FROM_SERVER,
     USER_LOAD_SIGN_FORM, USER_LOAD_SIGN_FORM_SUCCESS, USER_LOAD_SIGN_FORM_FAILURE, RESET_USER_LOAD_SIGN_FORM,
     USER_LOAD_AGE_LIST, USER_LOAD_AGE_LIST_SUCCESS, USER_LOAD_AGE_LIST_FAILURE, RESET_USER_LOAD_AGE_LIST,
@@ -62,13 +62,6 @@ export default function(state = INITIAL_STATE, action){
         case RESET_USER_LOAD_CITY_LIST :
             return { ...state, cityElements : { cities : [], loading : false, error : null}};
 
-        case USER_LOGIN_PROCESS :
-            return { ...state, accessUser : { principal : null, loading : true, error : null }};
-        case USER_LOGIN_COMPLETE :
-            return { ...state, accessUser : { principal : action.payload, loading : false, error : null }};
-        case USER_LOGIN_EXCEPTION :
-            error = action.payload.data || { message : action.payload.data };
-            return { ...state, accessUser : { principal : null, loading : false, error : error }};
         case USER_LOGOUT_PROCESS :
             return { ...state, accessUser : { principal : null, loading : false, error : null }};
 

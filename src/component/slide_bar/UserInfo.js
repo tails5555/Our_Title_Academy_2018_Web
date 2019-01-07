@@ -51,7 +51,7 @@ class UserInfo extends Component{
         return(
             <section id="user_info" className="mini-posts alt">
                 <article>
-                    <Link to='/my/profile_change' className="image"><img src={ (this.props.myProfile.profile !== null && this.props.myProfile.profile !== '') ? `${RESOURCE_ROOT_URL}/image_profile/${(principal === null) || (principal.loginId)}` : defaultProfile } alt="" onClick={this.handleClickProfileInfo.bind(this)}/></Link>
+                    <Link to='/my/profile_change' className="image"><img src={ (this.props.myProfile.profile !== null && this.props.myProfile.profile !== '') ? `${RESOURCE_ROOT_URL}/image/${(principal === null) || (principal.loginId)}` : defaultProfile } alt="" onClick={this.handleClickProfileInfo.bind(this)}/></Link>
                     {infoMessage}
                 </article>
                 <button className="button primary fit large" onClick={this.handleClickLogout.bind(this)}>
