@@ -1,23 +1,18 @@
 import {
-    GUEST_LOAD_AGE_LIST, GUEST_LOAD_AGE_LIST_SUCCESS, GUEST_LOAD_AGE_LIST_FAILURE, RESET_GUEST_LOAD_AGE_LIST,
-    GUEST_LOAD_CITY_LIST, GUEST_LOAD_CITY_LIST_SUCCESS, GUEST_LOAD_CITY_LIST_FAILURE, RESET_GUEST_LOAD_CITY_LIST,
-    GUEST_CONFIRM_LOGIN_ID, GUEST_CONFIRM_LOGIN_ID_SUCCESS, GUEST_CONFIRM_LOGIN_ID_FAILURE, RESET_GUEST_CONFIRM_LOGIN_ID,
-    GUEST_SIGN_UP_PROCESS, GUEST_SIGN_UP_SUCCESS, GUEST_SIGN_UP_FAILURE,
+    GUEST_FETCH_AGE_LIST, GUEST_FETCH_AGE_LIST_SUCCESS, GUEST_FETCH_AGE_LIST_FAILURE,
+    GUEST_FETCH_CITY_LIST, GUEST_FETCH_CITY_LIST_SUCCESS, GUEST_FETCH_CITY_LIST_FAILURE
+} from '../action/type/type_guest';
+
+import {
     GUEST_FIND_LOGIN_ID, GUEST_FIND_LOGIN_ID_SUCCESS, GUEST_FIND_LOGIN_ID_FAILURE, RESET_GUEST_FIND_LOGIN_ID
 } from "../action/action_guest";
 
 const INITIAL_STATE = {
-    cityElements : {
-        cities : [], loading : false, error : null
+    city : {
+        list : [], loading : false, error : null
     },
-    ageElements : {
-        ages : [], loading : false, error : null
-    },
-    loginIdElement : {
-        result : false, loading : false, error : null
-    },
-    detailResult : {
-        detail : null, loading : false, error : null
+    age : {
+        list : [], loading : false, error : null
     },
     findLoginId : {
         result : null, loading : false, error : null
@@ -27,43 +22,19 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action){
     let error;
     switch(action.type){
-        case GUEST_LOAD_AGE_LIST :
-            return { ...state, ageElements : { ages : [], loading : true, error : null }};
-        case GUEST_LOAD_AGE_LIST_SUCCESS :
-            return { ...state, ageElements : { ages : action.payload, loading : false, error : null}};
-        case GUEST_LOAD_AGE_LIST_FAILURE :
-            error = action.payload || { message : action.payload };
-            return { ...state, ageElements : { ages : [], loading : false, error : error}};
-        case RESET_GUEST_LOAD_AGE_LIST :
-            return { ...state, ageElements : { ages : [], loading : false, error : null}};
+        case GUEST_FETCH_CITY_LIST :
+            return { ...state, city : { list : [], loading : true }};
+        case GUEST_FETCH_CITY_LIST_SUCCESS :
+            return { ...state, city : { list : action.payload, loading : false }};
+        case GUEST_FETCH_CITY_LIST_FAILURE :
+            return { ...state, city : { ...state.city, loading : false, error : action.payload }};
 
-        case GUEST_LOAD_CITY_LIST :
-            return { ...state, cityElements : { cities : [], loading : true, error : null }};
-        case GUEST_LOAD_CITY_LIST_SUCCESS :
-            return { ...state, cityElements : { cities : action.payload, loading : false, error : null}};
-        case GUEST_LOAD_CITY_LIST_FAILURE :
-            error = action.payload.data || { message : action.payload.data };
-            return { ...state, cityElements : { cities : [], loading : false, error : error}};
-        case RESET_GUEST_LOAD_CITY_LIST :
-            return { ...state, cityElements : { cities : [], loading : false, error : null}};
-
-        case GUEST_CONFIRM_LOGIN_ID :
-            return { ...state, loginIdElement : { result : false, loading : true, error : null}};
-        case GUEST_CONFIRM_LOGIN_ID_SUCCESS :
-            return { ...state, loginIdElement : { result : action.payload, loading : false, error : null}};
-        case GUEST_CONFIRM_LOGIN_ID_FAILURE :
-            error = action.payload.data || { message : action.payload.data };
-            return { ...state, loginIdElement : { result : false, loading : false, error : error}};
-        case RESET_GUEST_CONFIRM_LOGIN_ID :
-            return { ...state, loginIdElement : { result : false, loading : false, error : null}};
-
-        case GUEST_SIGN_UP_PROCESS :
-            return { ...state, detailResult : { detail : null, loading : true, error : null}};
-        case GUEST_SIGN_UP_SUCCESS :
-            return { ...state, detailResult : { detail : action.payload, loading : false, error : null}};
-        case GUEST_SIGN_UP_FAILURE :
-            error = action.payload.data || { message : action.payload.data };
-            return { ...state, detailResult : { detail : null, loading : false, error : error}};
+        case GUEST_FETCH_AGE_LIST :
+            return { ...state, age : { list : [], loading : true }};
+        case GUEST_FETCH_AGE_LIST_SUCCESS :
+            return { ...state, age : { list : action.payload, loading : false }};
+        case GUEST_FETCH_AGE_LIST_FAILURE :
+            return { ...state, age : { ...state.age, loading : false, error : action.payload }};
 
         case GUEST_FIND_LOGIN_ID :
             return { ...state, findLoginId : { result : null, loading : true, error : null }};
