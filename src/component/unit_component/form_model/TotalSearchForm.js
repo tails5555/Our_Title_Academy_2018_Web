@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
+import {MajorTitleHeader} from "../header";
 
 class TotalSearchForm extends Component{
     constructor(props){
@@ -29,9 +30,7 @@ class TotalSearchForm extends Component{
         return(
             <Fragment>
                 <section id="search" className="alt">
-                    <header className="major">
-                        <h2>Search For Keyword</h2>
-                    </header>
+                    <MajorTitleHeader title="Search For Keyword" />
                     <form onSubmit={this.handleSubmit.bind(this)}>
                         <div style={{ marginBottom : "20px" }}>
                             <input type="text" name="keyword" placeholder="키워드를 입력하세요" onChange={this.handleChange.bind(this)} />

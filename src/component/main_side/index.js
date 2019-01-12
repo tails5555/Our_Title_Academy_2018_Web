@@ -2,6 +2,9 @@
 export {default as MainIntroHeader} from './MainIntroHeader';
 export {default as WarmRequestListView} from './WarmRequestListView';
 
+// Guest Sign Process View
+export {default as GuestSignView} from './GuestSignView';
+
 // Rank Request List Top 10 Main View
 export {default as TodayRankMainView} from './TodayRankMainView';
 

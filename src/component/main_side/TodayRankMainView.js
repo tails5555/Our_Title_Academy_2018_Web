@@ -63,7 +63,7 @@ class TodayRankMainView extends Component {
                     label : `${idx + 1} 등`
                 }));
                 requestRender = list.map((request, idx) => (
-                    <div key={`request_main_view_${idx}`} className="w3-animate-opacity" key={`main_rank_request_${idx}`}>
+                    <div key={`request_main_view_${idx}`} className="w3-animate-opacity">
                         <div className="w3-animate-left w3-right-align w3-margin">
                             <Link to={`/view_request?cid=${request.requestDTO.category.id}&id=${request.requestDTO.id}&pg=1`}>
                                 <button className="button primary">

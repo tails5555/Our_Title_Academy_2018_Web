@@ -1,6 +1,6 @@
 import React from 'react';
-import {SignFormContainer} from "../../container/index";
+import { GuestSignView } from "../../component/main_side";
 
-const SignUpPage = () => <SignFormContainer />;
+const SignUpPage = () => <GuestSignView />;
 
 export default SignUpPage;
