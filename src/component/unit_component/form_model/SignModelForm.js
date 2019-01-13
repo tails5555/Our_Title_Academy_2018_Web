@@ -20,16 +20,36 @@ const userConfirmURL = 'http://127.0.0.1:8081/UserAPI/auth/common/password';
 const validateAndSignSaving = (values, dispatch, { accessor }) => {
     if(!accessor.principal) {
         dispatch(GuestAction.guestExecuteSignUp(values));
+    } else {
+        dispatch(UserAction.userUpdateMySignInfo(values));
     }
 }
 
-const mapStateToProps = ({ detail, guest, user, form }) => ({
-    guest : guest.form,
-    age : detail.age,
-    city : detail.city,
-    accessor : user.accessor,
-    sign : form.signModelForm
-});
+const mapStateToProps = ({ detail, guest, user, form }) => {
+    const { element } = user.form;
+    let signForm = {
+        confirmPassword : '',
+        mainPassword : '',
+        subPassword : '',
+        loginId : element && element.loginId,
+        name : element && element.name,
+        nickname : element && element.nickname,
+        email : element && element.email,
+        phoneNumber : element && element.phoneNumber,
+        homeNumber : element && element.homeNumber,
+        ageId : element && element.ageId,
+        cityId : element && element.cityId
+    }
+    return{
+        guest : guest.form,
+        user : user.form,
+        age : detail.age,
+        city : detail.city,
+        accessor : user.accessor,
+        sign : form.signModelForm,
+        initialValues : signForm,
+    };
+}
 
 const mapDispatchToProps = (dispatch) => ({
     guestAction : bindActionCreators(GuestAction, dispatch),
@@ -117,8 +137,8 @@ const userSignTextFormElements = [
     { type : 'text', name : 'loginId', label : '사용자 ID [수정 불가능]', placeholder : '제목학원에서 사용하실 아이디를 입력하세요. 영어 대-소문자, 숫자를 포함한 6~12자로 입력하세요.', readOnly : true },
     { type : 'text', name : 'name', label : '이름 [수정 불가능]', placeholder : '본인의 이름을 입력하세요. 회원 이름은 매니저, 관리자만 열람합니다.', readOnly : true },
     { type : 'password', name : 'confirmPassword', label : '이전 비밀번호', placeholder : '회원 수정을 위한 이전 비밀번호를 입력하세요.', readOnly : false },
-    { type : 'password', name : 'mainPassword', label : '새로운 비밀번호', placeholder : '새로 사용할 비밀번호를 입력하세요. 영어 대-소문자, 숫자를 포함한 6~12자로 입력하세요.', readOnly : true },
-    { type : 'password', name : 'subPassword', label : '새로운 비밀번호 확인', placeholder : '새로 사용할 비밀번호를 한 번 더 입력하세요.', readOnly : true },
+    { type : 'password', name : 'mainPassword', label : '새로운 비밀번호', placeholder : '새로 사용할 비밀번호를 입력하세요. 영어 대-소문자, 숫자를 포함한 6~12자로 입력하세요.', readOnly : false },
+    { type : 'password', name : 'subPassword', label : '새로운 비밀번호 확인', placeholder : '새로 사용할 비밀번호를 한 번 더 입력하세요.', readOnly : false },
 ].concat(commonSignTextFormElements);
 
 class SignModelForm extends Component {
@@ -130,7 +150,11 @@ class SignModelForm extends Component {
     componentDidMount(){
         const { accessor } = this.props;
         if(accessor.principal) {
-
+            const { userAction } = this.props;
+            const { fetchAgeList, fetchCityList, userFetchMySignInfo } = userAction;
+            fetchAgeList();
+            fetchCityList();
+            userFetchMySignInfo();
         } else {
             const { guestAction } = this.props;
             const { fetchAgeList, fetchCityList } = guestAction;
@@ -153,7 +177,7 @@ class SignModelForm extends Component {
     }
 
     componentDidUpdate(prevState, prevProps){
-        const { history, guest } = this.props;
+        const { history, guest, user } = this.props;
         if(guest.complete){
             alert(`${guest.complete && guest.complete.name} 님의 회원 가입 진행이 완료 되었습니다. 홈으로 이동합니다.`);
             history.push('/');
@@ -161,12 +185,23 @@ class SignModelForm extends Component {
             alert(`회원 가입을 하는 도중 데이터베이스 내부에 오류가 발생 했습니다.\n오류 내용 : ${guest.error} 이 문제가 계속 발생하면 개발자에게 조치를 취하시길 바랍니다.`);
             history.push('/');
         }
+
+        if(user.complete){
+            alert(`${user.complete && user.complete.name} 님의 회원 수정하는 작업이 완료 되었습니다. 홈으로 이동합니다.`);
+            history.push('/');
+        } else if(user.error){
+            alert(`회원 수정을 하는 도중 데이터베이스 내부에 오류가 발생 했습니다.\n오류 내용 : ${user.error} 이 문제가 계속 발생하면 개발자에게 조치를 취하시길 바랍니다.`);
+            history.push('/');
+        }
     }
 
     componentWillUnmount(){
         const { accessor } = this.props;
         if(accessor.principal) {
-
+            const { userAction } = this.props;
+            const { resetUserFetchMySignInfo, resetUserUpdateMySignInfo } = userAction;
+            resetUserFetchMySignInfo();
+            resetUserUpdateMySignInfo();
         } else {
             const { guestAction } = this.props;
             const { resetGuestExecuteSignUp } = guestAction;
@@ -190,9 +225,7 @@ class SignModelForm extends Component {
                     request = axios({
                         url : `${userConfirmURL}`,
                         method : 'post',
-                        data : {
-                            inputPassword : value
-                        },
+                        data : value,
                         headers : {
                             'Authorization' : `Bearer ${sessionStorage.getItem('jwtToken')}`
                         }
@@ -221,7 +254,7 @@ class SignModelForm extends Component {
     }
 
     render(){
-        const { handleSubmit, accessor, guest } = this.props;
+        const { handleSubmit, accessor, guest, user } = this.props;
         const { ages, cities, ageLoading, cityLoading, canSubmit } = this.state;
         return (
             <Fragment>
@@ -241,7 +274,7 @@ class SignModelForm extends Component {
                     {
                         accessor.principal ? userSignTextFormElements.map((field, idx) => (
                             <div key={`user_sign_form_field_${idx}`} style={{ margin : '10px 10px'}}>
-                                <Field type={ field.type } name={ field.name } component={renderField} label={ field.label } placeholder={ field.placeholder } readOnly={ (field.name === 'confirmPassword') ? canSubmit : field.readOnly } />
+                                <Field type={ field.type } name={ field.name } component={renderField} label={ field.label } placeholder={ field.placeholder } readOnly={ (field.name === 'confirmPassword') ? false : !field.readOnly ? !canSubmit : true } />
                                 {
                                     (field.name === 'confirmPassword') ? (
                                         <div className="w3-margin">
@@ -295,10 +328,10 @@ class SignModelForm extends Component {
                             </div>
                     }
                 </form>
-                <ModalScreen title="Loading" opened={guest.loading}>
+                <ModalScreen title="Loading" opened={guest.loading || user.loading}>
                     <div className="w3-center w3-padding">
                         <i className="fas fa-sync fa-spin" style={{ fontSize : '80px', margin : '10px' }} />
-                        <h4>회원 서버에 입력하신 양식을 저장하는 중입니다...</h4>
+                        <h4>회원 서버에 접속하는 중입니다...</h4>
                     </div>
                 </ModalScreen>
             </Fragment>

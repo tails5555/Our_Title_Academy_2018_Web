@@ -48,7 +48,6 @@ const AccountRouter = () => (
             return <Redirect to={`/view_request/_refresh${location.search}`}/>
         }} />
         <Route exact path="/my/info_manage" component={MyInfoFormPage} />
-        <Route exact path="/my/info_update_result" component={MyInfoResultPage} />
         <Route exact path="/my/profile_change" component={MyProfileChangePage} />
         <Route exact path="/my/request_statistic" component={MyRequestStatisticPage} />
         <Route exact path="/my/title_statistic" component={MyTitleStatisticPage} />

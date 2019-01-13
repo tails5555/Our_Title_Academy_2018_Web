@@ -5,6 +5,9 @@ export {default as WarmRequestListView} from './WarmRequestListView';
 // Guest Sign Process View
 export {default as GuestSignView} from './GuestSignView';
 
+// User Sign Process View
+export {default as UserSignView} from './UserSignView';
+
 // Rank Request List Top 10 Main View
 export {default as TodayRankMainView} from './TodayRankMainView';
 

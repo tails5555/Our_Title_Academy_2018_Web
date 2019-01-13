@@ -1,6 +1,6 @@
 import React from 'react';
-import {MyInfoFormContainer} from '../../container/index';
+import {UserSignView} from "../../component/main_side";
 
-const MyInfoFormPage = () => <MyInfoFormContainer />
+const MyInfoFormPage= () => <UserSignView />
 
 export default MyInfoFormPage;
