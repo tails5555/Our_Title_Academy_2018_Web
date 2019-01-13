@@ -1,5 +1,137 @@
 import axios from 'axios';
 
+import {
+    userFetchMyInfoApi, userFetchAgeListApi, userFetchCityListApi, userUpdateSignInfoApi
+} from "./api/api_user";
+
+import {
+    USER_FETCH_MY_SIGN_INFO, USER_FETCH_MY_SIGN_INFO_SUCCESS, USER_FETCH_MY_SIGN_INFO_FAILURE, RESET_USER_FETCH_MY_SIGN_INFO,
+    USER_FETCH_AGE_LIST, USER_FETCH_AGE_LIST_SUCCESS, USER_FETCH_AGE_LIST_FAILURE,
+    USER_FETCH_CITY_LIST, USER_FETCH_CITY_LIST_SUCCESS, USER_FETCH_CITY_LIST_FAILURE,
+    USER_UPDATE_MY_SIGN_INFO, USER_UPDATE_MY_SIGN_INFO_SUCCESS, USER_UPDATE_MY_SIGN_INFO_FAILURE, RESET_USER_UPDATE_MY_SIGN_INFO
+} from "./type/type_user";
+
+const userFetchMySignInfoStart = () => ({
+    type : USER_FETCH_MY_SIGN_INFO
+});
+
+const userFetchMySignInfoSuccess = (response) => ({
+    type : USER_FETCH_MY_SIGN_INFO_SUCCESS,
+    payload : response && response.data
+});
+
+const userFetchMySignInfoFailure = (error) => ({
+    type : USER_FETCH_MY_SIGN_INFO_FAILURE,
+    payload : error && error.message
+});
+
+export const userFetchMySignInfo = () => (dispatch) => {
+    dispatch(userFetchMySignInfoStart());
+
+    return userFetchMyInfoApi().then((response) => {
+        setTimeout(() => {
+            dispatch(userFetchMySignInfoSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(userFetchMySignInfoFailure(error));
+    });
+}
+
+const resetUserFetchMySignInfoStart = () => ({
+    type : RESET_USER_FETCH_MY_SIGN_INFO
+});
+
+export const resetUserFetchMySignInfo = () => (dispatch) => {
+    dispatch(resetUserFetchMySignInfoStart())
+}
+
+const userFetchAgeListStart = () => ({
+    type : USER_FETCH_AGE_LIST
+});
+
+const userFetchAgeListSuccess = (response) => ({
+    type : USER_FETCH_AGE_LIST_SUCCESS,
+    payload : response && response.data
+});
+
+const userFetchAgeListFailure = (error) => ({
+    type : USER_FETCH_AGE_LIST_FAILURE,
+    payload : error && error.message
+});
+
+export const fetchAgeList = () => (dispatch) => {
+    dispatch(userFetchAgeListStart());
+
+    return userFetchAgeListApi().then((response) => {
+        setTimeout(() => {
+            dispatch(userFetchAgeListSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(userFetchAgeListFailure(error));
+    });
+}
+
+const userFetchCityListStart = () => ({
+    type : USER_FETCH_CITY_LIST
+});
+
+const userFetchCityListSuccess = (response) => ({
+    type : USER_FETCH_CITY_LIST_SUCCESS,
+    payload : response && response.data
+});
+
+const userFetchCityListFailure = (error) => ({
+    type : USER_FETCH_CITY_LIST_FAILURE,
+    payload : error && error.message
+});
+
+export const fetchCityList = () => (dispatch) => {
+    dispatch(userFetchCityListStart());
+
+    return userFetchCityListApi().then((response) => {
+        setTimeout(() => {
+            dispatch(userFetchCityListSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(userFetchCityListFailure(error));
+    });
+}
+
+const userUpdateMySignInfoStart = () => ({
+    type : USER_UPDATE_MY_SIGN_INFO
+});
+
+const userUpdateMySignInfoSuccess = (response) => ({
+    type : USER_UPDATE_MY_SIGN_INFO_SUCCESS,
+    payload : response && response.data
+});
+
+const userUpdateMySignInfoFailure = (error) => ({
+    type : USER_UPDATE_MY_SIGN_INFO_FAILURE,
+    payload : error && error.message
+});
+
+export const userUpdateMySignInfo = (signModel) => (dispatch) => {
+    dispatch(userUpdateMySignInfoStart());
+
+    return userUpdateSignInfoApi(signModel).then((response) => {
+        setTimeout(() => {
+            dispatch(userUpdateMySignInfoSuccess(response));
+        }, 2000);
+    }).catch((error) => {
+        dispatch(userUpdateMySignInfoFailure(error));
+    })
+}
+
+const resetUserUpdateMySignInfoStart = () => ({
+    type : RESET_USER_UPDATE_MY_SIGN_INFO
+});
+
+export const resetUserUpdateMySignInfo = () => (dispatch) => {
+    dispatch(resetUserUpdateMySignInfoStart());
+}
+
+
 const ROOT_URL = 'http://127.0.0.1:8081/UserAPI/auth';
 
 export const USER_LOGOUT_PROCESS = 'USER_LOGOUT_PROCESS';
@@ -8,31 +140,6 @@ export const FETCH_USER_PRINCIPAL_FROM_SERVER_PROCESS = 'FETCH_USER_PRINCIPAL_FR
 export const FETCH_USER_PRINCIPAL_FROM_SERVER_COMPLETE = 'FETCH_USER_PRINCIPAL_FROM_SERVER_COMPLETE';
 export const FETCH_USER_PRINCIPAL_FROM_SERVER_EXCEPTION = 'FETCH_USER_PRINCIPAL_FROM_SERVER_EXCEPTION';
 export const RESET_FETCH_USER_PRINCIPAL_FROM_SERVER = 'RESET_FETCH_USER_PRINCIPAL_FROM_SERVER';
-
-export const USER_LOAD_SIGN_FORM = 'USER_LOAD_SIGN_FORM';
-export const USER_LOAD_SIGN_FORM_SUCCESS = 'USER_LOAD_SIGN_FORM_SUCCESS';
-export const USER_LOAD_SIGN_FORM_FAILURE = 'USER_LOAD_SIGN_FORM_FAILURE';
-export const RESET_USER_LOAD_SIGN_FORM = 'RESET_USER_LOAD_SIGN_FORM';
-
-export const USER_LOAD_AGE_LIST = 'USER_LOAD_AGE_LIST';
-export const USER_LOAD_AGE_LIST_SUCCESS = 'USER_LOAD_AGE_LIST_SUCCESS';
-export const USER_LOAD_AGE_LIST_FAILURE = 'USER_LOAD_AGE_LIST_FAILURE';
-export const RESET_USER_LOAD_AGE_LIST = 'RESET_USER_LOAD_AGE_LIST';
-
-export const USER_LOAD_CITY_LIST = 'USER_LOAD_CITY_LIST';
-export const USER_LOAD_CITY_LIST_SUCCESS = 'USER_LOAD_CITY_LIST_SUCCESS';
-export const USER_LOAD_CITY_LIST_FAILURE = 'USER_LOAD_CITY_LIST_FAILURE';
-export const RESET_USER_LOAD_CITY_LIST = 'RESET_USER_LOAD_CITY_LIST';
-
-export const USER_CONFIRM_CURRENT_PASSWORD = 'USER_CONFIRM_CURRENT_PASSWORD';
-export const USER_CONFIRM_CURRENT_PASSWORD_SUCCESS = 'USER_CONFIRM_CURRENT_PASSWORD_SUCCESS';
-export const USER_CONFIRM_CURRENT_PASSWORD_FAILURE = 'USER_CONFIRM_CURRENT_PASSWORD_FAILURE';
-export const RESET_USER_CONFIRM_CURRENT_PASSWORD = 'RESET_USER_CONFIRM_CURRENT_PASSWORD';
-
-export const USER_UPDATE_SIGN_INFO_PROCESS = 'USER_UPDATE_SIGN_INFO_PROCESS';
-export const USER_UPDATE_SIGN_INFO_SUCCESS = 'USER_UPDATE_SIGN_INFO_SUCCESS';
-export const USER_UPDATE_SIGN_INFO_FAILURE = 'USER_UPDATE_SIGN_INFO_FAILURE';
-export const RESET_USER_UPDATE_SIGN_INFO = 'RESET_USER_UPDATE_SIGN_INFO';
 
 export const ADMIN_LOAD_USER_LIST = 'ADMIN_LOAD_USER_LIST';
 export const ADMIN_LOAD_USER_LIST_SUCCESS = 'ADMIN_LOAD_USER_LIST_SUCCESS';
@@ -100,184 +207,6 @@ export function fetchUserPrincipalFromServerException(error){
 export function resetFetchUserPrincipalFromServer(){
     return {
         type : RESET_FETCH_USER_PRINCIPAL_FROM_SERVER
-    }
-}
-
-export function userLoadSignForm(userToken){
-    const request = axios.get(`${ROOT_URL}/common/sign_info`, {
-            headers :
-                {
-                    'Authorization' : `Bearer ${userToken}`
-                }
-        }
-    );
-    return {
-        type : USER_LOAD_SIGN_FORM,
-        payload : request
-    }
-}
-
-export function userLoadSignFormSuccess(signForm){
-    return {
-        type : USER_LOAD_SIGN_FORM_SUCCESS,
-        payload : signForm.data
-    }
-}
-
-export function userLoadSignFormFailure(error){
-    return {
-        type : USER_LOAD_SIGN_FORM_FAILURE,
-        payload : error
-    }
-}
-
-export function resetUserLoadSignForm(){
-    return {
-        type : RESET_USER_LOAD_SIGN_FORM
-    }
-}
-
-export function userLoadAgeList(userToken){
-    const request = axios({
-        method : 'get',
-        url : `${ROOT_URL}/common/ageList`,
-        headers :
-        {
-            'Authorization' : `Bearer ${userToken}`
-        }
-    });
-    return {
-        type : USER_LOAD_AGE_LIST,
-        payload : request
-    }
-}
-
-export function userLoadAgeListSuccess(cities){
-    return {
-        type : USER_LOAD_AGE_LIST_SUCCESS,
-        payload : cities.data
-    }
-}
-
-export function userLoadAgeListFailure(error){
-    return {
-        type : USER_LOAD_AGE_LIST_FAILURE,
-        payload : error
-    }
-}
-
-export function resetUserLoadAgeList(){
-    return {
-        type : RESET_USER_LOAD_AGE_LIST
-    }
-}
-
-export function userLoadCityList(userToken){
-    const request = axios({
-        method : 'get',
-        url : `${ROOT_URL}/common/cityList`,
-        headers :
-        {
-            'Authorization' : `Bearer ${userToken}`
-        }
-    });
-    return {
-        type : USER_LOAD_CITY_LIST,
-        payload : request
-    }
-}
-
-export function userLoadCityListSuccess(cities){
-    return {
-        type : USER_LOAD_CITY_LIST_SUCCESS,
-        payload : cities.data
-    }
-}
-
-export function userLoadCityListFailure(error){
-    return {
-        type : USER_LOAD_CITY_LIST_FAILURE,
-        payload : error
-    }
-}
-
-export function resetUserLoadCityList(){
-    return {
-        type : RESET_USER_LOAD_CITY_LIST
-    }
-}
-
-export function userConfirmCurrentPassword(currentPassword, userToken){
-    const request = axios({
-        method : 'post',
-        url : `${ROOT_URL}/common/confirm_password`,
-        data : currentPassword,
-        headers :
-            {
-                'Authorization' : `Bearer ${userToken}`
-            }
-    });
-
-    return {
-        type : USER_CONFIRM_CURRENT_PASSWORD,
-        payload : request
-    }
-}
-
-export function userConfirmCurrentPasswordSuccess(result){
-    return {
-        type : USER_CONFIRM_CURRENT_PASSWORD_SUCCESS,
-        payload : result.data
-    }
-}
-
-export function userConfirmCurrentPasswordFailure(error){
-    return {
-        type : USER_CONFIRM_CURRENT_PASSWORD_FAILURE,
-        payload : error
-    }
-}
-
-export function resetUserConfirmCurrentPassword(){
-    return {
-        type : RESET_USER_CONFIRM_CURRENT_PASSWORD
-    }
-}
-
-export function userUpdateSignInfoProcess(userInfoUpdateForm, userToken){
-    const request = axios({
-        method : 'put',
-        url : `${ROOT_URL}/common/sign_update`,
-        data : userInfoUpdateForm,
-        headers :
-            {
-                'Authorization' : `Bearer ${userToken}`
-            }
-    });
-
-    return {
-        type : USER_UPDATE_SIGN_INFO_PROCESS,
-        payload : request
-    }
-}
-
-export function userUpdateSignInfoSuccess(detail){
-    return {
-        type : USER_UPDATE_SIGN_INFO_SUCCESS,
-        payload : detail.data
-    }
-}
-
-export function userUpdateSignInfoFailure(error){
-    return {
-        type : USER_UPDATE_SIGN_INFO_FAILURE,
-        payload : error
-    }
-}
-
-export function resetUserUpdateSignInfo(){
-    return {
-        type : RESET_USER_UPDATE_SIGN_INFO
     }
 }
 
